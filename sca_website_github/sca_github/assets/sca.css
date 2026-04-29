@@ -473,7 +473,7 @@ p { margin: 0; }
 }
 .marquee-track {
   display: flex; gap: 80px; align-items: center;
-  animation: scroll 8s linear infinite;
+  animation: scroll 10s linear infinite;
   width: max-content;
 }
 .marquee-item {
