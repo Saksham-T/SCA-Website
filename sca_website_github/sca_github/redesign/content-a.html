@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content & Brand — SCA / Variation A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/sca.css?v=21">
+<link rel="stylesheet" href="../assets/sca-extras.css?v=21">
+<style>
+  /* ——— Variation A specific ——— */
+
+  /* Editorial masthead */
+  .ed-masthead {
+    border-bottom: 1px solid var(--line);
+    padding: 28px 0 16px;
+  }
+  .ed-mast-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    gap: 24px;
+  }
+  .ed-mast-row .center {
+    color: var(--accent);
+    text-align: center;
+  }
+  .ed-mast-row .right { text-align: right; }
+
+  /* Hero — editorial cover */
+  .ed-hero {
+    padding: 88px 0 96px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .ed-hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(56px, 11vw, 168px);
+    line-height: .88;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+    margin: 32px 0 0;
+    text-wrap: balance;
+  }
+  .ed-hero h1 em {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .ed-kicker {
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .ed-kicker::before {
+    content: ""; width: 48px; height: 1px; background: var(--accent);
+  }
+  .ed-deck {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .ed-deck .lede {
+    font-family: var(--font-body);
+    font-size: 26px;
+    line-height: 1.4;
+    color: #e8e8e8;
+    font-style: italic;
+    text-wrap: pretty;
+  }
+  .ed-deck .lede strong {
+    font-style: normal;
+    color: #fff;
+    font-weight: 500;
+  }
+  .ed-deck .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    align-self: end;
+  }
+  .ed-deck .meta dl {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 12px 16px;
+    margin: 0;
+  }
+  .ed-deck .meta dt { color: var(--dim); }
+  .ed-deck .meta dd { margin: 0; color: #d8d8d8; }
+  .ed-deck .meta .cta-row {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .ed-deck { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* Logo wall — replaces stock strip */
+  .logo-wall {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 0;
+  }
+  .logo-wall-head {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .logo-wall-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--line);
+  }
+  .logo-cell {
+    background: var(--bg);
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+  .logo-cell img {
+    max-width: 70%;
+    max-height: 56%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(3) contrast(1.1);
+    opacity: .78;
+    transition: opacity .25s var(--ease), filter .25s var(--ease);
+  }
+  .logo-cell:hover img { opacity: 1; filter: grayscale(1) brightness(3.4) contrast(1.2); }
+  @media (max-width: 900px) {
+    .logo-wall-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* The Cadence — month-as-calendar */
+  .cadence {
+    padding: 96px 0;
+  }
+  .cadence-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .cad-week {
+    background: var(--bg);
+    padding: 28px 24px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
+  .cad-week .wk-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+  }
+  .cad-week .wk-label .d { color: var(--dim); }
+  .cad-item {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.4;
+    color: #d2d2d2;
+  }
+  .cad-item .dot {
+    width: 8px; height: 8px;
+    margin-top: 7px;
+    background: var(--fg);
+  }
+  .cad-item.is-strategy .dot { background: var(--accent); }
+  .cad-item.is-paid .dot { background: #fff; outline: 1px solid var(--accent); outline-offset: -1px; }
+  .cad-item.is-write { background: none; }
+  .cad-item .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .cad-legend {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .cad-legend span {
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .cad-legend .sw {
+    width: 10px; height: 10px;
+  }
+  @media (max-width: 900px) {
+    .cadence-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Selected Work — feature spreads */
+  .work-spread {
+    border-top: 1px solid var(--line);
+    padding: 80px 0;
+  }
+  .work-spread + .work-spread { border-top: 1px solid var(--line); }
+  .ws-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .ws-grid.flip { direction: rtl; }
+  .ws-grid.flip > * { direction: ltr; }
+  .ws-img {
+    aspect-ratio: 4 / 5;
+    background: var(--card-2);
+    border: 1px solid var(--line-2);
+    overflow: hidden;
+    position: relative;
+  }
+  .ws-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .ws-img .corner {
+    position: absolute; top: 12px; left: 12px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: #fff; background: rgba(0,0,0,.65);
+    padding: 6px 10px;
+  }
+  .ws-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ws-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(36px, 4.5vw, 64px);
+    line-height: .98;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-wrap: balance;
+  }
+  .ws-body {
+    font-family: var(--font-body);
+    font-size: 19px;
+    line-height: 1.55;
+    color: #d8d8d8;
+    margin-bottom: 28px;
+    max-width: 48ch;
+  }
+  .ws-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 28px;
+  }
+  .ws-results .r {
+    background: var(--bg);
+    padding: 18px 16px;
+  }
+  .ws-results .r .n {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .ws-results .r .n .accent { color: var(--accent); }
+  .ws-results .r .l {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  @media (max-width: 900px) {
+    .ws-grid, .ws-grid.flip { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+  }
+
+  /* Pillars — what's in the retainer */
+  .pillars {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+  }
+  .pillar-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1.4fr 200px;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .pillar-row:last-child { border-bottom: 1px solid var(--line); }
+  .pillar-row .pn {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--accent);
+    padding-top: 8px;
+  }
+  .pillar-row h4 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 30px);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  .pillar-row .desc {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.55;
+    color: #cfcfcf;
+  }
+  .pillar-row .cad {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 8px;
+    text-align: right;
+  }
+  .pillar-row .cad b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  @media (max-width: 900px) {
+    .pillar-row { grid-template-columns: 1fr; gap: 12px; }
+    .pillar-row .cad { text-align: left; padding-top: 12px; }
+  }
+
+  /* Vs. in-house comparison */
+  .vsblock {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+  }
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid var(--line);
+  }
+  .vs-col { padding: 32px 28px 36px; border-right: 1px solid var(--line); }
+  .vs-col:last-child { border-right: 0; }
+  .vs-col.us { background: #06122a; border-right-color: var(--accent); position: relative; }
+  .vs-col.us::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--accent);
+  }
+  .vs-col h5 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .vs-col.us h5 { color: var(--accent); }
+  .vs-col h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .vs-col .price {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .vs-col.us .price { border-bottom-color: rgba(38,107,217,.4); }
+  .vs-col ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .vs-col li {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.45;
+    color: #c8c8c8;
+    padding-left: 22px;
+    position: relative;
+  }
+  .vs-col li::before {
+    content: "—";
+    position: absolute; left: 0;
+    color: var(--dim);
+    font-family: var(--font-mono);
+  }
+  .vs-col.us li::before { content: "+"; color: var(--accent); }
+  @media (max-width: 900px) {
+    .vs-grid { grid-template-columns: 1fr; }
+    .vs-col { border-right: 0; border-bottom: 1px solid var(--line); }
+  }
+
+  /* Closing CTA */
+  .ed-close {
+    padding: 120px 0;
+    border-top: 2px solid var(--fg);
+    text-align: left;
+  }
+  .ed-close h2 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 9vw, 144px);
+    line-height: .9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-wrap: balance;
+  }
+  .ed-close h2 em {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.02em;
+  }
+  .ed-close-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    align-items: end;
+  }
+  .ed-close-row p {
+    font-family: var(--font-body);
+    font-size: 19px;
+    line-height: 1.55;
+    color: #d2d2d2;
+    max-width: 42ch;
+  }
+  .ed-close-row .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  @media (max-width: 900px) {
+    .ed-close-row { grid-template-columns: 1fr; }
+  }
+
+  /* hide stuff we no longer need */
+  body { cursor: auto; }
+  button, .btn, a { cursor: pointer !important; }
+  .cursor, .cursor-ring { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark"><img src="../images/sca-logo-mark.png" alt=""></span>
+      <span>SeeTusk / SCA</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active">Content</a>
+      <a href="#">Influencer</a>
+      <a href="#">Web &amp; Tech</a>
+      <a href="#">About</a>
+    </div>
+    <div class="nav-cta"><a href="#" class="btn accent">Talk to us <span class="arr">↗</span></a></div>
+  </div>
+</nav>
+
+<!-- Editorial masthead -->
+<div class="shell ed-masthead">
+  <div class="ed-mast-row">
+    <span>SCA Quarterly · Vol. 04 · Vertical 01</span>
+    <span class="center">— Content &amp; Brand Infrastructure —</span>
+    <span class="right">Pune, IND · Edition 26.05</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="ed-hero">
+  <div class="shell">
+    <div class="ed-kicker">File 01 / The outsourced creative department</div>
+    <h1>
+      Your brand,<br>
+      shipped <em>weekly.</em>
+    </h1>
+
+    <div class="ed-deck">
+      <div class="lede">
+        We become your <strong>brand OS</strong> — one strategist, one writer, one designer, one ops lead. A retainer team that owns your voice and your distribution calendar. <strong>Monthly retainer. Weekly ship.</strong>
+      </div>
+      <div class="meta">
+        <dl>
+          <dt>For</dt><dd>D2C founders, ₹5–50Cr ARR</dd>
+          <dt>Engagement</dt><dd>6 months minimum</dd>
+          <dt>Onboarding</dt><dd>4 weeks to first asset</dd>
+          <dt>Cadence</dt><dd>Weekly delivery</dd>
+        </dl>
+        <div class="cta-row">
+          <a href="#talk" class="btn accent">Book intro call <span class="arr">↗</span></a>
+          <a href="#cadence" class="btn ghost">See the cadence</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- LOGO WALL -->
+<section class="logo-wall">
+  <div class="shell">
+    <div class="logo-wall-head">
+      <span>§ Selected partners</span>
+      <span>2021 — present</span>
+    </div>
+  </div>
+  <div class="logo-wall-grid">
+    <div class="logo-cell"><img src="../images/logos/hindustan-unilever.png" alt="HUL"></div>
+    <div class="logo-cell"><img src="../images/logos/capgemini.png" alt="Capgemini"></div>
+    <div class="logo-cell"><img src="../images/logos/force-motors.png" alt="Force Motors"></div>
+    <div class="logo-cell"><img src="../images/logos/myfitness.png" alt="MyFitness"></div>
+    <div class="logo-cell"><img src="../images/logos/bamboo-india.png" alt="Bamboo India"></div>
+    <div class="logo-cell"><img src="../images/logos/firvt.png" alt="Firvt"></div>
+    <div class="logo-cell"><img src="../images/logos/clover-co.png" alt="Clover"></div>
+    <div class="logo-cell"><img src="../images/logos/kundan-spaces.png" alt="Kundan Spaces"></div>
+    <div class="logo-cell"><img src="../images/logos/visda-organix.png" alt="Visda"></div>
+    <div class="logo-cell"><img src="../images/logos/wtf.png" alt="WTF"></div>
+    <div class="logo-cell"><img src="../images/logos/car-and-bike.png" alt="Car & Bike"></div>
+    <div class="logo-cell"><img src="../images/logos/tridrashya.png" alt="Tridrashya"></div>
+  </div>
+</section>
+
+<!-- CADENCE -->
+<section class="cadence" id="cadence">
+  <div class="shell">
+    <div class="section-head sr">
+      <div class="section-num">§ 01 / The cadence</div>
+      <div>
+        <div class="section-label">A typical month with us</div>
+        <h2 class="section-title">Predictable, public, and always shipped on Friday.</h2>
+      </div>
+    </div>
+
+    <div class="cadence-grid">
+      <div class="cad-week">
+        <div class="wk-label"><span>Week 01</span><span class="d">Mon → Fri</span></div>
+        <div class="cad-item is-strategy"><span class="dot"></span><div><span class="label">Strategy</span>Monthly content brief locked. Channel themes signed off.</div></div>
+        <div class="cad-item"><span class="dot"></span><div><span class="label">Visual</span>4 social drops · 1 ad set</div></div>
+        <div class="cad-item is-write"><span class="dot"></span><div><span class="label">Written</span>Newsletter shipped · 2 LinkedIn posts</div></div>
+      </div>
+      <div class="cad-week">
+        <div class="wk-label"><span>Week 02</span><span class="d">Mon → Fri</span></div>
+        <div class="cad-item"><span class="dot"></span><div><span class="label">Visual</span>4 social drops · 2 long-form posts designed</div></div>
+        <div class="cad-item is-write"><span class="dot"></span><div><span class="label">Written</span>Long-form essay shipped · founder LinkedIn</div></div>
+        <div class="cad-item is-paid"><span class="dot"></span><div><span class="label">Paid</span>Meta + LinkedIn refresh. Mid-month report.</div></div>
+      </div>
+      <div class="cad-week">
+        <div class="wk-label"><span>Week 03</span><span class="d">Mon → Fri</span></div>
+        <div class="cad-item"><span class="dot"></span><div><span class="label">Visual</span>Campaign frame shoot · 6 derivatives</div></div>
+        <div class="cad-item is-write"><span class="dot"></span><div><span class="label">Written</span>Newsletter · sales-page rewrite</div></div>
+        <div class="cad-item"><span class="dot"></span><div><span class="label">Email</span>Lifecycle template designed</div></div>
+      </div>
+      <div class="cad-week">
+        <div class="wk-label"><span>Week 04</span><span class="d">Mon → Fri</span></div>
+        <div class="cad-item"><span class="dot"></span><div><span class="label">Visual</span>4 social drops · monthly recap reel</div></div>
+        <div class="cad-item is-paid"><span class="dot"></span><div><span class="label">Paid</span>Full-month performance report</div></div>
+        <div class="cad-item is-strategy"><span class="dot"></span><div><span class="label">Review</span>1-hr review call. Next month locked.</div></div>
+      </div>
+    </div>
+
+    <div class="cad-legend">
+      <span><span class="sw" style="background: var(--accent);"></span>Strategy &amp; review</span>
+      <span><span class="sw" style="background: var(--fg);"></span>Visual / written</span>
+      <span><span class="sw" style="background: #fff; outline: 1px solid var(--accent); outline-offset:-1px;"></span>Paid &amp; reporting</span>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section style="border-top: 1px solid var(--line);">
+  <div class="shell" style="padding-top: 64px;">
+    <div class="section-head sr">
+      <div class="section-num">§ 02 / Selected work</div>
+      <div>
+        <div class="section-label">Three brands, three years</div>
+        <h2 class="section-title">What weekly ship looks like in the wild.</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-spread">
+    <div class="shell">
+      <div class="ws-grid">
+        <div class="ws-img">
+          <span class="corner">C.001 / Pulsar Night Ride</span>
+          <img src="../images/pulsar-night-ride.png" alt="Pulsar Night Ride campaign">
+        </div>
+        <div>
+          <div class="ws-meta">Bajaj Pulsar · Lifestyle / Auto</div>
+          <h3 class="ws-title">A two-year campaign for India's loudest motorcycle.</h3>
+          <p class="ws-body">We built and ran the Pulsar Night Ride creative — film, social, paid, on-ground. Six cities, fourteen films, weekly drops. The brand voice that the dealers learnt to talk in.</p>
+          <div class="ws-results">
+            <div class="r"><div class="n">14<span class="accent">×</span></div><div class="l">Films shipped</div></div>
+            <div class="r"><div class="n">6</div><div class="l">Cities activated</div></div>
+            <div class="r"><div class="n">2.4<span class="accent">M</span></div><div class="l">Organic reach / mo</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-spread">
+    <div class="shell">
+      <div class="ws-grid flip">
+        <div class="ws-img">
+          <span class="corner">C.002 / Ambar Coffee</span>
+          <img src="../images/ambar-coffee.png" alt="Ambar Coffee brand">
+        </div>
+        <div>
+          <div class="ws-meta">Ambar · Specialty Coffee D2C</div>
+          <h3 class="ws-title">From founder Instagram to a brand that ships in twelve cities.</h3>
+          <p class="ws-body">Brand book in week two. Packaging, voice, and a year-long content calendar that ran on autopilot. The team grew sales by 4× without growing the marketing headcount.</p>
+          <div class="ws-results">
+            <div class="r"><div class="n">4<span class="accent">×</span></div><div class="l">YoY revenue</div></div>
+            <div class="r"><div class="n">12</div><div class="l">Cities</div></div>
+            <div class="r"><div class="n">0</div><div class="l">In-house hires</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-spread">
+    <div class="shell">
+      <div class="ws-grid">
+        <div class="ws-img">
+          <span class="corner">C.003 / Wknd Wines</span>
+          <img src="../images/wknd-wines.png" alt="Wknd Wines">
+        </div>
+        <div>
+          <div class="ws-meta">Wknd · Wine Subscription</div>
+          <h3 class="ws-title">A weekly editorial voice that built a 9k-subscriber list.</h3>
+          <p class="ws-body">Newsletter as the front door. Long-form essays, tasting notes, and a Friday drop format that subscribers wait for. Paid never had to do the heavy lifting.</p>
+          <div class="ws-results">
+            <div class="r"><div class="n">9<span class="accent">k</span></div><div class="l">Newsletter list</div></div>
+            <div class="r"><div class="n">62<span class="accent">%</span></div><div class="l">Open rate</div></div>
+            <div class="r"><div class="n">3.1<span class="accent">×</span></div><div class="l">CAC vs paid only</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="shell">
+    <div class="section-head sr">
+      <div class="section-num">§ 03 / The retainer</div>
+      <div>
+        <div class="section-label">Four pillars, one monthly fee</div>
+        <h2 class="section-title">Every retainer ships across the same four lanes.</h2>
+      </div>
+    </div>
+
+    <div class="pillar-row">
+      <div class="pn">P.01</div>
+      <h4>Strategy &amp; POV</h4>
+      <div class="desc">Quarterly narrative. Content pillars. Editorial themes. A clear point of view you can defend in a board meeting.</div>
+      <div class="cad">Cadence<b>Quarterly</b></div>
+    </div>
+    <div class="pillar-row">
+      <div class="pn">P.02</div>
+      <h4>Written Content</h4>
+      <div class="desc">Newsletter. Long-form essays. Founder LinkedIn. Sales-adjacent landing pages. Written by humans who actually understand your category.</div>
+      <div class="cad">Cadence<b>3–5 / week</b></div>
+    </div>
+    <div class="pillar-row">
+      <div class="pn">P.03</div>
+      <h4>Visual &amp; Motion</h4>
+      <div class="desc">Social, ads, event assets, email templates, packaging refreshes. On brand, on cadence, on time — without the "designer is on leave" Slack message.</div>
+      <div class="cad">Cadence<b>8–12 / week</b></div>
+    </div>
+    <div class="pillar-row">
+      <div class="pn">P.04</div>
+      <h4>Distribution &amp; Paid</h4>
+      <div class="desc">We run the calendar and the paid layer — Meta, LinkedIn, Google. Reporting tied to leads, signups, and revenue. Not impressions.</div>
+      <div class="cad">Cadence<b>Monthly report</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- VS IN-HOUSE -->
+<section class="vsblock">
+  <div class="shell">
+    <div class="section-head sr">
+      <div class="section-num">§ 04 / The math</div>
+      <div>
+        <div class="section-label">Retainer vs. building it in-house</div>
+        <h2 class="section-title">You were going to hire for this anyway. Here's what it actually costs.</h2>
+      </div>
+    </div>
+
+    <div class="vs-grid">
+      <div class="vs-col">
+        <h5>Option A</h5>
+        <h3>In-house team of four</h3>
+        <div class="price">~₹6.4L / mo loaded · 9–12 weeks to hire · 12 months to ramp</div>
+        <ul>
+          <li>Strategist, writer, designer, ops — four full-time hires</li>
+          <li>Hiring takes 3 months minimum. First output at month 5.</li>
+          <li>Team churn means restarting once a year</li>
+          <li>You manage the calendar, the reviews, and the reshoots</li>
+          <li>No paid layer unless you hire a fifth person</li>
+        </ul>
+      </div>
+      <div class="vs-col">
+        <h5>Option B</h5>
+        <h3>Three freelancers + a tool</h3>
+        <div class="price">~₹2L / mo · scattered Slack threads · zero ownership</div>
+        <ul>
+          <li>Three people who don't know each other's roadmaps</li>
+          <li>Every brief written from scratch</li>
+          <li>Voice drifts every quarter</li>
+          <li>No one is accountable for outcomes</li>
+          <li>Friday becomes "Where is the deck?"</li>
+        </ul>
+      </div>
+      <div class="vs-col us">
+        <h5>Option C — recommended</h5>
+        <h3>SCA Retainer</h3>
+        <div class="price">One monthly retainer · 4 weeks to first ship · 1 point of contact</div>
+        <ul>
+          <li>A pod of four, dedicated. Same faces every month.</li>
+          <li>Brand book signed off in week two</li>
+          <li>Public Notion roadmap. You always know what's shipping.</li>
+          <li>Paid layer included from month one</li>
+          <li>Outcomes tied to your business metrics. We kill what doesn't work.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="ed-close" id="talk">
+  <div class="shell">
+    <h2>Hire the<br>team. <em>not</em><br>the people.</h2>
+    <div class="ed-close-row">
+      <span class="num">↳ END / 04</span>
+      <p>30-minute intro call. We'll tell you in the first ten minutes whether we're the wrong fit. If we're the right fit, you'll have a brand book in fourteen days.</p>
+      <a href="#" class="btn accent">Book intro call <span class="arr">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid" style="border-top: 1px solid var(--line); padding-top: 48px;">
+      <div class="footer-brand">
+        <img class="footer-brand-mark" src="../images/sca-logo-mark.png" alt="SCA mark">
+        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+      </div>
+      <div><h5>Verticals</h5><a href="#">Content &amp; Brand</a><a href="#">Influencer</a><a href="#">Web &amp; Tech</a></div>
+      <div><h5>Studio</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Careers</a></div>
+      <div><h5>Elsewhere</h5><a href="#">contact@seetusk.com ↗</a><a href="#">LinkedIn ↗</a><a href="#">Instagram ↗</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 SeeTusk · Pune, IND</span><span>seetusk.agency · Built in-house</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
