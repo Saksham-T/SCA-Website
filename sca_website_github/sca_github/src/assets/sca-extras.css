@@ -327,9 +327,9 @@
    Ambient Background & Premium Fullscreen Preloader Styling
    ========================================================================== */
 
-/* slate midnight blue-black root background */
+/* premium black root background */
 body {
-  background-color: #020617 !important;
+  background-color: #000000 !important;
 }
 
 /* Global Ambient Background layer */
@@ -341,7 +341,7 @@ body {
   z-index: -5;
   overflow: hidden;
   pointer-events: none;
-  background: #020617;
+  background: #000000;
 }
 
 .ambient-blob {
@@ -377,17 +377,17 @@ body {
   background: radial-gradient(circle, #ffffff 0%, rgba(255, 255, 255, 0) 70%);
   bottom: -200px;
   left: 25%;
-  opacity: 0.08;
+  opacity: 0.38;
   animation: drift3 40s ease-in-out infinite alternate;
 }
 
 .ab4 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #266bd9 0%, rgba(38, 107, 217, 0) 70%);
+  background: radial-gradient(circle, #ffffff 0%, rgba(255, 255, 255, 0) 70%);
   top: 15%;
   left: 35%;
-  opacity: 0.22;
+  opacity: 0.30;
   animation: drift4 32s ease-in-out infinite alternate;
 }
 
