@@ -1,32 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import StackedLogos from '../components/StackedLogos';
+import LogoMarquee from '../components/LogoMarquee';
+import type { LogoItem } from '../components/LogoMarquee';
 
-const logoGroups = [
-  [
-    <img src="/images/logos/hindustan-unilever.png" alt="Hindustan Unilever" key="g1-1" />,
-    <img src="/images/logos/car-and-bike.png" alt="car&amp;bike" key="g1-2" />,
-    <img src="/images/logos/clover-co.png" alt="Clover &amp; Co." key="g1-3" />,
-    <img src="/images/logos/pune-river-revival.png" alt="Pune River Revival" key="g1-4" />
-  ],
-  [
-    <img src="/images/logos/force-motors.png" alt="Force Motors" key="g2-1" />,
-    <span className="cc-text" key="g2-2">The Comedy Clubhouse</span>,
-    <img src="/images/logos/bamboo-india.png" alt="Bamboo India" key="g2-3" />,
-    <img src="/images/logos/kundan-spaces.png" alt="Kundan Spaces" key="g2-4" />
-  ],
-  [
-    <img src="/images/logos/nift.png" alt="NIFT" key="g3-1" />,
-    <img src="/images/logos/wtf.png" alt="WTF" key="g3-2" />,
-    <img src="/images/logos/visda-organix.png" alt="Visda Organix" key="g3-3" />,
-    <img src="/images/logos/coffee-cup.png" alt="Coffee Cup" key="g3-4" />
-  ],
-  [
-    <img src="/images/logos/myfitness.png" alt="MyFitness" key="g4-1" />,
-    <img src="/images/logos/firvt.png" alt="FIRVT" key="g4-2" />,
-    <img src="/images/logos/jeevitnadi.png" alt="Jeevitnadi" key="g4-3" />,
-    <img src="/images/logos/tridrashya.png" alt="Tridrashya" key="g4-4" />
-  ]
+const marqueeLogos: LogoItem[] = [
+  { type: 'image', src: '/images/logos/hindustan-unilever.png', alt: 'Hindustan Unilever' },
+  { type: 'image', src: '/images/logos/force-motors.png', alt: 'Force Motors' },
+  { type: 'image', src: '/images/logos/nift.png', alt: 'NIFT' },
+  { type: 'image', src: '/images/logos/myfitness.png', alt: 'MyFitness' },
+  { type: 'image', src: '/images/logos/car-and-bike.png', alt: 'car&bike' },
+  { type: 'text', text: 'The Comedy Clubhouse', isDarkBg: true },
+  { type: 'image', src: '/images/logos/wtf.png', alt: 'WTF' },
+  { type: 'image', src: '/images/logos/firvt.png', alt: 'FIRVT' },
+  { type: 'image', src: '/images/logos/clover-co.png', alt: 'Clover & Co.' },
+  { type: 'image', src: '/images/logos/bamboo-india.png', alt: 'Bamboo India' },
+  { type: 'image', src: '/images/logos/visda-organix.png', alt: 'Visda Organix' },
+  { type: 'image', src: '/images/logos/jeevitnadi.png', alt: 'Jeevitnadi' },
+  { type: 'image', src: '/images/logos/pune-river-revival.png', alt: 'Pune River Revival' },
+  { type: 'image', src: '/images/logos/kundan-spaces.png', alt: 'Kundan Spaces' },
+  { type: 'image', src: '/images/logos/coffee-cup.png', alt: 'Coffee Cup' },
+  { type: 'image', src: '/images/logos/tridrashya.png', alt: 'Tridrashya' }
 ];
 
 export default function Home() {
@@ -110,18 +103,14 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ——— STACKED LOGOS ——— */}
+      {/* ——— LOGOS MARQUEE ——— */}
       <section style={{ borderBottom: '1px solid var(--line)', paddingBottom: '96px' }}>
-        <div className="shell" style={{ padding: '48px 0 32px' }}>
+        <div className="shell" style={{ padding: '48px 0 8px' }}>
           <div className="chip">
             <span className="dot"></span> Trusted by founders &amp; CMOs · 2024–2026
           </div>
         </div>
-        <div className="shell">
-          <div style={{ border: '1px solid var(--line)', background: 'var(--card)', overflow: 'hidden', position: 'relative' }}>
-            <StackedLogos logoGroups={logoGroups} duration={24} stagger={0.6} logoWidth="25%" />
-          </div>
-        </div>
+        <LogoMarquee logos={marqueeLogos} duration={32} />
       </section>
 
 
