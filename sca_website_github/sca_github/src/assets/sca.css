@@ -281,7 +281,6 @@ p { margin: 0; }
 .hero-h1 .cycle {
   display: inline-block; position: relative;
   color: var(--accent);
-  min-width: 6ch;
 }
 .hero-h1 .cycle::after {
   content: ""; display: inline-block; width: .08em; height: .85em;
