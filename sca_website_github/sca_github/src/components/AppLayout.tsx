@@ -46,20 +46,28 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  const handlePreloaderExitStart = () => {
+    setIsLoaded(true);
+    document.body.classList.add('loaded');
+  };
+
   const handlePreloaderComplete = () => {
     sessionStorage.setItem('sca_preloaded_v2', 'true');
     setShowPreloader(false);
-    setIsLoaded(true);
-    document.body.classList.add('loaded');
   };
 
   return (
     <>
       <CustomCursor />
       <AmbientBackground />
-      {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
+      {showPreloader && (
+        <Preloader 
+          onComplete={handlePreloaderComplete} 
+          onExitStart={handlePreloaderExitStart} 
+        />
+      )}
       
-      <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+      <div className={`main-site-container ${isLoaded ? 'loaded-sweep' : ''}`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

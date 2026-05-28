@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 
 interface PreloaderProps {
   onComplete: () => void;
+  onExitStart?: () => void;
 }
 
-export default function Preloader({ onComplete }: PreloaderProps) {
+export default function Preloader({ onComplete, onExitStart }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
@@ -32,6 +33,9 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         // Complete! Slide up preloader and start staggered page reveals
         setTimeout(() => {
           setIsExiting(true);
+          if (onExitStart) {
+            onExitStart();
+          }
           setTimeout(() => {
             onComplete();
           }, 1300); // matches the CSS slide-up transition duration
@@ -42,12 +46,26 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     timer = setTimeout(updateCounter, 100);
 
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, [onComplete, onExitStart]);
 
   return (
     <div className={`intro-preloader ${isExiting ? 'exit' : ''}`} role="dialog" aria-modal="true" aria-label="Loading Website">
       <div className="preloader-content">
-        <h1 className="preloader-monogram">SeeTusk / SCA</h1>
+        <h1 className="preloader-monogram" aria-label="SeeTusk / SCA">
+          <div className="preloader-monogram-line">
+            <span className={`preloader-word-reveal ${progress >= 15 ? 'active' : ''}`}>
+              <span>SEETUSK</span>
+            </span>
+            <span className={`preloader-word-reveal divider ${progress >= 45 ? 'active' : ''}`}>
+              <span>/</span>
+            </span>
+          </div>
+          <div className="preloader-monogram-line">
+            <span className={`preloader-word-reveal ${progress >= 75 ? 'active' : ''}`}>
+              <span>SCA</span>
+            </span>
+          </div>
+        </h1>
         <div className="preloader-info">
           <span className="preloader-label">Initializing Creative Engine</span>
           <div className="preloader-progress-bar">

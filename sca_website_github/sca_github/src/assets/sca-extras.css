@@ -483,11 +483,61 @@ body {
   color: #ffffff;
   letter-spacing: -0.03em;
   margin: 0 0 36px 0;
-  background: linear-gradient(90deg, #ffffff 0%, #888888 50%, #ffffff 100%);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+
+.preloader-monogram-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  line-height: 1.25;
+  padding: 12px 24px;
+  margin: -12px -24px;
+}
+
+.preloader-word-reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.preloader-word-reveal > span {
+  display: inline-block;
+  transform: translateY(115%);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Silver metal polished gradient */
+  background: linear-gradient(
+    135deg, 
+    #ffffff 0%, 
+    #c8c8c8 20%, 
+    #666666 40%, 
+    #ffffff 50%, 
+    #888888 65%, 
+    #e8e8e8 80%, 
+    #ffffff 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: preloaderShimmer 2.8s linear infinite;
+  animation: preloaderShimmer 3s linear infinite;
+  
+  /* 3D Metallic Extrusion and Drop Shadow (Scaled Relatively via ems) */
+  filter: 
+    drop-shadow(0.015em 0.015em 0px #b5b5b5)
+    drop-shadow(0.030em 0.030em 0px #8f8f8f)
+    drop-shadow(0.045em 0.045em 0px #696969)
+    drop-shadow(0.060em 0.060em 0px #4d4d4d)
+    drop-shadow(0.080em 0.080em 0.150em rgba(0, 0, 0, 0.75))
+    drop-shadow(0px 0px 0.250em rgba(38, 107, 217, 0.22));
+}
+
+.preloader-word-reveal.active > span {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 @keyframes preloaderShimmer {
@@ -711,4 +761,23 @@ body:not(.loaded) .stamp-word {
 .nav-links a:hover,
 .nav-links a.active {
   color: #ffffff !important;
+}
+
+/* =============================================================================
+   Cinematic 3D Camera Sweep Website Entry Transition
+   ============================================================================= */
+
+.main-site-container {
+  opacity: 0;
+  transform: perspective(1500px) rotateX(12deg) rotateY(-4deg) rotateZ(1deg) translateY(80px) scale(0.94);
+  transform-origin: 50% 0%;
+  transition: 
+    opacity 2.4s cubic-bezier(0.16, 1, 0.3, 1), 
+    transform 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.main-site-container.loaded-sweep {
+  opacity: 1;
+  transform: perspective(1500px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0) scale(1);
 }
