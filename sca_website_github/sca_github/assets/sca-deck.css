@@ -1,0 +1,235 @@
+/* SCA — scroll-driven "deck of cards" showcase stage.
+   Pinned hero: a single card pops, fans out, then collects + re-spreads
+   through cascade and scatter arrangements as you scroll. */
+
+.deck {
+  position: relative;
+  background:
+    radial-gradient(circle at 82% 14%, rgba(34,87,255,.10), transparent 26rem),
+    radial-gradient(circle at 16% 88%, rgba(255,242,168,.62), transparent 22rem),
+    var(--bg-main);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* The tall scroll runway. Height set inline / by JS-friendly default. */
+.deck-track {
+  position: relative;
+  height: 360vh;
+}
+
+/* The sticky viewport that holds the whole scene. */
+.deck-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 640px;
+  overflow: clip;
+  display: grid;
+  place-items: center;
+}
+
+/* ---- Card layer ---- */
+.deck-cards {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.dcard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  width: clamp(132px, 14vw, 210px);
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid rgba(21,21,21,.10);
+  box-shadow: 0 30px 70px -28px rgba(21,21,21,.45), 0 4px 14px -8px rgba(21,21,21,.3);
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  pointer-events: auto;
+}
+
+.dcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.02);
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.dcard-tag,
+.dcard-num {
+  position: absolute;
+  z-index: 2;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(255,253,248,.82);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.dcard-tag { left: 9px; top: 9px; }
+.dcard-num { right: 9px; bottom: 9px; }
+
+/* ---- Copy layers ---- */
+.deck-copy {
+  position: absolute;
+  z-index: 4;
+  width: min(100%, var(--container));
+  padding: 0 var(--gutter);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+.deck-copy > * { pointer-events: auto; }
+
+/* Phase A — centred hero headline, sits in the upper band */
+.deck-copy--a {
+  left: 50%;
+  top: clamp(11%, 13vh, 16%);
+  transform: translateX(-50%);
+  text-align: center;
+}
+.deck-copy--a .deck-title { margin-left: auto; margin-right: auto; }
+
+/* Phases B & C — left aligned statement, cards spread to the right */
+.deck-copy--b,
+.deck-copy--c {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: var(--container);
+}
+.deck-copy--b .deck-inner,
+.deck-copy--c .deck-inner { max-width: 27rem; }
+
+.deck-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  color: var(--accent-orange);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.deck-kicker::before { content: ""; width: 32px; height: 1px; background: currentColor; }
+.deck-copy--a .deck-kicker { justify-content: center; }
+
+.deck-title {
+  max-width: 13ch;
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: .94;
+  text-transform: uppercase;
+  font-size: clamp(34px, 5vw, 74px);
+  letter-spacing: -0.01em;
+}
+.deck-title .accent { color: var(--accent-blue); }
+.deck-copy--b .deck-title,
+.deck-copy--c .deck-title { font-size: clamp(28px, 3.5vw, 50px); max-width: 15ch; }
+
+.deck-lead {
+  margin-top: 22px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.35vw, 22px);
+  line-height: 1.45;
+  max-width: 32ch;
+}
+.deck-copy--a .deck-lead { margin-left: auto; margin-right: auto; }
+
+/* ---- Floating @handle pills (fan phase) ---- */
+.deck-pill {
+  position: absolute;
+  z-index: 5;
+  padding: 9px 15px;
+  border-radius: 999px 999px 999px 4px;
+  background: var(--text-main);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .02em;
+  box-shadow: 0 14px 30px -14px rgba(21,21,21,.6);
+  will-change: opacity, transform;
+}
+.deck-pill.is-blue { background: var(--accent-blue); }
+.deck-pill.is-orange { background: var(--accent-orange); }
+
+/* ---- Progress + hint chrome ---- */
+.deck-dots {
+  position: absolute;
+  z-index: 6;
+  right: clamp(16px, 3vw, 42px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.deck-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(21,21,21,.20);
+  transition: background .35s var(--ease), transform .35s var(--ease);
+}
+.deck-dots i.on { background: var(--accent-orange); transform: scale(1.45); }
+
+.deck-hint {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: clamp(22px, 4vh, 42px);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  transition: opacity .4s var(--ease);
+}
+.deck-hint span {
+  display: inline-block;
+  animation: deckHintBob 1.7s var(--ease) infinite;
+}
+@keyframes deckHintBob {
+  0%, 100% { transform: translateY(0); opacity: .6; }
+  50% { transform: translateY(5px); opacity: 1; }
+}
+
+/* JS hides the stage chrome until ready to avoid a flash */
+.deck:not(.is-ready) .dcard { opacity: 0; }
+.deck:not(.is-ready) .deck-copy,
+.deck:not(.is-ready) .deck-pill { opacity: 0; }
+
+@media (max-width: 760px) {
+  .deck-track { height: 320vh; }
+  .deck-pin { min-height: 560px; }
+  .deck-copy--b, .deck-copy--c { text-align: center; }
+  .deck-copy--b .deck-inner,
+  .deck-copy--c .deck-inner { max-width: 30rem; margin: 0 auto; }
+  .deck-dots { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-track { height: auto; }
+  .deck-pin { position: relative; height: auto; min-height: 0; padding: clamp(90px,12vw,150px) 0; }
+  .deck-hint, .deck-dots { display: none; }
+  .deck-cards { position: relative; height: clamp(420px, 52vw, 620px); margin-top: 36px; }
+  .deck-copy--b, .deck-copy--c { display: none; }
+  .deck-copy--a { position: relative; left: auto; top: auto; transform: none; text-align: left; }
+}
