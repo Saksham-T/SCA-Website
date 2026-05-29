@@ -11,7 +11,7 @@
   z-index: 4000;
   display: grid;
   place-items: center;
-  background: #FFFFFF;
+  background: #0A0A0A;
   overflow: hidden;
 }
 .intro[hidden] { display: none; }
@@ -45,13 +45,13 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   text-transform: uppercase;
   line-height: .82;
   letter-spacing: -.01em;
-  color: var(--text-main);
+  color: #FFFFFF;
   font-size: clamp(54px, 12.5vw, 168px);
   overflow: hidden;
 }
 .intro-initial { display: inline-block; }
 .intro-row.c .intro-initial { color: var(--accent-blue); }
-.intro-row.a .intro-initial { color: var(--text-main); }
+.intro-row.a .intro-initial { color: #FFFFFF; }
 
 /* the remaining letters of each word expand out from behind the initial,
    so the lockup starts as a compact, centered "SCA" */
@@ -88,7 +88,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   font-size: 11px;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255,255,255,.55);
   opacity: 0;
 }
 .intro.go .intro-meta { animation: introMetaIn .6s ease .35s forwards; }

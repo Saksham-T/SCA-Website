@@ -24,15 +24,12 @@
     initSmoothScroll();
   });
 
-  /* ---------- Intro loader (once per visitor) ---------- */
+  /* ---------- Intro loader (plays on every visit) ---------- */
   function initIntro() {
     const intro = document.querySelector('.intro');
     if (!intro) { afterIntro(); return; }
 
-    let seen = null;
-    try { seen = localStorage.getItem('sca_intro_v1'); } catch (e) {}
-
-    if (seen || reduce) {
+    if (reduce) {
       intro.setAttribute('hidden', '');
       document.body.classList.remove('intro-locked');
       afterIntro();
@@ -48,8 +45,6 @@
       afterIntro();
     }, 2250);
     setTimeout(() => intro.setAttribute('hidden', ''), 3150);
-
-    try { localStorage.setItem('sca_intro_v1', '1'); } catch (e) {}
   }
 
   // play the hero headline reveal once the curtain is gone
