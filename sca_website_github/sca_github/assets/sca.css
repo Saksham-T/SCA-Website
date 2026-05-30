@@ -702,7 +702,7 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   letter-spacing:.09em;
   text-transform: uppercase;
   transition: color.3s var(--ease);
-}.project-card:hover .project-top { color: #000000; }.project-card h3 {
+}.project-card:hover .project-top { color: #000000 !important; }.project-card h3 {
   font-size: clamp(30px, 4vw, 56px);
   line-height:.9;
   text-transform: uppercase;
@@ -713,14 +713,14 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   font-size: 19px;
   line-height: 1.45;
   transition: color.3s var(--ease);
-}.project-card:hover .project-meta p { color: #000000; }.project-link {
+}.project-card:hover .project-meta p { color: #000000 !important; }.project-link {
   color: var(--accent-orange);
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing:.09em;
   text-transform: uppercase;
   transition: color.3s var(--ease);
-}.project-card:hover .project-link { color: #000000; }
+}.project-card:hover .project-link { color: #000000 !important; }
 @media (max-width: 900px) {.project-card,.project-card:nth-child(3),.project-card:nth-child(4) { grid-column: 1 / -1; min-height: 0; }
 }
 
