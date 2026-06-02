@@ -43,7 +43,7 @@
   display: flex;
   width: max-content;
   align-items: center;
-  gap: clamp(40px, 5vw, 84px);
+  gap: clamp(140px, 15vw, 260px);
   animation: clientsMarquee 46s linear infinite;
   will-change: transform;
 }
@@ -58,7 +58,7 @@
   display: grid;
   place-items: center;
   height: clamp(120px, 12vw, 180px);
-  width: clamp(200px, 20vw, 320px);
+  width: clamp(150px, 14vw, 210px);
 }
 .client-logo img {
   width: auto;
