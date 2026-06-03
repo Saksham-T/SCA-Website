@@ -5,7 +5,7 @@
    ============================================================ */
 
 .hero {
-  padding: 132px 0 84px;
+  padding: clamp(80px, 10vh, 132px) 0 clamp(40px, 6vh, 84px);
   position: relative;
   overflow: hidden;
 }
@@ -80,7 +80,7 @@
   display: flex; justify-content: space-between; align-items: flex-end;
   font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em;
   color: var(--text-muted); text-transform: uppercase;
-  margin-bottom: 48px; flex-wrap: wrap; gap: 16px;
+  margin-bottom: clamp(24px, 4vh, 48px); flex-wrap: wrap; gap: 16px;
 }
 .hero-meta .live { display: inline-flex; align-items: center; gap: 8px; color: var(--text-main); }
 .hero .live-dot {
@@ -98,7 +98,7 @@
 /* ---- Headline ---- */
 .hero-h1 {
   font-family: var(--font-display);
-  font-size: clamp(44px, 9vw, 148px);
+  font-size: clamp(40px, min(8.5vw, 10.5vh), 120px);
   line-height: .92;
   letter-spacing: -0.025em;
   font-weight: 800;
@@ -125,7 +125,7 @@
 
 /* ---- Sub row ---- */
 .hero-sub {
-  margin-top: 40px;
+  margin-top: clamp(24px, 4vh, 40px);
   display: grid; grid-template-columns: 80px 1fr 1fr; gap: 24px;
   padding-top: 28px; border-top: 1px solid var(--border-soft);
 }

@@ -22,6 +22,7 @@
     initLab();
     initCursorPlus();
     initSmoothScroll();
+    initStackingCards();
   });
 
   /* ---------- Intro loader (plays on every visit) ---------- */
@@ -276,5 +277,89 @@
     });
 
     window.addEventListener('resize', () => { target = clamp(target); });
+  }
+
+  /* ---------- Stacking & Shuffling Cards with Horizontal Scattering ---------- */
+  function initStackingCards() {
+    const container = document.querySelector('[data-stacking-cards]');
+    if (!container) return;
+
+    const cards = Array.from(container.querySelectorAll('.project-card'));
+    if (!cards.length) return;
+
+    let lastScrollY = window.scrollY;
+    let velocity = 0;
+    let activeAnimationFrame = null;
+
+    function update() {
+      const containerRect = container.getBoundingClientRect();
+      const containerTop = containerRect.top;
+      const currentScrollY = window.scrollY;
+      
+      velocity = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+
+      cards.forEach((card, i) => {
+        const stickyTop = parseInt(window.getComputedStyle(card).top) || (100 + i * 40);
+        const cardAbsoluteTop = card.offsetTop;
+        const scrollPastSticky = stickyTop - (containerTop + cardAbsoluteTop);
+
+        let progress = 0;
+        if (scrollPastSticky > 0) {
+          const scrollRange = 500;
+          progress = Math.min(1, scrollPastSticky / scrollRange);
+        }
+
+        const dir = (i % 2 === 0) ? -1 : 1;
+        const maxShift = 28; // max pixels to shift horizontally (scattering)
+        const maxRot = 1.8;  // max rotation (scattered fan effect)
+        
+        const tx = dir * maxShift * progress;
+        const rot = dir * maxRot * progress;
+        const scale = 1 - (progress * 0.05); // scale down to 0.95
+        const opacity = 1 - (progress * 0.12); // opacity down to 0.88
+
+        // Velocity skew for a dynamic horizontal tilt when scrolling fast
+        const maxSkew = 4;
+        const skewAmount = Math.min(maxSkew, Math.max(-maxSkew, velocity * 0.03));
+
+        card.style.transform = `translateX(${tx}px) scale(${scale}) rotate(${rot}deg) skewX(${skewAmount}deg)`;
+        card.style.opacity = opacity;
+
+        if (progress > 0) {
+          card.style.boxShadow = `0 ${20 - progress * 8}px ${60 - progress * 24}px rgba(0,0,0,${0.3 + progress * 0.12})`;
+        } else {
+          card.style.boxShadow = '';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!activeAnimationFrame) {
+        activeAnimationFrame = requestAnimationFrame(() => {
+          update();
+          activeAnimationFrame = null;
+        });
+      }
+    }, { passive: true });
+
+    update();
+
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        let decayInterval = setInterval(() => {
+          if (Math.abs(velocity) < 0.15) {
+            velocity = 0;
+            update();
+            clearInterval(decayInterval);
+          } else {
+            velocity *= 0.65;
+            update();
+          }
+        }, 16);
+      }, 100);
+    }, { passive: true });
   }
 })();

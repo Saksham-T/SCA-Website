@@ -44,10 +44,23 @@ body::before {
   opacity: .24;
 }
 
-/* ---- Navigation: translucent black glass ---- */
+/* ---- Navigation: transparent + floating glass pills ---- */
 .nav {
-  background: rgba(14,14,17,.74);
-  border-bottom: 1px solid rgba(255,255,255,.09);
+  background: transparent;
+  border-bottom: none;
+}
+.brand {
+  background: rgba(14, 14, 17, 0.65);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.nav-links {
+  background: rgba(14, 14, 17, 0.65);
+  border-color: rgba(255, 255, 255, 0.08);
+  --spotlight-color: rgba(255, 255, 255, 0.12);
+  --ambience-color: var(--accent-blue);
+}
+.nav-border-track {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ---- Cursor ring: dark glass ---- */

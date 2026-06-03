@@ -43,68 +43,70 @@
 <section class="section">
   <div class="shell" style="max-width: 960px; margin: 0 auto;">
 
-    <div class="section-label" style="margin-bottom: 8px;">01 / Brief</div>
-    <h2 style="font-size: 24px; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 32px;">A few questions. Two minutes.</h2>
+    <div class="contact-card">
+      <div class="section-label" style="margin-bottom: 8px;">01 / Brief</div>
+      <h2 style="font-size: 24px; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 32px;">A few questions. Two minutes.</h2>
 
-    <form data-fake-form>
-      <div style="margin-bottom: 32px;">
-        <label class="mono caps" style="font-size: 11px; color: var(--muted); display: block; margin-bottom: 12px;">01 / What do you need?</label>
-        <div class="choice-grid" data-choice-group>
-          <div class="choice" data-value="content"><span>Content &amp; brand</span><span class="c-num">01</span></div>
-          <div class="choice" data-value="influencer"><span>Influencer</span><span class="c-num">02</span></div>
-          <div class="choice" data-value="web"><span>Web &amp; tech</span><span class="c-num">03</span></div>
-          <input type="hidden" name="need">
+      <form data-fake-form>
+        <div style="margin-bottom: 32px;">
+          <label class="mono caps" style="font-size: 11px; color: var(--muted); display: block; margin-bottom: 12px;">01 / What do you need?</label>
+          <div class="choice-grid" data-choice-group>
+            <div class="choice" data-value="content"><span>Content &amp; brand</span><span class="c-num">01</span></div>
+            <div class="choice" data-value="influencer"><span>Influencer</span><span class="c-num">02</span></div>
+            <div class="choice" data-value="web"><span>Web &amp; tech</span><span class="c-num">03</span></div>
+            <input type="hidden" name="need">
+          </div>
         </div>
-      </div>
 
-      <div style="margin-bottom: 32px;">
-        <label class="mono caps" style="font-size: 11px; color: var(--muted); display: block; margin-bottom: 12px;">02 / Monthly budget</label>
-        <div class="choice-grid" data-choice-group>
-          <div class="choice" data-value="under-2L"><span>Under Rs 2L</span><span class="c-num">A</span></div>
-          <div class="choice" data-value="2-5L"><span>Rs 2L-5L</span><span class="c-num">B</span></div>
-          <div class="choice" data-value="5L+"><span>Rs 5L +</span><span class="c-num">C</span></div>
-          <input type="hidden" name="budget">
+        <div style="margin-bottom: 32px;">
+          <label class="mono caps" style="font-size: 11px; color: var(--muted); display: block; margin-bottom: 12px;">02 / Monthly budget</label>
+          <div class="choice-grid" data-choice-group>
+            <div class="choice" data-value="under-2L"><span>Under Rs 2L</span><span class="c-num">A</span></div>
+            <div class="choice" data-value="2-5L"><span>Rs 2L-5L</span><span class="c-num">B</span></div>
+            <div class="choice" data-value="5L+"><span>Rs 5L +</span><span class="c-num">C</span></div>
+            <input type="hidden" name="budget">
+          </div>
         </div>
-      </div>
 
-      <div style="margin-bottom: 32px;">
-        <label class="mono caps" style="font-size: 11px; color: var(--muted); display: block; margin-bottom: 12px;">03 / Timeline</label>
-        <div class="choice-grid" data-choice-group>
-          <div class="choice" data-value="asap"><span>ASAP</span><span class="c-num">A</span></div>
-          <div class="choice" data-value="1-2mo"><span>1-2 months</span><span class="c-num">B</span></div>
-          <div class="choice" data-value="3mo"><span>3 months</span><span class="c-num">C</span></div>
-          <input type="hidden" name="timeline">
+        <div style="margin-bottom: 32px;">
+          <label class="mono caps" style="font-size: 11px; color: var(--muted); display: block; margin-bottom: 12px;">03 / Timeline</label>
+          <div class="choice-grid" data-choice-group>
+            <div class="choice" data-value="asap"><span>ASAP</span><span class="c-num">A</span></div>
+            <div class="choice" data-value="1-2mo"><span>1-2 months</span><span class="c-num">B</span></div>
+            <div class="choice" data-value="3mo"><span>3 months</span><span class="c-num">C</span></div>
+            <input type="hidden" name="timeline">
+          </div>
         </div>
-      </div>
 
-      <div class="form-grid">
-        <div class="form-field">
-          <label>04 / Your name</label>
-          <input type="text" name="name" placeholder="Full name" required>
+        <div class="form-grid">
+          <div class="form-field">
+            <label>04 / Your name</label>
+            <input type="text" name="name" placeholder="Full name" required>
+          </div>
+          <div class="form-field">
+            <label>05 / Company</label>
+            <input type="text" name="company" placeholder="Brand or company" required>
+          </div>
+          <div class="form-field">
+            <label>06 / Email</label>
+            <input type="email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div class="form-field">
+            <label>07 / Phone (optional)</label>
+            <input type="tel" name="phone" placeholder="+91...">
+          </div>
+          <div class="form-field full">
+            <label>08 / What's the situation?</label>
+            <textarea name="brief" placeholder="Two or three sentences about your brand, where you're stuck, and what success looks like." required></textarea>
+          </div>
         </div>
-        <div class="form-field">
-          <label>05 / Company</label>
-          <input type="text" name="company" placeholder="Brand or company" required>
-        </div>
-        <div class="form-field">
-          <label>06 / Email</label>
-          <input type="email" name="email" placeholder="you@company.com" required>
-        </div>
-        <div class="form-field">
-          <label>07 / Phone (optional)</label>
-          <input type="tel" name="phone" placeholder="+91...">
-        </div>
-        <div class="form-field full">
-          <label>08 / What's the situation?</label>
-          <textarea name="brief" placeholder="Two or three sentences about your brand, where you're stuck, and what success looks like." required></textarea>
-        </div>
-      </div>
 
-      <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
-        <p class="mono caps" style="font-size: 11px; color: var(--muted);">All briefs reviewed by the core team / reply within 24h</p>
-        <button type="submit" class="btn accent">Send brief <span class="arr">-></span></button>
-      </div>
-    </form>
+        <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <p class="mono caps" style="font-size: 11px; color: var(--muted);">All briefs reviewed by the core team / reply within 24h</p>
+          <button type="submit" class="btn accent">Send brief <span class="arr">-></span></button>
+        </div>
+      </form>
+    </div>
 
   </div>
 </section>

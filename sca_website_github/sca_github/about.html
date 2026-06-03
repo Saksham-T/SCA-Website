@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sca.css">
 <link rel="stylesheet" href="assets/sca-extras.css">
+<link rel="stylesheet" href="assets/sca-deck.css">
 <link rel="stylesheet" href="assets/sca-dark.css">
 </head>
 <body>
@@ -29,28 +30,54 @@
   </div>
 </nav>
 
-<header class="phero">
-  <div class="shell">
-    <div class="phero-label">About / the studio</div>
-    <h1>A small studio<br>with a <span class="accent">loud point of view.</span></h1>
-    <div class="phero-sub">
-      <span class="num">001</span>
-      <p>SeeTusk was founded in late 2025 in Pune. We started as two people making content for a D2C client who needed it shipped weekly. Today we're a team of 14, working on retainer with brands across India, renting distribution for a few dozen more, and building products of our own.</p>
-    </div>
-  </div>
-</header>
+<section class="deck" data-deck data-screen-label="About hero deck">
+  <div class="deck-track">
+    <div class="deck-pin">
 
-<section style="border-top: 1px solid var(--line);">
-  <div class="media-strip">
-    <div class="plate"><span class="tag">Studio / Bavdhan</span><span class="corner">A.001</span><img src="images/g-studio-pune.jpeg" alt="SCA studio interior"></div>
-    <div class="plate"><span class="corner">A.002</span><img src="images/a-banner-02.png" alt="Creative at work in the studio"></div>
-    <div class="plate"><span class="tag">Crit night</span><span class="corner">A.003</span><img src="images/a-banner-03.png" alt="Team gathered around the studio table"></div>
+      <div class="deck-copy deck-copy--a" data-deck-copy="0">
+        <div class="deck-kicker">About / the studio</div>
+        <h1 class="deck-title" style="max-width: 28ch;">A small studio<br>with a <span class="accent">loud point of view.</span></h1>
+      </div>
+
+      <div class="deck-copy deck-copy--b" data-deck-copy="1">
+        <div class="deck-inner">
+          <div class="deck-kicker">How we started</div>
+          <h2 class="deck-title">Two founders making content for one coffee brand.</h2>
+          <p class="deck-lead">Founded in late 2025 in Pune, we started with a weekly content cadence. Today we are a team of 14 working across India.</p>
+        </div>
+      </div>
+
+      <div class="deck-copy deck-copy--c" data-deck-copy="2">
+        <div class="deck-inner">
+          <div class="deck-kicker">Our unfair advantage</div>
+          <h2 class="deck-title">The people you meet are <span class="accent">the people doing the work.</span></h2>
+          <p class="deck-lead">No account managers, no layers. A direct line between your team and our studio floor.</p>
+        </div>
+      </div>
+
+      <div class="deck-cards" data-deck-cards>
+        <figure class="dcard"><img src="images/g-studio-pune.jpeg" alt="SCA studio interior"><span class="dcard-tag">Bavdhan</span><span class="dcard-num">01</span></figure>
+        <figure class="dcard"><img src="images/a-banner-02.png" alt="Creative at work in the studio"><span class="dcard-tag">Studio</span><span class="dcard-num">02</span></figure>
+        <figure class="dcard"><img src="images/a-banner-03.png" alt="Team gathered around the studio table"><span class="dcard-tag">Crit Night</span><span class="dcard-num">03</span></figure>
+        <figure class="dcard"><img src="images/g-camera-operator.jpeg" alt="Cinema camera operator on set"><span class="dcard-tag">BTS</span><span class="dcard-num">04</span></figure>
+        <figure class="dcard"><img src="images/g-devknight-stationery.png" alt="DevKnight brand system"><span class="dcard-tag">Brand</span><span class="dcard-num">05</span></figure>
+        <figure class="dcard"><img src="images/g-product-setup.jpeg" alt="Product photography lighting setup"><span class="dcard-tag">Shoots</span><span class="dcard-num">06</span></figure>
+        <figure class="dcard"><img src="images/g-white-studio.jpeg" alt="White studio with umbrella lighting"><span class="dcard-tag">Studio</span><span class="dcard-num">07</span></figure>
+      </div>
+
+      <span class="deck-pill is-blue" style="left: 16%; top: 30%;">@seetusk</span>
+      <span class="deck-pill is-orange" style="right: 15%; top: 33%;">@sca_studio</span>
+
+      <div class="deck-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="deck-hint">Scroll <span>&darr;</span></div>
+
+    </div>
   </div>
 </section>
 
-<section>
+<section style="border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.015);">
   <div class="shell">
-    <div class="stats sr" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="stats sr" style="grid-template-columns: repeat(3, 1fr); padding: 40px 0;">
       <div class="stat"><div class="n"><span class="accent">14</span></div><div class="lbl">Team / Pune + remote</div></div>
       <div class="stat"><div class="n">2025</div><div class="lbl">Founded / Bavdhan</div></div>
       <div class="stat"><div class="n">10</div><div class="lbl">Active retainers</div></div>
@@ -161,5 +188,6 @@
 </footer>
 
 <script src="assets/sca.js"></script>
+<script src="assets/sca-deck.js"></script>
 </body>
 </html>

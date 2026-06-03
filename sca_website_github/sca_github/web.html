@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sca.css">
 <link rel="stylesheet" href="assets/sca-extras.css">
+<link rel="stylesheet" href="assets/sca-deck.css">
 <link rel="stylesheet" href="assets/sca-dark.css">
 </head>
 <body>
@@ -29,63 +30,74 @@
   </div>
 </nav>
 
-<header class="phero">
-  <div class="shell">
-    <div class="phero-label">Vertical 03 / Build</div>
-    <h1>
-      Websites, landers,<br>
-      and <span class="accent">tools that pay.</span>
-    </h1>
-    <div class="phero-sub">
-      <span class="num">003</span>
-      <p>We build websites and lightweight digital products for brands, plus productised SaaS tools we sell directly. Shipped by a small team that writes the copy, designs the thing, and deploys the code.</p>
-    </div>
-  </div>
-</header>
+<section class="deck" data-deck data-screen-label="Web hero deck">
+  <div class="deck-track">
+    <div class="deck-pin">
 
-<section style="border-top: 1px solid var(--line);">
-  <div class="media-strip">
-    <div class="plate"><span class="tag">Code</span><span class="corner">W.001</span><img src="images/web-laptop.png" alt="Website build on laptop"></div>
-    <div class="plate"><span class="tag">UI</span><span class="corner">W.002</span><img src="images/g-desktop.jpg" alt="Design mockup and brand system"></div>
-    <div class="plate"><span class="tag">Ship</span><span class="corner">W.003</span><img src="images/c-desk-setup.png" alt="Studio desk with website build"></div>
+      <div class="deck-copy deck-copy--a" data-deck-copy="0">
+        <div class="deck-kicker">Vertical 03 / Build</div>
+        <h1 class="deck-title" style="max-width: 20ch;">Websites, landers,<br>and <span class="accent">tools that pay.</span></h1>
+      </div>
+
+      <div class="deck-copy deck-copy--b" data-deck-copy="1">
+        <div class="deck-inner">
+          <div class="deck-kicker">How we build</div>
+          <h2 class="deck-title">Sites, products, and tools. No templates.</h2>
+          <p class="deck-lead">Copy, design, code, and measurement &mdash; designed for speed, SEO, and conversion.</p>
+        </div>
+      </div>
+
+      <div class="deck-copy deck-copy--c" data-deck-copy="2">
+        <div class="deck-kicker">Our stack</div>
+        <h2 class="deck-title">Lightweight tech <span class="accent">built to convert.</span></h2>
+        <p class="deck-lead">Next.js, Webflow, Hydrogen, Shopify CMS &mdash; built for marketing control, analytics, and speed.</p>
+      </div>
+
+      <div class="deck-cards" data-deck-cards>
+        <figure class="dcard"><img src="images/web-laptop.png" alt="Website build on laptop"><span class="dcard-tag">Web</span><span class="dcard-num">01</span></figure>
+        <figure class="dcard"><img src="images/g-desktop.jpg" alt="Design mockup and brand system"><span class="dcard-tag">Design</span><span class="dcard-num">02</span></figure>
+        <figure class="dcard"><img src="images/c-desk-setup.png" alt="Studio desk with website build"><span class="dcard-tag">Studio</span><span class="dcard-num">03</span></figure>
+        <figure class="dcard"><img src="images/g-devknight-stationery.png" alt="DevKnight brand system"><span class="dcard-tag">Brand</span><span class="dcard-num">04</span></figure>
+        <figure class="dcard"><img src="images/g-camera-operator.jpeg" alt="Cinema camera operator on set"><span class="dcard-tag">BTS</span><span class="dcard-num">05</span></figure>
+        <figure class="dcard"><img src="images/g-bengaluru-billboard.png" alt="Bengaluru outdoor billboard"><span class="dcard-tag">OOH</span><span class="dcard-num">06</span></figure>
+        <figure class="dcard"><img src="images/g-white-studio.jpeg" alt="White studio with umbrella lighting"><span class="dcard-tag">Studio</span><span class="dcard-num">07</span></figure>
+      </div>
+
+      <span class="deck-pill is-blue" style="left: 16%; top: 30%;">@brandscope</span>
+      <span class="deck-pill is-orange" style="right: 15%; top: 33%;">@roster</span>
+
+      <div class="deck-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="deck-hint">Scroll <span>&darr;</span></div>
+
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">01 / Services</div>
+      <div class="section-num">01 / Stack &amp; Fit</div>
       <div>
-        <div class="section-label">Three ways we build</div>
-        <h2 class="section-title">Sites, products, tools. No wireframe-to-Webflow assembly line.</h2>
+        <div class="section-label">A deliberately small stack</div>
+        <h2 class="section-title">Boring where it should be. Sharp where it counts.</h2>
+        <p class="section-sub">We build custom web experiences designed for speed, measurement, and marketing control. Copywriters write the words, designers frame the layout, and developers deploy the code.</p>
       </div>
     </div>
 
-    <div class="verticals sr-stag">
-      <a href="contact.html" class="vert">
-        <div>
-          <div class="vert-num">Service 01</div>
-          <h3 class="vert-title">Brand websites</h3>
-          <p class="vert-body">Custom-designed, custom-built marketing sites. Typography-first, fast, owned by you. Next.js or Webflow depending on needs.</p>
-        </div>
-        <div class="vert-meta"><span>Project / From Rs 4L</span><span class="arrow">-></span></div>
-      </a>
-      <a href="contact.html" class="vert">
-        <div>
-          <div class="vert-num">Service 02</div>
-          <h3 class="vert-title">Conversion landers</h3>
-          <p class="vert-body">High-intent pages for launches and paid traffic. Copy, design, build, ship. AB-tested against real traffic.</p>
-        </div>
-        <div class="vert-meta"><span>Per page / From Rs 2.5L</span><span class="arrow">-></span></div>
-      </a>
-      <a href="contact.html" class="vert">
-        <div>
-          <div class="vert-num">Service 03</div>
-          <h3 class="vert-title">Digital products</h3>
-          <p class="vert-body">Internal tools, member portals, light SaaS. We scope, design, build and hand over, or run it for you on retainer.</p>
-        </div>
-        <div class="vert-meta"><span>Scoped / From Rs 8L</span><span class="arrow">-></span></div>
-      </a>
+    <div class="two-col sr">
+      <div>
+        <p class="pull">We build digital surfaces that feel <span class="accent">integrated</span> with your brand family.</p>
+      </div>
+      <div>
+        <ul class="bullet-list">
+          <li><span class="bl-n">-></span><div><h4>Next.js / React / TypeScript</h4><p>For custom builds, productised tools, and anything with complex state.</p></div></li>
+          <li><span class="bl-n">-></span><div><h4>Webflow + Framer</h4><p>When marketing control matters more than custom software engineering.</p></div></li>
+          <li><span class="bl-n">-></span><div><h4>Shopify + Hydrogen</h4><p>For D2C builds that need headless flexibility without reinventing commerce.</p></div></li>
+          <li><span class="bl-n">-></span><div><h4>Sanity / Payload / Notion CMS</h4><p>Content models the marketing and content team can actually write to.</p></div></li>
+          <li><span class="bl-n">-></span><div><h4>Vercel / Cloudflare / AWS</h4><p>We ship fast, keep it cheap, and do not babysit complex server infrastructure.</p></div></li>
+          <li><span class="bl-n">-></span><div><h4>PostHog / GA4 / Segment</h4><p>Analytics instrumentation wired from day one. You ship with measurement.</p></div></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -93,27 +105,37 @@
 <section class="section" style="border-top:1px solid var(--line);">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">02 / Stack</div>
+      <div class="section-num">02 / Services</div>
       <div>
-        <div class="section-label">What we build with</div>
-        <h2 class="section-title">A deliberately small stack. Boring where it should be. Sharp where it counts.</h2>
+        <div class="section-label">Four ways we build</div>
+        <h2 class="section-title">Sites, products, and landing pages. Shipped with speed.</h2>
       </div>
     </div>
 
-    <div class="two-col sr">
-      <div>
-        <ul class="bullet-list">
-          <li><span class="bl-n">-></span><div><h4>Next.js / React / TypeScript</h4><p>For custom builds, productised tools, and anything with state.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Webflow + Framer</h4><p>When marketing control matters more than custom engineering.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Shopify + Hydrogen</h4><p>For D2C builds that need headless flexibility without reinventing commerce.</p></div></li>
-        </ul>
+    <div class="process-grid sr-stag">
+      <div class="process-step">
+        <span class="n">Vertical 01</span>
+        <h4>Brand websites</h4>
+        <p>Custom-designed marketing sites. Typography-first, fast, owned by you. Next.js or Webflow depending on needs.</p>
+        <span class="dur">Project / From Rs 4L</span>
       </div>
-      <div>
-        <ul class="bullet-list">
-          <li><span class="bl-n">-></span><div><h4>Sanity / Payload / Notion CMS</h4><p>Content models the marketing team can actually use.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Vercel / Cloudflare / AWS</h4><p>We ship fast, we keep it cheap, and we don't babysit infrastructure.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>PostHog / GA4 / Segment</h4><p>Analytics wired from day one. You ship with measurement, not after.</p></div></li>
-        </ul>
+      <div class="process-step">
+        <span class="n">Vertical 02</span>
+        <h4>Conversion landers</h4>
+        <p>High-intent pages for product launches and campaigns. Copy, design, build, and AB-tested against real traffic.</p>
+        <span class="dur">Per page / From Rs 2.5L</span>
+      </div>
+      <div class="process-step">
+        <span class="n">Vertical 03</span>
+        <h4>Digital products</h4>
+        <p>Internal tools, member portals, light SaaS. We scope, design, build, and hand over, or run it on retainer.</p>
+        <span class="dur">Scoped / From Rs 8L</span>
+      </div>
+      <div class="process-step">
+        <span class="n">Vertical 04</span>
+        <h4>Stack &amp; CMS integration</h4>
+        <p>Headless setups (Hydrogen, Shopify), CMS configurations (Sanity, Payload), and analytics instrumentation.</p>
+        <span class="dur">Ongoing / Negotiated</span>
       </div>
     </div>
   </div>
@@ -187,5 +209,6 @@
 </footer>
 
 <script src="assets/sca.js"></script>
+<script src="assets/sca-deck.js"></script>
 </body>
 </html>

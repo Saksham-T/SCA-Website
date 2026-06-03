@@ -15,7 +15,7 @@
     initWordCycle();
     initStudioSignal();
     initParallax();
-    initActiveNav();
+    initSpotlightNavbar();
     initChoices();
     initForms();
   });
@@ -220,11 +220,142 @@
     drift();
   }
 
-  function initActiveNav() {
+  function initSpotlightNavbar() {
     const path = location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-links a').forEach((link) => {
-      if (link.getAttribute('href') === path) link.classList.add('active');
+    const cleanPath = path.replace(/\.html$/, '');
+    const links = document.querySelectorAll('.nav-links a');
+    let activeLink = null;
+
+    links.forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      const cleanHref = href.replace(/\.html$/, '');
+      if (cleanHref === cleanPath || (cleanPath === '' && cleanHref === 'index')) {
+        link.classList.add('active');
+        activeLink = link;
+      }
     });
+
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+
+    // Append lighting layers
+    const spotlight = document.createElement('div');
+    spotlight.className = 'nav-spotlight';
+    spotlight.setAttribute('aria-hidden', 'true');
+
+    const ambience = document.createElement('div');
+    ambience.className = 'nav-ambience';
+    ambience.setAttribute('aria-hidden', 'true');
+
+    const borderTrack = document.createElement('div');
+    borderTrack.className = 'nav-border-track';
+    borderTrack.setAttribute('aria-hidden', 'true');
+
+    navLinks.appendChild(spotlight);
+    navLinks.appendChild(ambience);
+    navLinks.appendChild(borderTrack);
+
+    // Animation state
+    let currentSpotlightX = 0;
+    let targetSpotlightX = 0;
+    let currentAmbienceX = 0;
+    let targetAmbienceX = 0;
+    let isMouseOut = true;
+
+    const getLinkCenterX = (linkEl) => {
+      if (!linkEl) return 0;
+      const navRect = navLinks.getBoundingClientRect();
+      const linkRect = linkEl.getBoundingClientRect();
+      return linkRect.left - navRect.left + linkRect.width / 2;
+    };
+
+    // Initialize positions after layout
+    const alignPills = () => {
+      if (activeLink) {
+        const initialX = getLinkCenterX(activeLink);
+        currentAmbienceX = initialX;
+        targetAmbienceX = initialX;
+        currentSpotlightX = initialX;
+        targetSpotlightX = initialX;
+        navLinks.style.setProperty('--ambience-x', `${initialX}px`);
+        navLinks.style.setProperty('--spotlight-x', `${initialX}px`);
+      } else if (links.length > 0) {
+        const initialX = getLinkCenterX(links[0]);
+        currentAmbienceX = initialX;
+        targetAmbienceX = initialX;
+        currentSpotlightX = initialX;
+        targetSpotlightX = initialX;
+        navLinks.style.setProperty('--ambience-x', `${initialX}px`);
+        navLinks.style.setProperty('--spotlight-x', `${initialX}px`);
+      }
+    };
+
+    // Run alignment immediately
+    alignPills();
+    // Also run after DOM/fonts are likely loaded to handle layout shifts
+    window.addEventListener('load', alignPills);
+
+    // Mouse handlers
+    navLinks.addEventListener('mousemove', (e) => {
+      const rect = navLinks.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+
+      isMouseOut = false;
+      targetSpotlightX = x;
+      currentSpotlightX = x;
+      navLinks.style.setProperty('--spotlight-x', `${x}px`);
+    });
+
+    navLinks.addEventListener('mouseleave', () => {
+      isMouseOut = true;
+      if (activeLink) {
+        targetSpotlightX = getLinkCenterX(activeLink);
+      } else if (links.length > 0) {
+        targetSpotlightX = getLinkCenterX(links[0]);
+      }
+    });
+
+    // Handle clicks to transition state
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        links.forEach((l) => l.classList.remove('active'));
+        link.classList.add('active');
+        activeLink = link;
+        targetAmbienceX = getLinkCenterX(link);
+
+        // Trigger temporary edge lightning acceleration
+        navLinks.classList.add('accelerating');
+        if (navLinks.accelerateTimeout) clearTimeout(navLinks.accelerateTimeout);
+        navLinks.accelerateTimeout = setTimeout(() => {
+          navLinks.classList.remove('accelerating');
+        }, 1200);
+      });
+    });
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      if (activeLink) {
+        targetAmbienceX = getLinkCenterX(activeLink);
+        if (isMouseOut) {
+          targetSpotlightX = targetAmbienceX;
+        }
+      }
+    });
+
+    // lerp loop
+    const updateLoop = () => {
+      currentAmbienceX += (targetAmbienceX - currentAmbienceX) * 0.12;
+      navLinks.style.setProperty('--ambience-x', `${currentAmbienceX}px`);
+
+      if (isMouseOut) {
+        currentSpotlightX += (targetSpotlightX - currentSpotlightX) * 0.12;
+        navLinks.style.setProperty('--spotlight-x', `${currentSpotlightX}px`);
+      }
+
+      requestAnimationFrame(updateLoop);
+    };
+
+    requestAnimationFrame(updateLoop);
   }
 
   function initChoices() {

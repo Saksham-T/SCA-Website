@@ -22,6 +22,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: clamp(2px, 0.4vw, 8px);
   /* whole lockup zooms in */
   transform: scale(1.32);
@@ -40,13 +41,14 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 .intro-row {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   font-family: var(--font-display);
   font-weight: 900;
   text-transform: uppercase;
   line-height: .82;
   letter-spacing: -.01em;
   color: #FFFFFF;
-  font-size: clamp(54px, 12.5vw, 168px);
+  font-size: clamp(48px, 9.5vw, 168px);
   overflow: hidden;
 }
 .intro-initial { display: inline-block; }
@@ -411,13 +413,22 @@ body.intro-locked { overflow: hidden; height: 100vh; }
    5. SCROLL CLIP-REVEAL for images
    ============================================================ */
 .clip-rise {
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 1s cubic-bezier(.16,.84,.3,1);
-  will-change: clip-path;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s cubic-bezier(.16,.84,.3,1), transform 1s cubic-bezier(.16,.84,.3,1);
+  will-change: opacity, transform;
 }
-.clip-rise.in { clip-path: inset(0 0 0 0); }
-.clip-rise img { transform: scale(1.12); transition: transform 1.2s cubic-bezier(.16,.84,.3,1); }
-.clip-rise.in img { transform: scale(1); }
+.clip-rise.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.clip-rise img {
+  transform: scale(1.08);
+  transition: transform 1.2s cubic-bezier(.16,.84,.3,1);
+}
+.clip-rise.in img {
+  transform: scale(1);
+}
 
 /* fade-up word reveal helper for headings */
 .up { opacity: 0; transform: translateY(34px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
