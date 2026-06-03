@@ -1,0 +1,153 @@
+/* ============================================================
+   SCA — HERO  (ported from the live seetusk.agency hero)
+   Big kinetic type + drifting blue gradient-mesh background.
+   Uses the project's dark-theme tokens so it stays on-palette.
+   ============================================================ */
+
+.hero {
+  padding: 132px 0 84px;
+  position: relative;
+  overflow: hidden;
+}
+.hero > .shell { position: relative; z-index: 3; }
+
+/* ---- Gradient-mesh background ---- */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.65) 0%, rgba(0,0,0,.2) 50%, transparent 100%),
+    linear-gradient(to bottom, transparent 60%, var(--bg-main) 100%);
+  z-index: 2;
+}
+.hero-bg .blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .55;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+.hero-bg .b1 {
+  width: 720px; height: 720px;
+  background: radial-gradient(circle, #2e54ea 0%, rgba(46,84,234,0) 70%);
+  top: -160px; left: -120px;
+  animation: heroDrift1 26s ease-in-out infinite alternate;
+}
+.hero-bg .b2 {
+  width: 620px; height: 620px;
+  background: radial-gradient(circle, #1a4f9e 0%, rgba(26,79,158,0) 70%);
+  top: 30%; right: -160px;
+  animation: heroDrift2 32s ease-in-out infinite alternate;
+}
+.hero-bg .b3 {
+  width: 540px; height: 540px;
+  background: radial-gradient(circle, #2e54ea 0%, rgba(46,84,234,0) 70%);
+  bottom: -180px; left: 30%;
+  opacity: .4;
+  animation: heroDrift3 38s ease-in-out infinite alternate;
+}
+.hero-bg .b4 {
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, #5b86ff 0%, rgba(91,134,255,0) 70%);
+  top: 10%; left: 40%;
+  opacity: .35;
+  animation: heroDrift4 30s ease-in-out infinite alternate;
+}
+.hero-bg .grain {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: .5;
+  z-index: 1;
+}
+@keyframes heroDrift1 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(180px,120px) scale(1.15); } }
+@keyframes heroDrift2 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-160px,-100px) scale(1.1); } }
+@keyframes heroDrift3 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(120px,-80px) scale(1.2); } }
+@keyframes heroDrift4 { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-90px,80px) scale(1.05); } }
+@media (prefers-reduced-motion: reduce) { .hero-bg .blob { animation: none; } }
+
+/* ---- Meta line ---- */
+.hero-meta {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em;
+  color: var(--text-muted); text-transform: uppercase;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 16px;
+}
+.hero-meta .live { display: inline-flex; align-items: center; gap: 8px; color: var(--text-main); }
+.hero .live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-blue);
+  box-shadow: 0 0 0 0 rgba(46,84,234,.7);
+  animation: heroPulse 1.8s infinite;
+}
+@keyframes heroPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(46,84,234,.6); }
+  70%  { box-shadow: 0 0 0 10px rgba(46,84,234,0); }
+  100% { box-shadow: 0 0 0 0 rgba(46,84,234,0); }
+}
+
+/* ---- Headline ---- */
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 9vw, 148px);
+  line-height: .92;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-main);
+  margin: 0;
+}
+.hero-h1 .accent { color: var(--accent-blue); }
+.hero-h1 .cycle {
+  display: inline-block; position: relative;
+  color: var(--accent-blue);
+  /* Reserve a constant width = widest option ("REAL ESTATE") so the
+     line never reflows / shifts the layout as the word cycles. */
+  min-width: 11ch;
+  text-align: left;
+  white-space: nowrap;
+}
+.hero-h1 .cycle::after {
+  content: ""; display: inline-block; width: .08em; height: .85em;
+  background: var(--accent-blue); vertical-align: -0.1em; margin-left: .06em;
+  animation: heroBlink 1s steps(1) infinite;
+}
+@keyframes heroBlink { 50% { opacity: 0; } }
+
+/* ---- Sub row ---- */
+.hero-sub {
+  margin-top: 40px;
+  display: grid; grid-template-columns: 80px 1fr 1fr; gap: 24px;
+  padding-top: 28px; border-top: 1px solid var(--border-soft);
+}
+.hero-sub .num { font-family: var(--font-mono); font-size: 12px; color: var(--accent-blue); letter-spacing: .1em; }
+.hero-sub p { font-family: var(--font-body); font-size: 22px; line-height: 1.5; color: rgba(247,248,250,.92); max-width: 54ch; }
+.hero-sub .cta-col { display: flex; align-items: flex-start; justify-content: flex-end; }
+
+@media (max-width: 900px) {
+  .hero-sub { grid-template-columns: 1fr; }
+  .hero-sub .cta-col { justify-content: flex-start; }
+}
+
+/* ---- Reveal animation (CSS-driven, visible at rest) ---- */
+.reveal { display: inline-block; overflow-y: clip; overflow-x: visible; vertical-align: baseline; line-height: inherit; padding-right: .06em; }
+@supports not (overflow: clip) { .reveal { overflow: hidden; padding-right: .12em; } }
+.reveal > span { display: inline-block; transform: translateY(110%); transition: transform .9s var(--ease); }
+.reveal.in > span { transform: translateY(0); }
+.hero .reveal { margin-right: .18em; }
+.hero .reveal:last-child { margin-right: 0; }
+.hero .reveal > span {
+  transform: translateY(0);
+  animation: heroReveal .9s var(--ease);
+  animation-delay: calc(var(--i, 0) * 90ms + 120ms);
+}
+@keyframes heroReveal { from { transform: translateY(110%); } }

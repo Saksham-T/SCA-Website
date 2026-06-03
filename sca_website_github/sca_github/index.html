@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+  // Always start at the top on (re)load instead of restoring scroll position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', function () { window.scrollTo(0, 0); });
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SeeTusk Creative Agency. Motion-first creative distribution studio</title>
 <meta name="description" content="SCA builds distribution for brands that need to be seen. Content systems, creator networks, web experiences, and campaign engines from Pune, India.">
@@ -28,6 +33,8 @@
 <link rel="stylesheet" href="assets/sca-extras.css">
 <link rel="stylesheet" href="assets/sca-kinetic.css">
 <link rel="stylesheet" href="assets/sca-clients.css">
+<link rel="stylesheet" href="assets/sca-hero.css">
+<link rel="stylesheet" href="assets/sca-dark.css">
 </head>
 <body class="intro-locked">
 
@@ -63,45 +70,41 @@
   </div>
 </nav>
 
-<!-- ============ KINETIC HERO ============ -->
-<header class="khero" data-screen-label="Hero">
-  <div class="khero-bg" aria-hidden="true">
-    <span class="blob b1" data-depth="-26"></span>
-    <span class="blob b2" data-depth="34"></span>
-    <span class="blob b3" data-depth="-18"></span>
-    <span class="ring-shape r1" data-depth="40"></span>
-    <span class="ring-shape r2" data-depth="-30"></span>
-    <span class="plus-shape p1" data-depth="50"></span>
-    <span class="plus-shape p2" data-depth="-44"></span>
-  </div>
-
-  <div class="khero-floats" aria-hidden="true">
-    <span class="hfloat f1" data-depth="46"><img src="images/ambar-coffee-clean.png" alt=""></span>
-    <span class="hfloat f2" data-depth="64"><img src="images/g-fevistik.png" alt=""></span>
-    <span class="hfloat f3" data-depth="80"><img src="images/g-camera-operator.jpeg" alt=""></span>
+<!-- ============ HERO ============ -->
+<header class="hero" data-screen-label="Hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+    <div class="grain"></div>
   </div>
 
   <div class="shell">
-    <div class="khero-top">
-      <span>SCA / Pune-based studio / Shipping weekly</span>
-      <span class="live"><span class="live-dot"></span> Campaigns live across content, creators &amp; code</span>
+    <div class="hero-meta">
+      <span>SCA / 2026 &middot; Pune &rarr; Mumbai &middot; India</span>
+      <span class="live"><span class="live-dot"></span> Now booking new retainers for Q3</span>
     </div>
 
-    <h1 class="khero-h1">
-      <span class="kin-line"><span>BRANDS</span></span>
-      <span class="kin-line"><span>NEED TO</span></span>
-      <span class="kin-line"><span>BE <em class="orange">SEEN.</em></span></span>
+    <h1 class="hero-h1">
+      <span class="reveal" style="--i:0"><span>OWN.</span></span>
+      <span class="reveal" style="--i:1"><span>BUILD.</span></span>
+      <span class="reveal" style="--i:2"><span>RENT</span></span><br>
+      <span class="reveal" style="--i:3"><span class="accent">DISTRIBUTION</span></span><br>
+      <span class="reveal" style="--i:4"><span>FOR </span></span>
+      <span class="reveal" style="--i:5"><span data-cycle="AMBITIOUS|D2C|F&amp;B|REAL ESTATE|TECH|EDTECH" class="cycle">AMBITIOUS</span></span><br>
+      <span class="reveal" style="--i:6"><span>BRANDS.</span></span>
     </h1>
 
-    <div class="khero-foot">
-      <p class="khero-lead up">
-        SCA is a motion-first creative distribution studio. Content systems, creator
-        networks, web experiences and campaign engines &mdash; built across
-        <span class="cycle-word" data-cycle="Content|Creators|Code|Campaigns|Distribution">Content</span>
+    <div class="hero-sub">
+      <span class="num">&#8627; 001</span>
+      <p>
+        SeeTusk Creative Agency is a brand-building and distribution company out of Pune.
+        We&rsquo;re not a digital marketing agency. We build the system that makes your brand
+        impossible to ignore &mdash; through content, creators, and code.
       </p>
-      <div class="khero-actions up">
-        <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
-        <a href="#lab" class="btn ghost" data-magnetic="0.4" data-cursor="Explore">See what we do</a>
+      <div class="cta-col">
+        <a href="contact.html" class="btn" data-magnetic="0.3" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
       </div>
     </div>
   </div>
@@ -235,9 +238,7 @@
       <div class="camera-scene" data-camera-scene>
         <div class="cam-card">
           <div class="cam-glow" aria-hidden="true"></div>
-          <div class="camera-model" data-camera-model aria-label="Interactive 3D Canon AT-1 camera model">
-            <div class="model-loading">Loading studio camera</div>
-          </div>
+          <img src="images/g-camera-operator.jpeg" alt="SCA studio camera operator framing a shot" loading="lazy">
           <span class="cam-badge"><span class="cam-badge-live">LIVE</span><strong>SCA</strong></span>
           <span class="cam-spec">CANON AT-1 / RETRO / Studio rig</span>
         </div>
@@ -464,14 +465,6 @@
 </footer>
 
 <script src="assets/sca.js"></script>
-<script type="importmap">
-{
-  "imports": {
-    "three": "./assets/vendor/three.module.js"
-  }
-}
-</script>
-<script type="module" src="assets/camera-model.js"></script>
 <script src="assets/sca-kinetic.js"></script>
 </body>
 </html>

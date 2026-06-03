@@ -54,20 +54,55 @@
 
   /* ---------- Scroll clip-reveals (.up / .clip-rise) ---------- */
   function initReveals() {
-    const targets = document.querySelectorAll('.up, .clip-rise');
+    const targets = Array.from(document.querySelectorAll('.up, .clip-rise'));
     if (!targets.length) return;
     if (reduce || !('IntersectionObserver' in window)) {
       targets.forEach((el) => el.classList.add('in'));
       return;
     }
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in');
-        obs.unobserve(entry.target);
+
+    let pending = targets.slice();
+
+    // Reveal anything whose top has entered (or nearly entered) the viewport.
+    // This is a scroll/resize-driven fallback that does NOT depend on
+    // IntersectionObserver firing — some embedded/preview contexts throttle or
+    // never deliver IO callbacks, which would otherwise leave clip-reveal
+    // images permanently hidden.
+    function sweep() {
+      if (!pending.length) return;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      pending = pending.filter((el) => {
+        const top = el.getBoundingClientRect().top;
+        if (top < vh * 0.92) { el.classList.add('in'); return false; }
+        return true;
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
-    targets.forEach((el) => obs.observe(el));
+      if (!pending.length) {
+        window.removeEventListener('scroll', sweep);
+        window.removeEventListener('resize', sweep);
+      }
+    }
+
+    // Keep IntersectionObserver as the primary (nicer timing when it works)…
+    try {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+          pending = pending.filter((el) => el !== entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      targets.forEach((el) => obs.observe(el));
+    } catch (e) { /* fall through to scroll fallback */ }
+
+    // …and the scroll fallback guarantees images always appear.
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep);
+    sweep();
+    // run a few delayed sweeps to catch late layout/scroll-restore, and a
+    // final safety net so nothing can stay invisible.
+    [100, 400, 1200].forEach((t) => setTimeout(sweep, t));
+    setTimeout(() => { pending.forEach((el) => el.classList.add('in')); pending = []; }, 3000);
   }
 
   /* ---------- Magnetic elements ---------- */

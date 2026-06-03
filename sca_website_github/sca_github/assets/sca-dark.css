@@ -1,0 +1,154 @@
+/* ============================================================
+   SCA — DARK THEME  (SeeTusk brand palette)
+   Loaded LAST on every page. Mirrors the company profile PDF:
+   pure black + near-black (#121212) + white, with ELECTRIC BLUE
+   as the single accent and soft periwinkle highlights. The warm
+   tan / orange / yellow of the old theme is removed.
+   ============================================================ */
+
+:root {
+  --bg-main: #0E0E11;        /* black page */
+  --bg-soft: #08080A;        /* deeper band (featured work) */
+  --bg-card: #151519;        /* elevated cards */
+  --text-main: #F7F8FA;      /* white */
+  --text-muted: #CDCFD6;     /* cool off-white */
+  --border-soft: #2A2A30;
+  --dark-section: #060608;   /* deepest panel: footer / CTA / wells */
+
+  --dim: #C2C4CC;
+  --line-2: #34343C;
+  --card-2: #1B1B20;
+
+  /* Brand accents — electric blue primary, periwinkle highlights.
+     orange/yellow tokens are re-pointed to cool blues so every
+     accent across the site reads as one cohesive family.        */
+  --accent-blue: #2E54EA;
+  --accent-orange: #8597F1;  /* was warm orange -> periwinkle */
+  --accent-yellow: #AFC0F8;  /* was yellow -> light periwinkle */
+  --accent: var(--accent-blue);
+  --accent-2: var(--accent-orange);
+  --shadow-blue: 0 24px 80px rgba(46,84,234,.22);
+}
+
+/* ---- Page background: cool grid + dots on black, blue glows ---- */
+html, body { background: var(--bg-main); }
+body {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / calc(100% / 12) 100%,
+    radial-gradient(circle at 18% 8%, rgba(46,84,234,.14), transparent 22rem),
+    radial-gradient(circle at 84% 12%, rgba(46,84,234,.12), transparent 26rem),
+    var(--bg-main);
+}
+body::before {
+  background-image: radial-gradient(rgba(255,255,255,.06) .7px, transparent .7px);
+  opacity: .24;
+}
+
+/* ---- Navigation: translucent black glass ---- */
+.nav {
+  background: rgba(14,14,17,.74);
+  border-bottom: 1px solid rgba(255,255,255,.09);
+}
+
+/* ---- Cursor ring: dark glass ---- */
+.cursor-ring {
+  border-color: rgba(255,255,255,.4);
+  background: rgba(21,21,25,.55);
+}
+.cursor { background: var(--accent-blue); }
+
+/* ---- Light translucent chips / strips -> dark translucent ---- */
+.chip { background: rgba(255,255,255,.05); }
+.floating-label {
+  border-color: rgba(255,255,255,.12);
+  background: rgba(21,21,25,.82);
+}
+.floating-label::before { background: var(--accent-blue); }
+.proof-strip { background: rgba(255,255,255,.025); }
+
+/* ---- Hardcoded dark hairline borders -> light hairlines ---- */
+.hero-card,
+.studio-signal,
+.project-card,
+.lab-stage,
+.cam-card { border-color: rgba(255,255,255,.12); }
+
+/* ---- Service tint panels -> cool dark ---- */
+.service-panel.blue   { background: #141A38; }
+.service-panel.orange { background: #14182E; }
+.service-panel.yellow { background: #181C32; }
+
+/* ---- "Light text on dark panel" spots that referenced --bg-main ---- */
+.studio-signal,
+.plate.tag,
+.plate.corner,
+.cta-block,
+.cta-block.btn.ghost,
+.footer,
+.footer-news input { color: var(--text-main); }
+
+/* ---- Floating scroll callout pill ---- */
+.camera-callout {
+  background: rgba(21,21,25,.84);
+  color: var(--text-main);
+}
+
+/* ---- Warm decorative glows -> blue / indigo ---- */
+.cta-block {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(46,84,234,.26), transparent 23rem),
+    radial-gradient(circle at 16% 90%, rgba(133,151,241,.18), transparent 20rem),
+    var(--dark-section);
+}
+.lab {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(46,84,234,.20), transparent 40%),
+    radial-gradient(circle at 86% 80%, rgba(133,151,241,.14), transparent 42%),
+    #0A0A0D;
+}
+.cam-glow {
+  background:
+    radial-gradient(circle at 32% 36%, rgba(46,84,234,.32), transparent 52%),
+    radial-gradient(circle at 78% 80%, rgba(133,151,241,.16), transparent 60%);
+}
+.phero {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(46,84,234,.18), transparent 24rem),
+    radial-gradient(circle at 12% 92%, rgba(133,151,241,.12), transparent 22rem),
+    var(--bg-main);
+}
+
+/* ---- Home-hero ::before glow + camera-story band -> blue on black ---- */
+.home-hero::before {
+  background:
+    linear-gradient(120deg, rgba(46,84,234,.14), transparent 36%),
+    radial-gradient(circle at 72% 20%, rgba(46,84,234,.16), transparent 22rem),
+    radial-gradient(circle at 48% 82%, rgba(133,151,241,.16), transparent 20rem);
+}
+.camera-story {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(46,84,234,.16), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(133,151,241,.12), transparent 26%),
+    var(--bg-main);
+}
+.lab-card:hover {
+  border-color: rgba(46,84,234,.55);
+  background: linear-gradient(180deg, rgba(46,84,234,.10), rgba(255,255,255,.01));
+}
+
+/* ---- Marquee client logos: ship as black artwork; invert to light ---- */
+.client-logo img { filter: brightness(0) invert(1); opacity: .92; }
+.client-logo:hover img { opacity: 1; }
+
+/* ---- Intro loader: deepest black ---- */
+.intro { background: #060608; }
+
+/* ---- Lift muted cream-on-dark text to cool off-white ---- */
+.cta-row p { color: rgba(247,248,250,.92); }
+.footer-news p,
+.footer p { color: rgba(247,248,250,.84); }
+.lab .section-label,
+.lab .section-sub { color: rgba(247,248,250,.84); }
+.signal-top,
+.plate.tag,
+.plate.corner { color: rgba(247,248,250,.92); }
