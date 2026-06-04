@@ -322,13 +322,6 @@
         link.classList.add('active');
         activeLink = link;
         targetAmbienceX = getLinkCenterX(link);
-
-        // Trigger temporary edge lightning acceleration
-        navLinks.classList.add('accelerating');
-        if (navLinks.accelerateTimeout) clearTimeout(navLinks.accelerateTimeout);
-        navLinks.accelerateTimeout = setTimeout(() => {
-          navLinks.classList.remove('accelerating');
-        }, 1200);
       });
     });
 

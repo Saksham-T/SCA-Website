@@ -1,11 +1,5 @@
 /* SCA shared system: motion-first creative distribution studio */
 
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
 :root {
   --bg-main: #F8F4EC;
   --bg-soft: #E7DAC6;
@@ -241,13 +235,6 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
       80px circle at var(--ambience-x) 100%, 
       var(--accent-blue) 0%, 
       transparent 100%
-    ),
-    /* Continuous revolving edge lightning */
-    conic-gradient(
-      from var(--angle),
-      transparent 50%,
-      rgba(46, 84, 234, 0.25) 80%,
-      var(--accent-blue) 100%
     );
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
@@ -259,18 +246,6 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   mask-composite: exclude;
   pointer-events: none;
   z-index: 5;
-  animation: rotate-lightning 4s linear infinite;
-  transition: animation-duration 0.4s var(--ease);
-}
-
-.nav-links.accelerating::before {
-  animation-duration: 0.8s; /* Speed up revolving lightning when a page link is clicked */
-}
-
-@keyframes rotate-lightning {
-  to {
-    --angle: 360deg;
-  }
 }
 .nav-links a {
   color: var(--text-muted);
