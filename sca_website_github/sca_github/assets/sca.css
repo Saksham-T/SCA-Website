@@ -223,19 +223,38 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   --spotlight-x: 0px;
   --ambience-x: 0px;
 }
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes rotate-border {
+  to { --border-angle: 360deg; }
+}
+
 .nav-links::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  padding: 1.5px;
+  padding: 1.8px;
   background: 
     /* Active tab highlighter on the bottom edge */
     radial-gradient(
-      80px circle at var(--ambience-x) 100%, 
-      var(--accent-blue) 0%, 
+      120px circle at var(--ambience-x) 100%, 
+      var(--accent) 0%, 
+      color-mix(in srgb, var(--accent) 60%, transparent) 40%,
       transparent 100%
-    );
+    ),
+    /* Continuous edge-lightning border animation */
+    conic-gradient(
+      from var(--border-angle) at 50% 50%, 
+      transparent 50%, 
+      color-mix(in srgb, var(--accent) 15%, transparent) 70%, 
+      var(--accent) 90%, 
+      color-mix(in srgb, var(--accent) 40%, transparent) 95%, 
+      transparent 100%
+    ) !important;
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
@@ -246,6 +265,7 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   mask-composite: exclude;
   pointer-events: none;
   z-index: 5;
+  animation: rotate-border 3.5s linear infinite;
 }
 .nav-links a {
   color: var(--text-muted);

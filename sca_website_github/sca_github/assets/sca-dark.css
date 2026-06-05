@@ -52,12 +52,28 @@ body::before {
 .brand {
   background: rgba(14, 14, 17, 0.65);
   border-color: rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.brand:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent) !important;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.35), 
+    0 0 12px color-mix(in srgb, var(--accent) 12%, transparent),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+.brand-mark img {
+  filter: invert(1) brightness(1);
 }
 .nav-links {
   background: rgba(14, 14, 17, 0.65);
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
   --spotlight-color: rgba(255, 255, 255, 0.12);
   --ambience-color: var(--accent-blue);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.25), 
+    0 0 12px color-mix(in srgb, var(--accent) 12%, transparent),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
 }
 .nav-border-track {
   background: rgba(255, 255, 255, 0.08);
