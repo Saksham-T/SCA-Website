@@ -57,7 +57,7 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  height: clamp(48px, 5.2vw, 82px);
+  height: clamp(72px, 7.6vw, 120px);
   width: auto;
   padding: 0;
 }
@@ -65,7 +65,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: clamp(48px, 5.2vw, 82px);
+  max-height: clamp(72px, 7.6vw, 120px);
   object-fit: contain;
   filter: brightness(0);
   opacity: .82;
