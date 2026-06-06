@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero B — Wireframe to Product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/sca.css">
+<link rel="stylesheet" href="../assets/sca-extras.css">
+<link rel="stylesheet" href="../assets/sca-dark.css">
+<style>
+  /* ============ HERO B — WIREFRAME -> PRODUCT ============ */
+  .wf-hero {
+    position: relative;
+    min-height: 100vh;
+    padding: clamp(120px, 14vh, 168px) var(--gutter) clamp(48px, 6vh, 80px);
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .wf-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 84% 20%, rgba(46,84,234,.18), transparent 28rem),
+      radial-gradient(circle at 10% 92%, rgba(133,151,241,.12), transparent 24rem);
+    pointer-events: none;
+  }
+  .wf-inner {
+    width: min(100%, var(--container)); margin: 0 auto;
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: .82fr 1.18fr;
+    gap: clamp(28px, 4vw, 72px); align-items: center;
+  }
+  .wf-kicker {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent-blue); display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+  }
+  .wf-kicker::before { content:""; width:7px; height:7px; border-radius:50%; background: var(--accent-blue); }
+  .wf-h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(34px, 3.3vw, 56px); line-height: 1.06; letter-spacing: -.01em;
+    max-width: 16ch; margin: 0 0 30px;
+  }
+  .wf-h1 .accent { color: var(--accent-blue); }
+  .wf-lead {
+    font-family: var(--font-body); font-size: clamp(18px, 1.35vw, 22px); line-height: 1.5;
+    color: var(--text-muted); max-width: 40ch; margin: 0 0 26px;
+  }
+  .wf-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
+  .wf-status {
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; color: var(--text-muted);
+  }
+  .wf-status .bar { flex: 1; max-width: 220px; height: 4px; border-radius: 99px; background: rgba(255,255,255,.1); overflow: hidden; }
+  .wf-status .bar i { display: block; height: 100%; width: 30%; background: var(--accent-blue); border-radius: 99px; transition: width .5s var(--ease); }
+  .wf-status .state { color: var(--accent-blue); min-width: 9ch; }
+
+  /* ---- the browser frame ---- */
+  .browser {
+    border: 1px solid rgba(255,255,255,.12); border-radius: 14px;
+    background: #0A0A0D; box-shadow: 0 40px 100px rgba(0,0,0,.5);
+    overflow: hidden;
+  }
+  .browser-bar {
+    display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.02);
+  }
+  .browser-bar .dot { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.16); }
+  .browser-bar .url {
+    margin-left: 12px; flex: 1; max-width: 320px;
+    padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,.05);
+    font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+  }
+  .browser-bar .mode {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent-blue);
+  }
+
+  .canvas {
+    position: relative; height: clamp(340px, 46vh, 520px); overflow: hidden;
+    background: #0C0C10;
+  }
+  .layer { position: absolute; inset: 0; padding: 26px 30px; transition: opacity .7s var(--ease); }
+
+  /* wireframe layer */
+  .wire { opacity: 1; }
+  .wf-row { display: flex; align-items: center; gap: 12px; }
+  .wbox { background: rgba(255,255,255,.07); border: 1px dashed rgba(255,255,255,.18); border-radius: 6px; }
+  .wf-nav { justify-content: space-between; margin-bottom: 34px; }
+  .wbox.logo { width: 90px; height: 22px; }
+  .wf-links { display: flex; gap: 10px; }
+  .wbox.link { width: 46px; height: 12px; }
+  .wf-body { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+  .wbox.line { height: 18px; border-radius: 5px; margin-bottom: 12px; }
+  .wbox.line.lg { height: 30px; }
+  .wbox.btn { width: 120px; height: 38px; border-radius: 99px; margin-top: 18px; }
+  .wbox.img {
+    height: 230px; border-radius: 10px;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 10px, transparent 10px 20px);
+  }
+
+  /* real layer */
+  .real { opacity: 0; }
+  .real-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+  .real-logo { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -.01em; color: #F7F8FA; }
+  .real-links { display: flex; gap: 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--text-muted); }
+  .real-body { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+  .real-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 12px; }
+  .real-h { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3vw, 44px); line-height: .98; letter-spacing: -.01em; color: #F7F8FA; }
+  .real-h .accent { color: var(--accent-blue); }
+  .real-p { font-family: var(--font-body); color: var(--text-muted); font-size: 16px; margin: 14px 0 20px; max-width: 30ch; }
+  .real-btn { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; padding: 12px 22px; border-radius: 99px; background: var(--accent-blue); color: #fff; box-shadow: 0 14px 30px rgba(46,84,234,.34); }
+  .real-img { height: 230px; border-radius: 12px; overflow: hidden; background: #14141a; }
+  .real-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* built state */
+  .browser.is-built .wire { opacity: 0; }
+  .browser.is-built .real { opacity: 1; }
+
+  @media (max-width: 900px) {
+    .wf-inner { grid-template-columns: 1fr; }
+    .wf-body, .real-body { grid-template-columns: 1fr; }
+    .wbox.img, .real-img { height: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
+      <span class="brand-mark"><img src="../images/sca-logo-mark.png" alt=""></span>
+      <span>SeeTusk / SCA</span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Content</a>
+      <a href="#">Influencer</a>
+      <a href="#" class="active">Web &amp; Tech</a>
+      <a href="#">About</a>
+    </div>
+    <div class="nav-cta"><a href="#" class="btn accent">Start a project <span class="arr">-></span></a></div>
+  </div>
+</nav>
+
+<section class="wf-hero" data-screen-label="Hero B — Wireframe to Product">
+  <div class="wf-inner">
+
+    <div class="wf-copy">
+      <div class="wf-kicker">Vertical 03 / Build</div>
+      <h1 class="wf-h1">No templates. We design the <span class="accent">system</span>, then ship it.</h1>
+      <p class="wf-lead">Websites, landers, and tools that pay &mdash; engineered for speed, SEO, and conversion. We start from a blank file, not a theme.</p>
+      <div class="wf-ctas">
+        <a href="#" class="btn accent">See the stack <span class="arr">-></span></a>
+        <a href="#" class="btn ghost">Our products</a>
+      </div>
+      <div class="wf-status">
+        <span class="state" id="wfState">wireframe</span>
+        <span class="bar"><i id="wfBar"></i></span>
+      </div>
+    </div>
+
+    <div class="browser" id="browser">
+      <div class="browser-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url">ambar.coffee</span>
+        <span class="mode" id="wfMode">build</span>
+      </div>
+      <div class="canvas">
+
+        <!-- wireframe -->
+        <div class="layer wire">
+          <div class="wf-row wf-nav">
+            <span class="wbox logo"></span>
+            <span class="wf-links"><span class="wbox link"></span><span class="wbox link"></span><span class="wbox link"></span></span>
+          </div>
+          <div class="wf-body">
+            <div>
+              <div class="wbox line lg" style="width:90%;"></div>
+              <div class="wbox line" style="width:70%;"></div>
+              <div class="wbox line" style="width:80%;"></div>
+              <div class="wbox btn"></div>
+            </div>
+            <div class="wbox img"></div>
+          </div>
+        </div>
+
+        <!-- finished -->
+        <div class="layer real">
+          <div class="real-nav">
+            <span class="real-logo">amb&auml;r</span>
+            <span class="real-links"><span>Shop</span><span>Story</span><span>Brew</span></span>
+          </div>
+          <div class="real-body">
+            <div>
+              <div class="real-eyebrow">Single origin</div>
+              <h3 class="real-h">Coffee, <span class="accent">reimagined</span> for mornings.</h3>
+              <p class="real-p">Slow-roasted, small-batch, shipped fresh across India.</p>
+              <a class="real-btn">Shop the roast -></a>
+            </div>
+            <div class="real-img"><img src="../images/ambar-coffee-clean.png" alt="Ambar coffee product"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var browser = document.getElementById('browser');
+  var bar = document.getElementById('wfBar');
+  var state = document.getElementById('wfState');
+  var mode = document.getElementById('wfMode');
+
+  function toBuilt(){
+    state.textContent = 'compiling';
+    bar.style.width = '100%';
+    setTimeout(function(){
+      browser.classList.add('is-built');
+      state.textContent = 'shipped';
+      mode.textContent = 'live';
+    }, 600);
+  }
+  function toWire(){
+    browser.classList.remove('is-built');
+    state.textContent = 'wireframe';
+    mode.textContent = 'build';
+    bar.style.width = '30%';
+  }
+
+  function loop(){
+    toBuilt();
+    setTimeout(function(){ toWire(); setTimeout(loop, 1400); }, 4200);
+  }
+  bar.style.width = '30%';
+  setTimeout(loop, 1200);
+})();
+</script>
+</body>
+</html>
