@@ -9,8 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sca.css">
 <link rel="stylesheet" href="assets/sca-extras.css">
-<link rel="stylesheet" href="assets/sca-deck.css">
+<link rel="stylesheet" href="assets/sca-livebuild.css">
 <link rel="stylesheet" href="assets/sca-dark.css">
+<link rel="stylesheet" href="assets/sca-footer.css">
 </head>
 <body>
 
@@ -30,50 +31,84 @@
   </div>
 </nav>
 
-<section class="deck" data-deck data-screen-label="Web hero deck">
-  <div class="deck-track">
-    <div class="deck-pin">
+<section class="lb-hero" data-screen-label="Web hero — Live Build">
+  <!-- Swap this image for your hero photo (keep the same path or update it) -->
+  <div class="lb-hero-bg" style="background-image:url('images/c-desk-setup.png')"></div>
+  <div class="lb-watermark" aria-hidden="true">03</div>
+  <div class="lb-inner">
 
-      <div class="deck-copy deck-copy--a" data-deck-copy="0">
-        <div class="deck-kicker">Vertical 03 / Build</div>
-        <h1 class="deck-title" style="max-width: 20ch;">Websites, landers,<br>and <span class="accent">tools that pay.</span></h1>
+    <div class="lb-top">
+      <div>
+        <div class="lb-kicker">Vertical 03 / Build</div>
+        <h1 class="lb-h1"><span class="glass-text">Websites, landers,<br>and </span><span class="tint-text">tools that pay.</span></h1>
+      </div>
+      <div>
+        <p class="lb-lead">No templates. We write the copy, design the system, and ship the code &mdash; built for speed, SEO, and conversion.</p>
+        <div class="lb-ctas">
+          <a href="#stack" class="btn accent">See the stack <span class="arr">-></span></a>
+          <a href="#products" class="btn ghost">Our products</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lb-stage">
+      <!-- editor -->
+      <div class="win">
+        <div class="win-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="tab">Site.jsx</span>
+          <span class="live">writing</span>
+        </div>
+        <pre class="code" id="code"></pre>
       </div>
 
-      <div class="deck-copy deck-copy--b" data-deck-copy="1">
-        <div class="deck-inner">
-          <div class="deck-kicker">How we build</div>
-          <h2 class="deck-title">Sites, products, and tools. No templates.</h2>
-          <p class="deck-lead">Copy, design, code, and measurement &mdash; designed for speed, SEO, and conversion.</p>
+      <!-- preview: the real ambär coffee site assembling -->
+      <div class="win">
+        <div class="win-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="url">ambar.coffee</span>
+          <span class="live">live</span>
+        </div>
+        <div class="pv" id="pv">
+
+          <!-- skeleton guides -->
+          <div class="skel" id="skel" aria-hidden="true">
+            <span class="sk" data-for="0"></span>
+            <span class="sk" data-for="0b"></span>
+            <span class="sk" data-for="2"></span>
+            <span class="sk" data-for="3"></span>
+            <span class="sk" data-for="4"></span>
+            <span class="sk" data-for="5"></span>
+          </div>
+
+          <div class="pv-block pv-nav" data-pv="0">
+            <span class="pv-logo">amb&auml;r</span>
+            <span class="pv-links"><span>Shop</span><span>Story</span><span>Brew</span></span>
+          </div>
+
+          <div class="pv-body">
+            <div class="pv-col">
+              <div class="pv-block pv-eyebrow" data-pv="1">Single origin</div>
+              <h2 class="pv-block pv-h" data-pv="2">Coffee, <span class="accent">reimagined</span> for mornings.</h2>
+              <p class="pv-block pv-sub" data-pv="3">Slow-roasted, small-batch, shipped fresh across India.</p>
+              <a class="pv-block pv-btn" data-pv="4">Shop the roast -></a>
+            </div>
+            <div class="pv-block pv-img" data-pv="5"><img src="images/ambar-coffee-clean.png" alt="Ambär coffee being poured"></div>
+          </div>
+
         </div>
       </div>
 
-      <div class="deck-copy deck-copy--c" data-deck-copy="2">
-        <div class="deck-kicker">Our stack</div>
-        <h2 class="deck-title">Lightweight tech <span class="accent">built to convert.</span></h2>
-        <p class="deck-lead">Next.js, Webflow, Hydrogen, Shopify CMS &mdash; built for marketing control, analytics, and speed.</p>
-      </div>
-
-      <div class="deck-cards" data-deck-cards>
-        <figure class="dcard"><img src="images/web-laptop.png" alt="Website build on laptop"><span class="dcard-tag">Web</span><span class="dcard-num">01</span></figure>
-        <figure class="dcard"><img src="images/g-desktop.jpg" alt="Design mockup and brand system"><span class="dcard-tag">Design</span><span class="dcard-num">02</span></figure>
-        <figure class="dcard"><img src="images/c-desk-setup.png" alt="Studio desk with website build"><span class="dcard-tag">Studio</span><span class="dcard-num">03</span></figure>
-        <figure class="dcard"><img src="images/g-devknight-stationery.png" alt="DevKnight brand system"><span class="dcard-tag">Brand</span><span class="dcard-num">04</span></figure>
-        <figure class="dcard"><img src="images/g-camera-operator.jpeg" alt="Cinema camera operator on set"><span class="dcard-tag">BTS</span><span class="dcard-num">05</span></figure>
-        <figure class="dcard"><img src="images/g-bengaluru-billboard.png" alt="Bengaluru outdoor billboard"><span class="dcard-tag">OOH</span><span class="dcard-num">06</span></figure>
-        <figure class="dcard"><img src="images/g-white-studio.jpeg" alt="White studio with umbrella lighting"><span class="dcard-tag">Studio</span><span class="dcard-num">07</span></figure>
-      </div>
-
-      <span class="deck-pill is-blue" style="left: 16%; top: 30%;">@brandscope</span>
-      <span class="deck-pill is-orange" style="right: 15%; top: 33%;">@roster</span>
-
-      <div class="deck-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-      <div class="deck-hint">Scroll <span>&darr;</span></div>
-
+      <div class="lb-flow" aria-hidden="true">-></div>
     </div>
+
+    <div class="lb-progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+
   </div>
 </section>
 
-<section class="section">
+<section class="section section--cine" id="stack">
+  <span class="sect-wm" aria-hidden="true">01</span>
   <div class="shell">
     <div class="section-head sr">
       <div class="section-num">01 / Stack &amp; Fit</div>
@@ -102,7 +137,8 @@
   </div>
 </section>
 
-<section class="section" style="border-top:1px solid var(--line);">
+<section class="section section--cine" style="border-top:1px solid var(--line);">
+  <span class="sect-wm" aria-hidden="true">02</span>
   <div class="shell">
     <div class="section-head sr">
       <div class="section-num">02 / Services</div>
@@ -141,7 +177,8 @@
   </div>
 </section>
 
-<section class="section" style="border-top:1px solid var(--line);">
+<section class="section section--cine" id="products" style="border-top:1px solid var(--line);">
+  <span class="sect-wm" aria-hidden="true">03</span>
   <div class="shell">
     <div class="section-head sr">
       <div class="section-num">03 / In-house products</div>
@@ -181,34 +218,44 @@
   </div>
 </section>
 
-<footer class="footer">
-  <div class="shell">
-
-    <div class="footer-news">
-      <div>
+<footer class="site-footer">
+  <div class="sfoot-shell">
+    <div class="sfoot-news">
+      <div class="sfoot-news-copy">
         <h4>Read what we ship.</h4>
-        <p>Our weekly newsletter. Frameworks, teardowns, behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
+        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
       </div>
-      <form>
+      <form class="sfoot-form" onsubmit="return false;">
         <input type="email" name="email" placeholder="you@company.com" required>
-        <button type="submit">Subscribe -></button>
+        <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
       </form>
     </div>
-
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img class="footer-brand-mark" src="images/sca-logo-mark.png" alt="SCA mark">
+    <div class="sfoot-grid">
+      <div class="sfoot-brand">
+        <div class="sfoot-brand-top">
+          <img src="images/sca-logo-mark.png" alt="SCA mark">
+          <span>SeeTusk / SCA</span>
+        </div>
         <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <div class="sfoot-socials">
+          <a href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
+          <a href="#" title="X / Twitter" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
+          <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
+          <a href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        </div>
       </div>
-      <div><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></div>
-      <div><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:hr@seetusk.com">Careers</a></div>
-      <div><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com -></a><a href="mailto:hr@seetusk.com">hr@seetusk.com -></a><a href="#">LinkedIn -></a><a href="#">Instagram -></a></div>
+      <nav class="sfoot-col"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:hr@seetusk.com">Careers</a></nav>
+      <nav class="sfoot-col"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></nav>
     </div>
-    <div class="footer-bottom"><span>(c) 2026 SeeTusk Creative Agency / Pune, IND</span><span>seetusk.agency / Built in-house</span></div>
+    <div class="sfoot-bottom">
+      <span>&copy; 2026 SeeTusk Creative Agency / Pune, IND</span>
+      <span>seetusk.agency / Built in-house</span>
+    </div>
   </div>
 </footer>
 
 <script src="assets/sca.js"></script>
-<script src="assets/sca-deck.js"></script>
+<script src="assets/sca-livebuild.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@
   <!-- Vendor libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow:wght@300;400;500;600&amp;family=Barlow+Condensed:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <!-- Shared stylesheets last to override vendor styles -->
   <link rel="stylesheet" href="assets/sca.css" />
@@ -18,7 +18,7 @@
   
   <style>
     :root {
-      --accent: #2e62ff; /* High-end agency blue */
+      --accent: var(--accent-blue); /* unified shared blue */
       --dark: #0a0a0a;
       --mid: #1a1a1a;
       --text-muted: rgba(255,255,255,0.6);
@@ -31,7 +31,7 @@
     body {
       background: var(--dark);
       color: #fff;
-      font-family: 'Barlow', sans-serif;
+      font-family: var(--font-body);
       overflow-x: hidden;
     }
 
@@ -116,7 +116,7 @@
     }
 
     .slide-title {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(56px, 7vw, 96px); line-height: 0.92;
       letter-spacing: 0.02em; color: #fff;
       margin-bottom: 20px;
@@ -218,7 +218,7 @@
       color: var(--text-muted); margin-bottom: 4px;
     }
     .dest-card-title {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--font-display);
       font-size: 16px; font-weight: 700; line-height: 1.1; color: #fff;
       text-transform: uppercase;
     }
@@ -248,7 +248,7 @@
 
     .slide-number {
       position: absolute; bottom: 40px; right: 48px;
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: 72px; color: rgba(255,255,255,0.06);
       line-height: 1; user-select: none;
     }
@@ -274,7 +274,7 @@
     #problem::before {
       content: '01';
       position: absolute; right: 48px; top: 60px;
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: 200px; color: rgba(255,255,255,0.025);
       line-height: 1; pointer-events: none;
     }
@@ -287,7 +287,7 @@
       margin: 0 auto;
     }
     .problem-left h2 {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(42px, 5vw, 68px);
       line-height: 1; letter-spacing: 0.02em; color: #fff;
       margin-bottom: 28px;
@@ -341,7 +341,7 @@
     }
 
     .campaign-left h2 {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(42px, 4.5vw, 64px); line-height: 1;
       color: #fff; margin-bottom: 24px;
     }
@@ -378,7 +378,7 @@
       color: var(--accent); font-weight: 600; margin-bottom: 10px;
     }
     .archetype-card h3 {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: 36px; letter-spacing: 0.04em; color: #fff;
       margin-bottom: 10px; text-transform: uppercase;
     }
@@ -404,7 +404,7 @@
     #roster::before {
       content: '03';
       position: absolute; right: 48px; top: 60px;
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: 200px; color: rgba(255,255,255,0.025);
       line-height: 1; pointer-events: none;
     }
@@ -419,7 +419,7 @@
       gap: 60px; align-items: start; margin-bottom: 72px;
     }
     .roster-header h2 {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-display);
       font-size: clamp(42px, 5vw, 68px); line-height: 1; color: #fff;
     }
     .roster-header p {
@@ -456,7 +456,7 @@
     }
     .strip-img-num {
       position: absolute; top: 12px; left: 12px;
-      font-family: 'Bebas Neue', sans-serif; font-size: 13px;
+      font-family: var(--font-display); font-size: 13px;
       color: rgba(255,255,255,0.35); letter-spacing: 0.05em;
     }
 
@@ -485,7 +485,7 @@
       color: var(--accent); margin-bottom: 12px;
     }
     .tier-card h3 {
-      font-family: 'Bebas Neue', sans-serif; font-size: 42px;
+      font-family: var(--font-display); font-size: 42px;
       color: #fff; line-height: 1; margin-bottom: 12px;
     }
     .tier-card p {
@@ -511,7 +511,7 @@
       gap: 40px;
     }
     #newsletter h3 {
-      font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #fff;
+      font-family: var(--font-display); font-size: 40px; color: #fff;
       margin-bottom: 8px; letter-spacing: 0.02em;
     }
     #newsletter p {
@@ -526,7 +526,7 @@
       flex: 1; background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.15); border-right: none;
       color: #fff; padding: 12px 16px; font-size: 13px; border-radius: 2px 0 0 2px;
-      outline: none; font-family: 'Barlow', sans-serif;
+      outline: none; font-family: var(--font-body);
     }
     .newsletter-input-row input::placeholder { color: rgba(255,255,255,0.35); }
     .newsletter-input-row button {
@@ -719,7 +719,31 @@
     .btn {
       border-radius: 999px !important;
     }
+  
+    /* ── SYSTEM ALIGNMENT — match Web & Tech type system ── */
+    .slide-title, .slide-number, .problem-left h2, .campaign-left h2,
+    .archetype-card h3, .roster-header h2, .tier-card h3, #newsletter h3,
+    .dest-card-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .slide-title { font-size: clamp(40px, 5vw, 72px); line-height: 0.95; }
+    .slide-label, .section-label, .archetype-tag, .strip-img-label,
+    .strip-img-num, .tier-label {
+      font-family: var(--font-mono);
+    }
+    .slide-desc, .problem-left p, .campaign-left p, .tier-card p,
+    .archetype-card p, #newsletter p {
+      font-family: var(--font-body);
+    }
+    .slide-btn, .newsletter-input-row button {
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+    }
   </style>
+<link rel="stylesheet" href="assets/sca-footer.css">
 </head>
 <body>
 
@@ -1078,36 +1102,39 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="images/sca-logo-mark.png" alt="SCA mark" />
-        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+<footer class="site-footer">
+  <div class="sfoot-shell">
+    <div class="sfoot-news">
+      <div class="sfoot-news-copy">
+        <h4>Read what we ship.</h4>
+        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
       </div>
-      <div class="footer-col">
-        <h5>Verticals</h5>
-        <a href="content.html">Content &amp; Brand</a>
-        <a href="influencer.html">Influencer</a>
-        <a href="web.html">Web &amp; Tech</a>
-      </div>
-      <div class="footer-col">
-        <h5>Studio</h5>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="mailto:hr@seetusk.com">Careers</a>
-      </div>
-      <div class="footer-col">
-        <h5>Elsewhere</h5>
-        <a href="mailto:contact@seetusk.com">contact@seetusk.com →</a>
-        <a href="mailto:hr@seetusk.com">hr@seetusk.com →</a>
-        <a href="#">LinkedIn →</a>
-        <a href="#">Instagram →</a>
-      </div>
+      <form class="sfoot-form" onsubmit="return false;">
+        <input type="email" name="email" placeholder="you@company.com" required>
+        <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
+      </form>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 SeeTusk Creative Agency / Pune, IND</p>
-      <p>seetusk.agency / Built in-house</p>
+    <div class="sfoot-grid">
+      <div class="sfoot-brand">
+        <div class="sfoot-brand-top">
+          <img src="images/sca-logo-mark.png" alt="SCA mark">
+          <span>SeeTusk / SCA</span>
+        </div>
+        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <div class="sfoot-socials">
+          <a href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
+          <a href="#" title="X / Twitter" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
+          <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
+          <a href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        </div>
+      </div>
+      <nav class="sfoot-col"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:hr@seetusk.com">Careers</a></nav>
+      <nav class="sfoot-col"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></nav>
+    </div>
+    <div class="sfoot-bottom">
+      <span>&copy; 2026 SeeTusk Creative Agency / Pune, IND</span>
+      <span>seetusk.agency / Built in-house</span>
     </div>
   </div>
 </footer>
