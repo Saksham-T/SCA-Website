@@ -1188,16 +1188,34 @@
     position: fixed;
     inset: 0;
     z-index: 999999;
-    display: flex;
     overflow: hidden;
     background: transparent;
     pointer-events: auto;
   }
+  .reveal-bg-strips,
+  .reveal-fg-strips {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .reveal-bg-strips {
+    z-index: 1;
+  }
+  .reveal-fg-strips {
+    z-index: 2;
+  }
   .preloader-item {
     height: 100%;
     width: 10%;
-    background-image: linear-gradient(0deg, #0f172a, #334155);
     will-change: transform;
+  }
+  .bg-item {
+    background: linear-gradient(180deg, #102375, #2e54ea);
+  }
+  .fg-item {
+    background: linear-gradient(180deg, #050507, #151519);
   }
   .reveal-text-wrapper {
     position: absolute;
@@ -1313,16 +1331,32 @@
 
 <!-- REVEAL LOADER INTRO -->
 <div class="reveal-loader" id="reveal-loader">
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
-  <div class="preloader-item"></div>
+  <!-- Underlay Blue Strips -->
+  <div class="reveal-bg-strips">
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+  </div>
+  <!-- Foreground Black Strips -->
+  <div class="reveal-fg-strips">
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+  </div>
   <div class="reveal-text-wrapper">
     <div class="reveal-content-container">
       <div class="reveal-logo-wrapper">
@@ -2007,7 +2041,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     const text = "CAREERS";
     const stampContainer = document.getElementById('reveal-stamp-text');
-    const textFadeDelay = 0.1;
 
     // 1. Inject characters into span elements
     stampContainer.innerHTML = text.split('').map(char => {
@@ -2050,32 +2083,42 @@
       ease: "power3.out"
     }, "-=0.25");
 
-    // Step 3: Animate bars DOWN (movementDirection: "top-down", staggerOrder: "center-out")
-    tl.to(".preloader-item", {
-      y: "100%",
-      duration: 0.5,
-      ease: "power4.inOut",
-      stagger: {
-        each: 0.05,
-        from: "center"
-      },
-      delay: 0.4
-    });
-
-    // Step 4: Fade entire content container (both logo and text) out together
+    // Step 3: Fade out entire content container (both logo and text) slightly before strips slide
     tl.to(".reveal-content-container", {
       opacity: 0,
-      y: -20, // cinematic lift-up transition
-      duration: 0.25,
+      y: -30, // cinematic lift-up transition
+      duration: 0.3,
       ease: "power2.in"
-    }, `<${textFadeDelay}`);
+    }, "+=0.3");
+
+    // Step 4a: Animate foreground (black) bars DOWN to reveal blue strips
+    tl.to(".fg-item", {
+      y: "100%",
+      duration: 0.55,
+      ease: "power4.inOut",
+      stagger: {
+        each: 0.04,
+        from: "center"
+      }
+    }, "-=0.15");
+
+    // Step 4b: Animate background (blue) bars DOWN to reveal the page
+    tl.to(".bg-item", {
+      y: "100%",
+      duration: 0.55,
+      ease: "power4.inOut",
+      stagger: {
+        each: 0.04,
+        from: "center"
+      }
+    }, "-=0.42");
 
     // Step 5: Fade loader container to autoAlpha 0
     tl.to("#reveal-loader", {
       opacity: 0,
       visibility: "hidden",
-      duration: 0.08
-    }, "+=0.05");
+      duration: 0.1
+    }, "-=0.15");
   });
 </script>
 </body>
