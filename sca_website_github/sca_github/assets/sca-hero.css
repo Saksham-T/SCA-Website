@@ -5,7 +5,7 @@
    ============================================================ */
 
 .hero {
-  padding: clamp(80px, 10vh, 132px) 0 clamp(40px, 6vh, 84px);
+  padding: clamp(44px, 6vh, 76px) 0 clamp(28px, 4vh, 52px);
   position: relative;
   overflow: hidden;
 }
@@ -98,7 +98,7 @@
 /* ---- Headline ---- */
 .hero-h1 {
   font-family: var(--font-display);
-  font-size: clamp(40px, min(8.5vw, 10.5vh), 120px);
+  font-size: clamp(34px, min(6.4vw, 8vh), 84px);
   line-height: .92;
   letter-spacing: -0.025em;
   font-weight: 800;
