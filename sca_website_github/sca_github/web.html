@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web &amp; Tech. SCA</title>
+<title>Web &amp; Tech for ambitious brands — SeeTusk / SCA</title>
+<meta name="description" content="Custom brand websites, conversion landers, digital products and analytics-ready stacks. Copy, design, code and measurement built as one system for speed, SEO and conversion.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,13 +12,14 @@
 <link rel="stylesheet" href="assets/sca-extras.css">
 <link rel="stylesheet" href="assets/sca-livebuild.css">
 <link rel="stylesheet" href="assets/sca-dark.css">
+<link rel="stylesheet" href="assets/sca-web.css">
 <link rel="stylesheet" href="assets/sca-footer.css">
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
+    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency — home">
       <span class="brand-mark"><img src="images/sca-logo-mark.png" alt=""></span>
       <span>SeeTusk / SCA</span>
     </a>
@@ -27,13 +29,13 @@
       <a href="web.html">Web &amp; Tech</a>
       <a href="about.html">About</a>
     </div>
-    <div class="nav-cta"><a href="contact.html" class="btn accent">Start a project <span class="arr">-></span></a></div>
+    <div class="nav-cta"><a href="contact.html" class="btn accent">Start a project <span class="arr" aria-hidden="true">-></span></a></div>
   </div>
 </nav>
 
+<!-- ============ HERO — LIVE BUILD ============ -->
 <section class="lb-hero" data-screen-label="Web hero — Live Build">
-  <!-- Swap this image for your hero photo (keep the same path or update it) -->
-  <div class="lb-hero-bg" style="background-image:url('images/c-desk-setup.png')"></div>
+  <div class="lb-hero-bg" style="background-image:url('images/c-desk-setup.png')" role="img" aria-label="A studio desk setup where the team builds websites"></div>
   <div class="lb-watermark" aria-hidden="true">03</div>
   <div class="lb-inner">
 
@@ -45,8 +47,8 @@
       <div>
         <p class="lb-lead">No templates. We write the copy, design the system, and ship the code &mdash; built for speed, SEO, and conversion.</p>
         <div class="lb-ctas">
-          <a href="#stack" class="btn accent">See the stack <span class="arr">-></span></a>
-          <a href="#products" class="btn ghost">Our products</a>
+          <a href="#work" class="btn accent">See selected builds <span class="arr" aria-hidden="true">-></span></a>
+          <a href="#stack" class="btn ghost">The stack</a>
         </div>
       </div>
     </div>
@@ -55,19 +57,19 @@
       <!-- editor -->
       <div class="win">
         <div class="win-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
           <span class="tab">Site.jsx</span>
-          <span class="live">writing</span>
+          <span class="live" aria-hidden="true">writing</span>
         </div>
-        <pre class="code" id="code"></pre>
+        <pre class="code" id="code" aria-hidden="true"></pre>
       </div>
 
       <!-- preview: the real ambär coffee site assembling -->
       <div class="win">
         <div class="win-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
           <span class="url">ambar.coffee</span>
-          <span class="live">live</span>
+          <span class="live" aria-hidden="true">live</span>
         </div>
         <div class="pv" id="pv">
 
@@ -91,9 +93,9 @@
               <div class="pv-block pv-eyebrow" data-pv="1">Single origin</div>
               <h2 class="pv-block pv-h" data-pv="2">Coffee, <span class="accent">reimagined</span> for mornings.</h2>
               <p class="pv-block pv-sub" data-pv="3">Slow-roasted, small-batch, shipped fresh across India.</p>
-              <a class="pv-block pv-btn" data-pv="4">Shop the roast -></a>
+              <a class="pv-block pv-btn" data-pv="4">Shop the roast <span aria-hidden="true">-></span></a>
             </div>
-            <div class="pv-block pv-img" data-pv="5"><img src="images/ambar-coffee-clean.png" alt="Ambär coffee being poured"></div>
+            <div class="pv-block pv-img" data-pv="5"><img src="images/ambar-coffee-clean.png" alt="Ambär coffee being poured into a cup"></div>
           </div>
 
         </div>
@@ -107,7 +109,40 @@
   </div>
 </section>
 
-<section class="section section--cine" id="stack">
+<!-- ============ PROOF METRICS BAND ============ -->
+<section class="proof-metrics" aria-label="Proof and outcomes" data-screen-label="Proof metrics">
+  <div class="shell">
+    <div class="pm-head sr">
+      <span class="pm-eyebrow">Signal / Proof</span>
+      <p class="pm-note">Outcome metrics are being verified across recent builds &mdash; final figures land here next.</p>
+    </div>
+    <div class="pm-grid sr-stag">
+      <div class="pm-cell">
+        <span class="pm-label">Projects delivered</span>
+        <span class="pm-value">XX<span>+</span></span>
+        <span class="pm-foot">Verified count to be added</span>
+      </div>
+      <div class="pm-cell">
+        <span class="pm-label">Conversion improvement</span>
+        <span class="pm-value">XX<span>%</span></span>
+        <span class="pm-foot">Before / after, to be added</span>
+      </div>
+      <div class="pm-cell">
+        <span class="pm-label">Client satisfaction</span>
+        <span class="pm-value soft">Coming soon</span>
+        <span class="pm-foot">Survey metric, to be added</span>
+      </div>
+      <div class="pm-cell">
+        <span class="pm-label">Industries served</span>
+        <span class="pm-value">XX<span>+</span></span>
+        <span class="pm-foot">D2C, F&amp;B, SaaS &amp; more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 / STACK & FIT ============ -->
+<section class="section section--cine" id="stack" data-screen-label="Stack & fit">
   <span class="sect-wm" aria-hidden="true">01</span>
   <div class="shell">
     <div class="section-head sr">
@@ -115,29 +150,47 @@
       <div>
         <div class="section-label">A deliberately small stack</div>
         <h2 class="section-title">Boring where it should be. Sharp where it counts.</h2>
-        <p class="section-sub">We build custom web experiences designed for speed, measurement, and marketing control. Copywriters write the words, designers frame the layout, and developers deploy the code.</p>
+        <p class="section-sub">We build custom web experiences designed for speed, measurement, and marketing control. Copywriters write the words, designers frame the layout, developers deploy the code.</p>
       </div>
     </div>
 
-    <div class="two-col sr">
-      <div>
-        <p class="pull">We build digital surfaces that feel <span class="accent">integrated</span> with your brand family.</p>
-      </div>
-      <div>
-        <ul class="bullet-list">
-          <li><span class="bl-n">-></span><div><h4>Next.js / React / TypeScript</h4><p>For custom builds, productised tools, and anything with complex state.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Webflow + Framer</h4><p>When marketing control matters more than custom software engineering.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Shopify + Hydrogen</h4><p>For D2C builds that need headless flexibility without reinventing commerce.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Sanity / Payload / Notion CMS</h4><p>Content models the marketing and content team can actually write to.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>Vercel / Cloudflare / AWS</h4><p>We ship fast, keep it cheap, and do not babysit complex server infrastructure.</p></div></li>
-          <li><span class="bl-n">-></span><div><h4>PostHog / GA4 / Segment</h4><p>Analytics instrumentation wired from day one. You ship with measurement.</p></div></li>
-        </ul>
-      </div>
+    <div class="stack-grid sr-stag">
+      <article class="stack-card">
+        <div class="stack-top"><span class="stack-idx">S / 01</span><span class="stack-cat">Custom build</span></div>
+        <h3>Next.js / React / TypeScript</h3>
+        <p>For custom builds, productised tools, and anything with complex state.</p>
+      </article>
+      <article class="stack-card">
+        <div class="stack-top"><span class="stack-idx">S / 02</span><span class="stack-cat">Marketing</span></div>
+        <h3>Webflow + Framer</h3>
+        <p>When marketing control matters more than custom software engineering.</p>
+      </article>
+      <article class="stack-card">
+        <div class="stack-top"><span class="stack-idx">S / 03</span><span class="stack-cat">Commerce</span></div>
+        <h3>Shopify + Hydrogen</h3>
+        <p>For D2C builds that need headless flexibility without reinventing commerce.</p>
+      </article>
+      <article class="stack-card">
+        <div class="stack-top"><span class="stack-idx">S / 04</span><span class="stack-cat">Content</span></div>
+        <h3>Sanity / Payload / Notion CMS</h3>
+        <p>Content models the marketing and content team can actually write to.</p>
+      </article>
+      <article class="stack-card">
+        <div class="stack-top"><span class="stack-idx">S / 05</span><span class="stack-cat">Infra</span></div>
+        <h3>Vercel / Cloudflare / AWS</h3>
+        <p>We ship fast, keep it cheap, and do not babysit complex server infrastructure.</p>
+      </article>
+      <article class="stack-card">
+        <div class="stack-top"><span class="stack-idx">S / 06</span><span class="stack-cat">Analytics</span></div>
+        <h3>PostHog / GA4 / Segment</h3>
+        <p>Analytics instrumentation wired from day one. You ship with measurement.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="section section--cine" style="border-top:1px solid var(--line);">
+<!-- ============ 02 / SERVICES ============ -->
+<section class="section section--cine" data-screen-label="Services" style="border-top:1px solid var(--line);">
   <span class="sect-wm" aria-hidden="true">02</span>
   <div class="shell">
     <div class="section-head sr">
@@ -177,11 +230,172 @@
   </div>
 </section>
 
-<section class="section section--cine" id="products" style="border-top:1px solid var(--line);">
+<!-- ============ 03 / SELECTED WORK ============ -->
+<section class="section section--cine" id="work" data-screen-label="Selected work" style="border-top:1px solid var(--line);">
   <span class="sect-wm" aria-hidden="true">03</span>
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">03 / In-house products</div>
+      <div class="section-num">03 / Selected work</div>
+      <div>
+        <div class="section-label">Build, ship, measure</div>
+        <h2 class="section-title">Selected signals from the build floor.</h2>
+        <p class="section-sub">A look at the kind of work we take on. Client names, screenshots, and verified results drop in as each case is cleared for release.</p>
+      </div>
+    </div>
+
+    <div class="case-rail sr-stag">
+
+      <article class="case-card">
+        <div class="case-shot">
+          <div class="case-bar">
+            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+            <span class="case-url">clientsite.com</span>
+            <span class="case-stamp">Case visual</span>
+          </div>
+          <div class="case-wire" aria-hidden="true">
+            <div class="cw-stack">
+              <span class="cw-eyebrow"></span>
+              <span class="cw-h1"></span>
+              <span class="cw-h2"></span>
+              <span class="cw-text"></span>
+              <span class="cw-text short"></span>
+              <span class="cw-btn"></span>
+            </div>
+            <span class="cw-media"></span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag">Website Development</span>
+            <span class="case-client">Client / Brand</span>
+          </div>
+          <h3>High-converting business website rebuild</h3>
+          <div class="case-rows">
+            <div class="case-row"><span class="k">Challenge</span><span class="v">A dated site that buried the offer and converted poorly.</span></div>
+            <div class="case-row"><span class="k">Delivered</span><span class="v">Full rebuild &mdash; copy, design system, Next.js front end, analytics wired in.</span></div>
+          </div>
+          <span class="case-result">Conversion lift &mdash; metric to be added</span>
+          <a href="contact.html" class="case-cta">View case study <span class="arr" aria-hidden="true">-></span></a>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-shot">
+          <div class="case-bar">
+            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+            <span class="case-url">clientsite.com/services</span>
+            <span class="case-stamp">Case visual</span>
+          </div>
+          <div class="case-wire" aria-hidden="true">
+            <div class="cw-stack">
+              <span class="cw-eyebrow"></span>
+              <span class="cw-h1"></span>
+              <span class="cw-h2"></span>
+              <span class="cw-text"></span>
+              <span class="cw-text short"></span>
+              <span class="cw-btn"></span>
+            </div>
+            <span class="cw-media"></span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag">SEO</span>
+            <span class="case-client">Client / Brand</span>
+          </div>
+          <h3>SEO-focused service page redesign</h3>
+          <div class="case-rows">
+            <div class="case-row"><span class="k">Challenge</span><span class="v">Service pages invisible in search and thin on buyer intent.</span></div>
+            <div class="case-row"><span class="k">Delivered</span><span class="v">Restructured pages, technical SEO, and a content model the team can edit.</span></div>
+          </div>
+          <span class="case-result">Organic growth &mdash; metric to be added</span>
+          <a href="contact.html" class="case-cta">View case study <span class="arr" aria-hidden="true">-></span></a>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-shot">
+          <div class="case-bar">
+            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+            <span class="case-url">clientsite.com/launch</span>
+            <span class="case-stamp">Case visual</span>
+          </div>
+          <div class="case-wire" aria-hidden="true">
+            <div class="cw-stack">
+              <span class="cw-eyebrow"></span>
+              <span class="cw-h1"></span>
+              <span class="cw-h2"></span>
+              <span class="cw-text"></span>
+              <span class="cw-text short"></span>
+              <span class="cw-btn"></span>
+            </div>
+            <span class="cw-media"></span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag">Landing Page</span>
+            <span class="case-client">Client / Brand</span>
+          </div>
+          <h3>Fast landing page for lead generation</h3>
+          <div class="case-rows">
+            <div class="case-row"><span class="k">Challenge</span><span class="v">Paid traffic landing on a slow, generic page that leaked spend.</span></div>
+            <div class="case-row"><span class="k">Delivered</span><span class="v">High-intent lander, sub-second load, AB-tested against live traffic.</span></div>
+          </div>
+          <span class="case-result">Lead quality &mdash; metric to be added</span>
+          <a href="contact.html" class="case-cta">View case study <span class="arr" aria-hidden="true">-></span></a>
+        </div>
+      </article>
+
+      <article class="case-card">
+        <div class="case-shot">
+          <div class="case-bar">
+            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+            <span class="case-url">app.clientsite.com</span>
+            <span class="case-stamp">Case visual</span>
+          </div>
+          <div class="case-wire" aria-hidden="true">
+            <div class="cw-stack">
+              <span class="cw-eyebrow"></span>
+              <span class="cw-h1"></span>
+              <span class="cw-h2"></span>
+              <span class="cw-text"></span>
+              <span class="cw-text short"></span>
+              <span class="cw-btn"></span>
+            </div>
+            <span class="cw-media"></span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag">Web App</span>
+            <span class="case-client">Client / Brand</span>
+          </div>
+          <h3>Scalable web experience for a growing brand</h3>
+          <div class="case-rows">
+            <div class="case-row"><span class="k">Challenge</span><span class="v">A growing brand outpacing its template stack and content limits.</span></div>
+            <div class="case-row"><span class="k">Delivered</span><span class="v">Headless build, CMS the marketing team owns, and room to scale.</span></div>
+          </div>
+          <span class="case-result">Performance score &mdash; metric to be added</span>
+          <a href="contact.html" class="case-cta">View case study <span class="arr" aria-hidden="true">-></span></a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="case-foot sr">
+      <p>Have a build that looks like one of these? We will give you a sharp read and a practical way forward.</p>
+      <a href="contact.html" class="btn accent">Discuss a similar project <span class="arr" aria-hidden="true">-></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 / IN-HOUSE PRODUCTS ============ -->
+<section class="section section--cine" id="products" data-screen-label="In-house products" style="border-top:1px solid var(--line);">
+  <span class="sect-wm" aria-hidden="true">04</span>
+  <div class="shell">
+    <div class="section-head sr">
+      <div class="section-num">04 / In-house products</div>
       <div>
         <div class="section-label">What we're building for ourselves</div>
         <h2 class="section-title">Tools we wanted for our own work. Now productised.</h2>
@@ -196,7 +410,7 @@
           <h3 class="vert-title">Brandscope</h3>
           <p class="vert-body">Brand audit SaaS. Scan any D2C brand's site + social + paid layer. Free tier + Rs 990/mo pro.</p>
         </div>
-        <div class="vert-meta"><span>Beta / brandscope.in</span><span class="arrow">-></span></div>
+        <div class="vert-meta"><span>Beta / brandscope.in</span><span class="arrow" aria-hidden="true">-></span></div>
       </div>
       <div class="vert" style="min-height: 360px;">
         <div>
@@ -204,7 +418,7 @@
           <h3 class="vert-title">Roster</h3>
           <p class="vert-body">The internal creator CRM we use for influencer campaigns. Now opening up to other agencies, with private beta access planned for Q3 2026.</p>
         </div>
-        <div class="vert-meta"><span>Invite only</span><span class="arrow">-></span></div>
+        <div class="vert-meta"><span>Invite only</span><span class="arrow" aria-hidden="true">-></span></div>
       </div>
       <div class="vert" style="min-height: 360px;">
         <div>
@@ -212,7 +426,25 @@
           <h3 class="vert-title">Calendar</h3>
           <p class="vert-body">Content calendar + approval workflow built for Indian marketing teams. WhatsApp-first. Launching Aug 2026.</p>
         </div>
-        <div class="vert-meta"><span>Waitlist open</span><span class="arrow">-></span></div>
+        <div class="vert-meta"><span>Waitlist open</span><span class="arrow" aria-hidden="true">-></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="cta-block" data-screen-label="CTA">
+  <div class="shell">
+    <div class="sr">
+      <div class="section-label" style="color:rgba(247,248,250,.6);">05 / Next move</div>
+      <h2 class="cta-h">Let's build a site that <span class="accent">pays its way.</span></h2>
+      <div class="cta-row">
+        <div class="num">05</div>
+        <p>Bring us the stuck point: a site that buries the offer, a lander that leaks spend, or a tool you keep meaning to build. You will get a sharp read, a scope, and a build plan &mdash; instrumented for speed, SEO, and conversion from day one.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="contact.html" class="btn accent" data-cursor="Start">Start a project <span class="arr" aria-hidden="true">-></span></a>
+          <a href="#work" class="btn ghost" data-cursor="View work">See the work</a>
+        </div>
       </div>
     </div>
   </div>
@@ -226,27 +458,28 @@
         <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
       </div>
       <form class="sfoot-form" onsubmit="return false;">
-        <input type="email" name="email" placeholder="you@company.com" required>
+        <label class="sr-only" for="news-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+        <input id="news-email" type="email" name="email" placeholder="you@company.com" required>
         <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
       </form>
     </div>
     <div class="sfoot-grid">
       <div class="sfoot-brand">
         <div class="sfoot-brand-top">
-          <img src="images/sca-logo-mark.png" alt="SCA mark">
+          <img src="images/sca-logo-mark.png" alt="">
           <span>SeeTusk / SCA</span>
         </div>
         <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
         <div class="sfoot-socials">
-          <a href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
-          <a href="#" title="X / Twitter" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
-          <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
-          <a href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <a href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
+          <a href="#" title="X / Twitter" aria-label="X / Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
+          <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
+          <a href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
-      <nav class="sfoot-col"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></nav>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:hr@seetusk.com">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">
       <span>&copy; 2026 SeeTusk Creative Agency / Pune, IND</span>
