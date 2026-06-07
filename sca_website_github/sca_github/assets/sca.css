@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   left: 0;
   top: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10000005;
   transform: translate(-50%, -50%);
 }.cursor {
   width: 8px;
@@ -388,7 +388,7 @@ h1, h2, h3, h4, h5, h6,.brand,.btn,.nav-links,.chip,.section-title,.section-labe
   border-bottom: 1px solid var(--border-soft);
 }.section-num {
   color: var(--accent-orange);
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing:.08em;
   padding-top: 8px;
 }.section-label {
