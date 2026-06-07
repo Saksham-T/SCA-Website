@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     const smtpPort = process.env.SMTP_PORT;
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
-    const smtpTo = process.env.SMTP_TO || 'hr@seetusk.com';
+    const smtpTo = 'hr@seetusk.com';
     const smtpFrom = process.env.SMTP_FROM || smtpUser;
 
     if (!smtpHost || !smtpPort || !smtpUser || !smtpPass) {
