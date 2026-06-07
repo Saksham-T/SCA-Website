@@ -106,15 +106,19 @@
   color: var(--text-main);
   margin: 0;
 }
+.hero-line { display: block; white-space: nowrap; }
 .hero-h1 .accent { color: var(--accent-blue); }
 .hero-h1 .cycle {
   display: inline-block; position: relative;
   color: var(--accent-blue);
-  /* Reserve a constant width = widest option ("REAL ESTATE") so the
-     line never reflows / shifts the layout as the word cycles. */
-  min-width: 11ch;
+  /* Width is set in JS to each word's natural size and animated, so the
+     word that follows ("BRANDS.") slides into place on every change. */
+  width: auto;
   text-align: left;
   white-space: nowrap;
+  overflow: visible;
+  transition: width .5s var(--ease), opacity .22s var(--ease), transform .22s var(--ease);
+  will-change: width;
 }
 .hero-h1 .cycle::after {
   content: ""; display: inline-block; width: .08em; height: .85em;
