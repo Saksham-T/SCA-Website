@@ -15,14 +15,39 @@
   overflow: hidden;
 }
 .intro[hidden] { display: none; }
+
+/* SCA eye mark sits directly beside the expanding lockup, sized to the text */
+.intro-stage {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 40px);
+}
+.intro-logo {
+  flex: 0 0 auto;
+  height: clamp(54px, 10.5vw, 150px);
+  width: auto;
+  opacity: 0;
+  animation: introLogoIn .9s cubic-bezier(.16,.84,.3,1) .15s forwards;
+  pointer-events: none;
+}
+@keyframes introLogoIn {
+  from { opacity: 0; transform: translateX(-14px); }
+  to   { opacity: .96; transform: translateX(0); }
+}
+.intro.lift .intro-logo { opacity: 0; transition: opacity .3s ease; }
+@media (max-width: 720px) {
+  .intro-stage { gap: 12px; }
+  .intro-logo { height: clamp(38px, 11vw, 80px); }
+}
 /* lock scroll while intro is up */
 body.intro-locked { overflow: hidden; height: 100vh; }
 
 .intro-lock {
   position: relative;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: clamp(2px, 0.4vw, 8px);
   /* whole lockup zooms in */
   transform: scale(1.32);
@@ -49,11 +74,12 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   letter-spacing: -.01em;
   color: #FFFFFF;
   font-size: clamp(48px, 9.5vw, 168px);
+  padding-right: .14em;
   overflow: hidden;
 }
 .intro-initial { display: inline-block; }
 .intro-row.c .intro-initial { color: var(--accent-blue); }
-.intro-row.a .intro-initial { color: #FFFFFF; }
+.intro-row.a .intro-initial { color: #FC7233; }
 
 /* the remaining letters of each word expand out from behind the initial,
    so the lockup starts as a compact, centered "SCA" */
@@ -75,7 +101,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 @keyframes introUnfurl {
   0%   { max-width: 0;   opacity: 0; transform: translateX(-6%); }
   12%  { opacity: 1; }
-  100% { max-width: 7em; opacity: 1; transform: translateX(0); }
+  100% { max-width: 12em; opacity: 1; transform: translateX(0); }
 }
 
 /* little ticker line under the lockup */

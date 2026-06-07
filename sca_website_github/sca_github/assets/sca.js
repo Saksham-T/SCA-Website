@@ -119,6 +119,24 @@
     let index = 0;
     cycle.textContent = words[index];
 
+    // Measure each word's natural rendered width using an offscreen clone that
+    // inherits the cycle's exact typography, so we can animate width on change.
+    const measurer = document.createElement('span');
+    const cs = window.getComputedStyle(cycle);
+    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;';
+    ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
+      measurer.style[p] = cs[p];
+    });
+    document.body.appendChild(measurer);
+    const widthOf = (w) => {
+      measurer.textContent = w;
+      // +0.12em accounts for the blinking caret drawn via ::after
+      return measurer.getBoundingClientRect().width + parseFloat(cs.fontSize) * 0.12;
+    };
+
+    // Lock in the starting width so the first transition has a value to animate from.
+    cycle.style.width = widthOf(words[index]) + 'px';
+
     if (reduceMotion) return;
 
     window.setInterval(() => {
@@ -127,6 +145,7 @@
       cycle.style.transform = 'translateY(12px)';
       window.setTimeout(() => {
         cycle.textContent = words[index];
+        cycle.style.width = widthOf(words[index]) + 'px';
         cycle.style.opacity = '1';
         cycle.style.transform = 'translateY(0)';
       }, 220);

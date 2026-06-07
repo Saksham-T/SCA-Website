@@ -61,6 +61,7 @@
 .sfoot-form input:focus { border-color: var(--accent-blue, #2257FF); }
 .sfoot-form button {
   flex: 0 0 auto;
+  white-space: nowrap;
   background: var(--accent-blue, #2257FF);
   border: 1px solid var(--accent-blue, #2257FF);
   color: #fff;
@@ -91,6 +92,7 @@
 }
 .sfoot-brand-top img { height: 30px; width: auto; }
 .sfoot-brand-top span {
+  white-space: nowrap;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 18px;

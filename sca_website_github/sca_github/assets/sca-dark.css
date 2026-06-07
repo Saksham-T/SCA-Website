@@ -182,3 +182,16 @@ body::before {
 .signal-top,
 .plate.tag,
 .plate.corner { color: rgba(247,248,250,.92); }
+
+/* ---- "Start a project" CTAs: true brand orange, overriding the dark
+   theme's periwinkle accent token (#FC7233 from the reference palette) ---- */
+.btn.accent {
+  background: #FC7233;
+  border-color: #FC7233;
+  color: #fff;
+}
+.btn.accent:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #fff;
+}

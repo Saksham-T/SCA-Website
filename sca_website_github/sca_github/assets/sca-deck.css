@@ -6,7 +6,7 @@
   position: relative;
   background:
     radial-gradient(circle at 82% 14%, rgba(34,87,255,.10), transparent 26rem),
-    radial-gradient(circle at 16% 88%, rgba(255,242,168,.62), transparent 22rem),
+    radial-gradient(circle at 16% 88%, rgba(252,114,51,.42), transparent 22rem),
     var(--bg-main);
   border-bottom: 1px solid var(--border-soft);
 }
