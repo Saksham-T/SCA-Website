@@ -36,6 +36,50 @@
 <link rel="stylesheet" href="assets/sca-hero.css">
 <link rel="stylesheet" href="assets/sca-dark.css">
 <link rel="stylesheet" href="assets/sca-footer.css">
+<style id="golden-ratio-index">
+  /* GOLDEN RATIO TYPE — each subtext font-size = its heading font-size ÷ 1.618 (φ).
+     Scoped to the index page only. */
+
+  /* Hero — heading .hero-h1 clamp(34px, min(6.4vw,8vh), 84px) */
+  .hero-sub p {
+    font-size: clamp(21px, min(3.96vw, 4.94vh), 51.9px);
+    line-height: 1.28;
+    max-width: 42ch;
+  }
+
+  /* Section heads (Services, Distribution, Selected work, Method) — .section-title clamp(38px,5.8vw,84px) */
+  .section-sub {
+    font-size: clamp(23.5px, 3.58vw, 51.9px);
+    line-height: 1.3;
+    max-width: 46ch;
+  }
+  .camera-step .section-sub { max-width: 30rem; }
+
+  /* Service / lab cards — .lab-card h3 clamp(22px,1.9vw,30px) */
+  .lab-card .lab-desc {
+    font-size: clamp(13.6px, 1.17vw, 18.5px);
+    line-height: 1.4;
+  }
+
+  /* Project cards — .project-card h3 clamp(30px,4vw,56px) */
+  .project-meta p {
+    font-size: clamp(18.5px, 2.47vw, 34.6px);
+    line-height: 1.3;
+  }
+
+  /* Method cards — .process-step h4 24px */
+  .process-step p, .proc-card p {
+    font-size: 14.83px;
+    line-height: 1.5;
+  }
+
+  /* CTA — .cta-h clamp(48px,9vw,140px) */
+  .cta-row p {
+    font-size: clamp(29.7px, 5.56vw, 86.5px);
+    line-height: 1.16;
+    max-width: 22ch;
+  }
+</style>
 </head>
 <body class="intro-locked">
 
@@ -377,7 +421,7 @@
       <div>
         <p class="pull">We combine content, creators, campaigns and code so attention has somewhere to go.</p>
       </div>
-      <div style="color: var(--text-muted); font-size: 21px; line-height: 1.55;">
+      <div style="color: var(--text-muted); font-size: clamp(21px, 2.6vw, 38.3px); line-height: 1.3;">
         <p style="margin-bottom: 18px;">SeeTusk Creative Agency is a Pune-based creative distribution studio. We work with founders, CMOs and brand teams that need sharper storytelling, faster shipping, stronger campaign systems and digital surfaces that do not feel like afterthoughts.</p>
         <p style="margin-bottom: 18px;">The studio is small by design. Strategy sits close to production. Designers see the campaign data. Editors understand the offer. Developers know what the launch is supposed to do. That proximity is the point.</p>
         <p>We are not here to decorate a calendar. We build the engine that helps a brand show up clearly, repeatedly and memorably across the places people actually pay attention.</p>

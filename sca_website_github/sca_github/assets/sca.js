@@ -16,9 +16,69 @@
     initStudioSignal();
     initParallax();
     initSpotlightNavbar();
+    initMobileNav();
     initChoices();
     initForms();
   });
+
+  function initMobileNav() {
+    const navInner = document.querySelector('.nav-inner');
+    const navLinks = document.querySelector('.nav-links');
+    if (!navInner || !navLinks) return;
+    if (navInner.querySelector('.nav-toggle')) return;
+
+    const path = (location.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
+
+    // Hamburger button
+    const toggle = document.createElement('button');
+    toggle.className = 'nav-toggle';
+    toggle.setAttribute('aria-label', 'Open menu');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.innerHTML = '<span></span><span></span><span></span>';
+    navInner.appendChild(toggle);
+
+    // Full-screen menu overlay
+    const menu = document.createElement('div');
+    menu.className = 'mobile-menu';
+    menu.setAttribute('aria-hidden', 'true');
+
+    const panel = document.createElement('nav');
+    panel.className = 'mobile-menu-panel';
+    panel.setAttribute('aria-label', 'Mobile navigation');
+
+    navLinks.querySelectorAll('a').forEach((a) => {
+      const href = a.getAttribute('href') || '';
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = a.textContent.trim();
+      if (href.replace(/\.html$/, '') === path) link.classList.add('active');
+      panel.appendChild(link);
+    });
+
+    const cta = document.createElement('a');
+    cta.href = 'contact.html';
+    cta.className = 'mobile-menu-cta';
+    cta.textContent = 'Start a project';
+    panel.appendChild(cta);
+
+    menu.appendChild(panel);
+    document.body.appendChild(menu);
+
+    const setOpen = (open) => {
+      document.body.classList.toggle('menu-open', open);
+      menu.classList.toggle('is-open', open);
+      toggle.classList.toggle('is-active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    };
+
+    toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
+    menu.addEventListener('click', (e) => { if (e.target === menu) setOpen(false); });
+    panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) setOpen(false); });
+  }
 
   function initCursor() {
     if (isTouch) return;
@@ -119,37 +179,69 @@
     let index = 0;
     cycle.textContent = words[index];
 
-    // Measure each word's natural rendered width using an offscreen clone that
-    // inherits the cycle's exact typography, so we can animate width on change.
+    // Offscreen measurer that inherits the cycle's exact typography so we can
+    // animate the box width to each word's natural size on change.
     const measurer = document.createElement('span');
-    const cs = window.getComputedStyle(cycle);
-    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;';
-    ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
-      measurer.style[p] = cs[p];
-    });
+    measurer.setAttribute('aria-hidden', 'true');
+    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;margin:0;padding:0;';
     document.body.appendChild(measurer);
-    const widthOf = (w) => {
-      measurer.textContent = w;
-      // +0.12em accounts for the blinking caret drawn via ::after
-      return measurer.getBoundingClientRect().width + parseFloat(cs.fontSize) * 0.12;
-    };
 
-    // Lock in the starting width so the first transition has a value to animate from.
-    cycle.style.width = widthOf(words[index]) + 'px';
+    let widths = words.map(() => 0);
+
+    // (Re)measure every word. Must run AFTER the web font loads and on resize,
+    // otherwise widths are computed with fallback-font metrics and the next word
+    // ("BRANDS.") overlaps the cycling word / the slide snaps to a wrong target.
+    function measureAll() {
+      const cs = window.getComputedStyle(cycle);
+      ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
+        measurer.style[p] = cs[p];
+      });
+      const caret = parseFloat(cs.fontSize) * 0.12; // room for the blinking caret (::after)
+      widths = words.map((w) => {
+        measurer.textContent = w;
+        return measurer.getBoundingClientRect().width + caret;
+      });
+      // Snap the box to the current word's correct width without animating, so a
+      // late font load or a resize re-fits instantly instead of sliding.
+      const prev = cycle.style.transition;
+      cycle.style.transition = 'none';
+      cycle.style.width = widths[index] + 'px';
+      void cycle.offsetWidth; // flush the reflow before restoring transitions
+      cycle.style.transition = prev;
+    }
+
+    measureAll();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureAll);
+    }
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(measureAll, 120);
+    });
 
     if (reduceMotion) return;
 
     window.setInterval(() => {
-      index = (index + 1) % words.length;
+      const next = (index + 1) % words.length;
+      // 1. Lift + fade the current word out.
       cycle.style.opacity = '0';
-      cycle.style.transform = 'translateY(12px)';
+      cycle.style.transform = 'translateY(-0.45em)';
       window.setTimeout(() => {
+        // 2. While hidden, swap the text and start the width slide. Because the
+        //    box width transitions (CSS .5s), "BRANDS." glides into its new spot
+        //    instead of teleporting.
+        index = next;
         cycle.textContent = words[index];
-        cycle.style.width = widthOf(words[index]) + 'px';
-        cycle.style.opacity = '1';
-        cycle.style.transform = 'translateY(0)';
-      }, 220);
-    }, 1850);
+        cycle.style.width = widths[index] + 'px';
+        cycle.style.transform = 'translateY(0.45em)';
+        // 3. Next frame, drop + fade the new word in as the width settles.
+        window.requestAnimationFrame(function () {
+          cycle.style.opacity = '1';
+          cycle.style.transform = 'translateY(0)';
+        });
+      }, 240);
+    }, 2000);
   }
 
   function initStudioSignal() {

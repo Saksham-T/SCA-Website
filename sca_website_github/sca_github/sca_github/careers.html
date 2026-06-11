@@ -1,0 +1,3369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — SeeTusk Creative Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Anton&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/sca.css">
+<link rel="stylesheet" href="assets/sca-extras.css">
+<link rel="stylesheet" href="assets/sca-kinetic.css">
+<link rel="stylesheet" href="assets/sca-dark.css">
+<style>
+  :root {
+    --bg: var(--bg-main);
+    --surface: var(--bg-card);
+    --border: var(--border-soft);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --text-primary: var(--text-main);
+    --text-secondary: var(--text-muted);
+    --text-muted: #6C6E75;
+    --accent: var(--accent-blue);
+    --accent-dim: rgba(46, 84, 234, 0.12);
+    --accent-hover: #4d6df2;
+    --tag-bg: rgba(255, 255, 255, 0.03);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'League Spartan', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* HUD SYSTEM */
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:
+      linear-gradient(90deg, rgba(46, 84, 234, 0.04) 1px, transparent 1px) 0 0 / 80px 100%,
+      linear-gradient(0deg, rgba(46, 84, 234, 0.04) 1px, transparent 1px) 0 0 / 100% 80px;
+    opacity: 0.8;
+  }
+  .hero-grid-glow {
+    position: absolute;
+    top: 25%; left: 75%;
+    width: 650px; height: 650px;
+    background: radial-gradient(circle, rgba(46, 84, 234, 0.12) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(14,14,14,0.92);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .page-loaded nav {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo img {
+    height: 22px;
+    width: auto;
+    filter: brightness(1.1);
+  }
+
+  .nav-logo span { opacity: 0.5; margin: 0 4px; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 180px 40px 100px;
+    border-bottom: 1px solid var(--border-soft);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-orange);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    z-index: 2;
+    position: relative;
+  }
+  .page-loaded .hero-tag {
+    animation: fadeUp 0.6s 0.1s ease forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 16px; height: 1px;
+    background: var(--accent-orange);
+  }
+
+  .hero h1 {
+    font-family: 'League Spartan', sans-serif;
+    font-size: clamp(52px, 7.5vw, 102px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    max-width: 950px;
+    z-index: 2;
+    position: relative;
+    text-transform: uppercase;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
+
+  .hero h1 span.highlight {
+    color: var(--text-primary);
+    position: relative;
+  }
+
+  .hero h1 span.highlight::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 8px;
+    width: 100%; height: 6px;
+    background: var(--accent);
+    opacity: 0.75;
+    z-index: -1;
+  }
+
+  .hero-sub {
+    margin-top: 40px;
+    max-width: 520px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    opacity: 0;
+    z-index: 2;
+    position: relative;
+  }
+  .page-loaded .hero-sub {
+    animation: fadeUp 0.7s 0.35s ease forwards;
+  }  /* HYPER-FUTURISTIC HUD STATS */
+  :root {
+    --cyber-blue: var(--accent);
+    --cyber-orange: var(--accent-orange);
+    --cyber-magenta: var(--accent-orange);
+    --cyber-green: #39ff14;
+    --cyber-bg: rgba(10, 10, 14, 0.7);
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 56px;
+    opacity: 0;
+    z-index: 2;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .page-loaded .hero-meta {
+    animation: fadeUp 0.7s 0.45s ease forwards;
+  }
+
+  .hero-stat-card {
+    background: var(--cyber-bg);
+    border: 1px solid rgba(46, 84, 234, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    min-width: 220px;
+    flex: 1;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(46, 84, 234, 0.03);
+  }
+
+  .hero-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    border-top: 2px solid var(--cyber-blue);
+    border-left: 2px solid var(--cyber-blue);
+    pointer-events: none;
+  }
+
+  .hero-stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 15px; height: 15px;
+    background: var(--cyber-blue);
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    opacity: 0.3;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .hero-stat-card:hover {
+    border-color: var(--cyber-blue);
+    background: rgba(46, 84, 234, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 
+      0 16px 40px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(46, 84, 234, 0.15),
+      inset 0 0 20px rgba(46, 84, 234, 0.08);
+  }
+
+  .hero-stat-card:hover::after {
+    opacity: 0.8;
+  }
+
+  .hero-stat-card strong {
+    display: block;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.15), 0 0 20px rgba(46, 84, 234, 0.3);
+    margin-top: 10px;
+    font-family: 'League Spartan', sans-serif;
+  }
+
+  .hero-stat-card span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* Stat Sub-elements */
+  .stat-status {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--cyber-green);
+    letter-spacing: 0.05em;
+    background: rgba(57, 255, 20, 0.05);
+    padding: 2px 6px;
+    border: 1px solid rgba(57, 255, 20, 0.2);
+  }
+  .stat-status-dot {
+    width: 4px; height: 4px;
+    background: var(--cyber-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--cyber-green);
+    animation: hud-blink 1.5s infinite;
+  }
+
+  .stat-grid-dots {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .stat-grid-dots span {
+    display: block;
+    width: 3px; height: 3px;
+    background: var(--cyber-blue);
+    border-radius: 50%;
+    margin: 0 !important;
+    opacity: 0.3;
+  }
+  .stat-grid-dots span:nth-child(even) { animation: hud-blink 1s infinite alternate; }
+
+  .stat-coord {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--cyber-orange);
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+
+  /* TELEMETRY CONSOLE */
+  .telemetry-panel {
+    background: rgba(10, 10, 14, 0.85);
+    border: 1px solid rgba(46, 84, 234, 0.2);
+    border-radius: 6px;
+    padding: 0;
+    margin-top: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    z-index: 2;
+    position: relative;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+  .page-loaded .telemetry-panel {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+  .telemetry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(20, 20, 26, 0.9);
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+  .telemetry-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .telemetry-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .telemetry-dot.close { background: #ff5f56; }
+  .telemetry-dot.minimize { background: #febc2e; }
+  .telemetry-dot.maximize { background: #28c840; }
+  .telemetry-title {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .telemetry-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+  }
+  .telemetry-prompt {
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 4px;
+    display: flex;
+    gap: 2px;
+  }
+  .telemetry-prompt span.user {
+    color: var(--cyber-blue);
+  }
+  .telemetry-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 8px 0;
+  }
+  .telemetry-syslog {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 9.5px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: auto;
+  }
+  .bottom-prompt {
+    margin-bottom: 0;
+    margin-top: auto;
+  }
+  .terminal-cursor {
+    animation: cursor-blink 1s infinite steps(2, start);
+    color: var(--cyber-blue);
+  }
+  @keyframes cursor-blink {
+    to { visibility: hidden; }
+  }
+  .telemetry-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .telemetry-row span.label {
+    color: var(--text-muted);
+  }
+  .telemetry-row span.val {
+    color: var(--accent-yellow);
+  }
+  .telemetry-row span.active-action {
+    color: var(--accent-orange);
+    font-weight: 500;
+  }
+  .hud-status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00ff66;
+    box-shadow: 0 0 8px #00ff66;
+    animation: hud-blink 1.5s infinite;
+  }
+  @keyframes hud-blink {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* PERKS SECTION REDESIGN */
+  .perks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 64px 40px;
+    border-bottom: 1px solid rgba(46, 84, 234, 0.1);
+    background: transparent;
+  }
+
+  .perk {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 48px 36px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 20px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Sleek Glass Themes */
+  .perk-theme-blue {
+    --card-accent: #3b82f6;
+    --card-accent-rgb: 59, 130, 246;
+    --card-accent-gradient: linear-gradient(90deg, #3b82f6, #60a5fa);
+    --card-bg-glow: radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
+  }
+  .perk-theme-yellow {
+    --card-accent: #f59e0b;
+    --card-accent-rgb: 245, 158, 11;
+    --card-accent-gradient: linear-gradient(90deg, #f59e0b, #fbbf24);
+    --card-bg-glow: radial-gradient(circle at 10% 10%, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
+  }
+  .perk-theme-purple {
+    --card-accent: #a855f7;
+    --card-accent-rgb: 168, 85, 247;
+    --card-accent-gradient: linear-gradient(90deg, #a855f7, #c084fc);
+    --card-bg-glow: radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
+  }
+  .perk-theme-orange {
+    --card-accent: #ff5f56;
+    --card-accent-rgb: 255, 95, 86;
+    --card-accent-gradient: linear-gradient(90deg, #ff5f56, #ff8a80);
+    --card-bg-glow: radial-gradient(circle at 10% 10%, rgba(255, 95, 86, 0.06) 0%, transparent 60%);
+  }
+
+  /* Interactive BG glow plate */
+  .perk::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--card-bg-glow);
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .perk:hover {
+    transform: scale(1.02) translateY(-6px);
+    border-color: rgba(var(--card-accent-rgb), 0.25);
+    background: linear-gradient(135deg, rgba(var(--card-accent-rgb), 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(var(--card-accent-rgb), 0.04);
+  }
+
+  .perk:hover::before {
+    opacity: 1;
+  }
+
+  .perk-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.2em;
+    margin-bottom: 28px;
+    z-index: 2;
+    transition: color 0.4s ease;
+  }
+
+  .perk:hover .perk-num {
+    color: var(--card-accent);
+  }
+
+  /* Elegant glass plate icon container */
+  .perk-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .perk-svg {
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.65);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .perk:hover .perk-icon-box {
+    background: rgba(var(--card-accent-rgb), 0.12);
+    border-color: rgba(var(--card-accent-rgb), 0.35);
+    transform: scale(1.08) rotate(5deg);
+    box-shadow: 0 10px 20px rgba(var(--card-accent-rgb), 0.05);
+  }
+
+  .perk:hover .perk-svg {
+    color: #fff;
+    filter: drop-shadow(0 0 6px var(--card-accent));
+  }
+
+  .perk h3 {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    color: #fff;
+    z-index: 2;
+    transition: transform 0.4s ease;
+  }
+
+  .perk p {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+    z-index: 2;
+    transition: color 0.4s ease;
+  }
+  .perk:hover p {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* Ultra-thin progress line */
+  .perk-progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    margin-top: 36px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+
+  .perk-progress-fill {
+    height: 100%;
+    width: 25%;
+    background: var(--card-accent-gradient);
+    border-radius: 10px;
+    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .perk:hover .perk-progress-fill {
+    width: 100%;
+  }
+
+  /* JOBS SECTION */
+  .jobs-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 120px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .jobs-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* FILTERS */
+  .filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .filter-btn {
+    padding: 10px 18px;
+    border: 1px solid var(--border-soft);
+    background: rgba(21, 21, 25, 0.4);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .filter-btn::before {
+    content: '[';
+    margin-right: 4px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s;
+    color: var(--accent);
+  }
+
+  .filter-btn::after {
+    content: ']';
+    margin-left: 4px;
+    opacity: 0;
+    transform: translateX(4px);
+    transition: all 0.2s;
+    color: var(--accent);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .filter-btn:hover::before, .filter-btn:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .filter-btn.active {
+    background: rgba(46, 84, 234, 0.1);
+    border-color: var(--accent);
+    color: var(--text-primary);
+    box-shadow: 0 0 12px rgba(46, 84, 234, 0.15);
+  }
+
+  .filter-btn.active::before, .filter-btn.active::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* DEPARTMENT GROUP */
+  .dept-group {
+    margin-bottom: 24px;
+  }
+
+  .dept-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 0 16px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .dept-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-yellow);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .dept-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+  }
+
+  /* JOB CARD GRID */
+  .dept-jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  /* V2 JOB CARD COMPONENT */
+  .job-card-v2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    background: rgba(21, 21, 25, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    min-height: 420px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+
+  .job-card-v2:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(21, 21, 25, 0.75);
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.45),
+      0 0 24px rgba(46, 84, 234, 0.08),
+      inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .job-card-v2::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 100% 0%, rgba(46, 84, 234, 0.05), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .job-card-v2:hover::before {
+    opacity: 1;
+  }
+
+  .job-card-v2-sweep {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(46, 84, 234, 0.02) 50%, transparent 100%);
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  .job-card-v2:hover .job-card-v2-sweep {
+    animation: card-v2-sweep 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  }
+
+  @keyframes card-v2-sweep {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  /* LOGO SECTION */
+  .job-card-v2-logo {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+    transition: border-color 0.3s;
+  }
+
+  .job-card-v2:hover .job-card-v2-logo {
+    border-color: rgba(46, 84, 234, 0.4);
+  }
+
+  .job-card-v2-logo img {
+    height: 20px;
+    width: auto;
+    filter: brightness(1.1);
+  }
+
+  /* KICKER */
+  .job-card-v2-kicker {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .job-card-v2-kicker span {
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  /* GRADIENT TITLE */
+  .job-card-v2-title {
+    font-family: 'League Spartan', sans-serif;
+    font-size: clamp(24px, 2.5vw, 30px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--accent-yellow) 0%, var(--accent-orange) 50%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff;
+    transition: color 0.3s;
+  }
+
+  /* BADGES & TAGS */
+  .job-card-v2-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .job-card-v2-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.25s;
+  }
+
+  .job-card-v2:hover .job-card-v2-badge {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .badge-fulltime { color: var(--accent-orange); border-color: rgba(133,151,241,0.2); background: rgba(133,151,241,0.04); }
+  .badge-parttime { color: var(--accent-yellow); border-color: rgba(175,192,248,0.2); background: rgba(175,192,248,0.04); }
+  .badge-intern { color: #8597F1; border-color: rgba(133,151,241,0.2); background: rgba(133,151,241,0.04); }
+
+  /* GRADIENT DIVIDER */
+  .job-card-v2-divider {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0%, transparent 100%);
+    margin-bottom: 32px;
+    margin-top: auto;
+  }
+
+  /* FOOTER AREA */
+  .job-card-v2-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .job-card-v2-email-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  .job-card-v2-email-col .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .job-card-v2-email-col .email {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-orange);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .job-card-v2:hover .job-card-v2-email-col .email {
+    color: var(--text-main);
+  }
+
+  .btn-apply-v2 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: var(--text-main);
+    font-family: 'League Spartan', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: all 0.25s;
+  }
+
+  .job-card-v2:hover .btn-apply-v2 {
+    border-color: var(--accent);
+    background: rgba(46, 84, 234, 0.1);
+    box-shadow: 0 0 12px rgba(46, 84, 234, 0.25);
+  }
+
+  /* Job Card Details Section */
+  .job-card-v2-details {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    text-align: left;
+  }
+  .job-card-v2-details .detail-section h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .job-card-v2-details .detail-section:nth-child(2) h4 {
+    color: var(--accent-yellow);
+  }
+  .job-card-v2-details .detail-section p {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .job-card-v2-details .detail-section ul {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    padding-left: 18px;
+    margin: 0;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* OPEN APPS BANNER */
+  .open-apps {
+    background: rgba(21, 21, 25, 0.65);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 64px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .open-apps::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(46, 84, 234, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .open-apps-text h3 {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .open-apps-text p {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    max-width: 450px;
+    line-height: 1.6;
+  }
+
+  .open-apps-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: var(--text-main);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: all 0.25s;
+    box-shadow: 0 4px 14px rgba(46, 84, 234, 0.25);
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .open-apps-cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(46, 84, 234, 0.45);
+  }
+
+  /* VALUES */
+  .values-section {
+    border-top: 1px solid var(--border-soft);
+    padding: 100px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 48px;
+  }
+
+  .value-card {
+    background: rgba(21, 21, 25, 0.4);
+    border: 1px solid var(--border-soft);
+    padding: 48px 40px;
+    position: relative;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    transition: all 0.25s;
+  }
+
+  .value-card:hover {
+    background: rgba(21, 21, 25, 0.75);
+    border-color: rgba(46, 84, 234, 0.3);
+    box-shadow: inset 0 0 12px rgba(46, 84, 234, 0.08);
+  }
+
+  .value-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .value-card h4 {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .value-card p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .anim { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+
+  /* HIDDEN CLASS */
+  .hidden { display: none !important; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* REVEAL LOADER INTRO */
+  .reveal-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    overflow: hidden;
+    background: transparent;
+    pointer-events: auto;
+  }
+  .reveal-bg-strips,
+  .reveal-fg-strips {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .reveal-bg-strips {
+    z-index: 1;
+  }
+  .reveal-fg-strips {
+    z-index: 2;
+  }
+  .preloader-item {
+    height: 100%;
+    width: 10%;
+    will-change: transform;
+  }
+  .bg-item {
+    background: linear-gradient(180deg, #102375, #2e54ea);
+  }
+  .fg-item {
+    background: linear-gradient(180deg, #050507, #151519);
+  }
+  .reveal-text-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .reveal-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    will-change: transform, opacity;
+  }
+  .reveal-logo-wrapper {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.6) translateY(20px);
+    will-change: transform, opacity;
+  }
+  .reveal-logo-img {
+    height: 48px;
+    width: auto;
+    filter: brightness(1.2) drop-shadow(0 0 16px rgba(46, 84, 234, 0.4));
+  }
+  .reveal-text-clip {
+    overflow: hidden;
+  }
+  .name-text {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: flex;
+  }
+  .name-text span {
+    display: inline-block;
+    transform: translateY(100%);
+    will-change: transform, opacity;
+  }
+
+  /* HERO HEADING STAMP & TRANSIT EFFECT */
+  .hero-title-stamped {
+    display: flex;
+    flex-direction: column;
+    opacity: 1 !important;
+  }
+  .hero-title-stamped .line-wrapper {
+    display: block;
+    overflow: hidden;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .hero-title-stamped .line-content {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(110%) scale(1.03);
+    filter: blur(4px);
+  }
+  .hero-title-stamped.animate .line-content {
+    animation: stamp-line-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-title-stamped.animate .line-wrapper:nth-child(1) .line-content { animation-delay: 0.05s; }
+  .hero-title-stamped.animate .line-wrapper:nth-child(2) .line-content { animation-delay: 0.18s; }
+  .hero-title-stamped.animate .line-wrapper:nth-child(3) .line-content { animation-delay: 0.3s; }
+
+  @keyframes stamp-line-in {
+    0% {
+      opacity: 0;
+      transform: translateY(110%) scale(1.03);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 140px 20px 72px; }
+    .hero-meta { gap: 16px; }
+    .hero-stat-card { padding: 16px 24px; min-width: 100%; }
+    .perks { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 40px 20px; }
+    .perk { padding: 32px 24px; border-radius: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); border-right: 1px solid rgba(255, 255, 255, 0.05); }
+  }
+  @media (max-width: 600px) {
+    .perks { grid-template-columns: 1fr; }
+    .jobs-section { padding: 60px 20px 80px; }
+    .values-section { padding: 60px 20px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .dept-jobs-grid { grid-template-columns: 1fr; }
+    .job-card-v2 { padding: 24px; min-height: auto; }
+    .open-apps { flex-direction: column; align-items: flex-start; padding: 32px 28px; }
+    .open-apps-cta { width: 100%; text-align: center; justify-content: center; }
+  }
+
+  /* APPLICATION MODAL DESIGN */
+  .apply-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .apply-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .apply-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 8, 10, 0.75);
+    backdrop-filter: blur(16px);
+  }
+  .apply-modal-window {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    background: rgba(21, 21, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 48px;
+    z-index: 10;
+    box-shadow: 
+      0 30px 70px rgba(0, 0, 0, 0.65), 
+      0 0 40px rgba(46, 84, 234, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .apply-modal.active .apply-modal-window {
+    transform: scale(1) translateY(0);
+  }
+  .apply-modal-close {
+    position: absolute;
+    top: 24px; right: 24px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .apply-modal-close:hover {
+    color: var(--text-main);
+  }
+
+  /* Progress Bar Segments */
+  .apply-progress-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+  .progress-segment {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .progress-segment.active {
+    background: var(--accent); /* Electric Blue */
+  }
+
+  .apply-modal-header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .apply-modal-logo {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  }
+  .apply-modal-logo img {
+    height: 18px;
+    width: auto;
+    filter: brightness(1.1);
+  }
+  .apply-modal-header h2 {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .apply-modal-header p {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+    max-width: 460px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* Form Steps */
+  .form-step {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-step.active {
+    display: flex;
+  }
+
+  /* Form Styling */
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-row-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 600px) {
+    .form-row-two {
+      grid-template-columns: 1fr;
+    }
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .form-group label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  
+  /* Input Wrappers with Icons */
+  .input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.35);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .input-icon svg {
+    width: 16px; height: 16px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: #1B1B20;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: var(--text-main);
+    font-family: 'League Spartan', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .input-wrapper input,
+  .input-wrapper select {
+    padding-left: 48px;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(46, 84, 234, 0.15);
+    background: #202027;
+  }
+  .form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+  .form-group select option {
+    background: #151519;
+    color: var(--text-main);
+  }
+  .form-group textarea {
+    resize: none;
+  }
+
+  /* File Upload styles */
+  #file-upload-trigger.dragover {
+    border-color: var(--accent) !important;
+    background: #202027 !important;
+    box-shadow: 0 0 0 2px rgba(46, 84, 234, 0.15);
+  }
+  #file-upload-trigger:hover {
+    border-color: var(--accent) !important;
+    background: #202027 !important;
+  }
+  #file-upload-trigger.has-file {
+    border-color: #39ff14 !important;
+    background: rgba(57, 255, 20, 0.02) !important;
+  }
+
+  /* Form Actions */
+  .form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+    width: 100%;
+  }
+  .btn-back {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 18px;
+    color: var(--text-main);
+    font-family: 'League Spartan', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s var(--ease);
+  }
+  .btn-back:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .btn-submit {
+    background: var(--accent);
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    color: #fff;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s var(--ease);
+    box-shadow: 0 8px 20px rgba(46, 84, 234, 0.2);
+  }
+  .btn-submit:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 12px 28px rgba(46, 84, 234, 0.35);
+    transform: translateY(-1px);
+  }
+
+  /* Success State Design */
+  .apply-success-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .success-console {
+    width: 100%;
+    background: rgba(10, 10, 14, 0.9);
+    border: 1px solid rgba(46, 84, 234, 0.25);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-align: left;
+    margin-bottom: 32px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .success-console .console-header {
+    background: rgba(20, 20, 26, 0.9);
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .success-console .console-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .success-console .console-dot.red { background: #ff5f56; }
+  .success-console .console-dot.yellow { background: #febc2e; }
+  .success-console .console-dot.green { background: #28c840; }
+  .success-console .console-title {
+    font-size: 9.5px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .success-console .console-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .success-console .c-green { color: #39ff14; }
+  .success-console .c-blue { color: var(--accent); }
+  .success-title {
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .success-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 420px;
+    margin-bottom: 32px;
+  }
+  .close-success-btn {
+    padding: 12px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<!-- REVEAL LOADER INTRO -->
+<div class="reveal-loader" id="reveal-loader">
+  <!-- Underlay Blue Strips -->
+  <div class="reveal-bg-strips">
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+    <div class="preloader-item bg-item"></div>
+  </div>
+  <!-- Foreground Black Strips -->
+  <div class="reveal-fg-strips">
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+    <div class="preloader-item fg-item"></div>
+  </div>
+  <div class="reveal-text-wrapper">
+    <div class="reveal-content-container">
+      <div class="reveal-logo-wrapper">
+        <img src="images/sca-logo-mark.png" alt="SCA Logo" class="reveal-logo-img">
+      </div>
+      <div class="reveal-text-clip">
+        <p class="name-text" id="reveal-stamp-text"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home" data-cursor="Home">
+      <span class="brand-mark"><img src="images/sca-logo-mark.png" alt=""></span>
+      <span>SeeTusk / SCA</span>
+    </a>
+    <div class="nav-links">
+      <a href="content.html" data-scramble>Content</a>
+      <a href="influencer.html" data-scramble>Influencer</a>
+      <a href="web.html" data-scramble>Web &amp; Tech</a>
+      <a href="about.html" data-scramble>About</a>
+    </div>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn accent" data-cursor="Start">Start a project <span class="arr">-></span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-grid-glow"></div>
+  
+  <div class="hero-tag">Studio / Careers</div>
+  <h1 class="hero-title-stamped">
+    <span class="line-wrapper"><span class="line-content">Start shaping</span></span>
+    <span class="line-wrapper"><span class="line-content">the <span class="highlight">future</span></span></span>
+    <span class="line-wrapper"><span class="line-content">with <em>us.</em></span></span>
+  </h1>
+  <p class="hero-sub">We build, rent, and own distribution for ambitious Indian brands. Join a motion-first creative studio shipping real code, creators, and content weekly.</p>
+  
+  <!-- Telemetry Console HUD Widget
+  <div class="telemetry-panel">
+    <div class="telemetry-header">
+      <div class="telemetry-dots">
+        <span class="telemetry-dot close"></span>
+        <span class="telemetry-dot minimize"></span>
+        <span class="telemetry-dot maximize"></span>
+      </div>
+      <div class="telemetry-title">sys_diagnostics.sh</div>
+      <div style="width: 36px;"></div>
+    </div>
+    <div class="telemetry-body">
+      <div class="telemetry-prompt"><span class="user">sca_studio@seetusk:~$</span> ./diagnostics.sh</div>
+      
+      <div class="telemetry-row">
+        <span class="label">SYS_STATUS //</span>
+        <span class="val" style="display:flex;align-items:center;gap:6px;"><span class="hud-status-dot"></span> ACTIVE_HIRING</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="label">LOC_COORD //</span>
+        <span class="val">18.5204° N, 73.8567° E (PUNE_HQ)</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="label">LIVE_PING //</span>
+        <span class="val" id="telemetry-ping">18 ms</span>
+      </div>
+      <div class="telemetry-row">
+        <span class="label">SYS_ACTIVITY //</span>
+        <span class="active-action" data-studio-signal-text>SYSTEM_INITIALIZED</span>
+      </div>
+
+      <div class="telemetry-divider"></div>
+
+      <div class="telemetry-syslog">
+        <div>[INFO] Loading motion assets... OK</div>
+        <div>[INFO] Establishing creator socket... CONNECTED</div>
+        <div>[INFO] Retainer pipelines... ACTIVE</div>
+        <div>[WARN] Refresh rate... 60Hz (CAP_MATCHED)</div>
+      </div>
+
+      <div class="telemetry-prompt bottom-prompt"><span class="user">sca_studio@seetusk:~$</span> <span class="terminal-cursor">█</span></div>
+    </div>
+  </div>
+  -->
+
+  <div class="hero-meta">
+    <div class="hero-stat-card">
+      <span class="stat-status"><span class="stat-status-dot"></span> LIVE</span>
+      <strong id="roles-stat-count">13</strong>
+      <span>Open Positions</span>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-grid-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <strong id="depts-stat-count">4</strong>
+      <span>Active Depts</span>
+    </div>
+    <div class="hero-stat-card">
+      <span class="stat-coord">18.52° N</span>
+      <strong>Pune, IND</strong>
+      <span>HQ Studio</span>
+    </div>
+  </div>
+</section>
+
+<!-- PERKS STRIP -->
+<div class="perks">
+  <div class="perk perk-theme-blue anim" style="animation-delay:0.1s">
+    <span class="perk-num">01 / VELOCITY</span>
+    <div class="perk-icon-box">
+      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+    <h3>Move fast. Ship real.</h3>
+    <p>We don't do endless decks. We strategise, build, and ship. Every person here sees their work live.</p>
+    <div class="perk-progress-bar">
+      <div class="perk-progress-fill"></div>
+    </div>
+  </div>
+  <div class="perk perk-theme-yellow anim" style="animation-delay:0.2s">
+    <span class="perk-num">02 / VENTURE</span>
+    <div class="perk-icon-box">
+      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <h3>Grow with the studio.</h3>
+    <p>We're building three in-house products. Your work compounds — the studio's growth is yours too.</p>
+    <div class="perk-progress-bar">
+      <div class="perk-progress-fill"></div>
+    </div>
+  </div>
+  <div class="perk perk-theme-purple anim" style="animation-delay:0.3s">
+    <span class="perk-num">03 / EXCELLENCE</span>
+    <div class="perk-icon-box">
+      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    </div>
+    <h3>Work on real brands.</h3>
+    <p>Ambitious D2C clients, big-budget productions, and India-scale distribution campaigns.</p>
+    <div class="perk-progress-bar">
+      <div class="perk-progress-fill"></div>
+    </div>
+  </div>
+  <div class="perk perk-theme-orange anim" style="animation-delay:0.4s">
+    <span class="perk-num">04 / CULTURE</span>
+    <div class="perk-icon-box">
+      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <h3>Pune HQ. No nonsense.</h3>
+    <p>A focused studio culture with a tight team. We're deliberate about who we add to the room.</p>
+    <div class="perk-progress-bar">
+      <div class="perk-progress-fill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOBS LISTING -->
+<section class="jobs-section">
+  <div class="section-header">
+    <div>
+      <div class="section-label">02 / Openings</div>
+      <h2 class="section-title">Open roles</h2>
+    </div>
+    <div class="jobs-count" id="jobs-count">13 positions</div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All Departments</button>
+    <button class="filter-btn" data-filter="Marketing">Marketing</button>
+    <button class="filter-btn" data-filter="Production">Production &amp; Post</button>
+    <button class="filter-btn" data-filter="Growth">Growth</button>
+    <button class="filter-btn" data-filter="Operations">Operations</button>
+  </div>
+
+  <!-- JOBS LIST -->
+  <div id="jobs-list">
+
+    <!-- MARKETING -->
+    <div class="dept-group" data-dept="Marketing">
+      <div class="dept-header">
+        <span class="dept-name">Marketing</span>
+        <span class="dept-count">2</span>
+      </div>
+      <div class="dept-jobs-grid">
+        
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Senior Brand Manager</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>3–5 years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Lead creative strategies, client communications, and campaign execution for major D2C brands.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Proven experience managing brand campaigns.</li>
+                <li>Excellent communication and leadership skills.</li>
+                <li>Deep understanding of motion content and digital distribution.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Brand Manager</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>2–3 years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Execute digital brand strategies, manage creator partnerships, and coordinate campaign delivery.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Strong marketing background and visual taste.</li>
+                <li>Detail-oriented campaign management skills.</li>
+                <li>Ability to translate creator signals into brand ideas.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+
+    <!-- PRODUCTION -->
+    <div class="dept-group" data-dept="Production">
+      <div class="dept-header">
+        <span class="dept-name">Production &amp; Post Production</span>
+        <span class="dept-count">7</span>
+      </div>
+      <div class="dept-jobs-grid">
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Content Strategist</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>1–2 years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Ideate, script, and direct short-form content pipelines for creators and brands.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Hook-writing and copywriting expertise.</li>
+                <li>Understanding of YouTube Shorts, Instagram Reels, and TikTok formats.</li>
+                <li>Active interest in internet culture and creator dynamics.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Cinematographer</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>1–2 years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Direct camera movements, set lighting rigs, and shoot cinematic studio/outdoor motion assets.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Experience with cinema cameras (Red, Sony FX, Arri, Blackmagic).</li>
+                <li>Expert lighting capabilities (interior, studio, natural light).</li>
+                <li>Portfolio demonstrating exceptional visual framing.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Sr. Video Editor</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>3+ years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Lead the video editing team, structure high-tempo edits, and refine visual storytelling standards.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Advanced Premiere Pro, DaVinci Resolve, or After Effects proficiency.</li>
+                <li>High speed and precision editing workflow.</li>
+                <li>Experience directing sound design, pacing, and color grading.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Intermediate Video Editor</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Bengaluru · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>2+ years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Create visual edits, compile creator reels, and add visual assets/transitions.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Solid Adobe Premiere or DaVinci Resolve skills.</li>
+                <li>Strong sense of audio timing, pacing, and pacing.</li>
+                <li>Fast delivery turnaround times.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Video Editor</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>2+ years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Assemble raw footage, cut high-retention vertical videos, and apply motion graphics.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Knowledge of video editing tools (Premiere Pro, CapCut, etc.).</li>
+                <li>Ability to create engaging transitions, captions, and sound effects.</li>
+                <li>Eagerness to learn and iterate weekly.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Production Assistant</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>1–2 years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Coordinate shoot logistics, manage equipment inventories, and support directors on set.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Highly organized with proactive problem-solving.</li>
+                <li>Ability to manage schedules, crew riders, and studio setups.</li>
+                <li>Passion for production and cinema operations.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Graphic Designer</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>2+ years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Design high-retention thumbnails, brand identities, and social media key visuals.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Photoshop, Illustrator, and Figma mastery.</li>
+                <li>Understanding of visual hierarchy, bold typography, and click-through dynamics.</li>
+                <li>Portfolio showing modern, high-contrast creative design.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Content Strategist Intern</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>No experience required</span>
+            <span class="job-card-v2-badge badge-intern">Intern</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Learn scriptwriting, assist in creator research, and brainstorm viral ideas.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Deeply active consumer of YouTube, Reels, and Twitter.</li>
+                <li>Eager to learn copywriting and script structures.</li>
+                <li>No formal experience required, just high curiosity.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- GROWTH -->
+    <div class="dept-group" data-dept="Growth">
+      <div class="dept-header">
+        <span class="dept-name">Growth</span>
+        <span class="dept-count">1</span>
+      </div>
+      <div class="dept-jobs-grid">
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Performance Marketing Executive</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>2+ years</span>
+            <span class="job-card-v2-badge badge-fulltime">Full-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Manage and optimize paid ad campaigns (Meta, Google, YouTube) to drive brand growth.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Hands-on experience running ads and allocating budgets.</li>
+                <li>Strong analytical skills (conversion rates, ROAS, CAC).</li>
+                <li>Ability to brief design team on high-performance ad creatives.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- OPERATIONS -->
+    <div class="dept-group" data-dept="Operations">
+      <div class="dept-header">
+        <span class="dept-name">Operations</span>
+        <span class="dept-count">2</span>
+      </div>
+      <div class="dept-jobs-grid">
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">Human Resources</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>1+ year</span>
+            <span class="job-card-v2-badge badge-parttime">Part-time</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Manage recruitment pipelines, onboarding flows, and employee engagement strategies.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Strong screening, sourcing, and communication skills.</li>
+                <li>Familiarity with creator agency or tech agency hiring.</li>
+                <li>Empathy and professional workplace management.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+        <a href="javascript:void(0)" class="job-card-v2 open-apply-modal" data-cursor="Apply">
+          <div class="job-card-v2-sweep"></div>
+          <div class="job-card-v2-logo">
+            <img src="images/sca-logo-mark.png" alt="SCA">
+          </div>
+          <div class="job-card-v2-kicker">We Are <span>Hiring</span></div>
+          <h3 class="job-card-v2-title">HR Intern</h3>
+          <div class="job-card-v2-tags">
+            <span class="job-card-v2-badge"><span class="job-tag-icon">📍</span>Pune · Onsite</span>
+            <span class="job-card-v2-badge"><span class="job-tag-icon">⏱</span>No experience required</span>
+            <span class="job-card-v2-badge badge-intern">Intern</span>
+          </div>
+          <div class="job-card-v2-details">
+            <div class="detail-section">
+              <h4>The Role //</h4>
+              <p>Assist with resume screening, candidate scheduling, and HR database coordination.</p>
+            </div>
+            <div class="detail-section">
+              <h4>Pre-requisites //</h4>
+              <ul>
+                <li>Excellent communication and writing.</li>
+                <li>Organized with database/Google Sheets proficiency.</li>
+                <li>Currently pursuing or recently completed an MBA/HR degree.</li>
+              </ul>
+            </div>
+          </div>
+          <hr class="job-card-v2-divider">
+          <div class="job-card-v2-footer">
+            <div class="job-card-v2-email-col">
+              <span class="label">Skip the layers</span>
+              <span class="email">Submit your work in 60s &rarr;</span>
+            </div>
+            <span class="btn-apply-v2">Apply Now</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div><!-- /jobs-list -->
+
+  <!-- OPEN APPLICATIONS BANNER -->
+  <div class="open-apps">
+    <div class="open-apps-text">
+      <h3>Don't see your role?</h3>
+      <p>We're always looking for sharp, ambitious people. Send us your portfolio and a note on what you'd build here.</p>
+    </div>
+    <a href="mailto:hr@seetusk.com" class="open-apps-cta">Send an open application →</a>
+  </div>
+
+</section>
+
+<!-- VALUES -->
+<div class="values-section">
+  <div class="section-label">03 / Culture</div>
+  <h2 class="section-title">How we work</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <span class="value-num">[SYS_01]</span>
+      <h4>Boring where it should be.</h4>
+      <p>Proven stacks. Reliable processes. We don't reinvent the wheel — we spend that energy on the work that actually matters.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">[SYS_02]</span>
+      <h4>Sharp where it counts.</h4>
+      <p>Copy, design, strategy, code — every surface we touch is crafted with intention. We care about the details that move numbers.</p>
+    </div>
+    <div class="value-card">
+      <span class="value-num">[SYS_03]</span>
+      <h4>Owned distribution.</h4>
+      <p>We don't just execute. We build and own media properties. If you want your work to have a life beyond a client brief, this is the place.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-news">
+      <div>
+        <h4>Read what we ship.</h4>
+        <p>Frameworks, teardowns, behind-the-scenes from the studio, and practical notes on building distribution. No fluff.</p>
+      </div>
+      <form>
+        <input type="email" name="email" placeholder="you@company.com" required>
+        <button type="submit">Subscribe -></button>
+      </form>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img class="footer-brand-mark" src="images/sca-logo-mark.png" alt="SCA mark">
+        <p>SeeTusk Creative Agency. A motion-first creative distribution studio for ambitious Indian brands. Headquartered in Pune, working across India.</p>
+      </div>
+      <div>
+        <h5>Verticals</h5>
+        <a href="content.html">Content &amp; Brand</a>
+        <a href="influencer.html">Influencer</a>
+        <a href="web.html">Web &amp; Tech</a>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <a href="mailto:contact@seetusk.com">contact@seetusk.com -></a>
+        <a href="mailto:hr@seetusk.com">hr@seetusk.com -></a>
+        <a href="#">LinkedIn -></a>
+        <a href="#">Instagram -></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>(c) 2026 SeeTusk Creative Agency / Pune, IND</span>
+      <span>seetusk.agency / Built in-house</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="assets/sca.js"></script>
+<script src="assets/sca-kinetic.js"></script>
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const deptGroups = document.querySelectorAll('.dept-group');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visibleCount = 0;
+
+      deptGroups.forEach(group => {
+        const dept = group.dataset.dept;
+        const show = filter === 'all' || dept === filter;
+        group.style.display = show ? '' : 'none';
+        if (show) {
+          visibleCount += group.querySelectorAll('.job-card-v2').length;
+        }
+      });
+
+      document.getElementById('jobs-count').textContent = visibleCount + ' position' + (visibleCount !== 1 ? 's' : '');
+    });
+  });
+
+  // Scroll-triggered animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.job-card-v2, .value-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+
+  // Prevent nested anchor issues
+  document.querySelectorAll('.job-card-v2 .email').forEach(el => {
+    el.addEventListener('click', e => e.stopPropagation());
+  });
+
+  // HUD Telemetry Loop
+  const hudMessages = [
+    'FETCHING_CREATOR_METRICS',
+    'COMPILING_CONTENT_SCHEMAS',
+    'SYNCING_CAMPAIGN_DATABASES',
+    'DEVIATING_RENDER_PIPELINE',
+    'RESOLVING_BRAND_DNA',
+    'ESTABLISHING_WEB_SOCKETS',
+    'REFRACTING_MOTION_SYSTEMS',
+    'PARSING_RETAINER_SIGNALS'
+  ];
+  let msgIdx = 0;
+  setInterval(() => {
+    const actEl = document.querySelector('[data-studio-signal-text]');
+    if (actEl) {
+      actEl.textContent = hudMessages[msgIdx];
+      msgIdx = (msgIdx + 1) % hudMessages.length;
+    }
+    const pingEl = document.getElementById('telemetry-ping');
+    if (pingEl) {
+      pingEl.textContent = `${Math.floor(Math.random() * 12 + 12)} ms`;
+    }
+  }, 2000);
+
+  // RevealLoader Orchestrator
+  document.addEventListener('DOMContentLoaded', () => {
+    const text = "CAREERS";
+    const stampContainer = document.getElementById('reveal-stamp-text');
+
+    // 1. Inject characters into span elements
+    stampContainer.innerHTML = text.split('').map(char => {
+      return `<span>${char === " " ? "&nbsp;" : char}</span>`;
+    }).join('');
+
+    function animateStatsCounter() {
+      const rolesCountEl = document.getElementById('roles-stat-count');
+      const deptsCountEl = document.getElementById('depts-stat-count');
+      const startDelay = 1000; // 1 second delay after loader is completed
+
+      setTimeout(() => {
+        if (rolesCountEl) {
+          const targetRoles = parseInt(rolesCountEl.textContent, 10) || 13;
+          rolesCountEl.textContent = '0';
+          rolesCountEl.style.color = '#39ff14'; // Set to green immediately when counting starts
+
+          let currentRoles = 0;
+          const rolesInterval = setInterval(() => {
+            currentRoles++;
+            rolesCountEl.textContent = currentRoles;
+            if (currentRoles >= targetRoles) {
+              clearInterval(rolesInterval);
+              // Fade color back to white
+              gsap.to(rolesCountEl, { color: '#ffffff', duration: 0.8, ease: "power2.out" });
+            }
+          }, 120); // Increments by 1 every 120ms
+        }
+
+        if (deptsCountEl) {
+          const targetDepts = parseInt(deptsCountEl.textContent, 10) || 4;
+          deptsCountEl.textContent = '0';
+          deptsCountEl.style.color = '#39ff14'; // Set to green immediately when counting starts
+
+          let currentDepts = 0;
+          const deptsInterval = setInterval(() => {
+            currentDepts++;
+            deptsCountEl.textContent = currentDepts;
+            if (currentDepts >= targetDepts) {
+              clearInterval(deptsInterval);
+              // Fade color back to white
+              gsap.to(deptsCountEl, { color: '#ffffff', duration: 0.8, ease: "power2.out" });
+            }
+          }, 300); // Increments by 1 every 300ms
+        }
+      }, startDelay);
+    }
+
+    // 2. Build GSAP timeline
+    const tl = gsap.timeline({
+      onComplete: () => {
+        const loader = document.getElementById('reveal-loader');
+        if (loader) {
+          loader.style.display = 'none';
+        }
+        
+        // Toggle body active states for CSS entry animations
+        document.body.classList.add('page-loaded');
+
+        // Trigger Hero Title line stamps
+        const heroTitle = document.querySelector('.hero-title-stamped');
+        if (heroTitle) {
+          heroTitle.classList.add('animate');
+        }
+
+        // Trigger stats count up animation
+        animateStatsCounter();
+      }
+    });
+
+    // Step 1: Fade and scale up/stamp the logo wrapper
+    tl.to(".reveal-logo-wrapper", {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.45,
+      ease: "back.out(1.5)"
+    });
+
+    // Step 2: Slide text spans UP from overflow clip (overlapping with logo entry)
+    tl.to(".name-text span", {
+      y: 0,
+      stagger: 0.04,
+      duration: 0.35,
+      ease: "power3.out"
+    }, "-=0.25");
+
+    // Step 3: Fade out entire content container (both logo and text) slightly before strips slide
+    tl.to(".reveal-content-container", {
+      opacity: 0,
+      y: -30, // cinematic lift-up transition
+      duration: 0.3,
+      ease: "power2.in"
+    }, "+=0.3");
+
+    // Step 4a: Animate foreground (black) bars DOWN to reveal blue strips
+    tl.to(".fg-item", {
+      y: "100%",
+      duration: 0.55,
+      ease: "power4.inOut",
+      stagger: {
+        each: 0.04,
+        from: "center"
+      }
+    }, "-=0.15");
+
+    // Step 4b: Animate background (blue) bars DOWN to reveal the page
+    tl.to(".bg-item", {
+      y: "100%",
+      duration: 0.55,
+      ease: "power4.inOut",
+      stagger: {
+        each: 0.04,
+        from: "center"
+      }
+    }, "-=0.42");
+
+    // Step 5: Fade loader container to autoAlpha 0
+    tl.to("#reveal-loader", {
+      opacity: 0,
+      visibility: "hidden",
+      duration: 0.1
+    }, "-=0.15");
+  });
+</script>
+
+<!-- APPLICATION MODAL -->
+<div class="apply-modal" id="apply-modal" aria-hidden="true">
+  <div class="apply-modal-backdrop" id="apply-modal-backdrop"></div>
+  <div class="apply-modal-window">
+    <button class="apply-modal-close" id="apply-modal-close" aria-label="Close modal">&times;</button>
+    
+    <!-- PROGRESS INDICATOR -->
+    <div class="apply-progress-bar">
+      <span class="progress-segment segment-1 active"></span>
+      <span class="progress-segment segment-2"></span>
+      <span class="progress-segment segment-3"></span>
+    </div>
+
+    <div class="apply-modal-header">
+      <h2 id="apply-modal-title">LET'S BUILD YOUR APPLICATION</h2>
+      <p id="apply-modal-subtitle">Stand out to the studio with a complete and verified profile.</p>
+    </div>
+    
+    <!-- SUCCESS PANEL (Hidden by default) -->
+    <div class="apply-success-panel hidden" id="apply-success-panel" style="width: 100%;">
+      <div class="success-console" style="width: 100%;">
+        <div class="console-header">
+          <span class="console-dot red"></span>
+          <span class="console-dot yellow"></span>
+          <span class="console-dot green"></span>
+          <span class="console-title" id="console-log-title">transmit_pipeline.log</span>
+        </div>
+        <div class="console-body" id="console-log-body" style="min-height: 150px;">
+          <!-- Dynamically generated console lines -->
+        </div>
+      </div>
+      <div id="success-message-wrapper" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 24px;">
+        <h3 class="success-title" id="success-status-title">Application Sent!</h3>
+        <p class="success-desc" id="success-status-desc">We appreciate you putting in the work. Sarthak, Saksham, or Melbin will reach out to you directly if there's a fit.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; width: 100%;">
+          <button class="btn-back" id="retry-submit-btn" style="display: none; padding: 12px 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border-radius: 4px;">Retry</button>
+          <button class="btn accent close-success-btn" id="close-success-btn" style="padding: 12px 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border-radius: 4px;">Done</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <form class="apply-form" id="apply-form">
+      
+      <!-- STEP 1: PERSONAL DETAILS -->
+      <div class="form-step step-1 active">
+        <div class="form-group">
+          <label for="apply-name">Full Name *</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <input type="text" id="apply-name" name="name" placeholder="E.g. Sarthak Thakur" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-email">Email Address *</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <input type="email" id="apply-email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-row-two">
+          <div class="form-group">
+            <label for="apply-phone">Phone Number *</label>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 14.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0.7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <input type="tel" id="apply-phone" name="phone" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="apply-role">Role *</label>
+            <div class="input-wrapper">
+              <select id="apply-role" name="role" required>
+                <option value="" disabled selected>Select a role</option>
+                <option value="Senior Brand Manager">Senior Brand Manager</option>
+                <option value="Brand Manager">Brand Manager</option>
+                <option value="Content Strategist">Content Strategist</option>
+                <option value="Cinematographer">Cinematographer</option>
+                <option value="Sr. Video Editor">Sr. Video Editor</option>
+                <option value="Intermediate Video Editor">Intermediate Video Editor</option>
+                <option value="Video Editor">Video Editor</option>
+                <option value="Production Assistant">Production Assistant</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+                <option value="Content Strategist Intern">Content Strategist Intern</option>
+                <option value="Performance Marketing Executive">Performance Marketing Executive</option>
+                <option value="Human Resources">Human Resources</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-back" id="btn-step-1-close">Close</button>
+          <button type="button" class="btn-submit" id="btn-step-1-next">Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: WORK & SOCIAL LINKS -->
+      <div class="form-step step-2">
+        <div class="form-group">
+          <label for="apply-portfolio">Portfolio / Work Link *</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </span>
+            <input type="url" id="apply-portfolio" name="portfolio" placeholder="https://yourportfolio.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-resume-file">Upload Resume (PDF format) *</label>
+          <div class="input-wrapper" style="width: 100%;">
+            <input type="file" id="apply-resume-file" accept="application/pdf" style="display: none;">
+            <div id="file-upload-trigger" style="width: 100%; padding: 24px; border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 12px; background: #1B1B20; color: var(--text-secondary); text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: all 0.3s;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; color: var(--accent);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="file-upload-text" style="font-family: 'League Spartan', sans-serif; font-size: 13.5px; font-weight: 500;">Click to select or drag PDF resume</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255, 255, 255, 0.3);">Max file size: 4MB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Social Links (Optional)</label>
+          <div class="form-row-two">
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </span>
+              <input type="url" id="apply-linkedin" name="linkedin" placeholder="https://linkedin.com/in/username">
+            </div>
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+              </span>
+              <input type="url" id="apply-twitter" name="twitter" placeholder="https://x.com/username">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-back" id="btn-step-2-prev">Go Back</button>
+          <button type="button" class="btn-submit" id="btn-step-2-next">Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: ESSAY & SUBMIT -->
+      <div class="form-step step-3">
+        <div class="form-group">
+          <label for="apply-why">What is the best thing you've built or shipped? *</label>
+          <textarea id="apply-why" name="why" rows="6" placeholder="Tell us the story. Keep it raw. No GPT fluff." required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-back" id="btn-step-3-prev">Go Back</button>
+          <button type="submit" class="btn-submit">Submit Profile</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+  // Application Modal Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('apply-modal');
+    const modalClose = document.getElementById('apply-modal-close');
+    const applyForm = document.getElementById('apply-form');
+    const successPanel = document.getElementById('apply-success-panel');
+    const closeSuccessBtn = document.getElementById('close-success-btn');
+    const roleSelect = document.getElementById('apply-role');
+
+    // Multi-step buttons
+    const btnStep1Close = document.getElementById('btn-step-1-close');
+    const btnStep1Next = document.getElementById('btn-step-1-next');
+    const btnStep2Prev = document.getElementById('btn-step-2-prev');
+    const btnStep2Next = document.getElementById('btn-step-2-next');
+    const btnStep3Prev = document.getElementById('btn-step-3-prev');
+
+    // File Upload references
+    const fileInput = document.getElementById('apply-resume-file');
+    const uploadTrigger = document.getElementById('file-upload-trigger');
+    const uploadText = document.getElementById('file-upload-text');
+
+    let resumeBase64 = '';
+    let resumeFilename = '';
+    let currentStep = 1;
+
+    // File Upload event handlers
+    if (uploadTrigger && fileInput) {
+      uploadTrigger.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        uploadTrigger.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          uploadTrigger.classList.add('dragover');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        uploadTrigger.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          uploadTrigger.classList.remove('dragover');
+        }, false);
+      });
+
+      uploadTrigger.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files && files.length > 0) {
+          handleResumeFile(files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          handleResumeFile(e.target.files[0]);
+        }
+      });
+    }
+
+    function handleResumeFile(file) {
+      if (file.type !== 'application/pdf') {
+        alert('Please upload your resume in PDF format only.');
+        clearResumeFile();
+        return;
+      }
+
+      if (file.size > 4 * 1024 * 1024) {
+        alert('File size exceeds the 4MB limit. Please upload a smaller PDF.');
+        clearResumeFile();
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        resumeBase64 = e.target.result;
+        resumeFilename = file.name;
+        
+        uploadTrigger.classList.add('has-file');
+        uploadText.textContent = `${file.name} (${formatBytes(file.size)})`;
+        uploadText.style.color = '#39ff14';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearResumeFile() {
+      resumeBase64 = '';
+      resumeFilename = '';
+      if (fileInput) fileInput.value = '';
+      if (uploadTrigger) uploadTrigger.classList.remove('has-file');
+      if (uploadText) {
+        uploadText.textContent = 'Click to select or drag PDF resume';
+        uploadText.style.color = '';
+      }
+    }
+
+    function formatBytes(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function openApplyModal(roleName) {
+      if (roleSelect && roleName) {
+        // Find matching option and select it
+        let found = false;
+        for (let i = 0; i < roleSelect.options.length; i++) {
+          if (roleSelect.options[i].value.toLowerCase().trim() === roleName.toLowerCase().trim()) {
+            roleSelect.selectedIndex = i;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          // If not found, add a dynamic option for this specific role
+          const opt = document.createElement('option');
+          opt.value = roleName;
+          opt.textContent = roleName;
+          roleSelect.appendChild(opt);
+          roleSelect.value = roleName;
+        }
+      }
+      
+      // Reset form steps, progress segments, subtexts
+      currentStep = 1;
+      document.querySelectorAll('.form-step').forEach((step, idx) => {
+        if (idx === 0) {
+          step.classList.add('active');
+          step.style.opacity = '1';
+          step.style.transform = 'translateY(0)';
+        } else {
+          step.classList.remove('active');
+        }
+      });
+      document.querySelectorAll('.progress-segment').forEach((seg, idx) => {
+        if (idx === 0) seg.classList.add('active');
+        else seg.classList.remove('active');
+      });
+      
+      const subTitle = document.getElementById('apply-modal-subtitle');
+      if (subTitle) subTitle.textContent = "Stand out to the studio with a complete and verified profile.";
+
+      if (applyForm) {
+        applyForm.classList.remove('hidden');
+        applyForm.style.opacity = '1';
+        applyForm.style.transform = 'translateY(0)';
+      }
+      if (successPanel) successPanel.classList.add('hidden');
+      clearResumeFile();
+      
+      // Show modal
+      if (modal) {
+        modal.classList.add('active');
+        
+        // GSAP animate entry
+        gsap.fromTo(".apply-modal-window", 
+          { scale: 0.9, y: 30, opacity: 0 }, 
+          { scale: 1, y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+        );
+      }
+    }
+
+    function closeApplyModal() {
+      if (modal) {
+        gsap.to(".apply-modal-window", {
+          scale: 0.9,
+          y: 30,
+          opacity: 0,
+          duration: 0.35,
+          ease: "power3.in",
+          onComplete: () => {
+            modal.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    function nextStep(stepNum) {
+      // Validate current step fields
+      const currentStepEl = document.querySelector(`.form-step.step-${stepNum - 1}`);
+      if (currentStepEl) {
+        const inputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
+        let valid = true;
+        inputs.forEach(input => {
+          if (!input.checkValidity()) {
+            input.reportValidity();
+            valid = false;
+          }
+        });
+        if (!valid) return;
+
+        // Custom validation for Step 2 PDF file upload
+        if (stepNum === 3) {
+          if (!resumeBase64) {
+            alert("Please upload your resume in PDF format before continuing.");
+            if (uploadTrigger) {
+              uploadTrigger.style.borderColor = "#ff5f56";
+              setTimeout(() => {
+                uploadTrigger.style.borderColor = "";
+              }, 1000);
+            }
+            return;
+          }
+        }
+      }
+
+      currentStep = stepNum;
+
+      // Update progress segments
+      document.querySelectorAll('.progress-segment').forEach((el, idx) => {
+        if (idx < stepNum) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+
+      // Slide out current, slide in next
+      const prevStepEl = document.querySelector(`.form-step.step-${stepNum - 1}`);
+      const nextStepEl = document.querySelector(`.form-step.step-${stepNum}`);
+      
+      if (prevStepEl && nextStepEl) {
+        gsap.to(prevStepEl, {
+          opacity: 0,
+          y: -10,
+          duration: 0.25,
+          onComplete: () => {
+            prevStepEl.classList.remove('active');
+            nextStepEl.classList.add('active');
+            
+            // Set subtext based on step
+            const subTitle = document.getElementById('apply-modal-subtitle');
+            if (subTitle) {
+              if (stepNum === 2) {
+                subTitle.textContent = "Step 2 of 3: Share links to your work and resume.";
+              } else if (stepNum === 3) {
+                subTitle.textContent = "Step 3 of 3: Tell us about what you build.";
+              }
+            }
+            
+            gsap.fromTo(nextStepEl,
+              { opacity: 0, y: 10 },
+              { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+            );
+          }
+        });
+      }
+    }
+
+    function prevStep(stepNum) {
+      currentStep = stepNum;
+
+      // Update progress segments
+      document.querySelectorAll('.progress-segment').forEach((el, idx) => {
+        if (idx < stepNum) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+
+      const nextStepEl = document.querySelector(`.form-step.step-${stepNum}`);
+      const activeStepEl = document.querySelector(`.form-step.step-${stepNum + 1}`);
+
+      if (activeStepEl && nextStepEl) {
+        gsap.to(activeStepEl, {
+          opacity: 0,
+          y: 10,
+          duration: 0.25,
+          onComplete: () => {
+            activeStepEl.classList.remove('active');
+            nextStepEl.classList.add('active');
+            
+            const subTitle = document.getElementById('apply-modal-subtitle');
+            if (subTitle) {
+              if (stepNum === 1) {
+                subTitle.textContent = "Stand out to the studio with a complete and verified profile.";
+              } else if (stepNum === 2) {
+                subTitle.textContent = "Step 2 of 3: Share links to your work and resume.";
+              }
+            }
+            
+            gsap.fromTo(nextStepEl,
+              { opacity: 0, y: -10 },
+              { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+            );
+          }
+        });
+      }
+    }
+
+    // Hook up click event to all cards
+    document.querySelectorAll('.open-apply-modal').forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const titleEl = card.querySelector('.job-card-v2-title');
+        if (titleEl) {
+          const roleName = titleEl.textContent.trim();
+          openApplyModal(roleName);
+        }
+      });
+    });
+
+    if (modalClose) modalClose.addEventListener('click', closeApplyModal);
+    if (btnStep1Close) btnStep1Close.addEventListener('click', closeApplyModal);
+    if (btnStep1Next) btnStep1Next.addEventListener('click', () => nextStep(2));
+    if (btnStep2Prev) btnStep2Prev.addEventListener('click', () => prevStep(1));
+    if (btnStep2Next) btnStep2Next.addEventListener('click', () => nextStep(3));
+    if (btnStep3Prev) btnStep3Prev.addEventListener('click', () => prevStep(2));
+    
+    const backdrop = document.getElementById('apply-modal-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', closeApplyModal);
+    }
+
+    // Handle Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeApplyModal();
+      }
+    });
+
+    const retryBtn = document.getElementById('retry-submit-btn');
+
+    function appendConsoleLine(parent, text, type = 'info', delay = 0) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const line = document.createElement('div');
+          line.className = 'console-line';
+          if (type === 'success') {
+            line.innerHTML = `<span class="c-green">[SUCCESS]</span> ${text}`;
+          } else if (type === 'error') {
+            line.innerHTML = `<span style="color: #ff5f56;">[ERROR]</span> ${text}`;
+          } else if (type === 'warn') {
+            line.innerHTML = `<span style="color: #febc2e;">[WARN]</span> ${text}`;
+          } else if (type === 'prompt') {
+            line.className = 'console-line telemetry-prompt';
+            line.innerHTML = text;
+          } else {
+            line.innerHTML = `<span class="c-blue">[INFO]</span> ${text}`;
+          }
+          parent.appendChild(line);
+          resolve();
+        }, delay);
+      });
+    }
+
+    async function runDiagnosticsTransmission(payload) {
+      const consoleBody = document.getElementById('console-log-body');
+      const messageWrapper = document.getElementById('success-message-wrapper');
+      const successTitle = document.getElementById('success-status-title');
+      const successDesc = document.getElementById('success-status-desc');
+      const logTitle = document.getElementById('console-log-title');
+
+      // Reset DOM elements
+      consoleBody.innerHTML = '';
+      messageWrapper.classList.add('hidden');
+      if (retryBtn) retryBtn.style.display = 'none';
+      if (logTitle) logTitle.textContent = 'transmit_pipeline.log';
+
+      // 1. Initial prompt
+      await appendConsoleLine(consoleBody, '<span class="user">sca_studio@seetusk:~$</span> ./transmit_app.sh', 'prompt', 0);
+      
+      // 2. Loading state info
+      await appendConsoleLine(consoleBody, 'Packaging application bundle...', 'info', 300);
+      await appendConsoleLine(consoleBody, `Payload: name=${payload.name.substring(0, 15)}... role=${payload.role}`, 'info', 200);
+      await appendConsoleLine(consoleBody, 'Connecting to SeeTusk backend API gateway...', 'info', 300);
+
+      // Make API request
+      try {
+        const response = await fetch('/api/apply', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          // Success workflow
+          await appendConsoleLine(consoleBody, 'Connection established. Handshake OK.', 'success', 200);
+          await appendConsoleLine(consoleBody, 'Transmitting payload metadata...', 'info', 200);
+          await appendConsoleLine(consoleBody, 'Dispatched mail request to SMTP server...', 'info', 300);
+          await appendConsoleLine(consoleBody, 'hr@seetusk.com accepted transmission.', 'success', 400);
+          await appendConsoleLine(consoleBody, 'Candidate application log pipeline finished.', 'success', 200);
+          await appendConsoleLine(consoleBody, '<span class="user">sca_studio@seetusk:~$</span> <span class="terminal-cursor">█</span>', 'prompt', 100);
+          
+          if (logTitle) logTitle.textContent = 'transmit_success.log';
+
+          // Show success message
+          if (successTitle) successTitle.textContent = 'Application Sent!';
+          if (successDesc) successDesc.textContent = "We appreciate you putting in the work. Sarthak, Saksham, or Melbin will reach out to you directly if there's a fit.";
+          if (retryBtn) retryBtn.style.display = 'none';
+          
+          messageWrapper.classList.remove('hidden');
+          gsap.fromTo(messageWrapper,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+          );
+
+          // Clear form inputs
+          applyForm.reset();
+          clearResumeFile();
+        } else {
+          // Server error workflow
+          throw new Error(data.error || 'Gateway returned non-ok status');
+        }
+      } catch (err) {
+        // Failure workflow
+        console.error('Submission Error:', err);
+        await appendConsoleLine(consoleBody, 'Transmission pipeline interrupted.', 'error', 300);
+        await appendConsoleLine(consoleBody, `Error details: ${err.message}`, 'error', 200);
+        await appendConsoleLine(consoleBody, 'Please verify your internet connection or try again.', 'warn', 100);
+        await appendConsoleLine(consoleBody, '<span class="user">sca_studio@seetusk:~$</span> <span class="terminal-cursor">█</span>', 'prompt', 100);
+
+        if (logTitle) logTitle.textContent = 'transmit_failed.log';
+
+        // Show failure message & retry button
+        if (successTitle) successTitle.textContent = 'Transmission Failed';
+        if (successDesc) successDesc.textContent = "We encountered a gateway issue while sending your application. If this error persists, you can send your resume directly to hr@seetusk.com.";
+        if (retryBtn) retryBtn.style.display = 'inline-block';
+        
+        messageWrapper.classList.remove('hidden');
+        gsap.fromTo(messageWrapper,
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+        );
+      }
+    }
+
+    // Handle Form Submission
+    if (applyForm) {
+      applyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Final validation
+        const why = document.getElementById('apply-why').value.trim();
+        if (!why) return;
+
+        if (!resumeBase64) {
+          alert("Please upload your resume in PDF format.");
+          return;
+        }
+
+        // Gather all values
+        const payload = {
+          name: document.getElementById('apply-name').value.trim(),
+          email: document.getElementById('apply-email').value.trim(),
+          phone: document.getElementById('apply-phone').value.trim(),
+          role: document.getElementById('apply-role').value,
+          portfolio: document.getElementById('apply-portfolio').value.trim(),
+          resumeBase64: resumeBase64,
+          resumeFilename: resumeFilename,
+          linkedin: document.getElementById('apply-linkedin').value.trim(),
+          twitter: document.getElementById('apply-twitter').value.trim(),
+          why: why
+        };
+
+        // Animate form fading out
+        gsap.to("#apply-form", {
+          opacity: 0,
+          y: -20,
+          duration: 0.4,
+          ease: "power2.in",
+          onComplete: () => {
+            if (applyForm) applyForm.classList.add('hidden');
+            if (successPanel) successPanel.classList.remove('hidden');
+            
+            // Fade in success panel
+            gsap.fromTo("#apply-success-panel",
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }
+            );
+
+            // Trigger log animation & api call
+            runDiagnosticsTransmission(payload);
+          }
+        });
+      });
+    }
+
+    if (closeSuccessBtn) {
+      closeSuccessBtn.addEventListener('click', closeApplyModal);
+    }
+
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => {
+        if (successPanel) successPanel.classList.add('hidden');
+        if (applyForm) {
+          applyForm.classList.remove('hidden');
+          // Fade form in
+          gsap.fromTo("#apply-form",
+            { opacity: 0, y: -10 },
+            { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+          );
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>
+
+

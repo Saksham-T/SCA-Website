@@ -13,12 +13,12 @@
   var LINES = [
     { toks:[{t:'export default ',c:'c-kw'},{t:'function ',c:'c-kw'},{t:'Site',c:'c-fn'},{t:'() {',c:'c-pn'}] },
     { toks:[{t:'  return ',c:'c-kw'},{t:'(',c:'c-pn'}] },
-    { toks:[{t:'    <Nav ',c:'c-tag'},{t:'logo',c:'c-attr'},{t:'=',c:'c-pn'},{t:'"amb\u00e4r"',c:'c-str'},{t:' />',c:'c-tag'}], pv:0, skel:['0','0b'] },
-    { toks:[{t:'    <Eyebrow>',c:'c-tag'},{t:'Single origin',c:'c-txt'},{t:'</Eyebrow>',c:'c-tag'}], pv:1 },
-    { toks:[{t:'    <h1>',c:'c-tag'},{t:'Coffee, reimagined.',c:'c-txt'},{t:'</h1>',c:'c-tag'}], pv:2, skel:['2'] },
-    { toks:[{t:'    <p>',c:'c-tag'},{t:'Small-batch, fresh.',c:'c-txt'},{t:'</p>',c:'c-tag'}], pv:3, skel:['3'] },
-    { toks:[{t:'    <Button>',c:'c-tag'},{t:'Shop the roast',c:'c-txt'},{t:'</Button>',c:'c-tag'}], pv:4, skel:['4'] },
-    { toks:[{t:'    <Hero ',c:'c-tag'},{t:'img',c:'c-attr'},{t:'=',c:'c-pn'},{t:'"brew.jpg"',c:'c-str'},{t:' />',c:'c-tag'}], pv:5, skel:['5'] },
+    { toks:[{t:'    <Nav ',c:'c-tag'},{t:'logo',c:'c-attr'},{t:'=',c:'c-pn'},{t:'"ASCII Motion"',c:'c-str'},{t:' />',c:'c-tag'}], pv:0, skel:['0','0b'] },
+    { toks:[{t:'    <Eyebrow>',c:'c-tag'},{t:'Code meets movement',c:'c-txt'},{t:'</Eyebrow>',c:'c-tag'}], pv:1 },
+    { toks:[{t:'    <h1>',c:'c-tag'},{t:'Images, reimagined.',c:'c-txt'},{t:'</h1>',c:'c-tag'}], pv:2, skel:['2'] },
+    { toks:[{t:'    <p>',c:'c-tag'},{t:'Grids of text characters.',c:'c-txt'},{t:'</p>',c:'c-tag'}], pv:3, skel:['3'] },
+    { toks:[{t:'    <Button>',c:'c-tag'},{t:'Explore the gallery',c:'c-txt'},{t:'</Button>',c:'c-tag'}], pv:4, skel:['4'] },
+    { toks:[{t:'    <Hero ',c:'c-tag'},{t:'img',c:'c-attr'},{t:'=',c:'c-pn'},{t:'"ascii.png"',c:'c-str'},{t:' />',c:'c-tag'}], pv:5, skel:['5'] },
     { toks:[{t:'  )',c:'c-pn'}] },
     { toks:[{t:'}',c:'c-pn'}] }
   ];

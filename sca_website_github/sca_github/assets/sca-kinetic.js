@@ -38,14 +38,16 @@
     }
 
     document.body.classList.add('intro-locked');
+    // logo lands first, then the vertical SCA zooms in (CSS .95s delay),
+    // then the lockup unfurls into the full words.
     requestAnimationFrame(() => intro.classList.add('go'));
-    setTimeout(() => intro.classList.add('reveal'), 1000);
+    setTimeout(() => intro.classList.add('reveal'), 1950);
     setTimeout(() => {
       intro.classList.add('lift');
       document.body.classList.remove('intro-locked');
       afterIntro();
-    }, 2250);
-    setTimeout(() => intro.setAttribute('hidden', ''), 3150);
+    }, 3300);
+    setTimeout(() => intro.setAttribute('hidden', ''), 4200);
   }
 
   // play the hero headline reveal once the curtain is gone

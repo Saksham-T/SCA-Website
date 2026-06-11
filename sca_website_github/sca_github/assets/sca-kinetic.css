@@ -59,7 +59,8 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   will-change: transform, opacity;
 }
 .intro.go .intro-lock {
-  animation: introZoom 1s cubic-bezier(.16,.84,.3,1) forwards;
+  /* hold hidden while the logo lands first, then the vertical SCA zooms in */
+  animation: introZoom 1s cubic-bezier(.16,.84,.3,1) .95s forwards;
 }
 @keyframes introZoom {
   0%   { transform: scale(1.32); opacity: 0; filter: blur(8px); }
@@ -82,8 +83,8 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   overflow: hidden;
 }
 .intro-initial { display: inline-block; }
-.intro-row.c .intro-initial { color: var(--accent-blue); }
-.intro-row.a .intro-initial { color: #FC7233; }
+/* Creative reads entirely in blue; the rest of the lockup stays white */
+.intro-row.c { color: var(--accent-blue); }
 
 /* the remaining letters of each word expand out from behind the initial,
    so the lockup starts as a compact, centered "SCA" */
@@ -134,7 +135,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   height: 3px; width: 0%;
   background: var(--accent-blue);
 }
-.intro.go .intro-bar { animation: introBar 1.85s cubic-bezier(.5,0,.2,1) forwards; }
+.intro.go .intro-bar { animation: introBar 3.2s cubic-bezier(.5,0,.2,1) forwards; }
 @keyframes introBar { to { width: 100%; } }
 
 /* curtain lift */
