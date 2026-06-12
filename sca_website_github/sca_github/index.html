@@ -37,47 +37,60 @@
 <link rel="stylesheet" href="assets/sca-dark.css">
 <link rel="stylesheet" href="assets/sca-footer.css">
 <style id="golden-ratio-index">
-  /* GOLDEN RATIO TYPE — each subtext font-size = its heading font-size ÷ 1.618 (φ).
-     Scoped to the index page only. */
-
-  /* Hero — heading .hero-h1 clamp(34px, min(6.4vw,8vh), 84px) */
-  .hero-sub p {
-    font-size: clamp(21px, min(3.96vw, 4.94vh), 51.9px);
-    line-height: 1.28;
-    max-width: 42ch;
+  /* TYPE SYSTEM (index only).
+     Headings — Hero (.hero-h1), H1, H2 (.section-title), H3 — each keep their own
+     distinct display size. BODY is one FIXED, uniform size everywhere on the page,
+     so reading copy stays legible while scrolling. The φ (1.618) ratio governs only
+     the H2 ↔ body pair: H2 lead size ≈ body × φ. */
+  :root {
+    --body: 19px;          /* fixed, uniform body copy */
+    --body-lh: 1.55;
+    --body-lead: 30.75px;  /* = 19 × 1.618 (φ) — H2-paired lead lines: hero sub & CTA */
   }
 
-  /* Section heads (Services, Distribution, Selected work, Method) — .section-title clamp(38px,5.8vw,84px) */
-  .section-sub {
-    font-size: clamp(23.5px, 3.58vw, 51.9px);
-    line-height: 1.3;
-    max-width: 46ch;
+  /* Uniform body copy across every section */
+  .section-sub,
+  .lab-card .lab-desc,
+  .process-step p,
+  .proc-card p,
+  .about-copy-body p {
+    font-size: var(--body);
+    line-height: var(--body-lh);
   }
-  .camera-step .section-sub { max-width: 30rem; }
-
-  /* Service / lab cards — .lab-card h3 clamp(22px,1.9vw,30px) */
-  .lab-card .lab-desc {
-    font-size: clamp(13.6px, 1.17vw, 18.5px);
-    line-height: 1.4;
+  .section-sub { max-width: 52ch; }
+  .camera-step .section-sub {
+    max-width: 34rem;
+    font-size: clamp(22px, 1.8vw, 28px);
+    line-height: 1.45;
   }
+  .lab-card .lab-desc { max-width: 40ch; }
 
-  /* Project cards — .project-card h3 clamp(30px,4vw,56px) */
+  /* Project cards keep their own larger display body */
   .project-meta p {
     font-size: clamp(18.5px, 2.47vw, 34.6px);
     line-height: 1.3;
   }
 
-  /* Method cards — .process-step h4 24px */
-  .process-step p, .proc-card p {
-    font-size: 14.83px;
-    line-height: 1.5;
+  /* Services (#lab) — larger intro body + bigger top eyebrow line */
+  #lab .section-sub {
+    font-size: clamp(22px, 1.8vw, 28px);
+    line-height: 1.45;
+  }
+  #lab .section-label {
+    font-size: clamp(15px, 1.15vw, 18px);
+    letter-spacing: .12em;
   }
 
-  /* CTA — .cta-h clamp(48px,9vw,140px) */
+  /* H2-paired lead lines (hero subhead + CTA statement) — the only φ-derived body */
+  .hero-sub p {
+    font-size: var(--body-lead);
+    line-height: 1.32;
+    max-width: 46ch;
+  }
   .cta-row p {
-    font-size: clamp(29.7px, 5.56vw, 86.5px);
-    line-height: 1.16;
-    max-width: 22ch;
+    font-size: var(--body-lead);
+    line-height: 1.3;
+    max-width: 34ch;
   }
 </style>
 </head>
@@ -288,7 +301,7 @@
       <div class="camera-scene" data-camera-scene>
         <div class="cam-card">
           <div class="cam-glow" aria-hidden="true"></div>
-          <img src="images/ed-camera-collage.png" alt="SCA studio camera collage" loading="lazy">
+          <video src="images/camera-concept.mp4" poster="images/ed-camera-collage.png" autoplay loop muted playsinline preload="auto" data-camera-video aria-label="SCA studio camera concept motion"></video>
           <span class="cam-badge"><span class="cam-badge-live">LIVE</span><strong>SCA</strong></span>
           <span class="cam-spec">CANON AT-1 / RETRO / Studio rig</span>
         </div>
@@ -421,7 +434,7 @@
       <div>
         <p class="pull">We combine content, creators, campaigns and code so attention has somewhere to go.</p>
       </div>
-      <div style="color: var(--text-muted); font-size: clamp(21px, 2.6vw, 38.3px); line-height: 1.3;">
+      <div class="about-copy-body" style="color: var(--text-muted);">
         <p style="margin-bottom: 18px;">SeeTusk Creative Agency is a Pune-based creative distribution studio. We work with founders, CMOs and brand teams that need sharper storytelling, faster shipping, stronger campaign systems and digital surfaces that do not feel like afterthoughts.</p>
         <p style="margin-bottom: 18px;">The studio is small by design. Strategy sits close to production. Designers see the campaign data. Editors understand the offer. Developers know what the launch is supposed to do. That proximity is the point.</p>
         <p>We are not here to decorate a calendar. We build the engine that helps a brand show up clearly, repeatedly and memorably across the places people actually pay attention.</p>

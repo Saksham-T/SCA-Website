@@ -497,7 +497,8 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   box-shadow: 0 60px 130px rgba(21,21,21,.4), inset 0 1px 0 rgba(255,255,255,.06);
   transform-style: preserve-3d;
 }
-.cam-card img {
+.cam-card img,
+.cam-card video {
   position: absolute;
   inset: 0;
   width: 100%;

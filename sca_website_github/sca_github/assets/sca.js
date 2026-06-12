@@ -557,6 +557,12 @@
     const scene = cameraStory.querySelector('[data-camera-scene]');
     const steps = [...cameraStory.querySelectorAll('[data-camera-step]')];
     const progressBar = cameraStory.querySelector('.camera-progress span');
+    const camVideo = cameraStory.querySelector('[data-camera-video]');
+    if (camVideo) {
+      const playCam = () => { const p = camVideo.play(); if (p) p.catch(() => {}); };
+      if (camVideo.readyState >= 2) playCam();
+      else camVideo.addEventListener('loadeddata', playCam, { once: true });
+    }
 
     const updateCamera = () => {
       const rect = cameraStory.getBoundingClientRect();
