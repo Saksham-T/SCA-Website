@@ -1,0 +1,423 @@
+/* Mobile/tablet layout parity overrides.
+   Keep small screens visually aligned with the laptop composition while
+   preserving readable sizes and preventing horizontal overflow. */
+
+@media (max-width: 1080px) {
+  :root {
+    --gutter: clamp(18px, 4vw, 34px);
+  }
+
+  .shell,
+  .nav-inner,
+  .media-strip,
+  .sfoot-inner,
+  .lb-inner {
+    width: min(100%, var(--container));
+  }
+
+  .section-title,
+  .phero h1,
+  .hero-h1,
+  .khero-h1 {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .service-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .82fr);
+    gap: clamp(22px, 4vw, 44px);
+    padding: clamp(24px, 4vw, 42px);
+  }
+
+  .service-visual {
+    min-height: clamp(300px, 42vw, 430px);
+  }
+
+  [data-stacking-cards] .project-card {
+    gap: clamp(24px, 4vw, 40px);
+    padding: clamp(26px, 4vw, 36px);
+  }
+
+  [data-stacking-cards] .project-media {
+    width: min(38vw, 320px);
+    height: clamp(190px, 26vw, 230px);
+  }
+}
+
+@media (min-width: 721px) and (max-width: 960px) {
+  .hero-sub {
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .hero-sub .cta-col {
+    justify-content: flex-end;
+  }
+
+  .section-head,
+  .manifesto-grid,
+  .phero-sub,
+  .cta-row {
+    grid-template-columns: minmax(56px, 88px) minmax(0, 1fr);
+  }
+
+  .service-panel {
+    position: sticky;
+    top: 86px !important;
+    min-height: 68vh;
+    grid-template-columns: minmax(0, .95fr) minmax(280px, .78fr);
+  }
+
+  .process-grid,
+  .verticals,
+  .lab-grid,
+  .stack-grid,
+  .stats,
+  .stats-strip,
+  .team-grid,
+  .principles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-strip,
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-item:first-child {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  [data-stacking-cards] .project-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  [data-stacking-cards] .project-media {
+    order: 2;
+    width: min(34vw, 300px);
+  }
+
+  [data-stacking-cards] .project-meta {
+    order: 1;
+  }
+
+  .footer-news,
+  .sfoot-news,
+  .case-rail,
+  .client-work,
+  .lb-top,
+  .lb-stage,
+  .pv-body {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, .9fr);
+  }
+
+  .footer-grid,
+  .sfoot-grid {
+    grid-template-columns: 1.3fr 1fr 1fr;
+  }
+
+  .footer-brand,
+  .sfoot-brand {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px var(--gutter);
+  }
+  .nav-cta {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .nav {
+    position: sticky;
+  }
+
+  .nav-inner {
+    min-height: 60px;
+  }
+
+  .brand {
+    max-width: calc(100vw - 92px);
+    padding-inline: 12px;
+  }
+
+  .brand span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero {
+    padding: clamp(36px, 8svh, 58px) 0 clamp(34px, 7svh, 54px);
+  }
+
+  .hero-meta,
+  .khero-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 10px 16px;
+  }
+
+  .hero-meta > *,
+  .khero-top > * {
+    min-width: 0;
+  }
+
+  .hero-h1 {
+    font-size: clamp(28px, 8.8vw, 48px);
+    line-height: .94;
+    letter-spacing: 0;
+  }
+
+  .hero-line {
+    white-space: normal;
+  }
+
+  .hero .reveal {
+    margin-right: .1em;
+    padding-right: .03em;
+  }
+
+  .hero-sub {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 12px 16px;
+    padding-top: 22px;
+  }
+
+  .hero-sub .num {
+    padding-top: 6px;
+  }
+
+  .hero-sub p {
+    font-size: clamp(18px, 5.1vw, 22px);
+    line-height: 1.42;
+    max-width: none;
+  }
+
+  .hero-sub .cta-col {
+    grid-column: 2;
+    justify-content: flex-start;
+  }
+
+  .khero {
+    min-height: auto;
+    padding: clamp(42px, 11vw, 70px) 0;
+    align-items: flex-start;
+  }
+
+  .khero-h1 {
+    font-size: clamp(38px, 12vw, 62px);
+    line-height: .9;
+    letter-spacing: 0;
+  }
+
+  .khero-foot {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 14px 16px;
+    align-items: start;
+  }
+
+  .khero-lead {
+    grid-column: 1 / -1;
+    font-size: clamp(18px, 5vw, 22px);
+  }
+
+  .khero-actions {
+    grid-column: 1 / -1;
+  }
+
+  .section {
+    padding: clamp(64px, 16vw, 96px) 0;
+  }
+
+  .section-head,
+  .manifesto-grid,
+  .phero-sub,
+  .cta-row {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .section-title,
+  .phero h1 {
+    font-size: clamp(38px, 12vw, 64px);
+    line-height: .94;
+    max-width: 12ch;
+  }
+
+  .section-sub,
+  .phero-sub p,
+  .manifesto-item p,
+  .vert-body,
+  .process-step p,
+  .proc-card p {
+    font-size: clamp(18px, 5vw, 21px);
+    line-height: 1.45;
+  }
+
+  .service-panel {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: 22px;
+  }
+
+  .service-panel h3 {
+    font-size: clamp(34px, 11vw, 54px);
+  }
+
+  .service-panel p {
+    font-size: clamp(18px, 5vw, 22px);
+  }
+
+  .service-visual {
+    min-height: clamp(250px, 72vw, 360px);
+  }
+
+  [data-stacking-cards] {
+    gap: 24px;
+    padding-bottom: 34px;
+  }
+
+  [data-stacking-cards] .project-card {
+    flex-direction: column;
+    position: relative;
+    top: auto !important;
+    padding: 20px;
+    gap: 18px;
+    border-radius: var(--radius);
+  }
+
+  [data-stacking-cards] .project-media {
+    order: 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius);
+  }
+
+  [data-stacking-cards] .project-meta {
+    order: 2;
+  }
+
+  .project-card h3 {
+    font-size: clamp(30px, 9vw, 44px);
+  }
+
+  .lab-grid,
+  .stats,
+  .stats-strip,
+  .process-grid,
+  .verticals,
+  .team-grid,
+  .principles-grid,
+  .media-strip,
+  .stack-grid,
+  .pm-grid,
+  .case-rail,
+  .client-work,
+  .lb-top,
+  .lb-stage,
+  .pv-body,
+  .two-col,
+  .form-grid,
+  .choice-grid,
+  .footer-news,
+  .sfoot-news {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-grid,
+  .sfoot-grid,
+  .ig-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .media-strip .plate,
+  .gallery-item,
+  .gallery-item:first-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .lab-card {
+    min-height: 340px;
+  }
+
+  .footer-brand,
+  .sfoot-brand {
+    grid-column: 1 / -1;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding-inline: 16px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-meta,
+  .khero-top,
+  .section-head,
+  .manifesto-grid,
+  .phero-sub,
+  .cta-row,
+  .hero-sub {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-sub .cta-col {
+    grid-column: 1;
+  }
+
+  .hero-h1 {
+    font-size: clamp(26px, 8.1vw, 34px);
+  }
+
+  .hero-line {
+    white-space: normal;
+  }
+
+  .section-title,
+  .phero h1,
+  .khero-h1 {
+    max-width: none;
+  }
+
+  .lab-grid,
+  .footer-grid,
+  .sfoot-grid,
+  .stats,
+  .stats-strip,
+  .ig-gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stat,
+  .sfoot-col,
+  .footer-col {
+    border-right: 0;
+  }
+}

@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Influencer campaigns that actually convert &mdash; SeeTusk / SCA</title>
+  <meta name="description" content="Creator campaigns with tracked ROI. Vetted roster, live dashboards, and guaranteed results. Launch raids, ongoing drips, ambassador partnerships—performance marketing for Indian brands." />
+
+  <!-- Vendor libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Shared stylesheets last to override vendor styles -->
+  <link rel="stylesheet" href="assets/sca.css" />
+  <link rel="stylesheet" href="assets/sca-footer.css" />
+  <style>
+    :root {
+      --accent: var(--accent-blue); /* unified shared blue */
+      --dark: #0a0a0a;
+      --mid: #1a1a1a;
+      --text-muted: rgba(255,255,255,0.6);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      background: var(--dark);
+      color: #fff;
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO SLIDER ── */
+    #hero {
+      position: relative;
+      height: 100vh; min-height: 600px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 1s ease;
+      pointer-events: none;
+    }
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    .slide-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      transition: transform 8s ease, opacity 0.4s ease;
+    }
+    .slide.active .slide-bg { transform: scale(1); }
+
+    /* Pop in & Settle animations for Slide BG */
+    .slide-bg.popping {
+      transform: scale(0.9) !important;
+      opacity: 0 !important;
+      transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease !important;
+    }
+    .slide-bg.settling {
+      transform: scale(1) !important;
+      opacity: 1 !important;
+      transition: transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.4s ease !important;
+    }
+
+    .slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.5) 45%,
+        rgba(0,0,0,0.15) 100%
+      );
+    }
+
+    .slide-content {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      padding: 0 48px; 
+      padding-top: 80px;
+      padding-bottom: 120px; /* Generous bottom spacing to prevent overlapping elements */
+    }
+
+    .slide-left {
+      flex: 0 0 450px; max-width: 450px;
+      transform: translateY(30px); opacity: 0;
+      transition: transform 0.8s ease 0.3s, opacity 0.8s ease 0.3s;
+      background: rgba(10, 10, 12, 0.12); /* 88% transparent glassmorphism background */
+      backdrop-filter: blur(1px) saturate(110%); 
+      -webkit-backdrop-filter: blur(1px) saturate(110%); 
+      border: 1px solid rgba(255, 255, 255, 0.18); /* Crisper highlight border */
+      border-radius: 20px;
+      padding: 40px 36px;
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.8), /* Stronger drop shadow for 3D depth */
+        0 15px 30px rgba(0, 0, 0, 0.55), /* Secondary ambient shadow */
+        inset 0 1.5px 0px rgba(255, 255, 255, 0.35), /* Bevel light highlight on the top edge */
+        inset 0 -1.5px 2px rgba(0, 0, 0, 0.6); /* Bevel shadow on the bottom edge to give volume */
+    }
+    .slide.active .slide-left { transform: translateY(0); opacity: 1; }
+
+    .slide-label {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .slide-label::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--accent);
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 96px); line-height: 0.92;
+      letter-spacing: 0.02em; color: #fff;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65));
+    }
+    .glass-text {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.25);
+    }
+    .tint-text {
+      background: linear-gradient(180deg, rgba(140, 175, 255, 0.95) 0%, rgba(46, 98, 255, 0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.5px rgba(46, 98, 255, 0.35);
+    }
+
+    .slide-desc {
+      font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.65);
+      font-weight: 300; margin-bottom: 32px; max-width: 340px;
+    }
+
+    .slide-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #fff; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 12px 24px; border-radius: 2px; cursor: pointer;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .slide-btn::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+    .slide-btn:hover { background: #fff; color: #000; border-color: #fff; }
+    .slide-btn:hover::before { background: #000; }
+
+    /* Card rail */
+    .slide-right {
+      flex: 1;
+      display: flex; align-items: flex-end;
+      padding-bottom: 20px; /* Offset spacing to align with container padding */
+      padding-left: 60px;
+      gap: 16px;
+      overflow: hidden;
+      transform: translateX(60px); opacity: 0;
+      transition: transform 0.9s ease 0.5s, opacity 0.9s ease 0.5s;
+    }
+    .slide.active .slide-right { transform: translateX(0); opacity: 1; }
+
+    .dest-card {
+      flex: 0 0 200px; height: 280px;
+      position: relative; border-radius: 10px; overflow: hidden;
+      cursor: pointer; transition: transform 0.3s, flex-basis 0.3s;
+      transform: rotate(-1deg);
+    }
+    .dest-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      pointer-events: none;
+      transition: border-color 0.3s;
+      z-index: 5;
+    }
+    .dest-card:hover::after {
+      border-color: rgba(255, 255, 255, 0.35); /* Subtle border on hover */
+    }
+    .dest-card.selected::after {
+      border-color: var(--accent); /* Selected accent border */
+    }
+    .dest-card:nth-child(2n) { transform: rotate(1deg) translateY(-10px); }
+    .dest-card:hover { flex-basis: 240px; transform: rotate(0deg) scale(1.03); }
+  
+    /* Active/Selected card state */
+    .dest-card.selected {
+      transform: scale(1.05) rotate(0deg);
+      flex-basis: 240px;
+    }
+
+    .dest-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.5s;
+    }
+    .dest-card:hover .dest-card-bg { transform: scale(1.08); }
+    .dest-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.1) 60%);
+    }
+    .dest-card-info {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px;
+    }
+    .dest-card-sub {
+      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 4px;
+    }
+    .dest-card-title {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700; line-height: 1.1; color: #fff;
+      text-transform: uppercase;
+    }
+
+    /* Slider controls */
+    .slider-controls {
+      position: absolute; bottom: 36px; left: 48px;
+      display: flex; align-items: center; gap: 24px; z-index: 10;
+    }
+    .slider-arrow {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent; color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; transition: all 0.2s;
+    }
+    .slider-arrow:hover { background: #fff; color: #000; border-color: #fff; }
+
+    .slider-progress {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .progress-dot {
+      width: 24px; height: 2px; background: rgba(255,255,255,0.25);
+      border-radius: 2px; cursor: pointer; transition: all 0.3s;
+    }
+    .progress-dot.active { background: var(--accent); width: 48px; }
+
+    .slide-number {
+      position: absolute; bottom: 40px; right: 48px;
+      font-family: var(--font-display);
+      font-size: 72px; color: rgba(255,255,255,0.06);
+      line-height: 1; user-select: none;
+    }
+
+    /* ── SECTION DIVIDER LABEL ── */
+    .section-label {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--accent);
+    }
+
+    /* ── PROBLEM SECTION ── */
+    #problem {
+      background: var(--dark);
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    #problem::before {
+      content: '01';
+      position: absolute; right: 48px; top: 60px;
+      font-family: var(--font-display);
+      font-size: 200px; color: rgba(255,255,255,0.025);
+      line-height: 1; pointer-events: none;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .problem-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 1; letter-spacing: 0.02em; color: #fff;
+      margin-bottom: 28px;
+    }
+    .problem-left p {
+      font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.6);
+      font-weight: 300; margin-bottom: 16px; max-width: 440px;
+    }
+
+    .problem-items { display: flex; flex-direction: column; gap: 0; }
+    .problem-item {
+      display: grid; grid-template-columns: 40px 1fr;
+      gap: 20px; align-items: start;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .problem-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .problem-arrow {
+      font-size: 18px; color: var(--accent); padding-top: 2px;
+    }
+    .problem-item h4 {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #fff; margin-bottom: 6px;
+    }
+    .problem-item p {
+      font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.55);
+      font-weight: 300;
+    }
+
+    /* ── CAMPAIGN TYPES ── */
+    #campaigns {
+      position: relative;
+      background: var(--mid);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .campaign-container {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .campaign-left {
+      flex: 0 0 50%;
+      position: sticky; top: 0; height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 48px 80px 0;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .campaign-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 4.5vw, 64px); line-height: 1;
+      color: #fff; margin-bottom: 24px;
+    }
+    .campaign-left p {
+      font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.55);
+      max-width: 380px; margin-bottom: 0;
+    }
+
+    .campaign-right {
+      flex: 0 0 50%;
+        display: flex; flex-direction: column; gap: 24px;
+    }
+
+    .archetype-card {
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      position: relative;
+      cursor: default;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .archetype-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .archetype-num {
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .archetype-card h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.3vw, 32px); letter-spacing: 0.02em; color: #fff;
+      margin-bottom: 12px; text-transform: uppercase;
+      font-weight: 800;
+    }
+    .archetype-card p {
+      font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.65);
+      margin-bottom: 20px; max-width: 400px;
+    }
+    .archetype-meta {
+      display: flex; gap: 12px;
+      margin-top: auto;
+    }
+    .archetype-tag {
+      font-family: var(--font-mono);
+      font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12); padding: 6px 14px; border-radius: 6px;
+    }
+
+    /* ── ROSTER SECTION ── */
+    #roster {
+      background: var(--dark);
+      padding: 120px 48px;
+      position: relative; overflow: hidden;
+    }
+    #roster::before {
+      content: '03';
+      position: absolute; right: 48px; top: 60px;
+      font-family: var(--font-display);
+      font-size: 200px; color: rgba(255,255,255,0.025);
+      line-height: 1; pointer-events: none;
+    }
+
+    .roster-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .roster-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start; margin-bottom: 72px;
+    }
+    .roster-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 68px); line-height: 1; color: #fff;
+    }
+    .roster-header p {
+      font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.55);
+      padding-top: 20px;
+    }
+
+    /* Grid layout for Roster Items to prevent CLS and wrap on mobile */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 16px;
+      margin-bottom: 72px;
+    }
+    .roster-item {
+      margin: 0;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111;
+      aspect-ratio: 260 / 340;
+    }
+    .image-container {
+      width: 100%;
+      height: 100%;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .roster-item:hover .image-container img {
+      transform: scale(1.05);
+    }
+    .strip-img-label {
+      position: absolute; bottom: 12px; right: 12px;
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.65);
+      padding: 4px 8px; border-radius: 4px; font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+    .strip-img-num {
+      position: absolute; top: 12px; left: 12px;
+      font-family: var(--font-display); font-size: 13px;
+      color: rgba(255,255,255,0.5); letter-spacing: 0.05em;
+    }
+
+    /* Tier grid */
+    .tier-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px; background: transparent;
+    }
+    .tier-card {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 32px 28px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      position: relative; overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .tier-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .tier-label {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .tier-card h3 {
+      font-family: var(--font-display); font-size: 38px;
+      color: #fff; line-height: 1.1; margin-bottom: 12px;
+      font-weight: 800;
+    }
+    .tier-card p {
+      font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .tier-badge {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.12);
+      display: inline-block; padding: 4px 10px; border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    /* ── NEWSLETTER SECTION ── */
+    #newsletter {
+      background: var(--mid);
+      padding: 80px 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .newsletter-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px;
+    }
+    #newsletter h3 {
+      font-family: var(--font-display); font-size: 40px; color: #fff;
+      margin-bottom: 8px; letter-spacing: 0.02em;
+    }
+    #newsletter p {
+      font-size: 13px; color: rgba(255,255,255,0.5); max-width: 460px; line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .newsletter-input-row {
+      display: flex; gap: 0; flex: 0 0 360px;
+      margin-bottom: 0;
+    }
+    .newsletter-input-row input {
+      flex: 1; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15); border-right: none;
+      color: #fff; padding: 12px 16px; font-size: 13px; border-radius: 2px 0 0 2px;
+      outline: none; font-family: var(--font-body);
+    }
+    .newsletter-input-row input::placeholder { color: rgba(255,255,255,0.35); }
+    .newsletter-input-row button {
+      background: var(--accent); border: 1px solid var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 12px 20px; border-radius: 0 2px 2px 0;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .newsletter-input-row button:hover { background: #fff; border-color: #fff; color: #000; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #050505;
+      padding: 72px 48px 40px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 64px;
+    }
+    .footer-brand img { height: 36px; opacity: 0.7; margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 12px; line-height: 1.8; color: rgba(255,255,255,0.4);
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block; font-size: 13px; color: rgba(255,255,255,0.6);
+      text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px;
+    }
+    .footer-bottom p {
+      font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.05em;
+      margin-bottom: 0;
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-cue {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* Scroll reveal animations */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .reveal-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 992px) {
+      .slide-content { 
+        padding: 0 24px; 
+        padding-top: 80px; 
+        flex-direction: column; 
+        justify-content: flex-end; 
+        padding-bottom: 140px; /* Leave proper space for bottom controls on mobile */
+      }
+      .slide-left { 
+        flex: none; 
+        max-width: 100%; 
+        margin-bottom: 32px; 
+        padding: 24px 20px; 
+        border-radius: 16px;
+      }
+      .slide-right { padding-left: 0; padding-bottom: 0; flex: none; width: 100%; }
+      .dest-card { flex: 0 0 120px; height: 170px; }
+      #problem, #roster { padding: 72px 24px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+      .campaign-container { flex-direction: column; }
+      .campaign-left { position: static; height: auto; padding: 64px 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .campaign-right { padding: 0 0 64px; }
+      .roster-header { grid-template-columns: 1fr; gap: 24px; }
+      .roster-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 48px;
+      }
+      .tier-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      #newsletter { padding: 64px 24px; }
+      .newsletter-inner { flex-direction: column; align-items: flex-start; }
+      .newsletter-input-row { flex: none; width: 100%; }
+      footer { padding: 64px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .slider-controls, .slide-number { left: 24px; right: 24px; }
+    }
+
+    @media (max-width: 576px) {
+      .roster-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .tier-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    /* ── DYNAMIC HERO SLIDE LAYOUT SHIFTS (Desktop only) ── */
+    @media (min-width: 993px) {
+      /* Slide 2: Flipped Split (Cards Left, Text Right) */
+      .slide[data-index="1"] .slide-content {
+        flex-direction: row-reverse;
+      }
+      .slide[data-index="1"] .slide-right {
+        padding-left: 0;
+        padding-right: 60px;
+        transform: translateX(-60px);
+      }
+      .slide[data-index="1"].active .slide-right {
+        transform: translateX(0);
+      }
+
+      /* Slide 3: Centered Column (Text Centered at Top, Cards Centered below) */
+      .slide[data-index="2"] .slide-content {
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 90px !important;
+        padding-bottom: 110px !important;
+      }
+      .slide[data-index="2"] .slide-left {
+        flex: none !important;
+        max-width: 800px !important;
+        margin-bottom: 32px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+      .slide[data-index="2"] .slide-label {
+        justify-content: center !important;
+        margin-bottom: 12px !important;
+      }
+      .slide[data-index="2"] .slide-title {
+        font-size: clamp(38px, 4.2vw, 56px) !important;
+        line-height: 1.1 !important;
+        margin-bottom: 16px !important;
+      }
+      .slide[data-index="2"] .slide-title br {
+        display: none !important;
+      }
+      .slide[data-index="2"] .slide-desc {
+        max-width: 520px !important;
+        font-size: 13.5px !important;
+        margin-bottom: 24px !important;
+      }
+      .slide[data-index="2"] .slide-right {
+        flex: none !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding-left: 0 !important;
+        width: 100% !important;
+        transform: translateY(30px) !important;
+      }
+      .slide[data-index="2"].active .slide-right {
+        transform: translateY(0) !important;
+      }
+    }
+
+    /* ── NAVBAR BOOTSTRAP OVERRIDES ── */
+    .nav {
+      display: block !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .nav-inner {
+      display: grid !important;
+    }
+    .nav-links {
+      display: flex !important;
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none !important;
+      }
+    }
+    .btn {
+      border-radius: 999px !important;
+    }
+
+    /* ── SYSTEM ALIGNMENT — match Web & Tech type system ── */
+    .slide-title, .slide-number, .problem-left h2, .campaign-left h2,
+    .archetype-card h3, .roster-header h2, .tier-card h3, #newsletter h3,
+    .dest-card-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .slide-title { font-size: clamp(40px, 5vw, 72px); line-height: 0.95; }
+    .slide-label, .section-label, .archetype-tag, .strip-img-label,
+    .strip-img-num, .tier-label {
+      font-family: var(--font-mono);
+    }
+    .slide-desc, .problem-left p, .campaign-left p, .tier-card p,
+    .archetype-card p, #newsletter p {
+      font-family: var(--font-body);
+    }
+    .slide-btn, .newsletter-input-row button {
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
+      <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
+      <span>SeeTusk / SCA</span>
+    </a>
+    <div class="nav-links">
+      <a href="content.html" data-scramble>Content</a>
+      <a href="influencer.html" class="active" aria-current="page" data-scramble>Influencer</a>
+      <a href="web.html" data-scramble>Web &amp; Tech</a>
+      <a href="about.html" data-scramble>About</a>
+    </div>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<section id="hero">
+
+  <!-- Slide 1: The Problem -->
+  <div class="slide active" data-index="0">
+    <div class="slide-bg" style="background-image: url('images/g-white-studio.jpeg')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-left">
+        <div class="slide-label">01 / The problem</div>
+        <h1 class="slide-title"><span class="glass-text">Why most<br>influencer</span><br><span class="tint-text">spend is<br>wasted.</span></h1>
+        <p class="slide-desc">Brands pay creators. Creators post. Nothing converts. Everyone moves on. The issue isn't the creators — it's the machine around them.</p>
+        <a href="#problem" class="slide-btn">See the fix</a>
+      </div>
+      <div class="slide-right" role="tablist" aria-label="Method tabs">
+        <div class="dest-card" data-info-key="brief-fit-first" role="tab" tabindex="0" aria-selected="false" aria-label="Brief and Fit First method">
+          <div class="dest-card-bg" style="background-image: url('images/g-director-set.png')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Our method</div>
+            <div class="dest-card-title">Brief &amp; Fit First</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="tracked-links" role="tab" tabindex="0" aria-selected="false" aria-label="Tracked Links method">
+          <div class="dest-card-bg" style="background-image: url('images/g-interview-set.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Our method</div>
+            <div class="dest-card-title">Tracked Links</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="live-dashboard" role="tab" tabindex="0" aria-selected="false" aria-label="Live Dashboard method">
+          <div class="dest-card-bg" style="background-image: url('images/g-studio-redlight.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Our method</div>
+            <div class="dest-card-title">Live Dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">01</div>
+  </div>
+
+  <!-- Slide 2: Campaign That Converts -->
+  <div class="slide" data-index="1">
+    <div class="slide-bg" style="background-image: url('images/g-director-set.png')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-left">
+        <div class="slide-label">Vertical 02 / Rent distribution</div>
+        <h1 class="slide-title"><span class="glass-text">Creator campaigns</span><br><span class="tint-text">that actually<br>convert.</span></h1>
+        <p class="slide-desc">We run creator campaigns the way a performance marketer would run paid media. Tracked. Contracted. Accountable.</p>
+        <a href="#campaigns" class="slide-btn">How we deploy</a>
+      </div>
+      <div class="slide-right" role="tablist" aria-label="Campaign types">
+        <div class="dest-card" data-info-key="launch-raid" role="tab" tabindex="0" aria-selected="false" aria-label="Launch Raid campaign">
+          <div class="dest-card-bg" style="background-image: url('images/g-interview-set.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Campaign type</div>
+            <div class="dest-card-title">Launch Raid</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="always-on-drip" role="tab" tabindex="0" aria-selected="false" aria-label="Always On Drip campaign">
+          <div class="dest-card-bg" style="background-image: url('images/g-product-setup.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Campaign type</div>
+            <div class="dest-card-title">Always-On Drip</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="ambassador-tier" role="tab" tabindex="0" aria-selected="false" aria-label="Ambassador Tier campaign">
+          <div class="dest-card-bg" style="background-image: url('images/g-firvt-launch.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Campaign type</div>
+            <div class="dest-card-title">Ambassador Tier</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="event-ugc-push" role="tab" tabindex="0" aria-selected="false" aria-label="Event and UGC Push campaign">
+          <div class="dest-card-bg" style="background-image: url('images/g-camera-operator.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Campaign type</div>
+            <div class="dest-card-title">Event &amp; UGC Push</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">02</div>
+  </div>
+
+  <!-- Slide 3: Roster -->
+  <div class="slide" data-index="2">
+    <div class="slide-bg" style="background-image: url('images/g-studio-redlight.jpeg')"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-left">
+        <div class="slide-label">03 / The roster</div>
+        <h1 class="slide-title"><span class="glass-text">A vetted roster,</span><br><span class="tint-text">matched to fit.</span></h1>
+        <p class="slide-desc">Nano to macro across Pune, Mumbai, Bengaluru and Delhi. Matched to fit — not follower count. Every creator has worked with us at least twice.</p>
+        <a href="#roster" class="slide-btn">See tiers</a>
+      </div>
+      <div class="slide-right" role="tablist" aria-label="Creator tiers">
+        <div class="dest-card" data-info-key="tier-nano" role="tab" tabindex="0" aria-selected="false" aria-label="Nano creator tier">
+          <div class="dest-card-bg" style="background-image: url('images/g-product-setup.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Tier / Nano</div>
+            <div class="dest-card-title">10k – 50k</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="tier-micro" role="tab" tabindex="0" aria-selected="false" aria-label="Micro creator tier">
+          <div class="dest-card-bg" style="background-image: url('images/g-firvt-launch.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Tier / Micro</div>
+            <div class="dest-card-title">50k – 200k</div>
+          </div>
+        </div>
+        <div class="dest-card" data-info-key="tier-macro" role="tab" tabindex="0" aria-selected="false" aria-label="Macro creator tier">
+          <div class="dest-card-bg" style="background-image: url('images/g-camera-operator.jpeg')"></div>
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="dest-card-sub">Tier / Macro</div>
+            <div class="dest-card-title">1M+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-number">03</div>
+  </div>
+
+  <!-- Slider Controls -->
+  <div class="slider-controls">
+    <button class="slider-arrow" id="prevBtn" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="slider-arrow" id="nextBtn" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="slider-progress" id="progressDots" role="tablist" aria-label="Slider progress indicator">
+      <div class="progress-dot active" data-idx="0" role="tab" tabindex="0" aria-selected="true" aria-label="Go to slide 1"></div>
+      <div class="progress-dot" data-idx="1" role="tab" tabindex="0" aria-selected="false" aria-label="Go to slide 2"></div>
+      <div class="progress-dot" data-idx="2" role="tab" tabindex="0" aria-selected="false" aria-label="Go to slide 3"></div>
+    </div>
+  </div>
+
+  <a href="#problem" class="scroll-cue" aria-label="Scroll down to problem section">
+    <span>Scroll ↓</span>
+  </a>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section id="problem">
+  <div class="problem-grid">
+    <div class="problem-left">
+      <div class="section-label">01 / The problem</div>
+      <h2>Brands pay creators.<br>Creators post.<br>Nothing converts.<br>Everyone moves on.</h2>
+      <p>The issue isn't the creators. It's the machine around them: mismatched briefs, zero tracking, vanity metrics, and hope-based budgeting.</p>
+      <p>We fix the machine. We run creator campaigns the way a performance marketer would run paid media.</p>
+    </div>
+    <div class="problem-items">
+      <div class="problem-item">
+        <div class="problem-arrow">→</div>
+        <div>
+          <h3>Brief &amp; fit before contract</h3>
+          <p>Every creator is briefed by a human, not a template. We say no more than we say yes.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-arrow">→</div>
+        <div>
+          <h3>Tracked links, codes and UTMs</h3>
+          <p>If it didn't happen in GA or Shopify, it didn't happen. We measure the path from impressions to orders.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-arrow">→</div>
+        <div>
+          <h3>Contracts you can enforce</h3>
+          <p>Legal paperwork that actually protects you. Usage rights, exclusivity, deliverable SLAs.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-arrow">→</div>
+        <div>
+          <h3>One report. Live dashboard.</h3>
+          <p>No end-of-month screenshots. A live link you can share with your board.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS SECTION -->
+<section id="campaigns">
+  <div class="campaign-container">
+    <div class="campaign-left">
+      <div class="section-label">02 / Campaign types</div>
+      <h2>Four campaign archetypes.<br>One system of<br>accountability.</h2>
+      <p>Launch raids, always-on drips, ambassador tiers and IRL activations — run like paid media. Every archetype comes with full tracking, legal paperwork, and a live dashboard.</p>
+    </div>
+    <div class="campaign-right">
+      <div class="archetype-card">
+        <div class="archetype-num">
+          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5L18.5 4.5 19.5 5.5l-14 11z"></path><path d="M12 5l9 9"></path><path d="M9 15l3 3"></path></svg>
+          Archetype 01
+        </div>
+        <h3>Launch Raid</h3>
+        <p>6–20 creators, 10-day window, one coordinated push. Used for product launches &amp; bursts.</p>
+        <div class="archetype-meta">
+          <span class="archetype-tag">10 days</span>
+          <span class="archetype-tag">₹5,00,000–₹18,00,000 <span style="font-size: 9px; opacity: 0.7;">(₹5–18 Lakh)</span></span>
+        </div>
+      </div>
+      <div class="archetype-card">
+        <div class="archetype-num">
+          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+          Archetype 02
+        </div>
+        <h3>Always-On Drip</h3>
+        <p>2–4 creators/month, ongoing. Builds brand recall and steady top-of-funnel traffic.</p>
+        <div class="archetype-meta">
+          <span class="archetype-tag">Monthly</span>
+          <span class="archetype-tag">₹3,00,000+ <span style="font-size: 9px; opacity: 0.7;">(₹3 Lakh+)</span></span>
+        </div>
+      </div>
+      <div class="archetype-card">
+        <div class="archetype-num">
+          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Archetype 03
+        </div>
+        <h3>Ambassador Tier</h3>
+        <p>Long-form deals with 3–5 creators. Usage rights, exclusivity, affiliate-style splits.</p>
+        <div class="archetype-meta">
+          <span class="archetype-tag">6–12 mo</span>
+          <span class="archetype-tag">Negotiated</span>
+        </div>
+      </div>
+      <div class="archetype-card">
+        <div class="archetype-num">
+          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Archetype 04
+        </div>
+        <h3>Event &amp; UGC Push</h3>
+        <p>Creator-led activations IRL. Store openings, pop-ups, tastings, launches.</p>
+        <div class="archetype-meta">
+          <span class="archetype-tag">Per event</span>
+          <span class="archetype-tag">₹4,00,000+ <span style="font-size: 9px; opacity: 0.7;">(₹4 Lakh+)</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROSTER SECTION -->
+<section id="roster">
+  <div class="roster-inner">
+    <div class="roster-header">
+      <div>
+        <div class="section-label">03 / Roster</div>
+        <h2>A vetted roster.<br>On retainer-adjacent<br>terms.</h2>
+      </div>
+      <p>Every creator on our roster has worked with us at least twice before we recommend them. No cold-calling someone's manager on a Friday. We match to fit, not to follower count.</p>
+    </div>
+
+    <!-- Roster Grid -->
+    <div class="roster-grid">
+      <figure class="roster-item strip-img" data-info-key="strip-set" tabindex="0" role="button" aria-label="Set category - professional filming setups">
+        <div class="image-container">
+          <img src="images/g-interview-set.webp" alt="Creator interview setup with studio lighting and high-definition cameras" width="260" height="340" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="strip-img-label">Set</figcaption>
+        <div class="strip-img-num">01</div>
+      </figure>
+      <figure class="roster-item strip-img" data-info-key="strip-product" tabindex="0" role="button" aria-label="Product category - prop setups and flatlays">
+        <div class="image-container">
+          <img src="images/g-product-setup.webp" alt="A styled product display with natural shadows and props" width="260" height="340" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="strip-img-label">Product</figcaption>
+        <div class="strip-img-num">02</div>
+      </figure>
+      <figure class="roster-item strip-img" data-info-key="strip-activation" tabindex="0" role="button" aria-label="Activation category - live events and launches">
+        <div class="image-container">
+          <picture>
+  <source srcset="images/g-firvt-launch-mobile.webp" media="(max-width: 768px)">
+  <img src="images/g-firvt-launch.webp" alt="Crowd gathered at a brand launch event with dynamic ambient lighting" width="260" height="340" loading="lazy" decoding="async" />
+</picture>
+        </div>
+        <figcaption class="strip-img-label">Activation</figcaption>
+        <div class="strip-img-num">03</div>
+      </figure>
+      <figure class="roster-item strip-img" data-info-key="strip-bts" tabindex="0" role="button" aria-label="BTS category - camera operators on set">
+        <div class="image-container">
+          <img src="images/g-camera-operator.webp" alt="Professional camera operator holding a cinema rig filming on set" width="260" height="340" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="strip-img-label">BTS</figcaption>
+        <div class="strip-img-num">04</div>
+      </figure>
+      <figure class="roster-item strip-img" data-info-key="strip-studio" tabindex="0" role="button" aria-label="Studio category - white cyclorama setup">
+        <div class="image-container">
+          <img src="images/g-white-studio.webp" alt="A clean white cyclorama stage inside a professional photo studio" width="260" height="340" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="strip-img-label">Studio</figcaption>
+        <div class="strip-img-num">05</div>
+      </figure>
+      <figure class="roster-item strip-img" data-info-key="strip-director" tabindex="0" role="button" aria-label="Director category - crew collaborating on set">
+        <div class="image-container">
+          <img src="images/g-director-set.webp" alt="Creative director reviewing framing on the production monitor with the camera crew" width="260" height="340" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="strip-img-label">Director</figcaption>
+        <div class="strip-img-num">06</div>
+      </figure>
+      <figure class="roster-item strip-img" data-info-key="strip-studio-color" tabindex="0" role="button" aria-label="Studio category - neon-colored soundstages">
+        <div class="image-container">
+          <picture>
+  <source srcset="images/g-studio-redlight-mobile.webp" media="(max-width: 768px)">
+  <img src="images/g-studio-redlight.webp" alt="Modular soundstage illuminated with dramatic neon red and blue accents" width="260" height="340" loading="lazy" decoding="async" />
+</picture>
+        </div>
+        <figcaption class="strip-img-label">Studio</figcaption>
+        <div class="strip-img-num">07</div>
+      </figure>
+    </div>
+
+    <!-- Tier grid -->
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-label">Tier / Nano</div>
+        <h3>10k–50k</h3>
+        <p>Hyperlocal. Pune &amp; Mumbai neighbourhood creators. Best for F&amp;B, real estate.</p>
+        <span class="tier-badge">Hyperlocal tier</span>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Tier / Micro</div>
+        <h3>50k–200k</h3>
+        <p>Category specialists. Beauty, fitness, food, tech. High engagement &amp; trust.</p>
+        <span class="tier-badge">Category tier</span>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Tier / Mid</div>
+        <h3>200k–1M</h3>
+        <p>National reach. For brand recall pushes and product-launch raids.</p>
+        <span class="tier-badge">National tier</span>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Tier / Macro</div>
+        <h3>1M+</h3>
+        <p>Select talent we co-produce with. Booked through direct relationships only.</p>
+        <span class="tier-badge">Select talent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="sfoot-shell">
+    <div class="sfoot-news">
+      <div class="sfoot-news-copy">
+        <h4>Read what we ship.</h4>
+        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
+      </div>
+      <form class="sfoot-form" onsubmit="return false;">
+        <input type="email" name="email" placeholder="you@company.com" required>
+        <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
+      </form>
+    </div>
+    <div class="sfoot-grid">
+      <div class="sfoot-brand">
+        <div class="sfoot-brand-top">
+          <img src="images/sca-logo-mark.webp" alt="SCA mark">
+          <span>SeeTusk / SCA</span>
+        </div>
+        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <div class="sfoot-socials">
+          <a href="https://www.youtube.com/@seetuskcreativeagency" title="YouTube" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
+          <a href="https://x.com/seetusk" title="X / Twitter" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
+          <a href="https://www.instagram.com/seetusk.agency" title="Instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
+          <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        </div>
+      </div>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
+    </div>
+    <div class="sfoot-bottom">
+      <span>&copy; 2026 SeeTusk Creative Agency / Pune, IND</span>
+      <span>seetusk.agency / Built in-house</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="assets/sca.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Hero defaults database
+  const slideDefaults = {
+    0: {
+      image: 'images/g-white-studio.jpeg',
+      label: '01 / The problem',
+      title: '<span class="glass-text">Why most<br>influencer</span><br><span class="tint-text">spend is<br>wasted.</span>',
+      desc: 'Brands pay creators. Creators post. Nothing converts. Everyone moves on. The issue isn\'t the creators — it\'s the machine around them.'
+    },
+    1: {
+      image: 'images/g-director-set.png',
+      label: 'Vertical 02 / Rent distribution',
+      title: '<span class="glass-text">Creator campaigns</span><br><span class="tint-text">that actually<br>convert.</span>',
+      desc: 'We run creator campaigns the way a performance marketer would run paid media. Tracked. Contracted. Accountable.'
+    },
+    2: {
+      image: 'images/g-studio-redlight.jpeg',
+      label: '03 / The roster',
+      title: '<span class="glass-text">A vetted roster,</span><br><span class="tint-text">matched to fit.</span>',
+      desc: 'Nano to macro across Pune, Mumbai, Bengaluru and Delhi. Matched to fit — not follower count. Every creator has worked with us at least twice.'
+    }
+  };
+
+  // Card details database
+  const cardInfo = {
+    // Slide 1 Cards
+    'brief-fit-first': {
+      slideIndex: 0,
+      image: 'images/g-director-set.png',
+      label: 'Our Method / Quality',
+      title: '<span class="glass-text">Brief &amp;</span> <span class="tint-text">Fit First</span>',
+      desc: 'No automated templates. Every creator is briefed by a human strategist who matches your brand goals with the creator\'s tone, ensuring natural integration and higher audience trust.'
+    },
+    'tracked-links': {
+      slideIndex: 0,
+      image: 'images/g-interview-set.jpeg',
+      label: 'Our Method / Tech',
+      title: '<span class="glass-text">100% Tracked</span> <span class="tint-text">Links</span>',
+      desc: 'Every link, discount code, and UTM parameter is integrated with Shopify and Google Analytics. We attribute every order and session directly back to the creator who drove it.'
+    },
+    'live-dashboard': {
+      slideIndex: 0,
+      image: 'images/g-studio-redlight.jpeg',
+      label: 'Our Method / Transparency',
+      title: '<span class="glass-text">Live Client</span> <span class="tint-text">Dashboard</span>',
+      desc: 'Ditch end-of-month PDFs. Access a real-time dashboard displaying active creator posts, link click-throughs, engagement, and actual cost-per-acquisition metrics 24/7.'
+    },
+
+    // Slide 2 Cards
+    'launch-raid': {
+      slideIndex: 1,
+      image: 'images/g-interview-set.jpeg',
+      label: 'Campaign Type / Raid',
+      title: '<span class="glass-text">Launch Raid</span> <span class="tint-text">Burst</span>',
+      desc: 'We coordinate 6–20 vetted creators to post within a strict 10-day window. This synchronized push floods target audience feeds, mimics organic trends, and maximizes brand search interest.'
+    },
+    'always-on-drip': {
+      slideIndex: 1,
+      image: 'images/g-product-setup.jpeg',
+      label: 'Campaign Type / Drip',
+      title: '<span class="glass-text">Always-On</span> <span class="tint-text">Drip</span>',
+      desc: 'Retain 2–4 key creators monthly on rolling terms. This embeds your product natively in ongoing routines, establishing consistent top-of-funnel traffic and building organic brand recall.'
+    },
+    'ambassador-tier': {
+      slideIndex: 1,
+      image: 'images/g-firvt-launch.jpeg',
+      label: 'Campaign Type / Ambassador',
+      title: '<span class="glass-text">Ambassador</span> <span class="tint-text">Tier</span>',
+      desc: 'Long-term partnership deals with 3–5 core creators. Includes exclusive rights, whitelisting for paid social ads, performance-based splits, and continuous custom content.'
+    },
+    'event-ugc-push': {
+      slideIndex: 1,
+      image: 'images/g-camera-operator.jpeg',
+      label: 'Campaign Type / Event',
+      title: '<span class="glass-text">IRL Event &amp;</span> <span class="tint-text">UGC Push</span>',
+      desc: 'Creator-led activations at physical pop-ups, retail openings, and tastings. We combine real-world foot traffic with high-fidelity vertical UGC captured and published live.'
+    },
+
+    // Slide 3 Cards
+    'tier-nano': {
+      slideIndex: 2,
+      image: 'images/g-product-setup.jpeg',
+      label: 'Roster / Nano Tier',
+      title: '<span class="glass-text">Nano /</span> <span class="tint-text">10k–50k</span>',
+      desc: 'Dense local followings in Pune, Mumbai, Delhi, and Bengaluru. They hold exceptional personal trust and high direct response metrics, making them perfect for F&B and local activations.'
+    },
+    'tier-micro': {
+      slideIndex: 2,
+      image: 'images/g-firvt-launch.jpeg',
+      label: 'Roster / Micro Tier',
+      title: '<span class="glass-text">Micro /</span> <span class="tint-text">50k–200k</span>',
+      desc: 'Niche category specialists in tech, beauty, wellness, and finance. Audiences rely on their expertise, resulting in high click-through rates and strong purchase intent.'
+    },
+    'tier-macro': {
+      slideIndex: 2,
+      image: 'images/g-camera-operator.jpeg',
+      label: 'Roster / Macro Tier',
+      title: '<span class="glass-text">Macro /</span> <span class="tint-text">1M+ Reach</span>',
+      desc: 'Broad national reach. Co-produced content talent and direct relations. Ideal for driving massive brand-recall drops, product-launch raids, and co-branded drops.'
+    },
+
+    // Roster strip capabilities (updates slide 3)
+    'strip-set': {
+      slideIndex: 2,
+      image: 'images/g-interview-set.jpeg',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">Modular</span> <span class="tint-text">Studio Sets</span>',
+      desc: 'Professional multi-camera filming sets matching creator comfort with brand directives. We capture high-fidelity vertical shorts, creator-led product close-ups, and interviews.'
+    },
+    'strip-product': {
+      slideIndex: 2,
+      image: 'images/g-product-setup.jpeg',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">Product Setup</span> <span class="tint-text">Styling</span>',
+      desc: 'Bespoke prop setups and camera angles styled in-house to frame physical products beautifully, matching the aesthetic expectations of premium Indian audiences.'
+    },
+    'strip-activation': {
+      slideIndex: 2,
+      image: 'images/g-firvt-launch.jpeg',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">Live Event</span> <span class="tint-text">Activation</span>',
+      desc: 'Mobile studio setups and B-roll support for on-location creator events, capturing organic reactions, live product experiences, and local retail store openings.'
+    },
+    'strip-bts': {
+      slideIndex: 2,
+      image: 'images/g-camera-operator.jpeg',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">Behind-The-Scenes</span> <span class="tint-text">B-Roll</span>',
+      desc: 'Our cinema operators record professional B-roll alongside creators, adding premium visual layers and high production value to standard mobile footage.'
+    },
+    'strip-studio': {
+      slideIndex: 2,
+      image: 'images/g-white-studio.jpeg',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">Umbrella</span> <span class="tint-text">Cyclorama</span>',
+      desc: 'Modular white studio stages with professional diffusion grids and umbrella key lights, perfect for clean apparel styling shots and high-key product reveals.'
+    },
+    'strip-director': {
+      slideIndex: 2,
+      image: 'images/g-director-set.png',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">On-Set Script</span> <span class="tint-text">Direction</span>',
+      desc: 'Experienced creative directors refine creator hooks, pacing, and brand messaging during filming to ensure high hook rates and message alignment.'
+    },
+    'strip-studio-color': {
+      slideIndex: 2,
+      image: 'images/g-studio-redlight.jpeg',
+      label: 'Roster / Capabilities',
+      title: '<span class="glass-text">Color Accent</span> <span class="tint-text">Soundstages</span>',
+      desc: 'RGB nanlite-styled stages perfect for shooting rapid transition reels, tech demonstrations, and lifestyle short-form assets that demand immediate viewer retention.'
+    }
+  };
+
+  // Hero slider
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.progress-dot');
+  let current = 0;
+  let timer;
+
+  function goTo(idx) {
+    // Reset previous active slide content to defaults
+    const prevSlideIdx = current;
+    const prevSlide = slides[prevSlideIdx];
+    if (prevSlide) {
+      const defaultData = slideDefaults[prevSlideIdx];
+      if (defaultData) {
+        const bg = prevSlide.querySelector('.slide-bg');
+        const label = prevSlide.querySelector('.slide-label');
+        const title = prevSlide.querySelector('.slide-title');
+        const desc = prevSlide.querySelector('.slide-desc');
+      
+        if (bg) {
+          bg.classList.remove('popping', 'settling');
+          bg.style.backgroundImage = `url('${defaultData.image}')`;
+        }
+        if (label) label.innerHTML = defaultData.label;
+        if (title) title.innerHTML = defaultData.title;
+        if (desc) desc.innerHTML = defaultData.desc;
+      }
+      prevSlide.querySelectorAll('.dest-card').forEach(card => card.classList.remove('selected'));
+    }
+
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 6000);
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goTo(+dot.dataset.idx));
+    dot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        goTo(+dot.dataset.idx);
+      }
+    });
+  });
+
+  resetTimer();
+
+  // Helper to transition slide elements and apply content
+  function updateSlideContent(slideIdx, data, cardElement) {
+    const slide = slides[slideIdx];
+    if (!slide) return;
+
+    // Reset auto-slide timer temporarily so content doesn't flip away while user reads
+    clearInterval(timer);
+
+    const bg = slide.querySelector('.slide-bg');
+    const label = slide.querySelector('.slide-label');
+    const title = slide.querySelector('.slide-title');
+    const desc = slide.querySelector('.slide-desc');
+    const btn = slide.querySelector('.slide-btn');
+
+    // Pop-out (scale down & fade out) the background image immediately
+    if (bg) {
+      bg.classList.remove('settling');
+      bg.classList.add('popping');
+    }
+
+    // Fade out slide elements slightly
+    const fadeElements = [label, title, desc, btn].filter(Boolean);
+    fadeElements.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(15px)';
+      el.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    });
+
+    // Swap content and apply springy settle animation
+    setTimeout(() => {
+      if (bg) {
+        bg.style.backgroundImage = `url('${data.image}')`;
+        bg.classList.remove('popping');
+        bg.classList.add('settling');
+      }
+      if (label) label.innerHTML = data.label;
+      if (title) title.innerHTML = data.title;
+      if (desc) desc.innerHTML = data.desc;
+
+      fadeElements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+
+      // After settle spring finishes, remove class so default 8s zoom is active
+      setTimeout(() => {
+        if (bg) bg.classList.remove('settling');
+      }, 750);
+    }, 250);
+
+    // Update active highlight on cards in this slide
+    slide.querySelectorAll('.dest-card').forEach(card => card.classList.remove('selected'));
+    if (cardElement) {
+      cardElement.classList.add('selected');
+    }
+  }
+
+  // Setup click and keyboard triggers on Slide Cards (.dest-card)
+  document.querySelectorAll('.dest-card').forEach(card => {
+    const handleTrigger = () => {
+      const key = card.getAttribute('data-info-key');
+      const data = cardInfo[key];
+      if (data) {
+        updateSlideContent(data.slideIndex, data, card);
+        // Set aria-selected state
+        card.setAttribute('aria-selected', 'true');
+        // Set other sibling cards to false
+        const parent = card.closest('[role="tablist"]');
+        if (parent) {
+          parent.querySelectorAll('.dest-card').forEach(sibling => {
+            if (sibling !== card) sibling.setAttribute('aria-selected', 'false');
+          });
+        }
+      }
+    };
+    card.addEventListener('click', (e) => {
+      e.stopPropagation(); // Avoid triggering any bubble events
+      handleTrigger();
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleTrigger();
+      }
+    });
+  });
+
+  // Setup click and keyboard triggers on Roster Strip Images (.strip-img)
+  // Clicking them switches to slide 3, updates slide 3 with details, and scrolls top
+  document.querySelectorAll('.roster-grid .strip-img').forEach(img => {
+    const handleTrigger = () => {
+      const key = img.getAttribute('data-info-key');
+      const data = cardInfo[key];
+      if (data) {
+        // Switch to Roster slide (index 2)
+        goTo(2);
+        // Apply roster cap details to roster slide
+        updateSlideContent(2, data, null);
+        // Smoothly scroll window to the top (intro hero section)
+        window.scrollTo({
+          top: 0,
+          behavior: 'auto'
+        });
+      }
+    };
+    img.addEventListener('click', handleTrigger);
+    img.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleTrigger();
+      }
+    });
+  });
+
+  // Intersection observer for section animations (fading/sliding them in nicely)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section:not(#hero), footer').forEach(sec => {
+    sec.classList.add('reveal-section');
+    observer.observe(sec);
+  });
+
+  // Newsletter form submission handling
+  const newsForm = document.getElementById('newsletterForm');
+  if (newsForm) {
+    newsForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const emailInput = newsForm.querySelector('input[type="email"]');
+      const email = emailInput ? emailInput.value.trim() : '';
+      if (!email) return;
+
+      window.location.href = 'mailto:contact@seetusk.com'
+        + '?subject=' + encodeURIComponent('Newsletter signup')
+        + '&body=' + encodeURIComponent(`Please add me to the SCA newsletter.\n\nEmail: ${email}`);
+
+      const button = newsForm.querySelector('button');
+      if (button) {
+        button.textContent = 'Check your mail app';
+        button.disabled = true;
+      }
+    });
+  }
+</script>
+</body>
+</html>

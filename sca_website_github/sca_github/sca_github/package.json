@@ -111,5 +111,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "terser": "^5.48.0"
+  }
 }

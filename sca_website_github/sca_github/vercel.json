@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "frontend",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
@@ -7,14 +8,19 @@
     { "source": "/influencer", "destination": "/influencer.html" },
     { "source": "/web", "destination": "/web.html" },
     { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" }
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/api/(.*)", "destination": "/middleware/api/$1" }
   ],
+  "functions": {
+    "middleware/api/apply.js": {}
+  },
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     },
@@ -25,9 +31,15 @@
       ]
     },
     {
-      "source": "/img/(.*)",
+      "source": "/images/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(html|json|xml|txt)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     }
   ]
