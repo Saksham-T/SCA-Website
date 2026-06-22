@@ -9,10 +9,10 @@
     { "source": "/web", "destination": "/web.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/api/(.*)", "destination": "/middleware/api/$1" }
+    { "source": "/api/(.*)", "destination": "/api/$1" }
   ],
   "functions": {
-    "middleware/api/apply.js": {
+    "api/apply.js": {
       "memory": 1024,
       "maxDuration": 15
     }
