@@ -122,20 +122,36 @@
     // Measure each word's natural rendered width using an offscreen clone that
     // inherits the cycle's exact typography, so we can animate width on change.
     const measurer = document.createElement('span');
-    const cs = window.getComputedStyle(cycle);
     measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;';
-    ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
-      measurer.style[p] = cs[p];
-    });
     document.body.appendChild(measurer);
+
+    // Re-reads computed style on every call so responsive font-size changes
+    // (e.g. on orientation change or viewport resize) are reflected correctly.
     const widthOf = (w) => {
+      const cs = window.getComputedStyle(cycle);
+      ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
+        measurer.style[p] = cs[p];
+      });
       measurer.textContent = w;
       // +0.12em accounts for the blinking caret drawn via ::after
-      return measurer.getBoundingClientRect().width + parseFloat(cs.fontSize) * 0.12;
+      const raw = measurer.getBoundingClientRect().width + parseFloat(cs.fontSize) * 0.12;
+      // Cap to the safe inner viewport width so the element never causes overflow.
+      // Use a conservative gutter of 48px (24px each side) as the minimum guard.
+      const maxSafe = window.innerWidth - 48;
+      return Math.min(raw, maxSafe);
+    };
+
+    const applyWidth = (w) => {
+      cycle.style.width = widthOf(w) + 'px';
     };
 
     // Lock in the starting width so the first transition has a value to animate from.
-    cycle.style.width = widthOf(words[index]) + 'px';
+    applyWidth(words[index]);
+
+    // Re-measure and re-apply current word on viewport resize (e.g. orientation change).
+    window.addEventListener('resize', () => {
+      applyWidth(words[index]);
+    }, { passive: true });
 
     if (reduceMotion) return;
 
@@ -145,12 +161,13 @@
       cycle.style.transform = 'translateY(12px)';
       window.setTimeout(() => {
         cycle.textContent = words[index];
-        cycle.style.width = widthOf(words[index]) + 'px';
+        applyWidth(words[index]);
         cycle.style.opacity = '1';
         cycle.style.transform = 'translateY(0)';
       }, 220);
     }, 1850);
   }
+
 
   function initStudioSignal() {
     const signal = document.querySelector('[data-studio-signal]');

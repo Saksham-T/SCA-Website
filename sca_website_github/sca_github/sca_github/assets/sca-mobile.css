@@ -183,15 +183,54 @@
     font-size: clamp(28px, 8.8vw, 48px);
     line-height: .94;
     letter-spacing: 0;
+    /* Prevent any child from punching past the viewport edge */
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .hero-line {
     white-space: normal;
+    /* Each hero-line becomes a full-width block row so words
+       stack naturally rather than overflowing to the right    */
+    display: block;
+    width: 100%;
   }
 
+  /* Each reveal span stays inline inside its line block */
   .hero .reveal {
     margin-right: .1em;
     padding-right: .03em;
+  }
+
+  /* ── CYCLE WORD mobile fix ──────────────────────────────────────
+     Desktop reserves min-width: 11ch for the widest option ("REAL ESTATE")
+     so layout doesn't shift on each cycle. On mobile that reservation is
+     wider than the viewport at this font size, pushing "BRANDS." off-screen.
+     We drop the hard minimum and let the JS-measured width govern instead,
+     capped at the safe inner viewport width.                          */
+  .hero-h1 .cycle {
+    min-width: 0 !important;
+    max-width: calc(100vw - var(--gutter, 24px) * 2) !important;
+    /* JS sets inline width in px — allow it but never exceed viewport */
+    width: auto !important;
+    box-sizing: border-box;
+  }
+
+  /* The last hero-line holds "FOR [CYCLE] BRANDS." — three inline
+     reveal spans that together overflow on narrow screens.
+     Elevate each reveal to a block so they stack one-per-row.        */
+  .hero-line:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .hero-line:last-child .reveal {
+    display: block;
+    margin-right: 0;
+    padding-right: 0;
   }
 
   .hero-sub {

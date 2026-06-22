@@ -1,7 +1,17 @@
 {
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/apply.js": {
+      "memory": 512,
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
+    { "source": "/api/apply", "destination": "/api/apply.js" },
     { "source": "/", "destination": "/index.html" },
     { "source": "/content", "destination": "/content.html" },
     { "source": "/influencer", "destination": "/influencer.html" },
@@ -33,3 +43,4 @@
     }
   ]
 }
+
