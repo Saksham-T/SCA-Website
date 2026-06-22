@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sca-cache-v1';
+const CACHE_NAME = 'sca-cache-v1.0.4';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
