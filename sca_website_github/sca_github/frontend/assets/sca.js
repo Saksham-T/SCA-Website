@@ -236,69 +236,53 @@
     let index = 0;
     cycle.textContent = words[index];
 
-    // Offscreen measurer that inherits the cycle's exact typography so we can
-    // animate the box width to each word's natural size on change.
+    // Measure each word's natural rendered width using an offscreen clone that
+    // inherits the cycle's exact typography, so we can animate width on change.
     const measurer = document.createElement('span');
-    measurer.setAttribute('aria-hidden', 'true');
-    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;margin:0;padding:0;';
+    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;';
     document.body.appendChild(measurer);
 
-    let widths = words.map(() => 0);
-
-    // (Re)measure every word. Must run AFTER the web font loads and on resize,
-    // otherwise widths are computed with fallback-font metrics and the next word
-    // ("BRANDS.") overlaps the cycling word / the slide snaps to a wrong target.
-    function measureAll() {
+    // Re-reads computed style on every call so responsive font-size changes
+    // (e.g. on orientation change or viewport resize) are reflected correctly.
+    const widthOf = (w) => {
       const cs = window.getComputedStyle(cycle);
       ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
         measurer.style[p] = cs[p];
       });
-      const caret = parseFloat(cs.fontSize) * 0.12; // room for the blinking caret (::after)
-      widths = words.map((w) => {
-        measurer.textContent = w;
-        return measurer.getBoundingClientRect().width + caret;
-      });
-      // Snap the box to the current word's correct width without animating, so a
-      // late font load or a resize re-fits instantly instead of sliding.
-      const prev = cycle.style.transition;
-      cycle.style.transition = 'none';
-      cycle.style.width = widths[index] + 'px';
-      void cycle.offsetWidth; // flush the reflow before restoring transitions
-      cycle.style.transition = prev;
-    }
+      measurer.textContent = w;
+      // +0.12em accounts for the blinking caret drawn via ::after
+      const raw = measurer.getBoundingClientRect().width + parseFloat(cs.fontSize) * 0.12;
+      // Cap to the safe inner viewport width so the element never causes overflow.
+      // Use a conservative gutter of 48px (24px each side) as the minimum guard.
+      const maxSafe = window.innerWidth - 48;
+      return Math.min(raw, maxSafe);
+    };
 
-    measureAll();
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(measureAll);
-    }
-    let resizeTimer;
+    const applyWidth = (w) => {
+      cycle.style.width = widthOf(w) + 'px';
+    };
+
+    // Lock in the starting width so the first transition has a value to animate from.
+    applyWidth(words[index]);
+
+    // Re-measure and re-apply current word on viewport resize (e.g. orientation change).
     window.addEventListener('resize', () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(measureAll, 120);
-    });
+      applyWidth(words[index]);
+    }, { passive: true });
 
     if (reduceMotion) return;
 
     window.setInterval(() => {
-      const next = (index + 1) % words.length;
-      // 1. Lift + fade the current word out.
+      index = (index + 1) % words.length;
       cycle.style.opacity = '0';
-      cycle.style.transform = 'translateY(-0.45em)';
+      cycle.style.transform = 'translateY(12px)';
       window.setTimeout(() => {
-        // 2. While hidden, swap the text and start the width slide. Because the
-        //    box width transitions (CSS .5s), "BRANDS." glides into its new spot
-        //    instead of teleporting.
-        index = next;
         cycle.textContent = words[index];
-        cycle.style.width = widths[index] + 'px';
-        cycle.style.transform = 'translateY(0.45em)';
-        // 3. Next frame, drop + fade the new word in as the width settles.
-        window.requestAnimationFrame(function () {
-          cycle.style.opacity = '1';
-          cycle.style.transform = 'translateY(0)';
-        });
-      }, 240);
-    }, 2000);
+        applyWidth(words[index]);
+        cycle.style.opacity = '1';
+        cycle.style.transform = 'translateY(0)';
+      }, 220);
+    }, 1850);
   }
 
   function initStudioSignal() {

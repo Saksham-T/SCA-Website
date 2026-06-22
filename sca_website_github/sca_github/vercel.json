@@ -12,7 +12,10 @@
     { "source": "/api/(.*)", "destination": "/middleware/api/$1" }
   ],
   "functions": {
-    "middleware/api/apply.js": {}
+    "middleware/api/apply.js": {
+      "memory": 1024,
+      "maxDuration": 15
+    }
   },
   "headers": [
     {
