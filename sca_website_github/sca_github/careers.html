@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — FLUX Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* gradient backdrop pulled from the reference frames */
+    --bg-pink:#ff2d8e;
+    --bg-coral:#ff7d57;
+    --bg-red:#ef2f4d;
+    /* floating teal card */
+    --teal-hi:#1fe6ea;
+    --teal-lo:#13b9d8;
+    --teal-deep:#0f93b8;
+    --ink:#0a1f29;
+    --ink-soft:rgba(10,31,41,.62);
+    --accent:#ee1b4d;
+    --card-radius:26px;
+    --shadow:0 38px 70px -28px rgba(120,10,60,.65);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    background:
+      radial-gradient(120% 130% at 8% 0%, var(--bg-pink) 0%, transparent 55%),
+      radial-gradient(120% 120% at 100% 100%, var(--bg-red) 0%, transparent 55%),
+      linear-gradient(135deg, var(--bg-pink) 0%, var(--bg-coral) 48%, var(--bg-red) 100%);
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ink);color:var(--teal-hi)}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ---------- top page nav (outside the card) ---------- */
+  .topnav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:30px 0 8px;color:#fff;
+  }
+  .wordmark{display:flex;align-items:center;gap:12px;font-family:'Poppins';font-weight:800;letter-spacing:.04em}
+  .mono{width:34px;height:34px;border-radius:9px;background:var(--ink);color:var(--teal-hi);
+    display:grid;place-items:center;font-size:19px;line-height:1}
+  .topnav .links{display:flex;gap:30px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.95}
+  .topnav .links a{opacity:.82;transition:opacity .2s}
+  .topnav .links a:hover{opacity:1}
+
+  /* ====================================================
+     SIGNATURE: the floating teal carousel card
+     ==================================================== */
+  .stage{padding:18px 0 56px}
+  .card{
+    position:relative;
+    border-radius:var(--card-radius);
+    background:linear-gradient(125deg,var(--teal-hi) 0%,var(--teal-lo) 58%,var(--teal-deep) 100%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    aspect-ratio:16/9.1;
+    min-height:520px;
+  }
+
+  /* card chrome */
+  .card-top{position:absolute;inset:26px 30px auto 30px;display:flex;align-items:center;justify-content:space-between;z-index:6}
+  .card-logo{width:34px;height:34px;border-radius:8px;background:var(--ink);color:var(--teal-hi);
+    display:grid;place-items:center;font-family:'Poppins';font-weight:800;font-size:18px}
+  .burger{display:flex;flex-direction:column;gap:5px;align-items:flex-end;cursor:pointer}
+  .burger span{height:2.5px;background:var(--ink);border-radius:2px}
+  .burger span:nth-child(1){width:26px}.burger span:nth-child(2){width:18px}
+
+  .dots{position:absolute;right:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px;z-index:6}
+  .dots button{width:7px;height:7px;border-radius:50%;border:0;background:rgba(10,31,41,.28);cursor:pointer;padding:0;transition:all .25s}
+  .dots button[aria-current="true"]{background:var(--ink);height:22px;border-radius:6px}
+
+  /* slides */
+  .slides{position:absolute;inset:0}
+  .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s ease;pointer-events:none}
+  .slide.active{opacity:1;visibility:visible;pointer-events:auto}
+
+  .slide-grid{position:absolute;inset:70px 64px 96px 64px;display:grid;align-items:center;gap:20px}
+  /* number-left / text-right */
+  .layout-right .slide-grid{grid-template-columns:0.9fr 1.1fr 1.15fr;grid-template-areas:"num shape text"}
+  /* text-left / number-bottom-right */
+  .layout-left  .slide-grid{grid-template-columns:1.15fr 1.1fr 0.9fr;grid-template-areas:"text shape num"}
+
+  .s-num{grid-area:num;font-family:'Poppins';font-weight:200;font-size:clamp(96px,15vw,210px);line-height:.8;color:var(--ink);letter-spacing:-.02em}
+  .layout-left .s-num{align-self:end;justify-self:end;text-align:right}
+  .s-shape{grid-area:shape;display:grid;place-items:center}
+  .s-shape svg{width:100%;max-width:300px;height:auto;overflow:visible}
+  .s-text{grid-area:text;max-width:340px}
+  .layout-left .s-text{justify-self:start}
+  .s-eyebrow{font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+  .s-title{font-family:'Poppins';font-weight:800;font-size:clamp(48px,7vw,78px);line-height:.96;letter-spacing:-.02em;margin-bottom:18px}
+  .s-desc{font-size:14px;line-height:1.7;color:var(--ink);max-width:300px}
+
+  /* bottom strip inside the card */
+  .card-foot{position:absolute;left:0;right:0;bottom:0;height:74px;display:flex;align-items:stretch;z-index:6}
+  .foot-inner{flex:1;display:flex;align-items:center;gap:0;padding-left:64px}
+  .foot-block{padding-right:42px}
+  .foot-block .k{font-family:'Poppins';font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;line-height:1.25}
+  .foot-block .v{font-size:11px;color:var(--ink-soft);line-height:1.3;margin-top:3px}
+  .foot-cta{width:190px;background:var(--accent);color:#fff;border:0;cursor:pointer;
+    font-family:'Poppins';font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    display:grid;place-items:center;transition:background .2s}
+  .foot-cta:hover{background:#ff3460}
+
+  /* nav arrows */
+  .arrow{position:absolute;bottom:96px;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(10,31,41,.3);
+    background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;z-index:6;transition:all .2s}
+  .arrow:hover{background:var(--ink);color:var(--teal-hi);border-color:var(--ink)}
+  .arrow.prev{right:118px}.arrow.next{right:64px}
+
+  /* floaty motion */
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .float{animation:bob 5s ease-in-out infinite}
+  .glow{filter:drop-shadow(0 0 18px rgba(255,120,150,.8))}
+
+  /* ====================================================
+     SECTIONS BELOW THE HERO
+     ==================================================== */
+  .section{padding:30px 0 70px}
+  .sec-head{color:#fff;margin-bottom:26px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .sec-head h2{font-family:'Poppins';font-weight:800;font-size:clamp(34px,5vw,56px);letter-spacing:-.02em;line-height:1}
+  .sec-head .lead{max-width:380px;font-size:14px;line-height:1.6;opacity:.92}
+  .sec-eyebrow{font-size:11px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;opacity:.9;margin-bottom:12px}
+
+  /* role list */
+  .roles{display:flex;flex-direction:column;gap:14px}
+  .role{
+    background:linear-gradient(120deg,var(--teal-hi),var(--teal-lo) 75%);
+    border-radius:18px;box-shadow:0 22px 40px -26px rgba(120,10,60,.6);
+    display:grid;grid-template-columns:1.6fr 1fr 1fr auto;align-items:center;gap:18px;
+    padding:24px 26px;transition:transform .25s,box-shadow .25s;color:var(--ink)}
+  .role:hover{transform:translateY(-3px);box-shadow:0 30px 50px -24px rgba(120,10,60,.7)}
+  .role h3{font-family:'Poppins';font-weight:600;font-size:21px;letter-spacing:-.01em}
+  .role .dept{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+  .role .meta{font-size:13px;font-weight:500}
+  .role .meta span{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px}
+  .role .go{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--teal-hi);
+    display:grid;place-items:center;justify-self:end;transition:background .2s}
+  .role:hover .go{background:var(--accent);color:#fff}
+
+  /* perks */
+  .perks{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .perk{background:linear-gradient(150deg,var(--teal-hi),var(--teal-deep));border-radius:18px;padding:26px 22px;
+    box-shadow:0 22px 40px -26px rgba(120,10,60,.6);color:var(--ink);min-height:180px;display:flex;flex-direction:column}
+  .perk .pn{font-family:'Poppins';font-weight:200;font-size:42px;line-height:1;letter-spacing:-.02em}
+  .perk h4{font-family:'Poppins';font-weight:600;font-size:17px;margin:auto 0 8px}
+  .perk p{font-size:13px;line-height:1.55;color:var(--ink-soft)}
+
+  /* closing CTA */
+  .cta-card{background:linear-gradient(125deg,var(--teal-hi),var(--teal-lo) 60%,var(--teal-deep));
+    border-radius:var(--card-radius);box-shadow:var(--shadow);padding:60px 56px;
+    display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;color:var(--ink)}
+  .cta-card h2{font-family:'Poppins';font-weight:800;font-size:clamp(32px,5vw,56px);line-height:.98;letter-spacing:-.02em;max-width:560px}
+  .cta-card p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin-top:14px;max-width:460px}
+  .btn-solid{background:var(--accent);color:#fff;border:0;cursor:pointer;border-radius:12px;
+    padding:18px 34px;font-family:'Poppins';font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
+  .btn-solid:hover{background:#ff3460}
+
+  footer{color:#fff;padding:34px 0 50px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:13px;opacity:.92}
+  footer .fl{display:flex;gap:24px}
+  footer a{opacity:.85}footer a:hover{opacity:1}
+
+  /* ---------------- responsive ---------------- */
+  @media (max-width:900px){
+    .card{aspect-ratio:auto;min-height:0;padding-bottom:0}
+    .slides{position:relative}
+    .slide{position:relative;visibility:visible;height:0;overflow:hidden;opacity:1;transition:none}
+    .slide:not(.active){display:none}
+    .slide.active{height:auto}
+    .slide-grid{position:relative;inset:auto;padding:84px 30px 28px;gap:6px;
+      grid-template-columns:1fr !important;grid-template-areas:"shape" "num" "text" !important;text-align:center;justify-items:center}
+    .layout-left .s-num,.s-num{align-self:auto;justify-self:center;text-align:center;font-size:clamp(80px,26vw,150px)}
+    .s-text{max-width:380px}.s-desc{margin:0 auto}
+    .s-shape svg{max-width:200px}
+    .dots,.arrow{display:none}
+    .card-foot{position:relative;height:auto;flex-direction:column}
+    .foot-inner{flex-wrap:wrap;gap:14px;padding:22px 30px}
+    .foot-cta{width:100%;padding:18px}
+    .role{grid-template-columns:1fr;gap:10px;text-align:left}
+    .role .go{justify-self:start}
+    .perks{grid-template-columns:1fr 1fr}
+    .topnav .links{display:none}
+  }
+  @media (max-width:520px){.perks{grid-template-columns:1fr}}
+
+  @media (prefers-reduced-motion:reduce){
+    .float{animation:none}
+    *{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="topnav">
+    <div class="wordmark"><span class="mono">F</span>FLUX</div>
+    <div class="links">
+      <a href="#why">Why FLUX</a>
+      <a href="#roles">Open Roles</a>
+      <a href="#perks">Perks</a>
+      <a href="#apply">Apply</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ============== SIGNATURE CAROUSEL CARD ============== -->
+<section class="stage" id="why">
+  <div class="wrap">
+    <div class="card" id="card">
+      <div class="card-top">
+        <div class="card-logo">F</div>
+        <div class="burger" role="img" aria-label="menu"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="slides" id="slides">
+
+        <!-- SLIDE 01 — Create -->
+        <article class="slide layout-right active" aria-label="Slide 1 of 3: Create">
+          <div class="slide-grid">
+            <div class="s-num">01</div>
+            <div class="s-shape">
+              <!-- ramp + glowing ball -->
+              <svg viewBox="0 0 320 320" class="float" aria-hidden="true">
+                <defs>
+                  <linearGradient id="rampTop" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#6ff3f4"/><stop offset="1" stop-color="#14b6d8"/>
+                  </linearGradient>
+                  <linearGradient id="rampSide" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#0f9bc0"/><stop offset="1" stop-color="#0a6f93"/>
+                  </linearGradient>
+                  <radialGradient id="ball" cx="35%" cy="30%" r="75%">
+                    <stop offset="0" stop-color="#ffe7a8"/><stop offset="45%" stop-color="#ff9d6b"/><stop offset="100%" stop-color="#ff4f86"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="170" cy="252" rx="120" ry="20" fill="#0a6f93" opacity=".32"/>
+                <!-- thickness -->
+                <polygon points="70,168 232,196 214,242 52,214" fill="url(#rampSide)"/>
+                <!-- top face -->
+                <polygon points="78,140 240,168 232,196 70,168" fill="url(#rampTop)"/>
+                <!-- end cap -->
+                <polygon points="232,196 240,168 240,196 232,224" fill="#0c84aa"/>
+                <!-- ball resting at high end -->
+                <circle class="glow" cx="96" cy="120" r="30" fill="url(#ball)"/>
+              </svg>
+            </div>
+            <div class="s-text">
+              <div class="s-eyebrow">Why FLUX · 01</div>
+              <h2 class="s-title">Create</h2>
+              <p class="s-desc">Ship work that moves people. Every brief here is a chance to make something that has never existed — then watch it go live in the world.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- SLIDE 02 — Belong -->
+        <article class="slide layout-left" aria-label="Slide 2 of 3: Belong">
+          <div class="slide-grid">
+            <div class="s-text">
+              <div class="s-eyebrow">Why FLUX · 02</div>
+              <h2 class="s-title">Belong</h2>
+              <p class="s-desc">A tight crew of designers, engineers and motion artists who actually like Mondays. Remote-first, low-ego, high-trust — your voice counts on day one.</p>
+            </div>
+            <div class="s-shape">
+              <!-- peg array + glowing ball -->
+              <svg viewBox="0 0 320 320" class="float" aria-hidden="true">
+                <defs>
+                  <linearGradient id="pegBody" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#3fd6e6"/><stop offset="1" stop-color="#0f8fb6"/>
+                  </linearGradient>
+                  <radialGradient id="pegTop" cx="40%" cy="35%" r="75%">
+                    <stop offset="0" stop-color="#adf6f6"/><stop offset="1" stop-color="#23bcd8"/>
+                  </radialGradient>
+                  <radialGradient id="ball2" cx="35%" cy="30%" r="75%">
+                    <stop offset="0" stop-color="#ffe7a8"/><stop offset="45%" stop-color="#ff9d6b"/><stop offset="100%" stop-color="#ff4f86"/>
+                  </radialGradient>
+                </defs>
+                <g>
+                  <!-- generated grid of small cylinders -->
+                  <!-- row helper macro replicated manually -->
+                  <!-- each peg: shadow, body, top -->
+                  <!-- r1 -->
+                  <g><ellipse cx="92" cy="150" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="78" y="120" width="28" height="26" rx="13" fill="url(#pegBody)"/><ellipse cx="92" cy="120" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <g><ellipse cx="142" cy="158" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="128" y="126" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="142" cy="126" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <g><ellipse cx="192" cy="150" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="178" y="118" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="192" cy="118" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <!-- r2 -->
+                  <g><ellipse cx="112" cy="196" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="98" y="164" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="112" cy="164" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <!-- glowing member -->
+                  <circle class="glow" cx="162" cy="176" r="22" fill="url(#ball2)"/>
+                  <g><ellipse cx="212" cy="196" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="198" y="164" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="212" cy="164" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <!-- r3 -->
+                  <g><ellipse cx="92" cy="238" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="78" y="206" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="92" cy="206" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <g><ellipse cx="142" cy="244" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="128" y="212" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="142" cy="212" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                  <g><ellipse cx="192" cy="238" rx="18" ry="7" fill="#0a6f93" opacity=".3"/><rect x="178" y="206" width="28" height="28" rx="13" fill="url(#pegBody)"/><ellipse cx="192" cy="206" rx="14" ry="6" fill="url(#pegTop)"/></g>
+                </g>
+              </svg>
+            </div>
+            <div class="s-num">02</div>
+          </div>
+        </article>
+
+        <!-- SLIDE 03 — Grow -->
+        <article class="slide layout-right" aria-label="Slide 3 of 3: Grow">
+          <div class="slide-grid">
+            <div class="s-num">03</div>
+            <div class="s-shape">
+              <!-- spiral coil + glowing ball -->
+              <svg viewBox="0 0 320 320" class="float" aria-hidden="true">
+                <defs>
+                  <linearGradient id="coil" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#9bf5cf"/><stop offset="50" stop-color="#2fd0d8"/><stop offset="1" stop-color="#0f8fb6"/>
+                  </linearGradient>
+                  <radialGradient id="ball3" cx="35%" cy="30%" r="75%">
+                    <stop offset="0" stop-color="#ffe7a8"/><stop offset="45%" stop-color="#ff9d6b"/><stop offset="100%" stop-color="#ff4f86"/>
+                  </radialGradient>
+                </defs>
+                <ellipse cx="172" cy="262" rx="86" ry="16" fill="#0a6f93" opacity=".3"/>
+                <path d="M104,70
+                         C104,34 200,34 200,74
+                         C200,110 116,112 116,150
+                         C116,188 212,188 212,150
+                         C212,118 132,120 132,158
+                         C132,210 200,214 196,250"
+                      fill="none" stroke="url(#coil)" stroke-width="30" stroke-linecap="round"/>
+                <circle class="glow" cx="178" cy="252" r="22" fill="url(#ball3)"/>
+              </svg>
+            </div>
+            <div class="s-text">
+              <div class="s-eyebrow">Why FLUX · 03</div>
+              <h2 class="s-title">Grow</h2>
+              <p class="s-desc">Real ownership from day one, a generous craft budget, and mentors who push your work further than you thought it could go.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- pagination dots -->
+      <div class="dots" id="dots" role="tablist" aria-label="Slides">
+        <button aria-current="true" aria-label="Go to slide 1"></button>
+        <button aria-label="Go to slide 2"></button>
+        <button aria-label="Go to slide 3"></button>
+      </div>
+
+      <!-- arrows -->
+      <button class="arrow prev" id="prev" aria-label="Previous slide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="arrow next" id="next" aria-label="Next slide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <!-- bottom strip -->
+      <div class="card-foot">
+        <div class="foot-inner">
+          <div class="foot-block"><div class="k">Open Roles</div><div class="v">7 hiring now</div></div>
+          <div class="foot-block"><div class="k">Team</div><div class="v">48 people · 11 cities</div></div>
+          <div class="foot-block"><div class="k">Setup</div><div class="v">Remote-first · Global</div></div>
+          <div class="foot-block"><div class="k">Founded</div><div class="v">2019 · Bootstrapped</div></div>
+        </div>
+        <a class="foot-cta" href="#roles">See Open Roles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPEN ROLES ================= -->
+<section class="section" id="roles">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">Now Hiring</div>
+        <h2>Open roles</h2>
+      </div>
+      <p class="lead">Don't see your title? We hire for craft, not keywords — send us your best work and tell us what you want to build.</p>
+    </div>
+
+    <div class="roles">
+      <a class="role" href="#apply">
+        <div><h3>Senior Motion Designer</h3><div class="dept">Design</div></div>
+        <div class="meta"><span>Location</span>Remote · GMT±4</div>
+        <div class="meta"><span>Type</span>Full-time</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+      <a class="role" href="#apply">
+        <div><h3>Product Designer</h3><div class="dept">Design</div></div>
+        <div class="meta"><span>Location</span>Remote · Global</div>
+        <div class="meta"><span>Type</span>Full-time</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+      <a class="role" href="#apply">
+        <div><h3>Frontend Engineer (WebGL)</h3><div class="dept">Engineering</div></div>
+        <div class="meta"><span>Location</span>Remote · EU/US</div>
+        <div class="meta"><span>Type</span>Full-time</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+      <a class="role" href="#apply">
+        <div><h3>Creative Technologist</h3><div class="dept">Engineering</div></div>
+        <div class="meta"><span>Location</span>Hybrid · Lisbon</div>
+        <div class="meta"><span>Type</span>Full-time</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+      <a class="role" href="#apply">
+        <div><h3>Producer / Project Lead</h3><div class="dept">Operations</div></div>
+        <div class="meta"><span>Location</span>Remote · Global</div>
+        <div class="meta"><span>Type</span>Full-time</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+      <a class="role" href="#apply">
+        <div><h3>3D Generalist</h3><div class="dept">Design</div></div>
+        <div class="meta"><span>Location</span>Remote · Global</div>
+        <div class="meta"><span>Type</span>Contract</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+      <a class="role" href="#apply">
+        <div><h3>Design Engineering Intern</h3><div class="dept">Early Career</div></div>
+        <div class="meta"><span>Location</span>Remote · Global</div>
+        <div class="meta"><span>Type</span>6-month</div>
+        <div class="go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERKS ================= -->
+<section class="section" id="perks">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">The Deal</div>
+        <h2>What you get</h2>
+      </div>
+      <p class="lead">Built for people who do their best work when they're trusted, rested, and equipped.</p>
+    </div>
+    <div class="perks">
+      <div class="perk"><div class="pn">∞</div><h4>Async by default</h4><p>Four meeting-free days a week. Work in the rhythm that fits your life.</p></div>
+      <div class="perk"><div class="pn">€4k</div><h4>Craft budget</h4><p>Yearly spend on gear, courses, and conferences — no approvals theatre.</p></div>
+      <div class="perk"><div class="pn">32</div><h4>Days off</h4><p>Paid time off that people actually take, plus your birthday and a winter break.</p></div>
+      <div class="perk"><div class="pn">100%</div><h4>Profit share</h4><p>Every full-timer holds equity and shares in what we build together.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPLY CTA ================= -->
+<section class="section" id="apply">
+  <div class="wrap">
+    <div class="cta-card">
+      <div>
+        <h2>Let's make something that moves.</h2>
+        <p>Send a link to work you're proud of and a line on what you want to build next. We read everything and reply within a week.</p>
+      </div>
+      <a class="btn-solid" href="mailto:join@fluxstudio.example?subject=FLUX%20application">Start your application</a>
+    </div>
+
+    <footer>
+      <div class="wordmark"><span class="mono">F</span>FLUX STUDIO</div>
+      <div class="fl">
+        <a href="#why">Instagram</a><a href="#why">Dribbble</a><a href="#why">LinkedIn</a><a href="#roles">Roles</a>
+      </div>
+      <div>© 2026 FLUX Studio — Remote, everywhere.</div>
+    </footer>
+  </div>
+</section>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots   = Array.prototype.slice.call(document.querySelectorAll('#dots button'));
+  var card   = document.getElementById('card');
+  var idx = 0, timer = null;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var AUTO = 4200;
+
+  function show(n){
+    idx = (n + slides.length) % slides.length;
+    slides.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+    dots.forEach(function(d,i){ d.setAttribute('aria-current', i===idx ? 'true':'false'); });
+  }
+  function next(){ show(idx+1); }
+  function prev(){ show(idx-1); }
+
+  function play(){ if(reduce) return; stop(); timer = setInterval(next, AUTO); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+
+  dots.forEach(function(d,i){ d.addEventListener('click', function(){ show(i); play(); }); });
+  document.getElementById('next').addEventListener('click', function(){ next(); play(); });
+  document.getElementById('prev').addEventListener('click', function(){ prev(); play(); });
+
+  card.addEventListener('mouseenter', stop);
+  card.addEventListener('mouseleave', play);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'){ next(); play(); }
+    if(e.key==='ArrowLeft'){ prev(); play(); }
+  });
+
+  show(0); play();
+})();
+</script>
+</body>
+</html>
