@@ -119,6 +119,41 @@ async function build() {
     console.warn("Warning: Could not sync assets to sca_github folder:", err.message);
   }
 
+  console.log("\n=== Synchronizing Inside Studio Bundle ===");
+  try {
+    const scaGithubDistDir = path.resolve(__dirname, 'sca_github/dist/assets');
+    if (fs.existsSync(scaGithubDistDir)) {
+      const files = fs.readdirSync(scaGithubDistDir);
+      
+      const jsFile = files.find(f => f.startsWith('careers-') && f.endsWith('.js'));
+      const cssFile = files.find(f => f.startsWith('careers-') && f.endsWith('.css'));
+
+      if (jsFile) {
+        const srcJs = path.join(scaGithubDistDir, jsFile);
+        const dstStudioJs = path.join(assetsDir, 'inside-studio.bundle.js');
+        const dstStatsJs = path.join(assetsDir, 'inside-stats.bundle.js');
+        fs.copyFileSync(srcJs, dstStudioJs);
+        fs.copyFileSync(srcJs, dstStatsJs);
+        console.log(`✓ Copied ${jsFile} to ${dstStudioJs} and ${dstStatsJs}`);
+      } else {
+        console.warn("Warning: Could not find compiled careers JS bundle in dist/assets.");
+      }
+
+      if (cssFile) {
+        const srcCss = path.join(scaGithubDistDir, cssFile);
+        const dstStudioCss = path.join(assetsDir, 'inside-studio.bundle.css');
+        const dstStatsCss = path.join(assetsDir, 'inside-stats.bundle.css');
+        fs.copyFileSync(srcCss, dstStudioCss);
+        fs.copyFileSync(srcCss, dstStatsCss);
+        console.log(`✓ Copied ${cssFile} to ${dstStudioCss} and ${dstStatsCss}`);
+      } else {
+        console.warn("Warning: Could not find compiled careers CSS bundle in dist/assets.");
+      }
+    }
+  } catch (err) {
+    console.warn("Warning: Could not sync Inside Studio assets:", err.message);
+  }
+
   console.log("\n=== Build Complete ===");
 }
 

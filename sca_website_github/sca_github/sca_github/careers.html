@@ -6,7 +6,7 @@
 <title>Careers — SeeTusk Creative Agency</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Anton&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/sca.css">
 <link rel="stylesheet" href="assets/sca-extras.css">
 <link rel="stylesheet" href="assets/sca-kinetic.css">
@@ -25,6 +25,9 @@
     --accent-dim: rgba(46, 84, 234, 0.12);
     --accent-hover: #4d6df2;
     --tag-bg: rgba(255, 255, 255, 0.03);
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +37,7 @@
   body {
     background: var(--bg);
     color: var(--text-primary);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-body);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -124,86 +127,168 @@
     align-items: center;
   }
 
-  /* HERO */
+  /* ====================================================
+     HERO FRAME ANIMATION CARD
+     ==================================================== */
+
+  /* Override hero to be full-width, no extra side padding on the card */
   .hero {
-    padding: 180px 40px 100px;
-    border-bottom: 1px solid var(--border-soft);
+    padding: 100px 0 60px !important;
     position: relative;
     overflow: hidden;
   }
 
-  .hero-tag {
-    display: inline-flex;
+  /* Hero inner: text left, card right on desktop */
+  .hero-frame-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.55fr;
     align-items: center;
-    gap: 8px;
+    gap: 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    min-height: 80vh;
+  }
+
+  .hero-frame-text {
+    z-index: 2;
+    position: relative;
+  }
+
+  /* The animated card wrapper */
+  .hero-frame-card {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    /* Maintain the 16:9.1 ratio matching the source frames */
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    cursor: pointer;
+    /* Lift shadow that matches the original floating card design */
+    box-shadow:
+      0 60px 120px -40px rgba(120, 10, 60, 0.7),
+      0 30px 60px -20px rgba(0,0,0,0.4);
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-frame-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+      0 80px 160px -40px rgba(120, 10, 60, 0.8),
+      0 40px 80px -20px rgba(0,0,0,0.5);
+  }
+
+  /* Canvas fills the card */
+  #careers-hero-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    /* Fallback background while frames load */
+    background: linear-gradient(125deg, var(--bg) 0%, var(--surface) 58%, var(--border) 100%);
+  }
+
+  /* Loading progress overlay */
+  #hero-frame-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(125deg, var(--bg) 0%, var(--surface) 58%, var(--border) 100%);
+    z-index: 20;
+    border-radius: 28px;
+  }
+  .hfl-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .hfl-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--accent-orange);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    opacity: 0;
-    z-index: 2;
-    position: relative;
-  }
-  .page-loaded .hero-tag {
-    animation: fadeUp 0.6s 0.1s ease forwards;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 16px; height: 1px;
-    background: var(--accent-orange);
-  }
-
-  .hero h1 {
-    font-family: 'League Spartan', sans-serif;
-    font-size: clamp(52px, 7.5vw, 102px);
-    font-weight: 900;
-    line-height: 0.92;
-    letter-spacing: -0.03em;
-    max-width: 950px;
-    z-index: 2;
-    position: relative;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
   }
-
-  .hero h1 em {
-    font-style: italic;
-    font-weight: 800;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  .hfl-bar-wrap {
+    width: 140px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
   }
-
-  .hero h1 span.highlight {
-    color: var(--text-primary);
-    position: relative;
-  }
-
-  .hero h1 span.highlight::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: 8px;
-    width: 100%; height: 6px;
+  .hfl-bar {
+    height: 100%;
+    width: 0;
     background: var(--accent);
-    opacity: 0.75;
-    z-index: -1;
+    border-radius: 10px;
+    transition: width 0.25s ease;
   }
 
-  .hero-sub {
-    margin-top: 40px;
-    max-width: 520px;
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--text-secondary);
-    opacity: 0;
-    z-index: 2;
-    position: relative;
+  /* Transparent interactive overlays on the card */
+  .card-overlay-link {
+    position: absolute;
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
   }
-  .page-loaded .hero-sub {
-    animation: fadeUp 0.7s 0.35s ease forwards;
+  .card-overlay-link:focus-visible {
+    outline: 3px solid rgba(0,0,0,0.5);
+    outline-offset: -3px;
+  }
+  /* Overlay hotspot positions (% of card) */
+  .link-logo          { top:4%;    left:4%;   width:10%; height:9%; }
+  .link-hamburger     { top:4%;    right:4%;  width:6%;  height:9%; }
+  .link-more-content  { bottom:4%; left:4%;   width:14%; height:8%; }
+  .link-social-instagram { bottom:4%; left:19%; width:16%; height:8%; }
+  .link-social-behance   { bottom:4%; left:36%; width:15%; height:8%; }
+  .link-social-youtube   { bottom:4%; left:52%; width:15%; height:8%; }
+  .link-subscribe     { bottom:0;  right:0;   width:11%; height:9%; }
+
+  /* Vertical dots strip (right edge) */
+  .card-overlay-dots {
+    position: absolute;
+    right: 3.5%;
+    top: 42%;
+    width: 2%;
+    height: 16%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 12;
+  }
+  .card-overlay-dots .dot-btn {
+    width: 100%;
+    flex: 1;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  .card-overlay-dots .dot-btn:focus-visible {
+    outline: 2px solid rgba(0,0,0,0.5);
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 900px) {
+    .hero-frame-layout {
+      grid-template-columns: 1fr;
+      padding: 0 20px;
+      gap: 32px;
+      min-height: auto;
+    }
+    .hero-frame-card {
+      max-width: 100%;
+    }
+    .hero-frame-text {
+      text-align: left;
+    }
   }  /* HYPER-FUTURISTIC HUD STATS */
   :root {
     --cyber-blue: var(--accent);
@@ -289,7 +374,7 @@
     line-height: 1;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.15), 0 0 20px rgba(46, 84, 234, 0.3);
     margin-top: 10px;
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-display);
   }
 
   .hero-stat-card span {
@@ -894,9 +979,8 @@
     color: var(--text-main);
   }
 
-  /* GRADIENT TITLE */
   .job-card-v2-title {
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(24px, 2.5vw, 30px);
     font-weight: 900;
     line-height: 1.15;
@@ -1426,7 +1510,7 @@
     filter: brightness(1.1);
   }
   .apply-modal-header h2 {
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-display);
     font-size: 26px;
     font-weight: 800;
     text-transform: uppercase;
@@ -1435,7 +1519,7 @@
     color: #fff;
   }
   .apply-modal-header p {
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-body);
     font-size: 13.5px;
     color: rgba(255, 255, 255, 0.5);
     line-height: 1.5;
@@ -1580,7 +1664,7 @@
     border-radius: 14px;
     padding: 18px;
     color: var(--text-main);
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -1597,7 +1681,7 @@
     border-radius: 14px;
     padding: 18px;
     color: #fff;
-    font-family: 'League Spartan', sans-serif;
+    font-family: var(--font-body);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -1679,6 +1763,388 @@
     font-size: 11px;
     letter-spacing: 0.08em;
   }
+
+  /* ---- Mouse Scroller ---- */
+  .mouse-scroller-wrap {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    pointer-events: auto;
+  }
+  .mouse-scroller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+  .mouse-scroller:hover {
+    opacity: 1;
+  }
+  .mouse-body {
+    width: 20px;
+    height: 32px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    position: relative;
+    display: block;
+  }
+  .mouse-wheel {
+    width: 3px;
+    height: 6px;
+    background-color: var(--accent-orange);
+    border-radius: 99px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll-wheel 1.6s ease-in-out infinite;
+  }
+  .scroll-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @keyframes scroll-wheel {
+    0% {
+      top: 5px;
+      opacity: 0;
+      height: 2px;
+    }
+    30% {
+      opacity: 1;
+      height: 6px;
+    }
+    90% {
+      top: 18px;
+      opacity: 0;
+      height: 2px;
+    }
+    100% {
+      top: 18px;
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .mouse-scroller-wrap { display: none; }
+  }
+
+  /* ============================================================
+     CINEMATIC HERO REDESIGN (Awwwards-Level Experience)
+     ============================================================ */
+
+  /* Base overrides for Hero */
+  .hero {
+    background: #050816 !important; /* Deep cinematic black-blue */
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(80px, 10vh, 140px);
+    padding-bottom: clamp(120px, 15vh, 180px);
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  /* Layered Atmosphere Containers */
+  .hero-bg-atmosphere {
+    position: absolute;
+    inset: -10%; /* Extra margin for mouse parallax shift */
+    width: 120%;
+    height: 120%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  /* 1. Grain Noise Overlay */
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    mix-blend-mode: overlay;
+    z-index: 10;
+  }
+
+  /* 2. Faint 3D Perspective Grid */
+  .perspective-grid {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) perspective(500px) rotateX(75deg);
+    width: 200vw;
+    height: 100vh;
+    background-image: 
+      linear-gradient(to right, rgba(46, 84, 234, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(46, 84, 234, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: center bottom;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 80%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 80%, black 30%, transparent 80%);
+    opacity: 0.7;
+    z-index: 2;
+    will-change: transform, opacity;
+    animation: grid-pulse 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes grid-pulse {
+    0% { opacity: 0.5; transform: translateX(-50%) perspective(500px) rotateX(75deg) translateY(0px); }
+    100% { opacity: 0.8; transform: translateX(-50%) perspective(500px) rotateX(74deg) translateY(-10px); }
+  }
+
+  /* 3. Blurred environmental backdrop typography */
+  .blurred-careers-bg {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 900;
+    font-size: clamp(600px, 50vw, 950px);
+    color: #2e54ea;
+    opacity: 0; /* Animated on load */
+    filter: blur(80px);
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+    letter-spacing: -0.05em;
+    will-change: transform, opacity;
+    transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1), transform 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .page-loaded .blurred-careers-bg {
+    opacity: 0.008;
+  }
+
+  /* 4. Luminous Energy Core behind headline */
+  .energy-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.16) 0%, rgba(46, 84, 234, 0.1) 40%, transparent 70%);
+    filter: blur(60px);
+    border-radius: 50%;
+    z-index: 3;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: opacity 2s ease-out, transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: core-breathe 6s ease-in-out infinite alternate;
+  }
+
+  .page-loaded .energy-core {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  @keyframes core-breathe {
+    0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.85; filter: blur(60px); }
+    100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; filter: blur(75px); }
+  }
+
+  /* 5. Radial Ambient Glows */
+  .glow-source {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+    z-index: 2;
+    will-change: transform;
+  }
+  .glow-left {
+    top: 15%;
+    left: 5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(46, 84, 234, 0.18) 0%, transparent 75%);
+  }
+  .glow-right {
+    bottom: 10%;
+    right: -5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 75%);
+  }
+  .glow-center {
+    top: 40%;
+    left: 40%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(46, 84, 234, 0.12) 0%, transparent 75%);
+  }
+
+  /* 6. Spotlight cursor overlay */
+  .cursor-spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle 380px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(46, 84, 234, 0.11) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 4;
+    opacity: 0.8;
+    will-change: background;
+  }
+
+  /* 7. Volumetric Light Columns */
+  .light-columns {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+  .light-column {
+    position: absolute;
+    bottom: -10%;
+    width: 1px;
+    height: 120%;
+    background: linear-gradient(to top, transparent, rgba(46, 84, 234, 0.08) 30%, rgba(168, 85, 247, 0.05) 70%, transparent);
+    box-shadow: 0 0 15px rgba(46, 84, 234, 0.03);
+    opacity: 0;
+    will-change: transform, opacity;
+    transform: scaleY(0.8) translateX(0);
+    transition: opacity 1.8s ease-out, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .page-loaded .light-column {
+    opacity: 0.75;
+    transform: scaleY(1);
+  }
+
+  /* Light column horizontal distribution and distinct animations */
+  .light-column.col-1 { left: 8%; animation: float-column-1 14s ease-in-out infinite alternate; }
+  .light-column.col-2 { left: 18%; animation: float-column-2 18s ease-in-out infinite alternate; animation-delay: 1.5s; }
+  .light-column.col-3 { left: 29%; animation: float-column-3 16s ease-in-out infinite alternate; }
+  .light-column.col-4 { left: 41%; animation: float-column-4 22s ease-in-out infinite alternate; animation-delay: 2s; }
+  .light-column.col-5 { left: 53%; animation: float-column-5 20s ease-in-out infinite alternate; }
+  .light-column.col-6 { left: 64%; animation: float-column-6 15s ease-in-out infinite alternate; animation-delay: 0.5s; }
+  .light-column.col-7 { left: 73%; animation: float-column-7 19s ease-in-out infinite alternate; }
+  .light-column.col-8 { left: 82%; animation: float-column-8 23s ease-in-out infinite alternate; animation-delay: 1s; }
+  .light-column.col-9 { left: 91%; animation: float-column-9 17s ease-in-out infinite alternate; }
+  .light-column.col-10 { left: 96%; animation: float-column-10 21s ease-in-out infinite alternate; animation-delay: 2.5s; }
+
+  @keyframes float-column-1 { 0% { transform: translateX(0) scaleY(1); opacity: 0.4; } 100% { transform: translateX(15px) scaleY(1.05); opacity: 0.8; } }
+  @keyframes float-column-2 { 0% { transform: translateX(0) scaleY(0.95); opacity: 0.3; } 100% { transform: translateX(-20px) scaleY(1.02); opacity: 0.6; } }
+  @keyframes float-column-3 { 0% { transform: translateX(0) scaleY(1.02); opacity: 0.5; } 100% { transform: translateX(10px) scaleY(0.98); opacity: 0.85; } }
+  @keyframes float-column-4 { 0% { transform: translateX(0) scaleY(0.9); opacity: 0.3; } 100% { transform: translateX(-15px) scaleY(1.05); opacity: 0.65; } }
+  @keyframes float-column-5 { 0% { transform: translateX(0) scaleY(1.05); opacity: 0.6; } 100% { transform: translateX(25px) scaleY(0.95); opacity: 0.9; } }
+  @keyframes float-column-6 { 0% { transform: translateX(0) scaleY(0.98); opacity: 0.45; } 100% { transform: translateX(-12px) scaleY(1.03); opacity: 0.75; } }
+  @keyframes float-column-7 { 0% { transform: translateX(0) scaleY(1.01); opacity: 0.5; } 100% { transform: translateX(18px) scaleY(0.97); opacity: 0.8; } }
+  @keyframes float-column-8 { 0% { transform: translateX(0) scaleY(0.94); opacity: 0.35; } 100% { transform: translateX(-22px) scaleY(1.04); opacity: 0.6; } }
+  @keyframes float-column-9 { 0% { transform: translateX(0) scaleY(1.03); opacity: 0.55; } 100% { transform: translateX(12px) scaleY(0.99); opacity: 0.85; } }
+  @keyframes float-column-10 { 0% { transform: translateX(0) scaleY(0.92); opacity: 0.3; } 100% { transform: translateX(-8px) scaleY(1.06); opacity: 0.7; } }
+
+  /* 8. Particle Canvas */
+  .hero-particles-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  /* 9. Headline Gradient Word Enhancements & Moving Shimmer */
+  .hero-title-stamped span.highlight,
+  .hero-title-stamped em {
+    font-family: var(--font-mono);
+    font-style: italic;
+    background: linear-gradient(135deg, #2E54EA 0%, #a855f7 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #fff;
+    display: inline-block;
+    background-size: 200% 200%;
+    animation: shine-sweep 6s linear infinite;
+    text-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+  }
+
+  @keyframes shine-sweep {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* 10. CTA Premium Design (Glass + Border Glow + Shimmer Sweep) */
+  .open-apps-cta {
+    background: rgba(46, 84, 234, 0.15) !important;
+    color: #fff !important;
+    border: 1px solid rgba(46, 84, 234, 0.4) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(46, 84, 234, 0.08), inset 0 1px rgba(255,255,255,0.1) !important;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .open-apps-cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-25deg);
+    pointer-events: none;
+    transition: none;
+  }
+
+  .open-apps-cta:hover {
+    background: rgba(46, 84, 234, 0.35) !important;
+    border-color: rgba(46, 84, 234, 0.9) !important;
+    box-shadow: 0 0 30px rgba(46, 84, 234, 0.25), inset 0 1px rgba(255,255,255,0.2) !important;
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  .open-apps-cta:hover::after {
+    left: 150%;
+    transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Soft pulse on idle CTA */
+  .open-apps-cta {
+    animation: open-cta-pulse 3s infinite alternate;
+  }
+
+  @keyframes open-cta-pulse {
+    0% { box-shadow: 0 0 15px rgba(46, 84, 234, 0.08); }
+    100% { box-shadow: 0 0 25px rgba(46, 84, 234, 0.22); border-color: rgba(46, 84, 234, 0.6); }
+  }
+
+  /* Progressive Enhancement & Devices Queries */
+  @media (max-width: 900px) {
+    /* Tablet: Reduce columns & particles */
+    .light-column:nth-child(even) { display: none; }
+  }
+
+  @media (max-width: 760px) {
+    /* Mobile: Static/simplified atmosphere */
+    .hero-bg-atmosphere {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .light-columns { display: none; }
+    .perspective-grid { animation: none; opacity: 0.3; }
+    .energy-core { animation: none; opacity: 0.6; }
+    .hero-particles-canvas { display: none; }
+    .blurred-careers-bg { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -1735,6 +2201,7 @@
       <a href="influencer.html" data-scramble>Influencer</a>
       <a href="web.html" data-scramble>Web &amp; Tech</a>
       <a href="about.html" data-scramble>About</a>
+      <a href="careers.html" class="active" aria-current="page" data-scramble>Career</a>
     </div>
     <div class="nav-cta">
       <a href="contact.html" class="btn accent" data-cursor="Start">Start a project <span class="arr">-></span></a>
@@ -1744,131 +2211,91 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-grid-lines"></div>
-  <div class="hero-grid-glow"></div>
-  
-  <div class="hero-tag">Studio / Careers</div>
-  <h1 class="hero-title-stamped">
-    <span class="line-wrapper"><span class="line-content">Start shaping</span></span>
-    <span class="line-wrapper"><span class="line-content">the <span class="highlight">future</span></span></span>
-    <span class="line-wrapper"><span class="line-content">with <em>us.</em></span></span>
-  </h1>
-  <p class="hero-sub">We build, rent, and own distribution for ambitious Indian brands. Join a motion-first creative studio shipping real code, creators, and content weekly.</p>
-  
-  <!-- Telemetry Console HUD Widget
-  <div class="telemetry-panel">
-    <div class="telemetry-header">
-      <div class="telemetry-dots">
-        <span class="telemetry-dot close"></span>
-        <span class="telemetry-dot minimize"></span>
-        <span class="telemetry-dot maximize"></span>
-      </div>
-      <div class="telemetry-title">sys_diagnostics.sh</div>
-      <div style="width: 36px;"></div>
+  <!-- Ambient Atmosphere Background -->
+  <div class="hero-bg-atmosphere">
+    <div class="grain-overlay"></div>
+    <div class="perspective-grid"></div>
+    <div class="blurred-careers-bg">CAREERS</div>
+    <div class="energy-core"></div>
+    <div class="glow-source glow-left"></div>
+    <div class="glow-source glow-right"></div>
+    <div class="glow-source glow-center"></div>
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+    
+    <div class="light-columns">
+      <div class="light-column col-1"></div>
+      <div class="light-column col-2"></div>
+      <div class="light-column col-3"></div>
+      <div class="light-column col-4"></div>
+      <div class="light-column col-5"></div>
+      <div class="light-column col-6"></div>
+      <div class="light-column col-7"></div>
+      <div class="light-column col-8"></div>
+      <div class="light-column col-9"></div>
+      <div class="light-column col-10"></div>
     </div>
-    <div class="telemetry-body">
-      <div class="telemetry-prompt"><span class="user">sca_studio@seetusk:~$</span> ./diagnostics.sh</div>
-      
-      <div class="telemetry-row">
-        <span class="label">SYS_STATUS //</span>
-        <span class="val" style="display:flex;align-items:center;gap:6px;"><span class="hud-status-dot"></span> ACTIVE_HIRING</span>
-      </div>
-      <div class="telemetry-row">
-        <span class="label">LOC_COORD //</span>
-        <span class="val">18.5204° N, 73.8567° E (PUNE_HQ)</span>
-      </div>
-      <div class="telemetry-row">
-        <span class="label">LIVE_PING //</span>
-        <span class="val" id="telemetry-ping">18 ms</span>
-      </div>
-      <div class="telemetry-row">
-        <span class="label">SYS_ACTIVITY //</span>
-        <span class="active-action" data-studio-signal-text>SYSTEM_INITIALIZED</span>
-      </div>
-
-      <div class="telemetry-divider"></div>
-
-      <div class="telemetry-syslog">
-        <div>[INFO] Loading motion assets... OK</div>
-        <div>[INFO] Establishing creator socket... CONNECTED</div>
-        <div>[INFO] Retainer pipelines... ACTIVE</div>
-        <div>[WARN] Refresh rate... 60Hz (CAP_MATCHED)</div>
-      </div>
-
-      <div class="telemetry-prompt bottom-prompt"><span class="user">sca_studio@seetusk:~$</span> <span class="terminal-cursor">█</span></div>
-    </div>
+    <canvas class="hero-particles-canvas" id="heroParticles"></canvas>
   </div>
-  -->
 
-  <div class="hero-meta">
-    <div class="hero-stat-card">
-      <span class="stat-status"><span class="stat-status-dot"></span> LIVE</span>
-      <strong id="roles-stat-count">13</strong>
-      <span>Open Positions</span>
+  <div class="hero-frame-layout">
+
+    <!-- LEFT: text + stat cards -->
+    <div class="hero-frame-text">
+      <div class="hero-tag">Studio / Careers</div>
+      <h1 class="hero-title-stamped">
+        <span class="line-wrapper"><span class="line-content">Start shaping</span></span>
+        <span class="line-wrapper"><span class="line-content">the <span class="highlight">future</span></span></span>
+        <span class="line-wrapper"><span class="line-content">with <em>us.</em></span></span>
+      </h1>
+      <p class="hero-sub">We build, rent, and own distribution for ambitious Indian brands. Join a motion-first creative studio shipping real code, creators, and content weekly.</p>
+
+      <!-- INTERACTIVE 3D STATS COUNTERS -->
+      <div id="3d-stats-root" style="margin-top:40px;"></div>
+      <script type="module" src="./src/stats-main.tsx"></script>
     </div>
-    <div class="hero-stat-card">
-      <div class="stat-grid-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-      <strong id="depts-stat-count">4</strong>
-      <span>Active Depts</span>
+
+    <!-- RIGHT: Frame-animated teal card -->
+    <div class="hero-frame-card" id="hero-frame-card">
+      <canvas id="careers-hero-canvas" aria-label="SeeTusk animated hero illustration"></canvas>
+
+      <!-- Transparent interactive hotspots baked over the frames -->
+      <a href="index.html"        class="card-overlay-link link-logo"             aria-label="Home"></a>
+      <button                     class="card-overlay-link link-hamburger"         aria-label="Menu"></button>
+      <a href="#jobs"             class="card-overlay-link link-more-content"      aria-label="More content"></a>
+      <a href="https://instagram.com/seetusk" target="_blank" rel="noopener"
+                                  class="card-overlay-link link-social-instagram"  aria-label="Instagram"></a>
+      <a href="https://behance.net/seetusk"   target="_blank" rel="noopener"
+                                  class="card-overlay-link link-social-behance"    aria-label="Behance"></a>
+      <a href="https://youtube.com/seetusk"  target="_blank" rel="noopener"
+                                  class="card-overlay-link link-social-youtube"    aria-label="YouTube"></a>
+      <a href="#jobs"             class="card-overlay-link link-subscribe"         aria-label="Apply now"></a>
+
+      <!-- Vertical dot nav -->
+      <div class="card-overlay-dots" aria-hidden="true">
+        <button class="dot-btn" tabindex="-1"></button>
+        <button class="dot-btn" tabindex="-1"></button>
+        <button class="dot-btn" tabindex="-1"></button>
+      </div>
     </div>
-    <div class="hero-stat-card">
-      <span class="stat-coord">18.52° N</span>
-      <strong>Pune, IND</strong>
-      <span>HQ Studio</span>
-    </div>
+
+  </div><!-- /hero-frame-layout -->
+
+  <div class="mouse-scroller-wrap anim" style="animation-delay:0.5s">
+    <a href="#jobs" class="mouse-scroller" aria-label="Scroll to openings">
+      <span class="mouse-body">
+        <span class="mouse-wheel"></span>
+      </span>
+      <span class="scroll-text">Scroll Down</span>
+    </a>
   </div>
 </section>
 
-<!-- PERKS STRIP -->
-<div class="perks">
-  <div class="perk perk-theme-blue anim" style="animation-delay:0.1s">
-    <span class="perk-num">01 / VELOCITY</span>
-    <div class="perk-icon-box">
-      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-    </div>
-    <h3>Move fast. Ship real.</h3>
-    <p>We don't do endless decks. We strategise, build, and ship. Every person here sees their work live.</p>
-    <div class="perk-progress-bar">
-      <div class="perk-progress-fill"></div>
-    </div>
-  </div>
-  <div class="perk perk-theme-yellow anim" style="animation-delay:0.2s">
-    <span class="perk-num">02 / VENTURE</span>
-    <div class="perk-icon-box">
-      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-    </div>
-    <h3>Grow with the studio.</h3>
-    <p>We're building three in-house products. Your work compounds — the studio's growth is yours too.</p>
-    <div class="perk-progress-bar">
-      <div class="perk-progress-fill"></div>
-    </div>
-  </div>
-  <div class="perk perk-theme-purple anim" style="animation-delay:0.3s">
-    <span class="perk-num">03 / EXCELLENCE</span>
-    <div class="perk-icon-box">
-      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-    </div>
-    <h3>Work on real brands.</h3>
-    <p>Ambitious D2C clients, big-budget productions, and India-scale distribution campaigns.</p>
-    <div class="perk-progress-bar">
-      <div class="perk-progress-fill"></div>
-    </div>
-  </div>
-  <div class="perk perk-theme-orange anim" style="animation-delay:0.4s">
-    <span class="perk-num">04 / CULTURE</span>
-    <div class="perk-icon-box">
-      <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    </div>
-    <h3>Pune HQ. No nonsense.</h3>
-    <p>A focused studio culture with a tight team. We're deliberate about who we add to the room.</p>
-    <div class="perk-progress-bar">
-      <div class="perk-progress-fill"></div>
-    </div>
-  </div>
-</div>
+<!-- INTERACTIVE CREATIVE-COMMAND-CENTER -->
+<div id="inside-the-studio-root"></div>
+<script type="module" src="./src/inside-studio-main.tsx"></script>
 
 <!-- JOBS LISTING -->
-<section class="jobs-section">
+<section class="jobs-section" id="jobs">
   <div class="section-header">
     <div>
       <div class="section-label">02 / Openings</div>
@@ -2437,55 +2864,48 @@
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="shell">
-    <div class="footer-news">
-      <div>
+<!-- ===== FOOTER (matches main website site-footer) ===== -->
+<footer class="site-footer">
+  <div class="sfoot-shell">
+    <div class="sfoot-news">
+      <div class="sfoot-news-copy">
         <h4>Read what we ship.</h4>
-        <p>Frameworks, teardowns, behind-the-scenes from the studio, and practical notes on building distribution. No fluff.</p>
+        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
       </div>
-      <form>
-        <input type="email" name="email" placeholder="you@company.com" required>
-        <button type="submit">Subscribe -></button>
+      <form class="sfoot-form" onsubmit="return false;">
+        <label class="sr-only" for="news-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+        <input id="news-email" type="email" name="email" placeholder="you@company.com" required aria-label="Your email address">
+        <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
       </form>
     </div>
-
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img class="footer-brand-mark" src="images/sca-logo-mark.png" alt="SCA mark">
-        <p>SeeTusk Creative Agency. A motion-first creative distribution studio for ambitious Indian brands. Headquartered in Pune, working across India.</p>
+    <div class="sfoot-grid">
+      <div class="sfoot-brand">
+        <div class="sfoot-brand-top">
+          <img src="images/sca-logo-mark.png" alt="SeeTusk SCA logo mark">
+          <span>SeeTusk / SCA</span>
+        </div>
+        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <div class="sfoot-socials">
+          <a href="https://www.youtube.com/@seetuskcreativeagency" title="YouTube" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
+          <a href="https://x.com/seetusk" title="X / Twitter" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
+          <a href="https://www.instagram.com/seetusk.agency" title="Instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
+          <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        </div>
       </div>
-      <div>
-        <h5>Verticals</h5>
-        <a href="content.html">Content &amp; Brand</a>
-        <a href="influencer.html">Influencer</a>
-        <a href="web.html">Web &amp; Tech</a>
-      </div>
-      <div>
-        <h5>Studio</h5>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="careers.html">Careers</a>
-      </div>
-      <div>
-        <h5>Elsewhere</h5>
-        <a href="mailto:contact@seetusk.com">contact@seetusk.com -></a>
-        <a href="mailto:hr@seetusk.com">hr@seetusk.com -></a>
-        <a href="#">LinkedIn -></a>
-        <a href="#">Instagram -></a>
-      </div>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
-    <div class="footer-bottom">
-      <span>(c) 2026 SeeTusk Creative Agency / Pune, IND</span>
+    <div class="sfoot-bottom">
+      <span>&copy; 2026 SeeTusk Creative Agency / Pune, IND</span>
       <span>seetusk.agency / Built in-house</span>
     </div>
   </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="assets/sca.js"></script>
-<script src="assets/sca-kinetic.js"></script>
+<script type="module" src="assets/sca.js"></script>
+<script type="module" src="assets/sca-kinetic.js"></script>
 <script>
   // Filter logic
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -2560,7 +2980,7 @@
 
   // RevealLoader Orchestrator
   document.addEventListener('DOMContentLoaded', () => {
-    const text = "CAREERS";
+    const text = "CAREER";
     const stampContainer = document.getElementById('reveal-stamp-text');
 
     // 1. Inject characters into span elements
@@ -3363,7 +3783,148 @@
       });
     }
   });
+
+  // ============ Cinematic Hero Interactions ============
+  const hero = document.querySelector('.hero');
+  const spotlight = document.getElementById('cursorSpotlight');
+  const grid = document.querySelector('.perspective-grid');
+  const careersBg = document.querySelector('.blurred-careers-bg');
+  const core = document.querySelector('.energy-core');
+  const glows = document.querySelectorAll('.glow-source');
+  const columns = document.querySelector('.light-columns');
+  const canvas = document.getElementById('heroParticles');
+  
+  if (hero) {
+    // 1. Mouse Spotlight and Parallax
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    const isMobile = window.innerWidth <= 760;
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', e => {
+        // Spotlight coordinates relative to hero container
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        hero.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+        hero.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+
+        // Parallax target offset (centered around 0)
+        targetX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+        targetY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+      });
+
+      // Interpolate positions for smooth ease-out feel
+      function updateParallax() {
+        mouseX += (targetX - mouseX) * 0.08;
+        mouseY += (targetY - mouseY) * 0.08;
+
+        // Background depth (0.05 speed)
+        if (grid) grid.style.transform = `translateX(calc(-50% + ${mouseX * 25}px)) perspective(500px) rotateX(75deg) translateY(${mouseY * 15}px)`;
+        if (careersBg) careersBg.style.transform = `translate(calc(-50% + ${mouseX * -15}px), calc(-50% + ${mouseY * -10}px))`;
+
+        // Midground depth (0.12 speed)
+        if (core) core.style.transform = `translate(calc(-50% + ${mouseX * 35}px), calc(-50% + ${mouseY * 25}px))`;
+        glows.forEach(glow => {
+          glow.style.transform = `translate(${mouseX * 45}px, ${mouseY * 35}px)`;
+        });
+        if (columns) columns.style.transform = `translate(${mouseX * 30}px, ${mouseY * 20}px)`;
+
+        requestAnimationFrame(updateParallax);
+      }
+      requestAnimationFrame(updateParallax);
+    }
+
+    // 2. Scroll-driven continuity (fading out glows as we scroll down)
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const heroHeight = hero.offsetHeight;
+      const opacity = Math.max(0, 1 - (scrollY / (heroHeight * 0.8)));
+
+      if (spotlight) spotlight.style.opacity = (opacity * 0.8).toString();
+      if (core) core.style.opacity = (opacity * 0.95).toString();
+      if (grid) grid.style.opacity = (opacity * 0.7).toString();
+      if (columns) columns.style.opacity = (opacity * 0.75).toString();
+      glows.forEach(glow => {
+        glow.style.opacity = (opacity * 0.4).toString();
+      });
+    });
+
+    // 3. Cinematic Ambient Particles Canvas
+    if (canvas && !isMobile) {
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = hero.offsetWidth;
+      let height = canvas.height = hero.offsetHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = hero.offsetWidth;
+        height = canvas.height = hero.offsetHeight;
+      });
+
+      const particles = [];
+      const particleCount = 25;
+
+      class Particle {
+        constructor() {
+          this.reset();
+          // Distribute initially throughout canvas
+          this.y = Math.random() * height;
+        }
+
+        reset() {
+          this.x = Math.random() * width;
+          this.y = height + Math.random() * 20;
+          this.size = Math.random() * 2 + 1;
+          this.speedY = -(Math.random() * 0.3 + 0.1);
+          this.speedX = (Math.random() * 0.2 - 0.1);
+          this.opacity = Math.random() * 0.3 + 0.1;
+          this.fadeSpeed = 0.002 + Math.random() * 0.002;
+        }
+
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX + (mouseX * 0.15); // React gently to mouse speed
+          
+          // Wrap/reset if goes off screen
+          if (this.y < -10 || this.x < -10 || this.x > width + 10) {
+            this.reset();
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          // Create radial gradient for a soft glowing particle look
+          const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 2);
+          grad.addColorStop(0, `rgba(168, 85, 247, ${this.opacity})`);
+          grad.addColorStop(0.5, `rgba(46, 84, 234, ${this.opacity * 0.5})`);
+          grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          ctx.fillStyle = grad;
+          ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+    }
+  }
+});
 </script>
+
+<!-- Frame-by-Frame Hero Animation -->
+<script type="module" src="assets/frame-animation.js"></script>
 </body>
 </html>
 
