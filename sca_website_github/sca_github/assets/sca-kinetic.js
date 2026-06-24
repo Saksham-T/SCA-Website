@@ -1,6 +1,6 @@
 /* SCA kinetic behaviors (homepage only). Loads AFTER sca.js, which already
    handles the base cursor, .sr reveals, word-cycle, forms, active-nav and the
-   3D camera-story. This file adds: intro loader, smooth momentum scrolling,
+   3D camera-story. This file adds: intro loader, native anchor scrolling,
    magnetic elements, scramble-on-hover, mouse-drift floats, scroll clip-reveals
    and a couple of expressive cursor states. */
 (function () {
@@ -15,13 +15,13 @@
 
   ready(() => {
     initIntro();
+    initLenis();
     initReveals();
     initMagnetic();
     initScramble();
     initDrift();
     initLab();
     initCursorPlus();
-    initSmoothScroll();
     initStackingCards();
   });
 
@@ -59,53 +59,82 @@
   function initReveals() {
     const targets = Array.from(document.querySelectorAll('.up, .clip-rise'));
     if (!targets.length) return;
-    if (reduce || !('IntersectionObserver' in window)) {
+    if (reduce) {
       targets.forEach((el) => el.classList.add('in'));
       return;
     }
 
-    let pending = targets.slice();
-
-    // Reveal anything whose top has entered (or nearly entered) the viewport.
-    // This is a scroll/resize-driven fallback that does NOT depend on
-    // IntersectionObserver firing — some embedded/preview contexts throttle or
-    // never deliver IO callbacks, which would otherwise leave clip-reveal
-    // images permanently hidden.
-    function sweep() {
-      if (!pending.length) return;
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      pending = pending.filter((el) => {
-        const top = el.getBoundingClientRect().top;
-        if (top < vh * 0.92) { el.classList.add('in'); return false; }
-        return true;
-      });
-      if (!pending.length) {
-        window.removeEventListener('scroll', sweep);
-        window.removeEventListener('resize', sweep);
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      try {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        targets.forEach((el) => obs.observe(el));
+      } catch (e) {
+        targets.forEach((el) => el.classList.add('in'));
       }
+      return;
     }
 
-    // Keep IntersectionObserver as the primary (nicer timing when it works)…
-    try {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('in');
-          obs.unobserve(entry.target);
-          pending = pending.filter((el) => el !== entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-      targets.forEach((el) => obs.observe(el));
-    } catch (e) { /* fall through to scroll fallback */ }
+    // GSAP ScrollTrigger reveals
+    gsap.utils.toArray('.up').forEach((el) => {
+      gsap.fromTo(el, {
+        y: 40,
+        opacity: 0
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 92%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
 
-    // …and the scroll fallback guarantees images always appear.
-    window.addEventListener('scroll', sweep, { passive: true });
-    window.addEventListener('resize', sweep);
-    sweep();
-    // run a few delayed sweeps to catch late layout/scroll-restore, and a
-    // final safety net so nothing can stay invisible.
-    [100, 400, 1200].forEach((t) => setTimeout(sweep, t));
-    setTimeout(() => { pending.forEach((el) => el.classList.add('in')); pending = []; }, 3000);
+    gsap.utils.toArray('.clip-rise').forEach((el) => {
+      const img = el.querySelector('img');
+      
+      gsap.fromTo(el, {
+        clipPath: "inset(100% 0 0 0)",
+        opacity: 0
+      }, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        opacity: 1,
+        duration: 1.0,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        },
+        onComplete: () => el.classList.add('in')
+      });
+
+      if (img) {
+        gsap.fromTo(img, {
+          yPercent: -10,
+          scale: 1.12
+        }, {
+          yPercent: 10,
+          scale: 1.0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      }
+    });
   }
 
   /* ---------- Magnetic elements ---------- */
@@ -210,62 +239,12 @@
     });
   }
 
-  /* ---------- Smooth momentum scrolling (whole page eases) ---------- */
-  function initSmoothScroll() {
-    if (reduce || isTouch || !fine || window.innerWidth < 900) return;
-
-    document.documentElement.style.scrollBehavior = 'auto';
-    let target = window.scrollY;
-    let current = target;
-    let running = false;
-    let programmatic = false;
-    const maxY = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-    const clamp = (v) => Math.max(0, Math.min(maxY(), v));
-
-    function loop() {
-      current += (target - current) * 0.12;
-      if (Math.abs(target - current) < 0.4) { current = target; running = false; }
-      programmatic = true;
-      window.scrollTo(0, current);
-      programmatic = false;
-      if (running) requestAnimationFrame(loop);
+  /* ---------- Instant native scrolling (no Lenis momentum lag) ---------- */
+  function initLenis() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
     }
-    function start() { if (!running) { running = true; requestAnimationFrame(loop); } }
 
-    window.addEventListener('wheel', (e) => {
-      if (e.ctrlKey) return;            // let pinch-zoom through
-      if (document.body.classList.contains('intro-locked')) { e.preventDefault(); return; }
-      e.preventDefault();
-      target = clamp(target + e.deltaY);
-      start();
-    }, { passive: false });
-
-    window.addEventListener('keydown', (e) => {
-      const t = e.target;
-      const tag = (t && t.tagName || '').toLowerCase();
-      if (tag === 'input' || tag === 'textarea' || (t && t.isContentEditable)) return;
-      const step = window.innerHeight;
-      let handled = true;
-      switch (e.key) {
-        case 'PageDown': target += step * 0.9; break;
-        case 'PageUp': target -= step * 0.9; break;
-        case 'Home': target = 0; break;
-        case 'End': target = maxY(); break;
-        case 'ArrowDown': target += 120; break;
-        case 'ArrowUp': target -= 120; break;
-        case ' ': target += (e.shiftKey ? -1 : 1) * step * 0.9; break;
-        default: handled = false;
-      }
-      if (handled) { e.preventDefault(); target = clamp(target); start(); }
-    });
-
-    // resync when the user drags the native scrollbar (not our animation)
-    window.addEventListener('scroll', () => {
-      if (programmatic || running) return;
-      target = current = window.scrollY;
-    }, { passive: true });
-
-    // smooth anchor jumps
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener('click', (e) => {
         const id = a.getAttribute('href');
@@ -273,12 +252,10 @@
         const el = document.querySelector(id);
         if (!el) return;
         e.preventDefault();
-        target = clamp(el.getBoundingClientRect().top + window.scrollY - 84);
-        start();
+        const top = el.getBoundingClientRect().top + window.scrollY - 84;
+        window.scrollTo({ top, behavior: 'auto' });
       });
     });
-
-    window.addEventListener('resize', () => { target = clamp(target); });
   }
 
   /* ---------- Stacking & Shuffling Cards with Horizontal Scattering ---------- */

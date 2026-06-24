@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Careers — SeeTusk Creative Agency / Open Channels</title>
+<meta name="description" content="Join SeeTusk Creative Agency — a motion-first creative distribution studio in Pune. 13 open channels across content, creators, code and operations. Skip the layers. Submit your work in 60 seconds." />
+<meta name="theme-color" content="#F2EDE2" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   SeeTusk Creative Agency — Careers / "Open Channels"
+   Design system derived from seetusk.com (paper + ink + mono
+   technical labeling + serif-italic emphasis). Signature:
+   the live "signal / transmit pipeline" broadcast motif.
+   ============================================================ */
+
+:root{
+  --paper:#F2EDE2;
+  --paper-2:#FAF6EE;
+  --paper-3:#ECE5D6;
+  --ink:#15120D;
+  --ink-80:#3A352C;
+  --ink-60:#6B6357;
+  --ink-40:#998F7E;
+  --ink-20:#C9BFAD;
+  --line:#DAD2C2;
+  --line-soft:#E5DDCE;
+  --signal:#E8431E;
+  --signal-deep:#C2360F;
+  --console:#15120D;
+  --console-2:#1D1913;
+  --console-line:#322C22;
+  --console-ink:#EFE9DC;
+  --console-ink-60:#A79E8C;
+  --live:#1F9D5B;
+  --radius:2px;
+  --shadow:0 1px 0 rgba(21,18,13,.04), 0 18px 50px -28px rgba(21,18,13,.45);
+  --pad-x:clamp(20px,5vw,72px);
+  --maxw:1320px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--signal);color:var(--paper-2)}
+
+/* paper grain / faint vertical column guides */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:linear-gradient(90deg,transparent calc(var(--pad-x) - 1px), var(--line-soft) var(--pad-x), transparent calc(var(--pad-x) + 1px)),
+                   linear-gradient(270deg,transparent calc(var(--pad-x) - 1px), var(--line-soft) var(--pad-x), transparent calc(var(--pad-x) + 1px));
+  opacity:.5;
+}
+
+/* ---------- type ---------- */
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.serif{font-family:"Instrument Serif",Georgia,serif}
+.em-serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;color:var(--signal)}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-60);
+  display:inline-flex;align-items:center;gap:10px;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--signal);flex:none}
+
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:.98;letter-spacing:-.02em}
+.display{
+  font-family:"Space Grotesk",sans-serif;font-weight:600;
+  text-transform:uppercase;line-height:.92;letter-spacing:-.025em;
+  font-size:clamp(42px,8.4vw,118px);
+}
+.h2{font-size:clamp(30px,4.6vw,62px);text-transform:uppercase;line-height:.95;letter-spacing:-.02em}
+.h3{font-size:clamp(20px,2vw,27px);letter-spacing:-.01em;line-height:1.05}
+.lede{font-size:clamp(16px,1.5vw,20px);line-height:1.5;color:var(--ink-80);max-width:60ch}
+
+/* ---------- layout shells ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad-x);padding-right:var(--pad-x);position:relative;z-index:2}
+.section{padding-block:clamp(72px,10vw,140px);position:relative;z-index:2}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-bottom:clamp(40px,5vw,70px)}
+.section-tag{display:flex;align-items:baseline;gap:14px;color:var(--ink-60)}
+.section-tag .num{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;color:var(--signal)}
+.section-tag .label{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase}
+.rule{height:1px;background:var(--line);width:100%}
+
+/* ---------- buttons ---------- */
+.btn{
+  --bg:var(--ink);--fg:var(--paper-2);
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:15px 24px;background:var(--bg);color:var(--fg);
+  border-radius:var(--radius);position:relative;overflow:hidden;
+  transition:transform .5s cubic-bezier(.16,1,.3,1), background .35s ease;
+  will-change:transform;
+}
+.btn .arrow{transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.btn:hover .arrow{transform:translate(3px,-3px)}
+.btn.signal{--bg:var(--signal);--fg:#fff}
+.btn.signal:hover{background:var(--signal-deep)}
+.btn.ghost{--bg:transparent;--fg:var(--ink);border:1px solid var(--line);}
+.btn.ghost:hover{background:var(--ink);color:var(--paper-2)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--signal);outline-offset:3px;border-radius:1px;
+}
+
+/* =================== TICKER =================== */
+.ticker{
+  background:var(--ink);color:var(--paper);overflow:hidden;
+  border-bottom:1px solid #2a261e;position:relative;z-index:60;
+}
+.ticker__track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.ticker__group{display:flex;align-items:center;flex:none}
+.ticker__item{
+  font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;padding:9px 26px;display:flex;align-items:center;gap:10px;color:#cdc6b8;
+}
+.ticker__item b{color:var(--paper);font-weight:500}
+.ticker__item .sig{color:var(--signal)}
+.ticker__sep{opacity:.4}
+@keyframes marq{to{transform:translateX(-50%)}}
+.ticker:hover .ticker__track{animation-play-state:paused}
+
+/* =================== NAV =================== */
+.nav{
+  position:sticky;top:0;z-index:55;background:rgba(242,237,226,.82);
+  backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid transparent;transition:border-color .3s ease, background .3s ease;
+}
+.nav.scrolled{border-bottom-color:var(--line);background:rgba(242,237,226,.92)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk",sans-serif;font-weight:600;letter-spacing:-.01em;font-size:15px}
+.brand__mark{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:-.04em}
+.brand small{color:var(--ink-40);font-family:"JetBrains Mono",monospace;font-weight:400;font-size:12px}
+.nav__links{display:flex;align-items:center;gap:26px}
+.nav__links a{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.04em;color:var(--ink-60);transition:color .2s;position:relative}
+.nav__links a:hover{color:var(--ink)}
+.nav__links a.active{color:var(--ink)}
+.nav__links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--signal)}
+.nav__cta{display:flex;align-items:center;gap:14px}
+.nav__clock{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-60);display:flex;align-items:center;gap:8px}
+.nav__clock .pulse{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(31,157,91,.5);animation:pulse 2.4s infinite}
+.nav__burger{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:var(--radius);place-items:center}
+.nav__burger span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative}
+.nav__burger span::before,.nav__burger span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--ink)}
+.nav__burger span::before{top:-5px}.nav__burger span::after{top:5px}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,157,91,.5)}70%{box-shadow:0 0 0 7px rgba(31,157,91,0)}100%{box-shadow:0 0 0 0 rgba(31,157,91,0)}}
+
+/* =================== HERO =================== */
+.hero{position:relative;padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(40px,5vw,60px);overflow:hidden}
+.hero__grid{display:grid;grid-template-columns:1fr;gap:30px}
+.hero__top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px}
+.hero__coord{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-60);text-align:right;line-height:1.8}
+.hero__coord b{color:var(--ink)}
+.hero h1{margin-top:6px}
+.hero__sub-row{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,80px);align-items:end;margin-top:8px}
+.hero__cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.hero__wave{margin-top:14px}
+.wave-canvas{display:block;width:100%;height:74px}
+
+/* hero reveal */
+.reveal-line{overflow:hidden;display:block}
+.reveal-line > span{display:block;transform:translateY(105%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.loaded .reveal-line > span{transform:translateY(0)}
+.loaded .reveal-line:nth-child(2) > span{transition-delay:.08s}
+.loaded .reveal-line:nth-child(3) > span{transition-delay:.16s}
+.fade-up{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s cubic-bezier(.16,1,.3,1)}
+.loaded .fade-up{opacity:1;transform:none}
+.fade-up.d1{transition-delay:.45s}.fade-up.d2{transition-delay:.55s}.fade-up.d3{transition-delay:.65s}
+
+/* live stat chips */
+.signal-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:34px;
+}
+.signal-cell{background:var(--paper-2);padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.signal-cell .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);display:flex;align-items:center;gap:8px}
+.signal-cell .v{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:clamp(30px,3.5vw,46px);line-height:1;letter-spacing:-.02em}
+.signal-cell .v small{font-size:14px;color:var(--ink-40);font-weight:500;margin-left:4px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 0 rgba(232,67,30,.55);animation:pulse-sig 2s infinite}
+@keyframes pulse-sig{0%{box-shadow:0 0 0 0 rgba(232,67,30,.55)}70%{box-shadow:0 0 0 8px rgba(232,67,30,0)}100%{box-shadow:0 0 0 0 rgba(232,67,30,0)}}
+
+/* =================== VALUES =================== */
+.values{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.value{
+  padding:36px 28px 40px;border-left:1px solid var(--line);position:relative;
+  transition:background .4s ease;
+}
+.value:first-child{border-left:none}
+.value:hover{background:var(--paper-2)}
+.value__idx{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.16em;color:var(--signal);margin-bottom:auto}
+.value__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:54px}
+.value__tag{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-40)}
+.value h3{margin-bottom:12px}
+.value p{font-size:14.5px;color:var(--ink-60);line-height:1.5}
+.value__arrow{position:absolute;top:34px;right:28px;color:var(--ink-20);transition:transform .45s cubic-bezier(.16,1,.3,1),color .3s}
+.value:hover .value__arrow{transform:translate(3px,-3px);color:var(--signal)}
+
+/* =================== OPEN ROLES =================== */
+.roles{background:var(--paper)}
+.roles__head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.roles__controls{display:flex;flex-direction:column;gap:18px;margin-top:30px;margin-bottom:6px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter{
+  font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.04em;
+  padding:9px 16px;border:1px solid var(--line);border-radius:100px;color:var(--ink-60);
+  background:var(--paper-2);transition:all .25s ease;display:inline-flex;align-items:center;gap:8px;
+}
+.filter:hover{border-color:var(--ink-40);color:var(--ink)}
+.filter.active{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
+.filter .count{opacity:.5;font-size:11px}
+.filter.active .count{opacity:.7}
+.search{
+  display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:100px;
+  padding:9px 16px;background:var(--paper-2);max-width:320px;flex:1;min-width:200px;
+}
+.search input{border:none;background:none;outline:none;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--ink);width:100%}
+.search input::placeholder{color:var(--ink-40)}
+.search svg{flex:none;color:var(--ink-40)}
+.roles__meta{display:flex;justify-content:space-between;align-items:center;margin:24px 0 10px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60)}
+
+.role-list{border-top:1px solid var(--ink)}
+.role{
+  border-bottom:1px solid var(--line);position:relative;
+  transition:background .35s ease;
+}
+.role:hover{background:var(--paper-2)}
+.role.open{background:var(--paper-2)}
+.role__bar{
+  display:grid;grid-template-columns:34px minmax(0,2.3fr) 1fr 1fr auto;
+  align-items:center;gap:24px;padding:26px 8px 26px 0;text-align:left;width:100%;
+}
+.role__ch{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--signal)}
+.role__title{display:flex;flex-direction:column;gap:5px}
+.role__title h3{font-size:clamp(19px,1.9vw,25px);letter-spacing:-.01em;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.role:hover .role__title h3{transform:translateX(4px)}
+.role__title .live{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--live);display:flex;align-items:center;gap:7px}
+.role__title .live i{width:6px;height:6px;border-radius:50%;background:var(--live);display:inline-block}
+.role__meta-m{display:none;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-60);letter-spacing:.02em}
+.role__cell{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-60);display:flex;flex-direction:column;gap:3px}
+.role__cell span:first-child{color:var(--ink-40);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.role__cell b{color:var(--ink);font-weight:500}
+.role__toggle{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;flex:none;transition:all .35s ease;background:var(--paper)}
+.role:hover .role__toggle{border-color:var(--ink)}
+.role.open .role__toggle{background:var(--signal);border-color:var(--signal);color:#fff;transform:rotate(45deg)}
+.role__panel{overflow:hidden;height:0;transition:height .5s cubic-bezier(.16,1,.3,1)}
+.role__panel-in{padding:4px 8px 36px 58px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.role__block .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);margin-bottom:12px}
+.role__block p{font-size:15px;color:var(--ink-80);line-height:1.55;max-width:46ch}
+.role__block ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:4px}
+.role__block li{font-size:14.5px;color:var(--ink-80);display:flex;gap:11px;line-height:1.45}
+.role__block li::before{content:"→";color:var(--signal);font-family:"JetBrains Mono",monospace;flex:none}
+.role__apply{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:22px}
+.role__apply .skip{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-60)}
+.no-results{padding:60px 8px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-60);display:none}
+.no-results.show{display:block}
+
+.openapp{
+  margin-top:42px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--paper-2);padding:clamp(28px,4vw,46px);
+  display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;
+}
+.openapp h3{margin-bottom:8px}
+.openapp p{color:var(--ink-60);font-size:15px;max-width:52ch}
+
+/* =================== PIPELINE (CONSOLE) =================== */
+.console{background:var(--console);color:var(--console-ink);position:relative;overflow:hidden}
+.console .wrap{z-index:3}
+.console .section-tag{color:var(--console-ink-60)}
+.console .section-tag .label{color:var(--console-ink-60)}
+.console .h2{color:var(--console-ink)}
+.console__wave{position:absolute;inset:0;width:100%;height:100%;opacity:.5;z-index:1}
+.console__win{
+  border:1px solid var(--console-line);border-radius:6px;background:rgba(8,7,5,.5);
+  margin-top:14px;backdrop-filter:blur(2px);
+}
+.console__topbar{display:flex;align-items:center;gap:8px;padding:13px 18px;border-bottom:1px solid var(--console-line)}
+.console__topbar .dot{width:11px;height:11px;border-radius:50%;background:#2f2a22}
+.console__topbar .dot.r{background:#E8431E}.console__topbar .dot.y{background:#caa53e}.console__topbar .dot.g{background:#1F9D5B}
+.console__topbar .file{margin-left:14px;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--console-ink-60);letter-spacing:.06em}
+.console__topbar .stat{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--live);display:flex;align-items:center;gap:7px}
+.console__topbar .stat i{width:6px;height:6px;border-radius:50%;background:var(--live);animation:pulse-sig 2s infinite}
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr)}
+.pstep{padding:30px 24px 36px;border-left:1px solid var(--console-line);position:relative}
+.pstep:first-child{border-left:none}
+.pstep__n{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--signal);letter-spacing:.1em;margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.pstep__n .ln{flex:1;height:1px;background:var(--console-line)}
+.pstep h3{font-size:20px;color:var(--console-ink);margin-bottom:10px;letter-spacing:-.01em}
+.pstep p{font-size:13.5px;color:var(--console-ink-60);line-height:1.5}
+.pstep__cmd{font-family:"JetBrains Mono",monospace;font-size:11px;color:#6f6757;margin-top:16px}
+.pstep__cmd .ok{color:var(--live)}
+
+/* =================== HOW WE WORK =================== */
+.sys{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.sys__cell{padding:clamp(28px,3vw,44px);border-left:1px solid var(--line);background:var(--paper-2);transition:background .4s}
+.sys__cell:first-child{border-left:none}
+.sys__cell:hover{background:var(--paper-3)}
+.sys__tag{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.14em;color:var(--signal);margin-bottom:30px;display:block}
+.sys__cell h3{margin-bottom:14px;font-size:clamp(20px,2vw,26px)}
+.sys__cell p{color:var(--ink-60);font-size:15px;line-height:1.55}
+
+/* =================== PERKS =================== */
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.perk{background:var(--paper);padding:30px 26px;min-height:172px;display:flex;flex-direction:column;justify-content:space-between;transition:background .35s}
+.perk:hover{background:var(--paper-2)}
+.perk__n{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink-40);letter-spacing:.1em}
+.perk h3{font-size:18px;line-height:1.15;margin-bottom:7px}
+.perk p{font-size:13.5px;color:var(--ink-60);line-height:1.5}
+
+/* =================== CTA BAND =================== */
+.cta-band{background:var(--signal);color:#fff;position:relative;overflow:hidden}
+.cta-band .wrap{z-index:2}
+.cta-band__in{display:flex;justify-content:space-between;align-items:center;gap:34px;flex-wrap:wrap}
+.cta-band h2{color:#fff;font-size:clamp(30px,4.4vw,60px);text-transform:uppercase;letter-spacing:-.02em;line-height:.95}
+.cta-band .em-serif{color:#fff;opacity:.85}
+.cta-band p{color:rgba(255,255,255,.85);font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.06em;margin-top:14px}
+.cta-band .btn{--bg:#fff;--fg:var(--signal)}
+.cta-band .btn:hover{--bg:var(--ink);--fg:#fff;background:var(--ink)}
+.cta-band__wave{position:absolute;inset:0;opacity:.22;z-index:1}
+
+/* =================== NEWSLETTER + FOOTER =================== */
+.news{border-top:1px solid var(--line);padding-block:clamp(56px,7vw,90px)}
+.news__in{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.news h3{font-size:clamp(22px,2.4vw,30px);margin-bottom:10px}
+.news p{color:var(--ink-60);font-size:15px;max-width:46ch}
+.news__form{display:flex;gap:10px;border-bottom:1px solid var(--ink);padding-bottom:12px;max-width:440px;margin-left:auto;width:100%}
+.news__form input{border:none;background:none;outline:none;font-family:"JetBrains Mono",monospace;font-size:14px;flex:1;color:var(--ink)}
+.news__form input::placeholder{color:var(--ink-40)}
+.news__form button{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--signal);white-space:nowrap}
+
+.footer{background:var(--ink);color:var(--paper);padding-top:clamp(56px,7vw,80px);position:relative;z-index:2}
+.footer a{color:#bdb6a8;transition:color .2s}
+.footer a:hover{color:var(--paper)}
+.footer__top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;padding-bottom:54px;border-bottom:1px solid #2a261e}
+.footer__brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk",sans-serif;font-weight:600;margin-bottom:18px;color:var(--paper)}
+.footer__brand .brand__mark{background:var(--paper);color:var(--ink)}
+.footer__col p{font-size:14px;color:#9a9384;line-height:1.55;max-width:38ch}
+.footer__col h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7c7568;margin-bottom:16px;font-weight:500}
+.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.footer__col ul a{font-size:14px;display:inline-flex;align-items:center;gap:7px}
+.footer__bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding:26px 0 36px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:#7c7568}
+.footer__bottom .row{display:flex;gap:22px;flex-wrap:wrap}
+
+/* =================== MODAL =================== */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal__scrim{position:absolute;inset:0;background:rgba(21,18,13,.62);backdrop-filter:blur(4px);opacity:0;transition:opacity .35s}
+.modal.show .modal__scrim{opacity:1}
+.modal__card{
+  position:relative;width:min(640px,100%);max-height:92vh;overflow:auto;
+  background:var(--console);color:var(--console-ink);border:1px solid var(--console-line);
+  border-radius:8px;box-shadow:0 40px 120px -30px rgba(0,0,0,.7);
+  transform:translateY(18px) scale(.98);opacity:0;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .35s;
+}
+.modal.show .modal__card{transform:none;opacity:1}
+.modal__bar{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--console-line);position:sticky;top:0;background:var(--console);z-index:3}
+.modal__bar .dot{width:11px;height:11px;border-radius:50%;background:#2f2a22}
+.modal__bar .dot.r{background:#E8431E}.modal__bar .dot.y{background:#caa53e}.modal__bar .dot.g{background:#1F9D5B}
+.modal__bar .file{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--console-ink-60);margin-left:12px;letter-spacing:.05em}
+.modal__close{margin-left:auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--console-line);display:grid;place-items:center;color:var(--console-ink-60);transition:all .25s}
+.modal__close:hover{background:var(--signal);color:#fff;border-color:var(--signal)}
+.modal__body{padding:clamp(24px,4vw,40px)}
+.modal__head{margin-bottom:26px}
+.modal__head .k{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--signal);margin-bottom:12px;display:block}
+.modal__head h3{font-family:"Space Grotesk",sans-serif;font-size:clamp(22px,3vw,30px);text-transform:uppercase;color:var(--console-ink);letter-spacing:-.01em;line-height:1}
+.modal__head p{color:var(--console-ink-60);font-size:14px;margin-top:10px}
+.steps{display:flex;gap:6px;margin-bottom:26px}
+.steps .seg{flex:1;height:3px;border-radius:2px;background:var(--console-line);overflow:hidden}
+.steps .seg i{display:block;height:100%;width:0;background:var(--signal);transition:width .4s ease}
+.steps .seg.done i,.steps .seg.active i{width:100%}
+.fstep{display:none;flex-direction:column;gap:18px}
+.fstep.active{display:flex;animation:fstepin .45s ease}
+@keyframes fstepin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--console-ink-60)}
+.field label .req{color:var(--signal)}
+.field input,.field select,.field textarea{
+  font-family:"Inter",sans-serif;font-size:14px;padding:13px 15px;border-radius:4px;
+  background:#0e0c08;border:1px solid var(--console-line);color:var(--console-ink);outline:none;transition:border-color .2s;
+}
+.field input::placeholder,.field textarea::placeholder{color:#5a5346}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--signal)}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23A79E8C' stroke-width='1.5'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+.field textarea{resize:vertical;min-height:110px;line-height:1.5}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.drop{
+  border:1px dashed var(--console-line);border-radius:6px;padding:24px;text-align:center;
+  font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--console-ink-60);cursor:pointer;transition:all .25s;
+}
+.drop:hover,.drop.hot{border-color:var(--signal);color:var(--console-ink);background:rgba(232,67,30,.04)}
+.drop b{color:var(--signal)}
+.drop small{display:block;margin-top:7px;color:#5a5346;font-size:10.5px}
+.modal__foot{display:flex;justify-content:space-between;gap:12px;margin-top:30px}
+.modal__foot .spacer{flex:1}
+.mbtn{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:13px 22px;border-radius:4px;transition:all .25s;display:inline-flex;align-items:center;gap:9px}
+.mbtn.prev{color:var(--console-ink-60);border:1px solid var(--console-line)}
+.mbtn.prev:hover{color:var(--console-ink);border-color:var(--console-ink-60)}
+.mbtn.next{background:var(--signal);color:#fff}
+.mbtn.next:hover{background:var(--signal-deep)}
+.field .err{color:var(--signal);font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.04em;display:none}
+.field.invalid .err{display:block}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--signal)}
+
+/* success */
+.success{display:none;flex-direction:column;align-items:center;text-align:center;padding:30px 10px 16px}
+.success.show{display:flex}
+.success__mark{width:74px;height:74px;border-radius:50%;border:1px solid var(--live);display:grid;place-items:center;margin-bottom:24px;position:relative}
+.success__mark::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--live);animation:ring 1.8s ease-out infinite;opacity:0}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.success__mark svg{color:var(--live)}
+.success h3{font-family:"Space Grotesk",sans-serif;font-size:26px;text-transform:uppercase;color:var(--console-ink);margin-bottom:12px}
+.success p{color:var(--console-ink-60);font-size:14px;max-width:42ch;line-height:1.55}
+.success .log{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5a5346;margin-top:20px;letter-spacing:.04em}
+.success .log b{color:var(--live)}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width:1080px){
+  .hero__sub-row{grid-template-columns:1fr}
+  .values{grid-template-columns:1fr 1fr}
+  .value:nth-child(3),.value:nth-child(4){border-top:1px solid var(--line)}
+  .value:nth-child(odd){border-left:none}
+  .pipeline{grid-template-columns:1fr 1fr}
+  .pstep{border-left:1px solid var(--console-line);border-top:1px solid var(--console-line)}
+  .pstep:nth-child(odd){border-left:none}
+  .pstep:nth-child(-n+2){border-top:none}
+  .perks{grid-template-columns:1fr 1fr}
+  .footer__top{grid-template-columns:1fr 1fr}
+  .footer__col.lead{grid-column:1/-1}
+}
+@media (max-width:760px){
+  body::before{display:none}
+  .nav__links{display:none}
+  .nav__clock{display:none}
+  .nav__burger{display:grid}
+  .signal-bar{grid-template-columns:1fr 1fr}
+  .sys{grid-template-columns:1fr}
+  .sys__cell{border-left:none;border-top:1px solid var(--line)}
+  .sys__cell:first-child{border-top:none}
+  .role__bar{grid-template-columns:28px 1fr auto;gap:14px;padding:22px 4px}
+  .role__cell{display:none}
+  .role__meta-m{display:block;margin-top:4px}
+  .role__panel-in{grid-template-columns:1fr;padding-left:8px;padding-right:0;gap:24px}
+  .pipeline{grid-template-columns:1fr}
+  .pstep{border-left:none;border-top:1px solid var(--console-line)}
+  .pstep:first-child{border-top:none}
+  .perks{grid-template-columns:1fr}
+  .news__in{grid-template-columns:1fr}
+  .news__form{margin-left:0}
+  .footer__top{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .hero__top{align-items:flex-start}
+  .hero__coord{text-align:left}
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto}
+  .reveal-line > span{transform:none}
+  .fade-up{opacity:1;transform:none}
+  .ticker__track{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track" id="ticker">
+    <div class="ticker__group">
+      <span class="ticker__item"><span class="sig">●</span> <b>SCA / 2026</b> <span class="ticker__sep">·</span> PUNE, IND</span>
+      <span class="ticker__item">NOW HIRING <span class="ticker__sep">·</span> <b>13 OPEN CHANNELS</b></span>
+      <span class="ticker__item">MOTION-FIRST CREATIVE DISTRIBUTION STUDIO</span>
+      <span class="ticker__item">SKIP THE LAYERS <span class="ticker__sep">·</span> <b>SUBMIT YOUR WORK IN 60s</b></span>
+      <span class="ticker__item">CONTENT <span class="ticker__sep">·</span> CREATORS <span class="ticker__sep">·</span> CODE <span class="ticker__sep">·</span> CAMPAIGNS</span>
+      <span class="ticker__item"><span class="sig">●</span> REPLY WITHIN <b>48H</b></span>
+    </div>
+    <div class="ticker__group" aria-hidden="true">
+      <span class="ticker__item"><span class="sig">●</span> <b>SCA / 2026</b> <span class="ticker__sep">·</span> PUNE, IND</span>
+      <span class="ticker__item">NOW HIRING <span class="ticker__sep">·</span> <b>13 OPEN CHANNELS</b></span>
+      <span class="ticker__item">MOTION-FIRST CREATIVE DISTRIBUTION STUDIO</span>
+      <span class="ticker__item">SKIP THE LAYERS <span class="ticker__sep">·</span> <b>SUBMIT YOUR WORK IN 60s</b></span>
+      <span class="ticker__item">CONTENT <span class="ticker__sep">·</span> CREATORS <span class="ticker__sep">·</span> CODE <span class="ticker__sep">·</span> CAMPAIGNS</span>
+      <span class="ticker__item"><span class="sig">●</span> REPLY WITHIN <b>48H</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a class="brand" href="#top" aria-label="SeeTusk Creative Agency home">
+      <span class="brand__mark">S</span>
+      <span>SeeTusk <small>/ SCA</small></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#">Content</a>
+      <a href="#">Influencer</a>
+      <a href="#">Web &amp; Tech</a>
+      <a href="#">About</a>
+      <a href="#roles" class="active">Careers</a>
+    </nav>
+    <div class="nav__cta">
+      <span class="nav__clock"><span class="pulse"></span><span id="clock">--:--:-- IST</span></span>
+      <button class="btn signal" data-apply="" data-role="">Apply <span class="arrow">↗</span></button>
+      <button class="nav__burger" id="burger" aria-label="Open navigation"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__top">
+      <span class="eyebrow"><span class="dot"></span> STUDIO / CAREERS — TRANSMISSION OPEN</span>
+      <div class="hero__coord">
+        <span>18.52° N / 73.85° E</span><br>
+        <b>PUNE, IND</b> — HQ STUDIO
+      </div>
+    </div>
+
+    <h1 class="display" aria-label="Build work the country actually sees.">
+      <span class="reveal-line"><span>BUILD WORK</span></span>
+      <span class="reveal-line"><span>THE COUNTRY</span></span>
+      <span class="reveal-line"><span>ACTUALLY <span class="em-serif">sees.</span></span></span>
+    </h1>
+
+    <div class="hero__sub-row">
+      <p class="lede fade-up d1">
+        SeeTusk is a motion-first creative distribution studio in Pune. We ship real content,
+        creators, and code every week — and the people you meet in the pitch are the people doing
+        the work. No account managers. No layers. Find your channel below.
+      </p>
+      <div class="fade-up d2">
+        <canvas class="wave-canvas" id="heroWave" aria-hidden="true"></canvas>
+      </div>
+    </div>
+
+    <div class="hero__cta-row fade-up d3">
+      <a href="#roles" class="btn signal">See open roles <span class="arrow">↓</span></a>
+      <button class="btn ghost" data-apply="" data-role="">Skip to application <span class="arrow">↗</span></button>
+    </div>
+
+    <div class="signal-bar fade-up d3">
+      <div class="signal-cell">
+        <span class="k"><span class="live-dot"></span>OPEN ROLES</span>
+        <span class="v" data-count="13">0</span>
+      </div>
+      <div class="signal-cell">
+        <span class="k">DEPARTMENTS</span>
+        <span class="v" data-count="4">0</span>
+      </div>
+      <div class="signal-cell">
+        <span class="k">ON THE TEAM</span>
+        <span class="v" data-count="14">0</span>
+      </div>
+      <div class="signal-cell">
+        <span class="k">REPLY TIME</span>
+        <span class="v" data-count="48">0<small>HRS</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUES ===== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="values" id="values">
+      <article class="value">
+        <div class="value__top"><span class="value__idx">01</span><span class="value__tag">VELOCITY</span></div>
+        <span class="value__arrow">↗</span>
+        <h3 class="h3">Ship, don't deck.</h3>
+        <p>We strategise, build, and ship. No endless decks — every person here watches their work go live, weekly.</p>
+      </article>
+      <article class="value">
+        <div class="value__top"><span class="value__idx">02</span><span class="value__tag">OWNERSHIP</span></div>
+        <span class="value__arrow">↗</span>
+        <h3 class="h3">Your work compounds.</h3>
+        <p>We're building three in-house products. The studio's growth is yours too — you build assets, not just deliverables.</p>
+      </article>
+      <article class="value">
+        <div class="value__top"><span class="value__idx">03</span><span class="value__tag">CRAFT</span></div>
+        <span class="value__arrow">↗</span>
+        <h3 class="h3">Real brands, real budgets.</h3>
+        <p>Ambitious D2C clients, big-budget productions, and India-scale distribution campaigns. Work that's actually seen.</p>
+      </article>
+      <article class="value">
+        <div class="value__top"><span class="value__idx">04</span><span class="value__tag">THE ROOM</span></div>
+        <span class="value__arrow">↗</span>
+        <h3 class="h3">Pune HQ. No layers.</h3>
+        <p>A focused studio with a tight team. We're deliberate about who joins the room — and what they get to own.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OPEN ROLES ===== -->
+<section class="section roles" id="roles">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag"><span class="num">02 /</span><span class="label">Open Channels</span></div>
+      <div class="roles__head">
+        <h2 class="h2">Open <span class="em-serif">roles.</span></h2>
+        <p class="lede">Each role is a live channel. Open one to read the brief and pre-requisites, then transmit your application.</p>
+      </div>
+    </div>
+
+    <div class="roles__controls">
+      <div class="filters" id="filters" role="tablist" aria-label="Filter roles by department">
+        <button class="filter active" data-dept="all">All <span class="count" id="cnt-all">13</span></button>
+        <button class="filter" data-dept="Marketing">Marketing <span class="count" id="cnt-Marketing">2</span></button>
+        <button class="filter" data-dept="Production &amp; Post">Production &amp; Post <span class="count" id="cnt-prod">8</span></button>
+        <button class="filter" data-dept="Growth">Growth <span class="count" id="cnt-Growth">1</span></button>
+        <button class="filter" data-dept="Operations">Operations <span class="count" id="cnt-Operations">2</span></button>
+        <div class="search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+          <input type="text" id="roleSearch" placeholder="search role, city, skill…" aria-label="Search roles" />
+        </div>
+      </div>
+    </div>
+
+    <div class="roles__meta">
+      <span id="resultCount">13 channels open</span>
+      <span>SORTED BY DEPARTMENT</span>
+    </div>
+
+    <div class="role-list" id="roleList"></div>
+    <div class="no-results" id="noResults">// no channel matches that filter. <button style="color:var(--signal);text-decoration:underline" onclick="resetFilters()">reset filters</button></div>
+
+    <div class="openapp">
+      <div>
+        <h3 class="h3">Don't see your channel?</h3>
+        <p>We're always looking for sharp, ambitious people. Send your portfolio and a note on what you'd build here.</p>
+      </div>
+      <button class="btn ghost" data-apply="" data-role="Open Application">Send an open application <span class="arrow">↗</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PIPELINE / CONSOLE ===== -->
+<section class="section console">
+  <canvas class="console__wave" id="consoleWave" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag"><span class="num">03 /</span><span class="label">Transmit Pipeline</span></div>
+      <h2 class="h2">How hiring <span class="em-serif" style="color:var(--signal)">works.</span></h2>
+    </div>
+    <div class="console__win">
+      <div class="console__topbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="file">transmit_pipeline.log</span>
+        <span class="stat"><i></i> 5 STAGES / NO BLACK BOXES</span>
+      </div>
+      <div class="pipeline">
+        <article class="pstep">
+          <div class="pstep__n">01 <span class="ln"></span></div>
+          <h3>Apply</h3>
+          <p>Skip the layers. Submit your work in 60 seconds — no six-stage form, no cover-letter theatre.</p>
+          <div class="pstep__cmd">$ submit --work <span class="ok">[ok]</span></div>
+        </article>
+        <article class="pstep">
+          <div class="pstep__n">02 <span class="ln"></span></div>
+          <h3>Review</h3>
+          <p>A founder reads it — not a filter. We reply within 48h on business days, even when it's a no.</p>
+          <div class="pstep__cmd">$ review --by founder <span class="ok">[ok]</span></div>
+        </article>
+        <article class="pstep">
+          <div class="pstep__n">03 <span class="ln"></span></div>
+          <h3>Conversation</h3>
+          <p>One real call. You meet the people you'd actually work with — writer, strategist, developer.</p>
+          <div class="pstep__cmd">$ call --45min <span class="ok">[ok]</span></div>
+        </article>
+        <article class="pstep">
+          <div class="pstep__n">04 <span class="ln"></span></div>
+          <h3>Paid trial</h3>
+          <p>A small, real, paid task. We both find out if the work and the room actually fit.</p>
+          <div class="pstep__cmd">$ trial --paid <span class="ok">[ok]</span></div>
+        </article>
+        <article class="pstep">
+          <div class="pstep__n">05 <span class="ln"></span></div>
+          <h3>Offer</h3>
+          <p>Onsite in Pune. You start shipping in week one — your name on real work that goes live.</p>
+          <div class="pstep__cmd">$ ship --week 1 <span class="ok">[live]</span></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW WE WORK ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag"><span class="num">04 /</span><span class="label">Operating System</span></div>
+      <h2 class="h2">How we <span class="em-serif">work.</span></h2>
+    </div>
+    <div class="sys">
+      <div class="sys__cell">
+        <span class="sys__tag">[SYS_01]</span>
+        <h3 class="h3">Boring where it should be.</h3>
+        <p>Proven stacks. Reliable processes. We don't reinvent the wheel — we spend that energy on the work that actually moves numbers.</p>
+      </div>
+      <div class="sys__cell">
+        <span class="sys__tag">[SYS_02]</span>
+        <h3 class="h3">Sharp where it counts.</h3>
+        <p>Copy, design, strategy, code — every surface we touch is crafted with intention. We care about the details that compound.</p>
+      </div>
+      <div class="sys__cell">
+        <span class="sys__tag">[SYS_03]</span>
+        <h3 class="h3">Owned distribution.</h3>
+        <p>We don't just execute — we build and own media properties. If you want work that lives beyond a client brief, this is the place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PERKS ===== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag"><span class="num">05 /</span><span class="label">What You Get</span></div>
+      <h2 class="h2">The deal, <span class="em-serif">plainly.</span></h2>
+    </div>
+    <div class="perks">
+      <article class="perk"><span class="perk__n">/01</span><div><h3 class="h3">Your name on the work</h3><p>Real brands, shipped weekly. You'll point at things in the wild and say you built them.</p></div></article>
+      <article class="perk"><span class="perk__n">/02</span><div><h3 class="h3">A stake in what we build</h3><p>Three in-house products in motion. Early people share in the upside, not just the workload.</p></div></article>
+      <article class="perk"><span class="perk__n">/03</span><div><h3 class="h3">A seat in the room</h3><p>No middle layer summarising what someone else said. You're in the pitch and on the call.</p></div></article>
+      <article class="perk"><span class="perk__n">/04</span><div><h3 class="h3">A real studio</h3><p>Bavdhan, Pune. Tea, whiteboards, cinema cameras, and a team that's deliberate about who's added.</p></div></article>
+      <article class="perk"><span class="perk__n">/05</span><div><h3 class="h3">Reviews you can defend</h3><p>Public roadmaps, weekly shipping, no vanity metrics. Feedback that's about the work, not the optics.</p></div></article>
+      <article class="perk"><span class="perk__n">/06</span><div><h3 class="h3">Range across the stack</h3><p>Content, creators, campaigns and code sit close together. You learn past your job title fast.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="section cta-band">
+  <canvas class="cta-band__wave" id="ctaWave" aria-hidden="true"></canvas>
+  <div class="wrap cta-band__in">
+    <div>
+      <h2>Ready to ship <span class="em-serif">with us?</span></h2>
+      <p>// ONE FORM · 60 SECONDS · READ BY A FOUNDER · REPLY IN 48H</p>
+    </div>
+    <button class="btn" data-apply="" data-role="">Start your application <span class="arrow">↗</span></button>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="news">
+  <div class="wrap news__in">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> THE STUDIO NEWSLETTER</span>
+      <h3 class="h3" style="margin-top:16px">Read what we ship.</h3>
+      <p>Frameworks, teardowns, and behind-the-scenes from the studio floor. Read by founders &amp; CMOs. No fluff.</p>
+    </div>
+    <form class="news__form" id="newsForm">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" required />
+      <button type="submit">Subscribe →</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__col lead">
+        <div class="footer__brand"><span class="brand__mark">S</span> SeeTusk <small style="color:#7c7568">/ SCA</small></div>
+        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune, working across India.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Verticals</h5>
+        <ul><li><a href="#">Content &amp; Brand</a></li><li><a href="#">Influencer</a></li><li><a href="#">Web &amp; Tech</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h5>Studio</h5>
+        <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#roles">Careers</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="mailto:hr@seetusk.com">hr@seetusk.com →</a></li>
+          <li><a href="mailto:contact@seetusk.com">contact@seetusk.com →</a></li>
+          <li><a href="#">LinkedIn →</a></li>
+          <li><a href="#">Instagram →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 SeeTusk Creative Agency / Pune, IND</span>
+      <div class="row"><span>seetusk.agency</span><span>BUILT IN-HOUSE</span><span id="clock2">--:--:-- IST</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== APPLICATION MODAL ===== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__card" role="document">
+    <div class="modal__bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="file">transmit_application.log</span>
+      <button class="modal__close" data-close aria-label="Close application">✕</button>
+    </div>
+    <div class="modal__body">
+      <!-- form -->
+      <div id="formWrap">
+        <div class="modal__head">
+          <span class="k">// LET'S BUILD YOUR APPLICATION</span>
+          <h3 id="modalTitle">Transmit your work</h3>
+          <p>Stand out to the studio with a complete, verified profile. <span id="roleEcho"></span></p>
+        </div>
+        <div class="steps">
+          <div class="seg active" data-seg="0"><i></i></div>
+          <div class="seg" data-seg="1"><i></i></div>
+          <div class="seg" data-seg="2"><i></i></div>
+        </div>
+
+        <!-- step 1 -->
+        <div class="fstep active" data-step="0">
+          <div class="field"><label>Full name <span class="req">*</span></label><input type="text" data-v="req" placeholder="First Last" /><span class="err">// required</span></div>
+          <div class="grid2">
+            <div class="field"><label>Email <span class="req">*</span></label><input type="email" data-v="email" placeholder="you@email.com" /><span class="err">// valid email required</span></div>
+            <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" data-v="req" placeholder="+91 ..." /><span class="err">// required</span></div>
+          </div>
+          <div class="field"><label>Role <span class="req">*</span></label>
+            <select data-v="req" id="roleSelect"><option value="">Select a channel…</option></select>
+            <span class="err">// pick a role</span>
+          </div>
+        </div>
+
+        <!-- step 2 -->
+        <div class="fstep" data-step="1">
+          <div class="field"><label>Portfolio / work link <span class="req">*</span></label><input type="url" data-v="req" placeholder="https://…" /><span class="err">// required</span></div>
+          <div class="field"><label>Upload resume (PDF)</label>
+            <div class="drop" id="drop"><b>Click to select</b> or drop a PDF resume<small>max file size: 4MB</small><input type="file" id="fileInput" accept="application/pdf" hidden /></div>
+          </div>
+          <div class="field"><label>Social links (optional)</label><input type="text" placeholder="LinkedIn, Instagram, X…" /></div>
+        </div>
+
+        <!-- step 3 -->
+        <div class="fstep" data-step="2">
+          <div class="field"><label>What is the best thing you've built or shipped? <span class="req">*</span></label>
+            <textarea data-v="req" placeholder="One thing you're proud of. What it was, what you did, what happened."></textarea>
+            <span class="err">// tell us one thing</span>
+          </div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--console-ink-60);letter-spacing:.04em">// reviewed by Sarthak, Saksham &amp; Melbin · reply within 48h</p>
+        </div>
+
+        <div class="modal__foot">
+          <button class="mbtn prev" id="prevBtn" style="visibility:hidden">← Back</button>
+          <span class="spacer"></span>
+          <button class="mbtn next" id="nextBtn">Continue →</button>
+        </div>
+      </div>
+
+      <!-- success -->
+      <div class="success" id="success">
+        <div class="success__mark">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Application sent</h3>
+        <p>We appreciate you putting in the work. Sarthak, Saksham, or Melbin will reach out directly if there's a fit.</p>
+        <div class="log">$ transmit --to studio <b>[delivered]</b> · reply &lt; 48h</div>
+        <div class="modal__foot" style="justify-content:center;margin-top:28px">
+          <button class="mbtn prev" data-close>Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ DATA: roles (from SeeTusk careers) ============ */
+const ROLES = [
+  {ch:"CH-01",dept:"Marketing",title:"Senior Brand Manager",loc:"Pune · Onsite",exp:"3–5 years",type:"Full-time",
+   role:"Lead creative strategies, client communications, and campaign execution for major D2C brands.",
+   reqs:["Proven experience managing brand campaigns end to end.","Excellent communication and leadership skills.","Deep understanding of motion content and digital distribution."]},
+  {ch:"CH-02",dept:"Marketing",title:"Brand Manager",loc:"Pune · Onsite",exp:"2–3 years",type:"Full-time",
+   role:"Execute digital brand strategies, manage creator partnerships, and coordinate campaign delivery.",
+   reqs:["Strong marketing background and visual taste.","Detail-oriented campaign management skills.","Ability to translate creator signals into brand ideas."]},
+  {ch:"CH-03",dept:"Production & Post",title:"Content Strategist",loc:"Pune · Onsite",exp:"1–2 years",type:"Full-time",
+   role:"Ideate, script, and direct short-form content pipelines for creators and brands.",
+   reqs:["Hook-writing and copywriting expertise.","Fluent in Shorts, Reels and short-form formats.","Active interest in internet culture and creator dynamics."]},
+  {ch:"CH-04",dept:"Production & Post",title:"Cinematographer",loc:"Pune · Onsite",exp:"1–2 years",type:"Full-time",
+   role:"Direct camera movement, set lighting rigs, and shoot cinematic studio and outdoor motion assets.",
+   reqs:["Experience with cinema cameras (RED, Sony FX, Arri, Blackmagic).","Expert lighting (interior, studio, natural light).","Portfolio with exceptional visual framing."]},
+  {ch:"CH-05",dept:"Production & Post",title:"Sr. Video Editor",loc:"Pune · Onsite",exp:"3+ years",type:"Full-time",
+   role:"Lead the editing team, structure high-tempo edits, and refine visual storytelling standards.",
+   reqs:["Advanced Premiere Pro, DaVinci Resolve or After Effects.","High speed and precision editing workflow.","Direct sound design, pacing and color grading."]},
+  {ch:"CH-06",dept:"Production & Post",title:"Intermediate Video Editor",loc:"Bengaluru · Onsite",exp:"2+ years",type:"Full-time",
+   role:"Create visual edits, compile creator reels, and add motion assets and transitions.",
+   reqs:["Solid Adobe Premiere or DaVinci Resolve skills.","Strong sense of audio timing and pacing.","Fast, reliable delivery turnarounds."]},
+  {ch:"CH-07",dept:"Production & Post",title:"Video Editor",loc:"Pune · Onsite",exp:"2+ years",type:"Full-time",
+   role:"Assemble raw footage, cut high-retention vertical videos, and apply motion graphics.",
+   reqs:["Premiere Pro, CapCut and similar tools.","Engaging transitions, captions and sound effects.","Eagerness to learn and iterate weekly."]},
+  {ch:"CH-08",dept:"Production & Post",title:"Production Assistant",loc:"Pune · Onsite",exp:"1–2 years",type:"Full-time",
+   role:"Coordinate shoot logistics, manage equipment inventory, and support directors on set.",
+   reqs:["Highly organised with proactive problem-solving.","Manage schedules, crew riders and studio setups.","Passion for production and cinema operations."]},
+  {ch:"CH-09",dept:"Production & Post",title:"Graphic Designer",loc:"Pune · Onsite",exp:"2+ years",type:"Full-time",
+   role:"Design high-retention thumbnails, brand identities, and social key visuals.",
+   reqs:["Photoshop, Illustrator and Figma mastery.","Strong visual hierarchy and bold typography.","Portfolio of modern, high-contrast design."]},
+  {ch:"CH-10",dept:"Production & Post",title:"Content Strategist Intern",loc:"Pune · Onsite",exp:"No experience required",type:"Intern",
+   role:"Learn scriptwriting, assist in creator research, and brainstorm viral ideas.",
+   reqs:["Deeply active on YouTube, Reels and X.","Eager to learn copywriting and script structures.","No formal experience needed — high curiosity is."]},
+  {ch:"CH-11",dept:"Growth",title:"Performance Marketing Executive",loc:"Pune · Onsite",exp:"2+ years",type:"Full-time",
+   role:"Manage and optimise paid campaigns (Meta, Google, YouTube) to drive brand growth.",
+   reqs:["Hands-on running ads and allocating budgets.","Strong analytics — ROAS, CAC, conversion.","Brief design on high-performance ad creative."]},
+  {ch:"CH-12",dept:"Operations",title:"Human Resources",loc:"Pune · Onsite",exp:"1+ year",type:"Part-time",
+   role:"Manage recruitment pipelines, onboarding flows, and employee engagement.",
+   reqs:["Strong screening, sourcing and communication.","Familiar with creator or tech-agency hiring.","Empathy and professional workplace management."]},
+  {ch:"CH-13",dept:"Operations",title:"HR Intern",loc:"Pune · Onsite",exp:"No experience required",type:"Intern",
+   role:"Assist with resume screening, candidate scheduling, and HR database coordination.",
+   reqs:["Excellent communication and writing.","Organised, with Sheets / database fluency.","Pursuing or recently completed an MBA / HR degree."]},
+];
+
+/* ============ build role list ============ */
+const roleList = document.getElementById('roleList');
+function buildRoles(){
+  roleList.innerHTML = ROLES.map((r,i)=>`
+    <div class="role" data-dept="${r.dept}" data-search="${(r.title+' '+r.loc+' '+r.dept+' '+r.role+' '+r.reqs.join(' ')).toLowerCase()}">
+      <button class="role__bar" aria-expanded="false">
+        <span class="role__ch">${r.ch}</span>
+        <span class="role__title">
+          <h3>${r.title}</h3>
+          <span class="live"><i></i> Live · ${r.dept}</span>
+          <span class="role__meta-m">${r.loc} · ${r.exp} · ${r.type}</span>
+        </span>
+        <span class="role__cell"><span>Location</span><b>${r.loc}</b></span>
+        <span class="role__cell"><span>Exp · Type</span><b>${r.exp} · ${r.type}</b></span>
+        <span class="role__toggle">+</span>
+      </button>
+      <div class="role__panel">
+        <div class="role__panel-in">
+          <div class="role__block">
+            <div class="lbl">// The Role</div>
+            <p>${r.role}</p>
+          </div>
+          <div class="role__block">
+            <div class="lbl">// Pre-requisites</div>
+            <ul>${r.reqs.map(q=>`<li>${q}</li>`).join('')}</ul>
+          </div>
+          <div class="role__apply">
+            <button class="btn signal" data-apply="" data-role="${r.title}">Apply now <span class="arrow">↗</span></button>
+            <span class="skip">Skip the layers — submit your work in 60s.</span>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+  bindRoles();
+}
+function bindRoles(){
+  document.querySelectorAll('.role__bar').forEach(bar=>{
+    bar.addEventListener('click',()=>{
+      const role = bar.closest('.role');
+      const panel = role.querySelector('.role__panel');
+      const open = role.classList.contains('open');
+      document.querySelectorAll('.role.open').forEach(o=>{
+        if(o!==role){o.classList.remove('open');o.querySelector('.role__panel').style.height='0px';o.querySelector('.role__bar').setAttribute('aria-expanded','false');}
+      });
+      if(open){role.classList.remove('open');panel.style.height='0px';bar.setAttribute('aria-expanded','false');}
+      else{role.classList.add('open');panel.style.height=panel.firstElementChild.offsetHeight+'px';bar.setAttribute('aria-expanded','true');}
+    });
+  });
+}
+buildRoles();
+
+/* populate modal role select */
+const roleSelect = document.getElementById('roleSelect');
+roleSelect.innerHTML = '<option value="">Select a channel…</option>' + ROLES.map(r=>`<option>${r.title}</option>`).join('') + '<option>Open Application</option>';
+
+/* ============ filtering + search ============ */
+let activeDept = 'all';
+const roleSearch = document.getElementById('roleSearch');
+const resultCount = document.getElementById('resultCount');
+const noResults = document.getElementById('noResults');
+function applyFilter(){
+  const q = roleSearch.value.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('.role').forEach(role=>{
+    const okDept = activeDept==='all' || role.dataset.dept===activeDept;
+    const okQ = !q || role.dataset.search.includes(q);
+    const show = okDept && okQ;
+    role.style.display = show ? '' : 'none';
+    if(show) shown++;
+    if(!show && role.classList.contains('open')){role.classList.remove('open');role.querySelector('.role__panel').style.height='0px';}
+  });
+  resultCount.textContent = shown+' channel'+(shown===1?'':'s')+' open';
+  noResults.classList.toggle('show', shown===0);
+}
+document.querySelectorAll('.filter').forEach(f=>{
+  f.addEventListener('click',()=>{
+    document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+    activeDept = f.dataset.dept;
+    applyFilter();
+  });
+});
+roleSearch.addEventListener('input',applyFilter);
+function resetFilters(){roleSearch.value='';activeDept='all';document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));document.querySelector('.filter[data-dept="all"]').classList.add('active');applyFilter();}
+
+/* ============ MODAL ============ */
+const modal = document.getElementById('modal');
+const formWrap = document.getElementById('formWrap');
+const successEl = document.getElementById('success');
+const roleEcho = document.getElementById('roleEcho');
+let lastFocus = null;
+function openModal(roleName){
+  lastFocus = document.activeElement;
+  formWrap.style.display='block'; successEl.classList.remove('show');
+  goStep(0);
+  if(roleName && roleName!==''){ roleSelect.value = [...roleSelect.options].some(o=>o.value===roleName)?roleName:''; roleEcho.textContent = roleName==='Open Application'?'':'Applying for: '+roleName; }
+  else { roleEcho.textContent=''; }
+  modal.classList.add('show'); document.body.style.overflow='hidden';
+  setTimeout(()=>modal.querySelector('input,select')?.focus(),120);
+}
+function closeModal(){ modal.classList.remove('show'); document.body.style.overflow=''; if(lastFocus)lastFocus.focus(); }
+document.addEventListener('click',e=>{
+  const t = e.target.closest('[data-apply]');
+  if(t){e.preventDefault();openModal(t.getAttribute('data-role')||'');}
+  if(e.target.closest('[data-close]')) closeModal();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('show'))closeModal(); });
+/* focus trap */
+modal.addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const f=[...modal.querySelectorAll('input,select,textarea,button,[tabindex]')].filter(el=>el.offsetParent!==null&&!el.disabled);
+  if(!f.length)return;
+  const first=f[0],last=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
+
+/* step engine */
+let step=0;
+const steps=[...document.querySelectorAll('.fstep')];
+const segs=[...document.querySelectorAll('.steps .seg')];
+const prevBtn=document.getElementById('prevBtn');
+const nextBtn=document.getElementById('nextBtn');
+function goStep(n){
+  step=n;
+  steps.forEach((s,i)=>s.classList.toggle('active',i===n));
+  segs.forEach((s,i)=>{s.classList.toggle('done',i<n);s.classList.toggle('active',i===n);});
+  prevBtn.style.visibility = n===0?'hidden':'visible';
+  nextBtn.textContent = n===steps.length-1 ? 'Submit profile →' : 'Continue →';
+}
+function validateStep(){
+  let ok=true;
+  steps[step].querySelectorAll('[data-v]').forEach(field=>{
+    const wrap=field.closest('.field'); const val=field.value.trim();
+    let valid = field.dataset.v==='email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) : val.length>0;
+    wrap.classList.toggle('invalid',!valid);
+    if(!valid)ok=false;
+  });
+  return ok;
+}
+nextBtn.addEventListener('click',()=>{
+  if(!validateStep())return;
+  if(step<steps.length-1)goStep(step+1);
+  else submitForm();
+});
+prevBtn.addEventListener('click',()=>{ if(step>0)goStep(step-1); });
+steps.forEach(s=>s.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid'))));
+
+function submitForm(){
+  formWrap.style.display='none';
+  successEl.classList.add('show');
+}
+/* file drop */
+const drop=document.getElementById('drop'),fileInput=document.getElementById('fileInput');
+if(drop){
+  drop.addEventListener('click',()=>fileInput.click());
+  fileInput.addEventListener('change',()=>{ if(fileInput.files[0]) drop.innerHTML='<b>'+fileInput.files[0].name+'</b><small>ready to transmit</small>'; });
+  ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('hot');}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('hot');}));
+  drop.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f&&f.type==='application/pdf'){fileInput.files=e.dataTransfer.files;drop.innerHTML='<b>'+f.name+'</b><small>ready to transmit</small>';} });
+}
+
+/* ============ clock (IST) ============ */
+function tick(){
+  const now=new Date();
+  const ist=new Date(now.getTime()+(now.getTimezoneOffset()*60000)+(5.5*3600000));
+  const t=ist.toTimeString().slice(0,8)+' IST';
+  const c1=document.getElementById('clock'),c2=document.getElementById('clock2');
+  if(c1)c1.textContent=t; if(c2)c2.textContent=t;
+}
+setInterval(tick,1000);tick();
+
+/* ============ nav scroll state + burger ============ */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+document.getElementById('burger')?.addEventListener('click',()=>{ document.getElementById('roles').scrollIntoView({behavior:'smooth'}); });
+
+/* ============ count-up stats ============ */
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function countUp(el){
+  const target=+el.dataset.count; const small=el.querySelector('small'); const suffix=small?small.outerHTML:'';
+  if(reduce){el.innerHTML=target+suffix;return;}
+  let cur=0; const dur=1100, t0=performance.now();
+  function frame(t){
+    const p=Math.min((t-t0)/dur,1); const e=1-Math.pow(1-p,3);
+    el.innerHTML=Math.round(target*e)+suffix;
+    if(p<1)requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const statObs=new IntersectionObserver((es)=>{es.forEach(x=>{if(x.isIntersecting){countUp(x.target);statObs.unobserve(x.target);}});},{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>statObs.observe(el));
+
+/* ============ scroll reveals ============ */
+const revObs=new IntersectionObserver((es)=>{es.forEach(x=>{if(x.isIntersecting){x.target.style.opacity=1;x.target.style.transform='none';revObs.unobserve(x.target);}});},{threshold:.12});
+document.querySelectorAll('.value,.role,.sys__cell,.perk,.pstep,.openapp,.console__win,.signal-bar').forEach((el,i)=>{
+  if(reduce)return;
+  el.style.opacity=0;el.style.transform='translateY(20px)';
+  el.style.transition='opacity .8s ease, transform .8s cubic-bezier(.16,1,.3,1)';
+  el.style.transitionDelay=(Math.min(i%6,5)*0.05)+'s';
+  revObs.observe(el);
+});
+
+/* ============ waveform canvases (signature) ============ */
+function waveform(canvas,opts){
+  if(!canvas)return; const ctx=canvas.getContext('2d');
+  let w,h,dpr=Math.min(devicePixelRatio||1,2);
+  function size(){ const r=canvas.getBoundingClientRect(); w=canvas.width=r.width*dpr; h=canvas.height=r.height*dpr; }
+  size(); addEventListener('resize',size);
+  let t=0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const mid=h/2, bars=opts.bars||60, gap=w/bars;
+    ctx.lineWidth=opts.lw*dpr; ctx.strokeStyle=opts.color; ctx.lineCap='round';
+    for(let i=0;i<bars;i++){
+      const x=i*gap+gap/2;
+      const env=Math.sin((i/bars)*Math.PI); // taper edges
+      const amp=(Math.sin(i*0.45+t)*0.5+Math.sin(i*0.17-t*1.3)*0.5)*opts.amp*dpr*env;
+      ctx.beginPath(); ctx.moveTo(x,mid-amp); ctx.lineTo(x,mid+amp); ctx.stroke();
+    }
+    t+=opts.speed; if(!reduce)requestAnimationFrame(draw);
+  }
+  if(reduce){ // static-ish single pass
+    ctx.lineWidth=opts.lw*dpr;ctx.strokeStyle=opts.color;ctx.lineCap='round';
+    const mid=h/2,bars=opts.bars||60,gap=w/bars;
+    for(let i=0;i<bars;i++){const x=i*gap+gap/2;const env=Math.sin((i/bars)*Math.PI);const amp=Math.sin(i*0.45)*opts.amp*dpr*env;ctx.beginPath();ctx.moveTo(x,mid-amp);ctx.lineTo(x,mid+amp);ctx.stroke();}
+  } else draw();
+}
+waveform(document.getElementById('heroWave'),{color:'#C9BFAD',lw:2,amp:22,bars:54,speed:0.035});
+waveform(document.getElementById('consoleWave'),{color:'rgba(232,67,30,.22)',lw:2,amp:60,bars:90,speed:0.025});
+waveform(document.getElementById('ctaWave'),{color:'rgba(255,255,255,.6)',lw:2,amp:50,bars:80,speed:0.03});
+
+/* ============ page-load reveal ============ */
+addEventListener('load',()=>document.body.classList.add('loaded'));
+setTimeout(()=>document.body.classList.add('loaded'),400);
+
+/* newsletter */
+document.getElementById('newsForm')?.addEventListener('submit',e=>{
+  e.preventDefault(); const b=e.target.querySelector('button'); b.textContent='Subscribed ✓'; b.style.color='var(--live)';
+});
+</script>
+</body>
+</html>

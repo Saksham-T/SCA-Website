@@ -5,24 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404. page not found / SCA</title>
 <meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/sca.css">
-<link rel="stylesheet" href="assets/sca-extras.css">
-<link rel="stylesheet" href="assets/sca-dark.css">
-<link rel="stylesheet" href="assets/sca-footer.css">
+<!-- Preload Critical Fonts -->
+<link rel="preload" href="assets/fonts/league-spartan-normal-300-49.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/eb-garamond-normal-400-20.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/eb-garamond-italic-400-6.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home"><span class="brand-mark"><img src="images/sca-logo-mark.png" alt=""></span><span>SeeTusk / SCA</span></a>
+    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home"><span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span><span>SeeTusk / SCA</span></a>
     <div class="nav-links">
       <a href="content.html">Content</a>
       <a href="influencer.html">Influencer</a>
       <a href="web.html">Web &amp; Tech</a>
       <a href="about.html">About</a>
+      <a href="careers.html">Career</a>
     </div>
     <!-- <div class="nav-cta"><a href="contact.html" class="btn accent">Start a project <span class="arr">-></span></a></div> -->
   </div>
@@ -70,7 +70,7 @@
     <div class="sfoot-grid">
       <div class="sfoot-brand">
         <div class="sfoot-brand-top">
-          <img src="images/sca-logo-mark.png" alt="">
+          <img src="images/sca-logo-mark.webp" alt="">
           <span>SeeTusk / SCA</span>
         </div>
         <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
@@ -82,7 +82,7 @@
         </div>
       </div>
       <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Career</a></nav>
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">
@@ -92,6 +92,8 @@
   </div>
 </footer>
 
-<script type="module" src="assets/sca.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 </body>
 </html>

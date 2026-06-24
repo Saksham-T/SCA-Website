@@ -18,7 +18,7 @@
 }
 
 /* Scoped layout font settings */
-.hero,
+.about-hero,
 .stats-strip,
 .section,
 .gallery,
@@ -29,7 +29,7 @@
 }
 
 /* ─── HERO / SLIDE SECTION ─── */
-.hero {
+.about-hero {
   position: relative;
   height: 100vh; min-height: 680px;
   overflow: hidden;
@@ -86,6 +86,7 @@
   font-size: 13px; color: var(--muted-redesign);
   cursor: pointer; transition: color 0.2s;
   display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
 }
 .counter-item.active { color: var(--text-redesign); }
 .counter-item::before {
@@ -96,8 +97,27 @@
 }
 .counter-item.active::before { width: 28px; }
 
+.counter-item .counter-label {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  color: var(--muted-redesign);
+}
+.counter-item:hover .counter-label,
+.counter-item.active .counter-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.counter-item.active .counter-label {
+  color: var(--text-redesign);
+}
+
 /* ─── HERO CONTENT ─── */
-.hero-content {
+.about-hero .hero-content {
   position: relative; z-index: 10;
   padding: 0 48px 80px 120px;
   width: 100%;
@@ -158,36 +178,42 @@
 
 /* ─── STATS STRIP ─── */
 .stats-strip {
-  background: var(--bg2-redesign);
-  border-top: 1px solid var(--border-redesign);
-  border-bottom: 1px solid var(--border-redesign);
   display: grid; grid-template-columns: repeat(3, 1fr);
   padding: 0 48px;
+  gap: 24px;
+  margin: 48px 0;
 }
 
 .stat-item {
-  padding: 40px 24px;
-  border-right: 1px solid var(--border-redesign);
-  display: flex; flex-direction: column; gap: 8px;
+  padding: 40px 32px;
+  background: var(--bg2-redesign);
+  border: 1px solid var(--border-redesign);
+  border-radius: 8px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: all 0.3s ease;
 }
-.stat-item:last-child { border-right: none; }
+.stat-item:hover {
+  border-color: var(--accent2-redesign);
+  background: rgba(255, 107, 53, 0.02);
+  transform: translateY(-4px);
+}
 
 .stat-num {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(48px, 4.4vw, 60px); line-height: 1;
+  font-size: clamp(48px, 4.4vw, 64px); line-height: 1;
   letter-spacing: -0.01em;
-  color: var(--text-redesign);
+  color: var(--accent2-redesign); /* Make the number orange! */
 }
 .stat-num sup {
   font-size: 24px; vertical-align: super;
-  color: var(--accent-redesign);
+  color: var(--text-redesign);
 }
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--muted-redesign);
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-redesign);
 }
 
 /* ─── SECTION ─── */
@@ -280,53 +306,71 @@
 
 .team-card img {
   width: 100%; aspect-ratio: 3/4; object-fit: cover;
-  filter: grayscale(40%) brightness(0.8);
-  transition: filter 0.4s, transform 0.4s;
+  filter: grayscale(100%) brightness(0.7); /* Grayscale to 100%! */
+  transition: filter 0.4s ease, transform 0.4s ease;
 }
-.team-card:hover img { filter: grayscale(0%) brightness(0.95); transform: scale(1.02); }
+.team-card:hover img { 
+  filter: grayscale(0%) brightness(0.95); 
+  transform: scale(1.05); /* Smooth zoom */
+}
 
 .team-info {
-  padding: 20px 24px;
+  padding: 24px;
   border-top: 1px solid var(--border-redesign);
+  background: var(--bg2-redesign);
 }
-.team-info h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-redesign); }
-.team-info p { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-redesign); margin-top: 6px; }
+.team-info h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--text-redesign); }
+.team-info p { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2-redesign); margin-top: 6px; }
 
 /* ─── PRINCIPLES ─── */
 .principles-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-  margin-top: 60px; border: 1px solid var(--border-redesign);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 60px;
 }
 
 .principle-item {
-  padding: 48px;
-  border-right: 1px solid var(--border-redesign);
-  border-bottom: 1px solid var(--border-redesign);
+  padding: 40px;
+  border: 1px solid var(--border-redesign);
+  border-radius: 8px;
   position: relative;
+  background: var(--bg2-redesign);
+  transition: all 0.3s ease;
+}
+.principle-item:hover { 
+  border-color: var(--accent2-redesign);
+  background: rgba(255, 107, 53, 0.02);
+  transform: translateY(-4px);
+}
+
+.principle-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(255, 107, 53, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--accent2-redesign);
   transition: background 0.3s;
 }
-.principle-item:hover { background: var(--bg2-redesign); }
-.principle-item:nth-child(even) { border-right: none; }
-.principle-item:nth-last-child(-n+2) { border-bottom: none; }
-
-.principle-letter {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 72px; line-height: 1;
-  color: var(--border-redesign);
-  position: absolute; top: 24px; right: 32px;
-  transition: color 0.3s;
-  pointer-events: none;
+.principle-item:hover .principle-icon-wrapper {
+  background: var(--accent2-redesign);
+  color: black;
 }
-.principle-item:hover .principle-letter { color: rgba(232,69,30,0.15); }
+
+.principle-icon {
+  width: 24px;
+  height: 24px;
+}
 
 .principle-item h3 {
   font-family: var(--font-display); font-weight: 700;
-  font-size: 18px; color: var(--text-redesign);
+  font-size: 20px; color: var(--text-redesign);
   margin-bottom: 12px;
 }
 .principle-item p {
-  font-size: 13px; color: var(--muted-redesign); line-height: 1.7;
+  font-size: 14px; color: var(--muted-redesign); line-height: 1.7;
 }
 
 
@@ -393,7 +437,7 @@
 
 /* ─── RESPONSIVE OVERRIDES ─── */
 @media (max-width: 900px) {
-  .hero-content { padding: 0 24px 60px 80px; }
+  .about-hero .hero-content { padding: 0 24px 60px 80px; }
   .slide-counter { left: 24px; }
   .stats-strip { grid-template-columns: 1fr; padding: 0 24px; }
   .stat-item { border-right: none; border-bottom: 1px solid var(--border-redesign); }

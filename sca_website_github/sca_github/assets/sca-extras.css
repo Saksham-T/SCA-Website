@@ -89,3 +89,189 @@
 
 @media (max-width: 900px) {.team-grid { grid-template-columns: 1fr; }.work-item { grid-template-columns: 42px 1fr 36px; }.work-tag,.work-meta { display: none; }
 }
+
+/* Redesign vert link formatting & vert-btn custom styling */
+a.vert {
+  text-decoration: none;
+  color: inherit;
+}
+a.vert:focus-visible {
+  outline: 3px solid var(--accent-blue);
+  outline-offset: 4px;
+}
+
+.vert-meta .price-val {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-orange);
+  transition: color 0.3s;
+}
+.vert:hover .price-val {
+  color: #fff;
+}
+.vert-meta .price-val .freq {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.vert:hover .price-val .freq {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.vert-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  background: var(--accent-orange);
+  color: #fff;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: all 0.25s ease;
+}
+.vert:hover .vert-btn {
+  background: #fff;
+  color: var(--accent-blue);
+}
+
+/* Bullet list checkmark colors */
+.bullet-list .bl-n svg {
+  transition: transform 0.25s ease;
+}
+.bullet-list li:hover .bl-n svg {
+  transform: scale(1.2);
+}
+
+/* Focus and accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+/* Form confirmation messages */
+.form-message {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.form-message.visible {
+  opacity: 1;
+}
+.form-message.success {
+  color: #00ff00;
+}
+.form-message.error {
+  color: #ff3333;
+}
+
+/* Dynamic Cursor Hover Spotlights for Cards */
+.archetype-card, .stack-card, .process-step, .tier-card, .lab-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.archetype-card {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.05), transparent 70%),
+              rgba(255, 255, 255, 0.02) !important;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s, box-shadow 0.4s !important;
+}
+.archetype-card:hover {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.10), transparent 60%),
+              rgba(255, 255, 255, 0.05) !important;
+}
+
+.stack-card {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.05), transparent 70%),
+              var(--bg-card) !important;
+  transition: transform .32s var(--ease), border-color .32s var(--ease), box-shadow .32s var(--ease) !important;
+}
+.stack-card:hover {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(46, 84, 234, 0.12), transparent 60%),
+              linear-gradient(180deg, rgba(46, 84, 234, 0.09), rgba(255, 255, 255, 0.012)) !important;
+}
+
+.process-step {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.04), transparent 70%),
+              rgba(255, 255, 255, 0.01) !important;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s !important;
+}
+.process-step:hover {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.08), transparent 60%),
+              rgba(255, 255, 255, 0.03) !important;
+}
+
+.tier-card {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.04), transparent 70%),
+              rgba(255, 255, 255, 0.02) !important;
+  transition: all 0.3s ease !important;
+}
+.tier-card:hover {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.08), transparent 60%),
+              rgba(255, 255, 255, 0.05) !important;
+}
+
+.lab-card {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.04), transparent 70%),
+              rgba(255, 255, 255, 0.01) !important;
+  transition: all 0.3s ease !important;
+}
+.lab-card:hover {
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 255, 255, 0.08), transparent 60%),
+              rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Native Cross-Document View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out;
+}
+::view-transition-new(root) {
+  animation: 350ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* GPU Compositing Performance Optimizations */
+.up,
+.project-card {
+  will-change: transform, opacity;
+}
+
+.clip-rise {
+  will-change: clip-path;
+}
+
+.clip-rise img,
+.cursor,
+.cursor-ring {
+  will-change: transform;
+}
+
+.cam-card {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+

@@ -10,7 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SeeTusk Creative Agency. Motion-first creative distribution studio</title>
 <meta name="description" content="SCA builds distribution for brands that need to be seen. Content systems, creator networks, web experiences, and campaign engines from Pune, India.">
-<meta name="theme-color" content="#F8F4EC">
+<!-- Fix #6: Updated theme-color to match dark theme (#0e0e0e) -->
+<meta name="theme-color" content="#0e0e0e">
+<meta name="robots" content="index, follow">
+<!-- Fix #6: Canonical URL added, unified to seetusk.agency -->
+<link rel="canonical" href="https://seetusk.agency/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SeeTusk Creative Agency">
@@ -18,30 +22,22 @@
 <meta property="og:description" content="A motion-first creative distribution studio for content, creators, campaigns, branding, and web/code.">
 <meta property="og:url" content="https://seetusk.agency/">
 <meta property="og:image" content="https://seetusk.agency/og.jpg">
+<!-- Fix #6: Added og:image alt text -->
+<meta property="og:image:alt" content="SeeTusk Creative Agency — Motion-first creative distribution studio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SCA. Motion-first creative distribution studio">
 <meta name="twitter:description" content="Content systems. Creator networks. Web experiences. Campaign engines.">
 <meta name="twitter:image" content="https://seetusk.agency/og.jpg">
 
-<link rel="canonical" href="https://seetusk.agency/">
-<link rel="icon" href="images/sca-logo-mark.png" sizes="any">
+<!-- Fix #11: Preload critical fonts -->
+<!-- Preload Critical Fonts -->
+<link rel="preload" href="assets/fonts/league-spartan-normal-300-49.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/eb-garamond-normal-400-20.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/eb-garamond-italic-400-6.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/sca.css">
-<link rel="stylesheet" href="assets/sca-extras.css">
-<link rel="stylesheet" href="assets/sca-kinetic.css">
-<link rel="stylesheet" href="assets/sca-clients.css">
-<link rel="stylesheet" href="assets/sca-hero.css">
-<link rel="stylesheet" href="assets/sca-dark.css">
-<link rel="stylesheet" href="assets/sca-footer.css">
-<style id="golden-ratio-index">
-  /* TYPE SYSTEM (index only).
-     Headings — Hero (.hero-h1), H1, H2 (.section-title), H3 — each keep their own
-     distinct display size. BODY is one FIXED, uniform size everywhere on the page,
-     so reading copy stays legible while scrolling. The φ (1.618) ratio governs only
-     the H2 ↔ body pair: H2 lead size ≈ body × φ. */
+<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
+<style>
+  /* the H2 ↔ body pair: H2 lead size ≈ body × φ. */
   :root {
     --body: 19px;          /* fixed, uniform body copy */
     --body-lh: 1.55;
@@ -92,6 +88,18 @@
     line-height: 1.3;
     max-width: 34ch;
   }
+
+  /* Client logo marquee — scale up from the 96px design-system default */
+  .client-logo { height: 132px; }
+  .client-logo img { max-height: 132px; }
+
+  /* Fix #2: CLS — gallery/studio stills aspect ratio reservation */
+  .ig-tile img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
 </style>
 </head>
 <body class="intro-locked">
@@ -99,7 +107,7 @@
 <!-- ============ INTRO LOADER ============ -->
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro-stage">
-    <img class="intro-logo" src="images/sca-mark.png" alt="SCA">
+    <img class="intro-logo" src="images/sca-mark.webp" alt="SCA">
     <div class="intro-lock">
       <div class="intro-row s"><span class="intro-initial">S</span><span class="intro-rest">eetusk</span></div>
       <div class="intro-row c"><span class="intro-initial">C</span><span class="intro-rest">reative</span></div>
@@ -116,7 +124,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
-      <span class="brand-mark"><img src="images/sca-logo-mark.png" alt=""></span>
+      <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
       <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
@@ -124,6 +132,7 @@
       <a href="influencer.html" data-scramble>Influencer</a>
       <a href="web.html" data-scramble>Web &amp; Tech</a>
       <a href="about.html" data-scramble>About</a>
+      <a href="careers.html" data-scramble>Career</a>
     </div>
     <!-- <div class="nav-cta">
       <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
@@ -181,39 +190,41 @@
 <section class="clients" aria-label="Brands we move forward with" data-screen-label="Clients">
   <div class="clients-viewport">
     <div class="clients-track">
-      <div class="client-logo"><img src="images/logos/clients/bamboo-india.png" alt="Bamboo India"></div>
-      <div class="client-logo"><img src="images/logos/clients/force-motors.png" alt="Force Motors"></div>
-      <div class="client-logo"><img src="images/logos/clients/nift.png" alt="National Institute of Fashion Technology"></div>
-      <div class="client-logo"><img src="images/logos/clients/jeevitnadi.png" alt="Jeevitnadi Living River Foundation"></div>
-      <div class="client-logo"><img src="images/logos/clients/visda-organix.png" alt="Visda Organix"></div>
-      <div class="client-logo"><img src="images/logos/clients/myfitness.png" alt="MyFitness"></div>
-      <div class="client-logo"><img src="images/logos/clients/carandbike.png" alt="car&amp;bike"></div>
-      <div class="client-logo"><img src="images/logos/clients/coffee-cup.png" alt="Coffee Cup"></div>
-      <div class="client-logo"><img src="images/logos/clients/kundan-spaces.png" alt="Kundan Spaces"></div>
-      <div class="client-logo"><img src="images/logos/clients/pune-river-revival.png" alt="Pune River Revival"></div>
-      <div class="client-logo"><img src="images/logos/clients/tridrashya.png" alt="Tridrashya"></div>
-      <div class="client-logo"><img src="images/logos/clients/comedy-clubhouse.png" alt="The Comedy Clubhouse"></div>
-      <div class="client-logo"><img src="images/logos/clients/hindustan-unilever.png" alt="Hindustan Unilever Limited"></div>
-      <div class="client-logo"><img src="images/logos/clients/firvt.png" alt="FIRVT"></div>
-      <div class="client-logo"><img src="images/logos/clients/wtf.png" alt="WTF"></div>
-      <div class="client-logo"><img src="images/logos/clients/clover-co.png" alt="Clover&amp;co"></div>
+      <!-- Fix #1 & #2: Added loading=lazy + decoding=async on all logo images; aspect-ratio reserved via CSS -->
+      <div class="client-logo"><img src="images/logos/clients/bamboo-india.webp" alt="Bamboo India" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/force-motors.webp" alt="Force Motors" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/nift.webp" alt="National Institute of Fashion Technology" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/jeevitnadi.webp" alt="Jeevitnadi Living River Foundation" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/visda-organix.webp" alt="Visda Organix" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/myfitness.webp" alt="MyFitness" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/carandbike.webp" alt="car&amp;bike" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/coffee-cup.webp" alt="Coffee Cup" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/kundan-spaces.webp" alt="Kundan Spaces" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/pune-river-revival.webp" alt="Pune River Revival" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/tridrashya.webp" alt="Tridrashya" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/comedy-clubhouse.webp" alt="The Comedy Clubhouse" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/hindustan-unilever.webp" alt="Hindustan Unilever Limited" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/firvt.webp" alt="FIRVT" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/wtf.webp" alt="WTF" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/clover-co.webp" alt="Clover&amp;co" loading="lazy" decoding="async"></div>
 
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/bamboo-india.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/force-motors.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/nift.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/jeevitnadi.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/visda-organix.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/myfitness.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/carandbike.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/coffee-cup.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/kundan-spaces.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/pune-river-revival.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/tridrashya.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/comedy-clubhouse.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/hindustan-unilever.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/firvt.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/wtf.png" alt=""></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/clover-co.png" alt=""></div>
+      <!-- Duplicate set for infinite marquee — aria-hidden so screen readers skip -->
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/bamboo-india.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/force-motors.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/nift.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/jeevitnadi.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/visda-organix.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/myfitness.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/carandbike.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/coffee-cup.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/kundan-spaces.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/pune-river-revival.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/tridrashya.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/comedy-clubhouse.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/hindustan-unilever.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/firvt.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/wtf.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/clover-co.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -234,7 +245,10 @@
       <a class="lab-card up" href="content.html" data-cursor="Explore">
         <div class="lab-card-top"><span class="idx">01</span><span>Content</span></div>
         <div class="lab-stage">
-          <div class="lab-object"><div class="lab-object-bob"><img src="images/ed-content-carton.png" alt="The Content Agency carton on a studio shelf"></div></div>
+          <div class="lab-object"><div class="lab-object-bob"><picture>
+  <source srcset="images/ed-content-carton-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-content-carton.webp" alt="The Content Agency carton on a studio shelf" loading="lazy" decoding="async">
+</picture></div></div>
         </div>
         <h3 data-scramble>Content Systems</h3>
         <p class="lab-desc">Brand machines that publish with taste &mdash; voice, pillars, shoots, motion and reporting.</p>
@@ -244,7 +258,10 @@
       <a class="lab-card up" href="influencer.html" data-cursor="Explore">
         <div class="lab-card-top"><span class="idx">02</span><span>Creators</span></div>
         <div class="lab-stage">
-          <div class="lab-object"><div class="lab-object-bob"><img src="images/ed-prada-street.png" alt="Creator street campaign coverage"></div></div>
+          <div class="lab-object"><div class="lab-object-bob"><picture>
+  <source srcset="images/ed-prada-street-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-prada-street.webp" alt="Creator street campaign coverage" loading="lazy" decoding="async">
+</picture></div></div>
         </div>
         <h3 data-scramble>Creator Reach</h3>
         <p class="lab-desc">Creator campaigns without marketplace chaos &mdash; sourced, briefed, managed, shipped, reported.</p>
@@ -254,7 +271,10 @@
       <a class="lab-card up" href="web.html" data-cursor="Explore">
         <div class="lab-card-top"><span class="idx">03</span><span>Web</span></div>
         <div class="lab-stage">
-          <div class="lab-object"><div class="lab-object-bob"><img src="images/ed-ss24-phone.png" alt="Mobile product build foldout"></div></div>
+          <div class="lab-object"><div class="lab-object-bob"><picture>
+  <source srcset="images/ed-ss24-phone-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-ss24-phone.webp" alt="Mobile product build foldout" loading="lazy" decoding="async">
+</picture></div></div>
         </div>
         <h3 data-scramble>Web &amp; Tech</h3>
         <p class="lab-desc">Sites, landers and lightweight tools that carry the brand into speed, analytics and conversion.</p>
@@ -264,7 +284,10 @@
       <a class="lab-card up" href="contact.html" data-cursor="Start">
         <div class="lab-card-top"><span class="idx">04</span><span>Campaigns</span></div>
         <div class="lab-stage">
-          <div class="lab-object"><div class="lab-object-bob"><img src="images/ed-friday-rickshaw.png" alt="Campaign visual"></div></div>
+          <div class="lab-object"><div class="lab-object-bob"><picture>
+  <source srcset="images/ed-friday-rickshaw-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-friday-rickshaw.webp" alt="Campaign visual" loading="lazy" decoding="async">
+</picture></div></div>
         </div>
         <h3 data-scramble>Brand Campaigns</h3>
         <p class="lab-desc">Campaign worlds built to travel &mdash; concept, visual system, shoot scope and distribution plan.</p>
@@ -301,7 +324,8 @@
       <div class="camera-scene" data-camera-scene>
         <div class="cam-card">
           <div class="cam-glow" aria-hidden="true"></div>
-          <video src="images/camera-concept.mp4" poster="images/ed-camera-collage.png" autoplay loop muted playsinline preload="auto" data-camera-video aria-label="SCA studio camera concept motion"></video>
+          <!-- Fix #3: Video already has preload=none, autoplay, loop, muted, playsinline — correct -->
+          <video data-src="images/camera-concept.mp4" poster="images/ed-camera-collage.webp" loop muted playsinline preload="none" data-camera-video aria-label="SCA studio camera concept motion"></video>
           <span class="cam-badge"><span class="cam-badge-live">LIVE</span><strong>SCA</strong></span>
           <span class="cam-spec">CANON AT-1 / RETRO / Studio rig</span>
         </div>
@@ -329,7 +353,10 @@
     <div class="work-grid sr-stag" data-stacking-cards>
       <a class="project-card" href="content.html" data-cursor="View case">
         <div class="project-media clip-rise">
-          <img src="images/ed-cambium-cups.png" alt="Cambium beverage content system" loading="lazy">
+          <picture>
+  <source srcset="images/ed-cambium-cups-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-cambium-cups.webp" alt="Cambium beverage content system" loading="lazy" decoding="async">
+</picture>
         </div>
         <div class="project-meta">
           <div class="project-top"><span>Ambar Coffee</span><span>F&amp;B / Content</span></div>
@@ -341,7 +368,7 @@
 
       <a class="project-card" href="influencer.html" data-cursor="View case">
         <div class="project-media clip-rise">
-          <img src="images/ed-loewe-chair.png" alt="Editorial creator campaign" loading="lazy">
+          <img src="images/ed-loewe-chair.webp" alt="Editorial creator campaign" loading="lazy" decoding="async">
         </div>
         <div class="project-meta">
           <div class="project-top"><span>FIRVT</span><span>Launch / Creators</span></div>
@@ -353,7 +380,10 @@
 
       <a class="project-card" href="web.html" data-cursor="View case">
         <div class="project-media clip-rise">
-          <img src="images/ed-marble-circuit.png" alt="DevKnight brand and web system" loading="lazy">
+          <picture>
+  <source srcset="images/ed-marble-circuit-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-marble-circuit.webp" alt="DevKnight brand and web system" loading="lazy" decoding="async">
+</picture>
         </div>
         <div class="project-meta">
           <div class="project-top"><span>DevKnight</span><span>Brand / Web</span></div>
@@ -365,7 +395,10 @@
 
       <a class="project-card" href="content.html" data-cursor="View case">
         <div class="project-media clip-rise">
-          <img src="images/ed-creative-linear.png" alt="Outdoor campaign visual" loading="lazy">
+          <picture>
+  <source srcset="images/ed-creative-linear-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-creative-linear.webp" alt="Outdoor campaign visual" loading="lazy" decoding="async">
+</picture>
         </div>
         <div class="project-meta">
           <div class="project-top"><span>Fevistik</span><span>Campaign / OOH</span></div>
@@ -454,12 +487,31 @@
       <span class="chip"><span class="dot"></span> Selected stills / 2025-2026</span>
     </div>
     <div class="ig-gallery">
-      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">BTS</span><span class="corner">001</span><img src="images/ed-runner-blur.png" alt="Motion blur behind the scenes" loading="lazy"></div>
-      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Product</span><span class="corner">002</span><img src="images/ed-mercedes-shades.png" alt="Product still life setup" loading="lazy"></div>
-      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Studio</span><span class="corner">003</span><img src="images/ed-art-is-data.png" alt="Art is data editorial studio concept lighting" loading="lazy"></div>
-      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Web</span><span class="corner">004</span><img src="images/ed-wireframe-hand.png" alt="Retro interface web concept" loading="lazy"></div>
-      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">OOH</span><span class="corner">005</span><img src="images/ed-pool-laptop.png" alt="Out of home campaign concept" loading="lazy"></div>
-      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Brand</span><span class="corner">006</span><img src="images/ed-cartier-leopard.png" alt="Brand identity system" loading="lazy"></div>
+      <!-- Fix #8: Descriptive alt text added to all 6 studio stills -->
+      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">BTS</span><span class="corner">001</span><picture>
+  <source srcset="images/ed-runner-blur-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-runner-blur.webp" alt="Motion blur behind-the-scenes on set" loading="lazy" decoding="async">
+</picture></div>
+      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Product</span><span class="corner">002</span><picture>
+  <source srcset="images/ed-mercedes-shades-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-mercedes-shades.webp" alt="Product still life — Mercedes sunglasses on studio surface" loading="lazy" decoding="async">
+</picture></div>
+      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Studio</span><span class="corner">003</span><picture>
+  <source srcset="images/ed-art-is-data-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-art-is-data.webp" alt="Art is data editorial studio concept lighting" loading="lazy" decoding="async">
+</picture></div>
+      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Web</span><span class="corner">004</span><picture>
+  <source srcset="images/ed-wireframe-hand-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-wireframe-hand.webp" alt="Retro interface web concept with hand holding wireframe" loading="lazy" decoding="async">
+</picture></div>
+      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">OOH</span><span class="corner">005</span><picture>
+  <source srcset="images/ed-pool-laptop-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-pool-laptop.webp" alt="Out-of-home campaign concept — laptop by pool" loading="lazy" decoding="async">
+</picture></div>
+      <div class="plate ig-tile clip-rise" data-cursor="Open"><span class="tag">Brand</span><span class="corner">006</span><picture>
+  <source srcset="images/ed-cartier-leopard-mobile.webp" media="(max-width: 768px)">
+  <img src="images/ed-cartier-leopard.webp" alt="Brand identity system — Cartier leopard editorial" loading="lazy" decoding="async">
+</picture></div>
     </div>
   </div>
 </section>
@@ -491,27 +543,29 @@
       </div>
       <form class="sfoot-form" onsubmit="return false;">
         <label class="sr-only" for="news-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
-        <input id="news-email" type="email" name="email" placeholder="you@company.com" required>
+        <input id="news-email" type="email" name="email" placeholder="you@company.com" required aria-label="Your email address">
         <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
       </form>
     </div>
     <div class="sfoot-grid">
       <div class="sfoot-brand">
         <div class="sfoot-brand-top">
-          <img src="images/sca-logo-mark.png" alt="">
+          <img src="images/sca-logo-mark.webp" alt="SeeTusk SCA logo mark">
           <span>SeeTusk / SCA</span>
         </div>
         <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <!-- Fix #13: Social links updated with real URLs + target/rel -->
         <div class="sfoot-socials">
-          <a href="#" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
-          <a href="#" title="X / Twitter" aria-label="X / Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
-          <a href="#" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
-          <a href="#" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <a href="https://www.youtube.com/@seetuskcreativeagency" title="YouTube" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
+          <a href="https://x.com/seetusk" title="X / Twitter" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
+          <a href="https://www.instagram.com/seetusk.agency" title="Instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.3.2 4.8 1.7 5 5 .1 1.3.1 1.6.1 4.8 0 3.2 0 3.6-.1 4.8-.2 3.3-1.7 4.8-5 5-1.3.1-1.6.1-4.9.1-3.2 0-3.6 0-4.8-.1-3.3-.2-4.8-1.7-5-5C2 16.6 2 16.3 2 12c0-3.2 0-3.6.1-4.8.2-3.3 1.7-4.8 5-5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-2.4.1-3.3 1-3.4 3.4C3.8 8.5 3.8 9 3.8 12c0 3.1 0 3.5.1 4.7.1 2.4 1 3.3 3.4 3.4 1.2.1 1.6.1 4.7.1 3.1 0 3.5 0 4.7-.1 2.4-.1 3.3-1 3.4-3.4.1-1.2.1-1.6.1-4.7 0-3.1 0-3.5-.1-4.7-.1-2.4-1-3.3-3.4-3.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm5.1-3.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg></a>
+          <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
       <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
-      <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Career</a></nav>
+      <!-- Fix #13: Footer elsewhere links with real URLs -->
+      <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">
       <span>&copy; 2026 SeeTusk Creative Agency / Pune, IND</span>
@@ -520,7 +574,8 @@
   </div>
 </footer>
 
-<script type="module" src="assets/sca.js"></script>
-<script type="module" src="assets/sca-kinetic.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 </body>
 </html>

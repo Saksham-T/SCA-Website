@@ -76,6 +76,10 @@ body::before {
     inset 0 1px 1px rgba(255, 255, 255, 0.15),
     inset 0 -1px 1px rgba(0, 0, 0, 0.2);
 }
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
+  color: #ffffff !important;
+}
 .nav-border-track {
   background: rgba(255, 255, 255, 0.08);
 }
@@ -110,10 +114,10 @@ body::before {
 
 /* ---- "Light text on dark panel" spots that referenced --bg-main ---- */
 .studio-signal,
-.plate.tag,
-.plate.corner,
+.plate .tag,
+.plate .corner,
 .cta-block,
-.cta-block.btn.ghost,
+.cta-block .btn.ghost,
 .footer,
 .footer-news input { color: var(--text-main); }
 
@@ -180,8 +184,8 @@ body::before {
 .lab .section-label,
 .lab .section-sub { color: rgba(247,248,250,.84); }
 .signal-top,
-.plate.tag,
-.plate.corner { color: rgba(247,248,250,.92); }
+.plate .tag,
+.plate .corner { color: rgba(247,248,250,.92); }
 
 /* ---- "Start a project" CTAs: true brand orange, overriding the dark
    theme's periwinkle accent token (#FC7233 from the reference palette) ---- */

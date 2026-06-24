@@ -157,3 +157,13 @@
   .sfoot-brand { grid-column: 1 / -1; }
   .sfoot-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
+
+@media (max-width: 520px) {
+  .sfoot-shell { padding-inline: var(--gutter, 20px); }
+  .sfoot-form { flex-direction: column; }
+  .sfoot-form input,
+  .sfoot-form button { width: 100%; }
+  .sfoot-form button { justify-content: center; }
+  .sfoot-grid { grid-template-columns: 1fr; }
+  .sfoot-socials { flex-wrap: wrap; }
+}

@@ -431,3 +431,189 @@ select:focus-visible,
   .pm-eyebrow::before,
   .case-result::before { animation: none; }
 }
+
+/* ============================================================
+   ASCII MOTION FEATURE
+   ============================================================ */
+.ascii-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+  margin-top: 40px;
+}
+.ascii-left {
+  display: flex;
+  flex-direction: column;
+}
+.ascii-desc {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+.ascii-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ascii-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.ascii-buttons .btn.accent {
+  background: var(--accent-blue);
+  color: #fff;
+  border: 1px solid var(--accent-blue);
+}
+.ascii-buttons .btn.accent:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+.ascii-buttons .btn.ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.ascii-buttons .btn.ghost:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+.ascii-right {
+  display: flex;
+  justify-content: center;
+}
+.ascii-figure {
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  background: var(--bg-card);
+  padding: 14px;
+  overflow: hidden;
+}
+.ascii-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+.ascii-figure figcaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   CASE STUDIES console screenshot image fitting
+   ============================================================ */
+.case-img-shot {
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid rgba(255,255,255,.08);
+  border-bottom: 0;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.case-card:hover .case-img-shot {
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   SERVICES CARD INCLUDES LIST & BUTTON STYLING
+   ============================================================ */
+.includes-list {
+  margin: 18px 0;
+  padding-left: 20px;
+  list-style: square;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.includes-list li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.unit-label {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-left: 4px;
+}
+.process-step .vert-btn, .vert .vert-btn {
+  margin-top: 12px;
+  align-self: flex-start;
+  text-decoration: none;
+}
+.process-step .vert-btn {
+  background: rgba(46, 84, 234, 0.12);
+  border: 1px solid rgba(46, 84, 234, 0.25);
+  color: #fff;
+}
+.process-step:hover .vert-btn {
+  background: var(--accent-blue);
+  color: #fff;
+  border-color: var(--accent-blue);
+}
+.vert .vert-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.vert:hover .vert-btn {
+  background: var(--accent-blue);
+  color: #fff;
+  border-color: var(--accent-blue);
+}
+
+/* Stack cards technology badges */
+.tech-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.tech-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.tech-badge.lang {
+  background: rgba(46, 84, 234, 0.12);
+  color: #8fa5ff;
+  border: 1px solid rgba(46, 84, 234, 0.25);
+}
+.tech-badge.type {
+  background: rgba(255, 107, 53, 0.12);
+  color: #ff9d7d;
+  border: 1px solid rgba(255, 107, 53, 0.25);
+}
+
+@media (max-width: 900px) {
+  .ascii-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

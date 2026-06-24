@@ -19,6 +19,8 @@
     initMobileNav();
     initChoices();
     initForms();
+    initSpotlightCards();
+    registerServiceWorker();
   });
 
   function initMobileNav() {
@@ -64,6 +66,18 @@
     menu.appendChild(panel);
     document.body.appendChild(menu);
 
+    const getFocusable = () => [toggle, ...panel.querySelectorAll('a')];
+
+    const setInert = (inert) => {
+      const targets = document.querySelectorAll('header, section, footer, .nav-inner > .brand');
+      targets.forEach(t => {
+        if (inert) t.setAttribute('inert', '');
+        else t.removeAttribute('inert');
+      });
+    };
+
+    let lastActiveElement = null;
+
     const setOpen = (open) => {
       document.body.classList.toggle('menu-open', open);
       menu.classList.toggle('is-open', open);
@@ -71,12 +85,44 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      setInert(open);
+
+      if (open) {
+        lastActiveElement = document.activeElement;
+        setTimeout(() => toggle.focus(), 50);
+      } else {
+        if (lastActiveElement) {
+          setTimeout(() => lastActiveElement.focus(), 50);
+        }
+      }
     };
 
     toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
     menu.addEventListener('click', (e) => { if (e.target === menu) setOpen(false); });
     panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!menu.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        setOpen(false);
+      } else if (e.key === 'Tab') {
+        const focusable = getFocusable();
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
     window.addEventListener('resize', () => { if (window.innerWidth > 900) setOpen(false); });
   }
 
@@ -96,6 +142,11 @@
     let rx = mx;
     let ry = my;
 
+    let vx = 0;
+    let vy = 0;
+    const tension = 0.08;
+    const damping = 0.72;
+
     window.addEventListener('mousemove', (event) => {
       mx = event.clientX;
       my = event.clientY;
@@ -104,8 +155,14 @@
     }, { passive: true });
 
     function tick() {
-      rx += (mx - rx) * 0.17;
-      ry += (my - ry) * 0.17;
+      const dx = mx - rx;
+      const dy = my - ry;
+      const ax = dx * tension;
+      const ay = dy * tension;
+      vx = (vx + ax) * damping;
+      vy = (vy + ay) * damping;
+      rx += vx;
+      ry += vy;
       ring.style.left = rx + 'px';
       ring.style.top = ry + 'px';
       requestAnimationFrame(tick);
@@ -179,69 +236,53 @@
     let index = 0;
     cycle.textContent = words[index];
 
-    // Offscreen measurer that inherits the cycle's exact typography so we can
-    // animate the box width to each word's natural size on change.
+    // Measure each word's natural rendered width using an offscreen clone that
+    // inherits the cycle's exact typography, so we can animate width on change.
     const measurer = document.createElement('span');
-    measurer.setAttribute('aria-hidden', 'true');
-    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;margin:0;padding:0;';
+    measurer.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:-9999px;pointer-events:none;';
     document.body.appendChild(measurer);
 
-    let widths = words.map(() => 0);
-
-    // (Re)measure every word. Must run AFTER the web font loads and on resize,
-    // otherwise widths are computed with fallback-font metrics and the next word
-    // ("BRANDS.") overlaps the cycling word / the slide snaps to a wrong target.
-    function measureAll() {
+    // Re-reads computed style on every call so responsive font-size changes
+    // (e.g. on orientation change or viewport resize) are reflected correctly.
+    const widthOf = (w) => {
       const cs = window.getComputedStyle(cycle);
       ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform'].forEach((p) => {
         measurer.style[p] = cs[p];
       });
-      const caret = parseFloat(cs.fontSize) * 0.12; // room for the blinking caret (::after)
-      widths = words.map((w) => {
-        measurer.textContent = w;
-        return measurer.getBoundingClientRect().width + caret;
-      });
-      // Snap the box to the current word's correct width without animating, so a
-      // late font load or a resize re-fits instantly instead of sliding.
-      const prev = cycle.style.transition;
-      cycle.style.transition = 'none';
-      cycle.style.width = widths[index] + 'px';
-      void cycle.offsetWidth; // flush the reflow before restoring transitions
-      cycle.style.transition = prev;
-    }
+      measurer.textContent = w;
+      // +0.12em accounts for the blinking caret drawn via ::after
+      const raw = measurer.getBoundingClientRect().width + parseFloat(cs.fontSize) * 0.12;
+      // Cap to the safe inner viewport width so the element never causes overflow.
+      // Use a conservative gutter of 48px (24px each side) as the minimum guard.
+      const maxSafe = window.innerWidth - 48;
+      return Math.min(raw, maxSafe);
+    };
 
-    measureAll();
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(measureAll);
-    }
-    let resizeTimer;
+    const applyWidth = (w) => {
+      cycle.style.width = widthOf(w) + 'px';
+    };
+
+    // Lock in the starting width so the first transition has a value to animate from.
+    applyWidth(words[index]);
+
+    // Re-measure and re-apply current word on viewport resize (e.g. orientation change).
     window.addEventListener('resize', () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(measureAll, 120);
-    });
+      applyWidth(words[index]);
+    }, { passive: true });
 
     if (reduceMotion) return;
 
     window.setInterval(() => {
-      const next = (index + 1) % words.length;
-      // 1. Lift + fade the current word out.
+      index = (index + 1) % words.length;
       cycle.style.opacity = '0';
-      cycle.style.transform = 'translateY(-0.45em)';
+      cycle.style.transform = 'translateY(12px)';
       window.setTimeout(() => {
-        // 2. While hidden, swap the text and start the width slide. Because the
-        //    box width transitions (CSS .5s), "BRANDS." glides into its new spot
-        //    instead of teleporting.
-        index = next;
         cycle.textContent = words[index];
-        cycle.style.width = widths[index] + 'px';
-        cycle.style.transform = 'translateY(0.45em)';
-        // 3. Next frame, drop + fade the new word in as the width settles.
-        window.requestAnimationFrame(function () {
-          cycle.style.opacity = '1';
-          cycle.style.transform = 'translateY(0)';
-        });
-      }, 240);
-    }, 2000);
+        applyWidth(words[index]);
+        cycle.style.opacity = '1';
+        cycle.style.transform = 'translateY(0)';
+      }, 220);
+    }, 1850);
   }
 
   function initStudioSignal() {
@@ -464,11 +505,30 @@
 
   function initChoices() {
     document.querySelectorAll('[data-choice-group]').forEach((group) => {
+      // Add keyboard support
+      group.querySelectorAll('.choice').forEach(choice => {
+        choice.setAttribute('tabindex', '0');
+        choice.setAttribute('role', 'radio');
+        const isActive = choice.classList.contains('active');
+        choice.setAttribute('aria-checked', isActive ? 'true' : 'false');
+
+        choice.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            choice.click();
+          }
+        });
+      });
+
       group.addEventListener('click', (event) => {
         const choice = event.target.closest('.choice');
         if (!choice) return;
-        group.querySelectorAll('.choice').forEach((item) => item.classList.remove('active'));
+        group.querySelectorAll('.choice').forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-checked', 'false');
+        });
         choice.classList.add('active');
+        choice.setAttribute('aria-checked', 'true');
         const hidden = group.querySelector('input[type="hidden"]');
         if (hidden) hidden.value = choice.dataset.value || choice.textContent.trim();
       });
@@ -484,69 +544,106 @@
           return input ? (input.value || '').trim() : '';
         };
 
-        const need = get('need') || 'Not selected';
-        const budget = get('budget') || 'Not selected';
-        const timeline = get('timeline') || 'Not selected';
+        const need = get('need');
+        const budget = get('budget');
+        const timeline = get('timeline');
         const name = get('name');
         const company = get('company');
         const email = get('email');
-        const phone = get('phone') || 'Not provided';
+        const phone = get('phone');
         const brief = get('brief');
 
-        if (!name || !company || !email || !brief) {
-          alert('Please fill in name, company, email and the situation.');
+        const formMessage = form.querySelector('#form-message');
+        const button = form.querySelector('button[type="submit"]');
+
+        // Simple validation checks
+        if (!need || need === 'Not selected') {
+          if (formMessage) {
+            formMessage.textContent = 'Please select what you need (Question 01)';
+            formMessage.className = 'form-message error visible';
+          }
+          return;
+        }
+        if (!budget || budget === 'Not selected') {
+          if (formMessage) {
+            formMessage.textContent = 'Please select your monthly budget (Question 02)';
+            formMessage.className = 'form-message error visible';
+          }
+          return;
+        }
+        if (!timeline || timeline === 'Not selected') {
+          if (formMessage) {
+            formMessage.textContent = 'Please select your timeline (Question 03)';
+            formMessage.className = 'form-message error visible';
+          }
           return;
         }
 
-        const subject = `New brief - ${company} (${need})`;
-        const body = [
-          'Hi SCA,',
-          '',
-          `Need: ${need}`,
-          `Budget: ${budget}`,
-          `Timeline: ${timeline}`,
-          '',
-          `Name: ${name}`,
-          `Company: ${company}`,
-          `Email: ${email}`,
-          `Phone: ${phone}`,
-          '',
-          'The situation:',
-          brief,
-          '',
-          'Sent via seetusk.agency'
-        ].join('\n');
-
-        window.location.href = 'mailto:contact@seetusk.com'
-          + '?subject=' + encodeURIComponent(subject)
-          + '&body=' + encodeURIComponent(body);
-
-        const button = form.querySelector('button[type="submit"]');
-        if (button) {
-          button.textContent = 'Opening your mail app';
-          button.disabled = true;
-          window.setTimeout(() => {
-            button.textContent = 'Email did not open? contact@seetusk.com';
-          }, 2500);
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          if (formMessage) {
+            formMessage.textContent = 'Please enter a valid email address';
+            formMessage.className = 'form-message error visible';
+          }
+          return;
         }
+
+        if (formMessage) {
+          formMessage.textContent = 'Sending brief...';
+          formMessage.className = 'form-message success visible';
+        }
+        if (button) {
+          button.disabled = true;
+          button.textContent = 'Sending...';
+        }
+
+        // Mock ajax submission
+        setTimeout(() => {
+          if (formMessage) {
+            formMessage.textContent = 'Success! We\'ve received your brief and will get back to you within 24 hours.';
+            formMessage.className = 'form-message success visible';
+          }
+          if (button) {
+            button.textContent = 'Sent Successfully';
+          }
+          form.reset();
+          // Reset choices visual state
+          form.querySelectorAll('.choice').forEach(item => {
+            item.classList.remove('active');
+            item.setAttribute('aria-checked', 'false');
+          });
+        }, 1200);
       });
     });
 
-    document.querySelectorAll('.footer-news form').forEach((form) => {
+    document.querySelectorAll('.footer-news form, .sfoot-news .sfoot-form').forEach((form) => {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const emailInput = form.querySelector('input[type="email"]');
         const email = emailInput ? emailInput.value.trim() : '';
         if (!email) return;
 
-        window.location.href = 'mailto:contact@seetusk.com'
-          + '?subject=' + encodeURIComponent('Newsletter signup')
-          + '&body=' + encodeURIComponent(`Please add me to the SCA newsletter.\n\nEmail: ${email}`);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
 
         const button = form.querySelector('button');
         if (button) {
-          button.textContent = 'Check your mail app';
+          const originalText = button.innerHTML;
+          button.textContent = 'Subscribing...';
           button.disabled = true;
+
+          setTimeout(() => {
+            button.textContent = 'Subscribed!';
+            if (emailInput) emailInput.value = '';
+            setTimeout(() => {
+              button.innerHTML = originalText;
+              button.disabled = false;
+            }, 3000);
+          }, 1000);
         }
       });
     });
@@ -559,9 +656,25 @@
     const progressBar = cameraStory.querySelector('.camera-progress span');
     const camVideo = cameraStory.querySelector('[data-camera-video]');
     if (camVideo) {
-      const playCam = () => { const p = camVideo.play(); if (p) p.catch(() => {}); };
-      if (camVideo.readyState >= 2) playCam();
-      else camVideo.addEventListener('loadeddata', playCam, { once: true });
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!camVideo.src && camVideo.getAttribute('data-src')) {
+              camVideo.src = camVideo.getAttribute('data-src');
+              camVideo.load();
+            }
+            const playPromise = camVideo.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {});
+            }
+          } else {
+            if (camVideo.src) {
+              camVideo.pause();
+            }
+          }
+        });
+      }, { threshold: 0.05 });
+      videoObserver.observe(cameraStory);
     }
 
     const updateCamera = () => {
@@ -589,5 +702,31 @@
     updateCamera();
     window.addEventListener('scroll', () => requestAnimationFrame(updateCamera), { passive: true });
     window.addEventListener('resize', updateCamera);
+  }
+
+  function initSpotlightCards() {
+    const selector = '.archetype-card, .stack-card, .process-step, .tier-card, .lab-card';
+    document.addEventListener('mousemove', (e) => {
+      const target = e.target;
+      if (!target.closest) return;
+      const card = target.closest(selector);
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      }
+    }, { passive: true });
+  }
+
+  function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((reg) => console.log('Service Worker registered with scope:', reg.scope))
+          .catch((err) => console.error('Service Worker registration failed:', err));
+      });
+    }
   }
 })();

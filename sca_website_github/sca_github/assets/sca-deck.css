@@ -219,9 +219,42 @@
 @media (max-width: 760px) {
   .deck-track { height: 320vh; }
   .deck-pin { min-height: 560px; }
-  .deck-copy--b, .deck-copy--c { text-align: center; }
+  .deck-copy--b,
+  .deck-copy--c {
+    top: clamp(80px, 12vh, 120px);
+    transform: translateX(-50%) !important;
+    text-align: center;
+  }
   .deck-copy--b .deck-inner,
-  .deck-copy--c .deck-inner { max-width: 30rem; margin: 0 auto; }
+  .deck-copy--c .deck-inner {
+    max-width: 30rem;
+    margin: 0 auto;
+  }
+  .deck-kicker {
+    margin-bottom: 12px;
+  }
+  .deck-copy--b .deck-title,
+  .deck-copy--c .deck-title {
+    font-size: clamp(22px, 5.5vw, 26px);
+    max-width: 15ch;
+    margin: 0 auto;
+  }
+  .deck-lead {
+    margin-top: 12px;
+    font-size: clamp(14px, 3.5vw, 15px);
+    max-width: 32ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dcard {
+    top: 70%;
+    width: 115px;
+    border-radius: 10px;
+  }
+  .deck-pill {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
   .deck-dots { display: none; }
 }
 

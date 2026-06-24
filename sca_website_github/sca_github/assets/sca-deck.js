@@ -45,21 +45,42 @@
     ];
 
     let u = 1;
+    let isMobile = false;
     function setUnit() {
       const vw = window.innerWidth, vh = window.innerHeight;
       u = clamp(Math.min(vw / 1440, vh / 820), 0.5, 1);
+      isMobile = vw <= 760;
     }
 
     // ---- arrangements (untis = px at u=1, centred on stage middle) ----
     function fanPose(i) {
       const d = i - c;
+      if (isMobile) {
+        return { x: d * 45, y: 60 + d * d * 4, r: d * 5, s: 0.9, z: i };
+      }
       return { x: d * 150, y: 138 + d * d * 11, r: d * 7, s: 1, z: i };
     }
     function cascadePose(i) {
       const d = i - c;
+      if (isMobile) {
+        return { x: d * 16, y: 60 + d * 36, r: -5 + i * 2, s: 0.9, z: i };
+      }
       return { x: 165 + d * 76, y: d * 60, r: -7 + i * 2.4, s: 1, z: i };
     }
     function scatterPose(i) {
+      if (isMobile) {
+        const mobPos = [
+          { x: -160, y: -140, r: -12, s: 0.85 },
+          { x: 160, y: -120, r: 8, s: 0.85 },
+          { x: -200, y: 30, r: 15, s: 0.85 },
+          { x: 0, y: 0, r: -5, s: 0.9 },
+          { x: 200, y: 60, r: -10, s: 0.85 },
+          { x: -120, y: 220, r: -8, s: 0.85 },
+          { x: 120, y: 240, r: 12, s: 0.85 }
+        ];
+        const pos = mobPos[i] || { x: 0, y: 0, r: 0, s: 0.85 };
+        return { x: pos.x, y: pos.y, r: pos.r, s: pos.s, z: i };
+      }
       const col = i % perRow;
       const row = Math.floor(i / perRow);
       const j = jit[i] || [0, 0, 0];
@@ -73,10 +94,16 @@
     }
     function stackPose(i, shiftY) {
       const d = i - c;
+      if (isMobile) {
+        return { x: d * 2, y: (shiftY * 0.6) + d * -1.5, r: d * 1.2, s: 0.82, z: i };
+      }
       return { x: d * 5, y: shiftY + d * -3, r: d * 2.2, s: 0.92, z: i };
     }
     function introStart(i) {
       const d = i - c;
+      if (isMobile) {
+        return { x: 0, y: 10, r: d * 1.5, s: 0.6, z: i };
+      }
       return { x: 0, y: 26, r: d * 2.2, s: 0.7, z: i };
     }
 
