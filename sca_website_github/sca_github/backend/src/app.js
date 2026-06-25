@@ -96,6 +96,39 @@ function createApp() {
     res.json({ status: 'ok', uptime: process.uptime() })
   );
 
+  // --- TEMPORARY: outbound SMTP-port reachability probe (remove after use) ---
+  // Tests whether this host can open TCP connections to common mail ports.
+  // Guarded by a token so it isn't openly callable: /debug/net?key=<DEBUG_KEY>
+  app.get('/debug/net', async (req, res) => {
+    const net = require('net');
+    if (!process.env.DEBUG_KEY || req.query.key !== process.env.DEBUG_KEY) {
+      return res.status(403).json({ error: 'forbidden' });
+    }
+    const targets = [
+      ['smtp.gmail.com', 587],
+      ['smtp.gmail.com', 465],
+      ['smtp.gmail.com', 2525],
+      ['smtp-relay.brevo.com', 587],
+      ['smtp-relay.brevo.com', 2525],
+      ['smtp-relay.brevo.com', 465],
+    ];
+    const probe = ([host, port]) =>
+      new Promise((resolve) => {
+        const started = Date.now();
+        const socket = net.connect({ host, port, family: 4 });
+        const done = (result) => {
+          socket.destroy();
+          resolve({ target: `${host}:${port}`, result, ms: Date.now() - started });
+        };
+        socket.setTimeout(8000);
+        socket.once('connect', () => done('connected'));
+        socket.once('timeout', () => done('timeout (blocked)'));
+        socket.once('error', (e) => done(`error: ${e.code || e.message}`));
+      });
+    const results = await Promise.all(targets.map(probe));
+    return res.json({ host: 'render', results });
+  });
+
   // --- API routes ---
   app.use('/api/applications', applicationRoutes);
   app.use('/api/jobs', jobRoutes);
