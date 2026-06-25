@@ -600,7 +600,7 @@
 
         const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
           ? 'http://localhost:5000'
-          : 'https://sca-careers-backend.onrender.com';
+          : 'https://sca-website.onrender.com';
 
         fetch(`${API_BASE_URL}/api/inquiries`, {
           method: 'POST',
@@ -675,7 +675,7 @@
 
           const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:5000'
-            : 'https://sca-careers-backend.onrender.com';
+            : 'https://sca-website.onrender.com';
 
           fetch(`${API_BASE_URL}/api/newsletters`, {
             method: 'POST',
