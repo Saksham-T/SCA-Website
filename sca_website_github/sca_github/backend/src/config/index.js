@@ -65,6 +65,7 @@ const config = {
     host: required('SMTP_HOST'),
     port: parseInt(optional('SMTP_PORT', '587'), 10),
     secure: optional('SMTP_SECURE', 'false') === 'true',
+    timeoutMs: parseInt(optional('SMTP_TIMEOUT_MS', '20000'), 10),
     user: required('SMTP_USER'),
     pass: required('SMTP_PASS'),
     from: optional('EMAIL_FROM', `Careers <${process.env.SMTP_USER}>`),

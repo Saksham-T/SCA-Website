@@ -25,9 +25,9 @@ const transporter = nodemailer.createTransport({
   port: config.mail.port,
   secure: config.mail.secure,
   auth: { user: config.mail.user, pass: config.mail.pass },
-  connectionTimeout: 5000, // 5 seconds
-  greetingTimeout: 5000,   // 5 seconds
-  socketTimeout: 5000,     // 5 seconds
+  connectionTimeout: config.mail.timeoutMs, // generous: cloud->SMTP handshakes are slow
+  greetingTimeout: config.mail.timeoutMs,
+  socketTimeout: config.mail.timeoutMs,
 });
 
 /** Verify SMTP connectivity at startup; logs but does not crash the app. */
