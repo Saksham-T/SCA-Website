@@ -36,7 +36,39 @@ function createApp() {
   // --- CORS ---
   app.use(
     cors({
-      origin: config.corsOrigins.includes('*') ? true : config.corsOrigins,
+      origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+
+        // If wildcard is in config.corsOrigins, allow all
+        if (config.corsOrigins.includes('*')) {
+          return callback(null, true);
+        }
+
+        // Check if origin matches exactly
+        if (config.corsOrigins.includes(origin)) {
+          return callback(null, true);
+        }
+
+        // Dynamic check: Allow dev.seetusk.com or any subdomains of seetusk.com / seetusk.agency
+        try {
+          const url = new URL(origin);
+          const hostname = url.hostname;
+          if (
+            hostname === 'seetusk.com' ||
+            hostname.endsWith('.seetusk.com') ||
+            hostname === 'seetusk.agency' ||
+            hostname.endsWith('.seetusk.agency')
+          ) {
+            return callback(null, true);
+          }
+        } catch (e) {
+          // ignore invalid URLs
+        }
+
+        // Otherwise reject CORS
+        callback(null, false);
+      },
       methods: ['GET', 'POST'],
     })
   );
