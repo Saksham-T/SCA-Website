@@ -48,7 +48,7 @@
   --pad-x:clamp(18px,3vw,42px);
   --maxw:1440px;
   --ease:cubic-bezier(.2,.7,.2,1);
-  --font-display:'Outfit','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --font-display:'League Spartan','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-body:'Outfit','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   /* --- Signal Room: scoped fonts for redesigned regions below hero (hero keeps the vars above) --- */
@@ -125,7 +125,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:.98;letter-
 .section{padding-block:clamp(72px,10vw,140px);position:relative;z-index:2}
 /* --- curved interconnecting spine (SVG path drawn through the section title nodes) --- */
 main#top{position:relative}
-.spine-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;overflow:visible}
+.spine-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
 .spine-path{fill:none;stroke:url(#spineGrad);stroke-width:1.6;stroke-linecap:round;
   filter:drop-shadow(0 0 5px rgba(79,124,255,.5));}
 .section-head{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-bottom:clamp(40px,5vw,70px)}
@@ -514,6 +514,120 @@ main#top{position:relative}
 .field .err{color:var(--accent-orange);font-family:var(--font-mono-2);font-size:10.5px;letter-spacing:.04em;display:none}
 .field.invalid .err{display:block}
 .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--accent-orange)}
+.field.invalid .custom-select-trigger{border-color:var(--accent-orange)}
+
+/* Custom Select styles */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-radius: 6px;
+  background: #0e0c08;
+  border: 1px solid var(--console-line);
+  color: var(--console-ink);
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .25s;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.custom-select-wrapper.open .custom-select-trigger,
+.custom-select-trigger:hover {
+  border-color: var(--accent-blue);
+  box-shadow: var(--glow-blue);
+}
+.custom-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--accent-orange);
+  transition: transform .2s ease;
+}
+.custom-select-wrapper.open .custom-select-arrow {
+  transform: rotate(180deg);
+}
+.custom-select-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #0e0c08;
+  border: 1px solid var(--console-line);
+  border-radius: 6px;
+  z-index: 100;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+.custom-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-select-options::-webkit-scrollbar-track {
+  background: #0e0c08;
+}
+.custom-select-options::-webkit-scrollbar-thumb {
+  background: var(--console-line);
+  border-radius: 3px;
+}
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+.custom-select-wrapper.open .custom-select-options {
+  display: block;
+}
+.custom-select-option {
+  padding: 11px 15px;
+  color: var(--console-ink-60);
+  cursor: pointer;
+  transition: all .15s;
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: left;
+}
+.custom-select-option:hover {
+  background: var(--accent-blue);
+  color: #fff;
+}
+.custom-select-option.selected {
+  color: var(--accent-orange);
+  font-weight: 700;
+  background: rgba(252, 114, 51, 0.08);
+}
+
+.static-role-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-radius: 6px;
+  background: #11100d;
+  border: 1px solid var(--console-line);
+  color: var(--console-ink-60);
+  cursor: not-allowed;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.static-role-display .role-title {
+  font-weight: 500;
+  color: var(--console-ink);
+}
+.static-role-display .lock-tag {
+  font-family: var(--font-mono-2);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  background: rgba(252, 114, 51, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(252, 114, 51, 0.2);
+}
+
 
 /* success */
 .success{display:none;flex-direction:column;align-items:center;text-align:center;padding:30px 10px 16px}
@@ -871,18 +985,18 @@ main#top{position:relative}
   z-index: 5;
 }
 .display span.em-serif {
-  font-family: var(--font-mono);
-  font-style: italic;
-  font-weight: 500;
-  text-transform: none;
-  background: linear-gradient(135deg, #2E54EA 0%, #a855f7 50%, #ffffff 100%);
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #FC7233 0%, #ff9e6d 50%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #fff;
+  color: #FC7233;
   display: inline-block;
   background-size: 200% 200%;
   animation: shine-sweep 6s linear infinite;
-  text-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+  text-shadow: 0 0 25px rgba(252, 114, 51, 0.25);
 }
 
 @keyframes shine-sweep {
@@ -1460,39 +1574,95 @@ main#top{position:relative}
         </div>
         <div class="steps" role="progressbar" aria-label="Application progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
           <div class="seg active" data-seg="0"><span class="track"><i></i></span><span class="lbl">01 · Identity</span></div>
-          <div class="seg" data-seg="1"><span class="track"><i></i></span><span class="lbl">02 · Work</span></div>
-          <div class="seg" data-seg="2"><span class="track"><i></i></span><span class="lbl">03 · Signal</span></div>
+          <div class="seg" data-seg="1"><span class="track"><i></i></span><span class="lbl">02 · Terms &amp; Role</span></div>
+          <div class="seg" data-seg="2"><span class="track"><i></i></span><span class="lbl">03 · Experience</span></div>
         </div>
 
         <!-- step 1 -->
         <div class="fstep active" data-step="0">
-          <div class="field"><label>Full name <span class="req">*</span></label><input type="text" data-v="req" placeholder="First Last" /><span class="err">// required</span></div>
-          <div class="grid2">
-            <div class="field"><label>Email <span class="req">*</span></label><input type="email" data-v="email" placeholder="you@email.com" /><span class="err">// valid email required</span></div>
-            <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" data-v="req" placeholder="+91 ..." /><span class="err">// required</span></div>
+          <div class="field">
+            <label>Name <span class="req">*</span></label>
+            <input type="text" id="form-name" data-v="req" placeholder="First Last" />
+            <span class="err">// required</span>
           </div>
-          <div class="field"><label>Role <span class="req">*</span></label>
-            <select data-v="req" id="roleSelect"><option value="">Select a channel…</option></select>
-            <span class="err">// pick a role</span>
+          <div class="grid2">
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" id="form-email" data-v="email" placeholder="you@email.com" />
+              <span class="err">// valid email required</span>
+            </div>
+            <div class="field">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" id="form-phone" data-v="req" placeholder="+91 ..." />
+              <span class="err">// required</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>LinkedIn profile <span class="req">*</span></label>
+            <input type="url" id="form-linkedin" data-v="req" placeholder="https://linkedin.com/in/username" />
+            <span class="err">// required (LinkedIn link)</span>
           </div>
         </div>
 
         <!-- step 2 -->
         <div class="fstep" data-step="1">
-          <div class="field"><label>Portfolio / work link <span class="req">*</span></label><input type="url" data-v="req" placeholder="https://…" /><span class="err">// required</span></div>
-          <div class="field"><label>Upload resume (PDF)</label>
-            <div class="drop" id="drop"><b>Click to select</b> or drop a PDF resume<small>max file size: 4MB</small><input type="file" id="fileInput" accept="application/pdf" hidden /></div>
+          <div class="field" id="roleFieldContainer">
+            <!-- Dynamically populated in openModal() -->
           </div>
-          <div class="field"><label>Social links (optional)</label><input type="text" placeholder="LinkedIn, Instagram, X…" /></div>
+          <div class="field">
+            <label>Expected CTC <span class="req">*</span> <small style="display:block;margin-top:4px;color:var(--console-ink-60)">Add exact number, (for 8 Lakh, write 800000)</small></label>
+            <input type="number" id="form-ctc" data-v="req" placeholder="e.g. 800000" min="0" />
+            <span class="err">// required (numbers only)</span>
+          </div>
+          <div class="field">
+            <label>Are you willing to work full-time in office in Pune? <span class="req">*</span>
+              <small style="display:block;margin-top:4px;line-height:1.45;color:var(--console-ink-60)">The studio space is in Bavdhan, Pune. We do not have a typical corporate or creative Indian marketing agency office. We have paid special attention to create a creative studio that nurtures and help our talent thrive.</small>
+            </label>
+            <select id="form-office" data-v="req">
+              <option value="">Select answer…</option>
+              <option value="Yes">Yes, willing to work full-time onsite in Pune</option>
+              <option value="No">No</option>
+            </select>
+            <span class="err">// required</span>
+          </div>
+          <div class="field">
+            <label>Expected Joining Date <span class="req">*</span> <small style="display:block;margin-top:4px;color:var(--console-ink-60)">If you are selected going forward, then by when will you be able to join us? (Date)</small></label>
+            <input type="date" id="form-joining" data-v="req" />
+            <span class="err">// select a date</span>
+          </div>
         </div>
 
         <!-- step 3 -->
         <div class="fstep" data-step="2">
-          <div class="field"><label>What is the best thing you've built or shipped? <span class="req">*</span></label>
-            <textarea data-v="req" placeholder="One thing you're proud of. What it was, what you did, what happened."></textarea>
-            <span class="err">// tell us one thing</span>
+          <div class="field">
+            <label>Do you have prior experience related to the role you’re applying for? <span class="req">*</span>
+              <small style="display:block;margin-top:4px;color:var(--console-ink-60)">Have you worked in a creative/agency/startup-like environment before</small>
+            </label>
+            <select id="form-experience" data-v="req">
+              <option value="">Select answer…</option>
+              <option value="Yes">Yes, I have prior relevant experience</option>
+              <option value="No">No, I am a fresher / switching tracks</option>
+            </select>
+            <span class="err">// required</span>
           </div>
-          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--console-ink-60);letter-spacing:.04em">// reviewed by Sarthak, Saksham &amp; Melbin · reply within 48h</p>
+          <div class="field">
+            <label>Resume <span class="req">*</span></label>
+            <div class="drop" id="drop">
+              <b>Click to select</b> or drop a PDF resume
+              <small>max file size: 4MB</small>
+              <input type="file" id="fileInput" accept="application/pdf" data-v="req" hidden />
+            </div>
+            <span class="err">// resume file required</span>
+          </div>
+          <div class="field">
+            <label>Portfolio Link (optional)</label>
+            <input type="url" id="form-portfolio" placeholder="https://..." />
+          </div>
+          <div class="field">
+            <label>Thank you for applying! Any questions for us? <span class="req">*</span></label>
+            <textarea id="form-questions" data-v="req" placeholder="Ask us anything about our culture, work, or studio space..."></textarea>
+            <span class="err">// required (please write your questions or 'None')</span>
+          </div>
         </div>
 
         <div class="modal__foot">
@@ -1519,6 +1689,11 @@ main#top{position:relative}
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
+let formRenderTs = 0;
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://sca-careers-backend.onrender.com'; // Replace with your actual Render URL
+
 /* ============ DATA: roles (from SeeTusk careers) ============ */
 const ROLES = [
   {ch:"CH-01",dept:"Marketing",title:"Senior Brand Manager",loc:"Pune · Onsite",exp:"3–5 years",type:"Full-time",
@@ -1659,10 +1834,6 @@ if(roleListEl){
   setTimeout(layoutRoles,300); setTimeout(layoutRoles,1000);
 }
 
-/* populate modal role select */
-const roleSelect = document.getElementById('roleSelect');
-roleSelect.innerHTML = '<option value="">Select a channel…</option>' + ROLES.map(r=>`<option>${r.title}</option>`).join('') + '<option>Open Application</option>';
-
 /* ============ filtering + search ============ */
 let activeDept = 'all';
 const roleSearch = document.getElementById('roleSearch');
@@ -1715,12 +1886,141 @@ const formWrap = document.getElementById('formWrap');
 const successEl = document.getElementById('success');
 const roleEcho = document.getElementById('roleEcho');
 let lastFocus = null;
+
+function initCustomSelects() {
+  const selects = modal.querySelectorAll('select:not(.no-custom)');
+  
+  selects.forEach(select => {
+    let wrapper = select.parentElement.querySelector('.custom-select-wrapper');
+    if (wrapper) {
+      wrapper.remove();
+    }
+    
+    wrapper = document.createElement('div');
+    wrapper.className = 'custom-select-wrapper';
+    
+    const trigger = document.createElement('div');
+    trigger.className = 'custom-select-trigger';
+    trigger.tabIndex = 0;
+    
+    const triggerText = document.createElement('span');
+    const activeOption = select.options[select.selectedIndex];
+    triggerText.textContent = activeOption ? activeOption.textContent : 'Select...';
+    
+    const arrow = document.createElement('span');
+    arrow.className = 'custom-select-arrow';
+    
+    trigger.appendChild(triggerText);
+    trigger.appendChild(arrow);
+    wrapper.appendChild(trigger);
+    
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'custom-select-options';
+    
+    [...select.options].forEach((opt) => {
+      const optionEl = document.createElement('div');
+      optionEl.className = 'custom-select-option';
+      optionEl.textContent = opt.textContent;
+      optionEl.dataset.value = opt.value;
+      if (opt.selected) {
+        optionEl.classList.add('selected');
+      }
+      
+      optionEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        optionsContainer.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('selected'));
+        optionEl.classList.add('selected');
+        triggerText.textContent = opt.textContent;
+        select.value = opt.value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        select.dispatchEvent(new Event('input', { bubbles: true }));
+        wrapper.classList.remove('open');
+      });
+      
+      optionsContainer.appendChild(optionEl);
+    });
+    
+    wrapper.appendChild(optionsContainer);
+    
+    select.style.position = 'absolute';
+    select.style.opacity = '0';
+    select.style.pointerEvents = 'none';
+    select.style.width = '0';
+    select.style.height = '0';
+    
+    select.parentNode.insertBefore(wrapper, select.nextSibling);
+    
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      modal.querySelectorAll('.custom-select-wrapper').forEach(w => {
+        if (w !== wrapper) w.classList.remove('open');
+      });
+      wrapper.classList.toggle('open');
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.custom-select-wrapper')) {
+    document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+  }
+});
+
 function openModal(roleName){
   lastFocus = document.activeElement;
   formWrap.style.display='block'; successEl.classList.remove('show');
   goStep(0);
-  if(roleName && roleName!==''){ roleSelect.value = [...roleSelect.options].some(o=>o.value===roleName)?roleName:''; roleEcho.textContent = roleName==='Open Application'?'':'Applying for: '+roleName; }
-  else { roleEcho.textContent=''; }
+  formRenderTs = Date.now();
+  
+  const roleFieldContainer = document.getElementById('roleFieldContainer');
+  if (roleFieldContainer) {
+    if (roleName && roleName !== '' && roleName !== 'Open Application') {
+      roleFieldContainer.innerHTML = `
+        <label>Applying for Role</label>
+        <div class="static-role-display">
+          <span class="role-title">${roleName}</span>
+          <span class="lock-tag">Locked</span>
+        </div>
+        <select id="roleSelect" class="no-custom" data-v="req" style="position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;">
+          <option value="${roleName}" selected>${roleName}</option>
+        </select>
+      `;
+      roleEcho.textContent = 'Applying for: ' + roleName;
+    } else {
+      const optionsHtml = ROLES.map(r => `<option value="${r.title}">${r.title}</option>`).join('');
+      roleFieldContainer.innerHTML = `
+        <label>Applying for Role <span class="req">*</span></label>
+        <select id="roleSelect" data-v="req">
+          <option value="">Select the role you are applying for</option>
+          ${optionsHtml}
+          <option value="Open Application">Open Application</option>
+        </select>
+        <span class="err">// required</span>
+      `;
+      const selectEl = document.getElementById('roleSelect');
+      if (selectEl && roleName === 'Open Application') {
+        selectEl.value = 'Open Application';
+      }
+      roleEcho.textContent = '';
+    }
+
+    const selectEl = document.getElementById('roleSelect');
+    if (selectEl) {
+      selectEl.addEventListener('input', () => selectEl.closest('.field').classList.remove('invalid'));
+      selectEl.addEventListener('change', () => selectEl.closest('.field').classList.remove('invalid'));
+    }
+  }
+
+  initCustomSelects();
+
   modal.classList.add('show'); document.body.style.overflow='hidden';
   setTimeout(()=>modal.querySelector('input,select')?.focus(),120);
 }
@@ -1772,20 +2072,112 @@ nextBtn.addEventListener('click',()=>{
   else submitForm();
 });
 prevBtn.addEventListener('click',()=>{ if(step>0)goStep(step-1); });
-steps.forEach(s=>s.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid'))));
+steps.forEach(s=>s.querySelectorAll('input,select,textarea').forEach(el=>{
+  el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid'));
+  el.addEventListener('change',()=>el.closest('.field').classList.remove('invalid'));
+}));
 
 function submitForm(){
-  formWrap.style.display='none';
-  successEl.classList.add('show');
+  const submitBtn = document.getElementById('nextBtn');
+  const originalText = submitBtn.textContent;
+  
+  // 1. Gather all inputs
+  const nameVal = document.getElementById('form-name').value.trim();
+  const emailVal = document.getElementById('form-email').value.trim();
+  const phoneVal = document.getElementById('form-phone').value.trim();
+  const linkedinVal = document.getElementById('form-linkedin').value.trim();
+  const positionVal = document.getElementById('roleSelect').value;
+  const ctcVal = document.getElementById('form-ctc').value.trim();
+  const officeVal = document.getElementById('form-office').value;
+  const joiningVal = document.getElementById('form-joining').value;
+  const experienceVal = document.getElementById('form-experience').value;
+  const resumeFile = document.getElementById('fileInput').files[0];
+  const portfolioVal = document.getElementById('form-portfolio').value.trim();
+  const questionsVal = document.getElementById('form-questions').value.trim();
+  
+  // 2. Map fields to backend schema
+  const formData = new FormData();
+  formData.append('fullName', nameVal);
+  formData.append('email', emailVal);
+  formData.append('phone', phoneVal);
+  formData.append('linkedin', linkedinVal);
+  formData.append('position', positionVal);
+  formData.append('willingToRelocate', officeVal === 'Yes' ? 'Yes' : 'No');
+  formData.append('preferredWorkMode', officeVal === 'Yes' ? 'On-site' : 'Remote');
+  formData.append('joiningAvailability', joiningVal);
+  formData.append('yearsOfExperience', experienceVal === 'Yes' ? '2' : '0');
+  formData.append('resume', resumeFile);
+  formData.append('portfolio', portfolioVal);
+  formData.append('coverLetter', questionsVal);
+  
+  // Sane defaults for required fields not in form
+  formData.append('location', 'Pune');
+  formData.append('country', 'India');
+  
+  // Add expected ctc and prior experience as additional dynamic fields
+  formData.append('expected_ctc', ctcVal);
+  formData.append('prior_experience_environment', experienceVal);
+  
+  // Honeypot time-trap timestamp
+  formData.append('form_render_ts', formRenderTs.toString());
+  
+  // 3. Show loading UI state
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Transmitting...';
+  
+  console.log('Sending application to backend...', {
+    fullName: nameVal,
+    email: emailVal,
+    position: positionVal,
+    form_render_ts: formRenderTs
+  });
+  
+  fetch(`${API_BASE_URL}/api/applications`, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(err => {
+        throw new Error(err.message || `Server error: ${response.status}`);
+      });
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Application submitted successfully!', data);
+    formWrap.style.display = 'none';
+    successEl.classList.add('show');
+  })
+  .catch(error => {
+    console.error('Application submission failed:', error.message);
+    alert('Transmission error: ' + error.message);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  });
 }
 /* file drop */
 const drop=document.getElementById('drop'),fileInput=document.getElementById('fileInput');
 if(drop){
   drop.addEventListener('click',()=>fileInput.click());
-  fileInput.addEventListener('change',()=>{ if(fileInput.files[0]) drop.innerHTML='<b>'+fileInput.files[0].name+'</b><small>ready to transmit</small>'; });
+  fileInput.addEventListener('change',()=>{
+    if(fileInput.files[0]) {
+      drop.innerHTML='<b>'+fileInput.files[0].name+'</b><small>ready to transmit</small>';
+      fileInput.closest('.field').classList.remove('invalid');
+    }
+  });
   ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('hot');}));
   ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('hot');}));
-  drop.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f&&f.type==='application/pdf'){fileInput.files=e.dataTransfer.files;drop.innerHTML='<b>'+f.name+'</b><small>ready to transmit</small>';} });
+  drop.addEventListener('drop',e=>{
+    const f=e.dataTransfer.files[0];
+    if(f&&f.type==='application/pdf'){
+      fileInput.files=e.dataTransfer.files;
+      drop.innerHTML='<b>'+f.name+'</b><small>ready to transmit</small>';
+      fileInput.closest('.field').classList.remove('invalid');
+    }
+  });
 }
 
 /* ============ newsletter (terminal subscribe + success state) ============ */
