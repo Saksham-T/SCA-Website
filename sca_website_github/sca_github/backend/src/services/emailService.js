@@ -18,14 +18,10 @@ const config = require('../config');
 const logger = require('../config/logger');
 const templates = require('../utils/emailTemplates');
 const brevoMailer = require('./brevoMailer');
-const gmailMailer = require('./gmailMailer');
 
-const g = config.mail.gmail;
-const useGmailApi = Boolean(g.clientId && g.clientSecret && g.refreshToken);
-const useBrevo = !useGmailApi && Boolean(config.mail.brevoApiKey);
+const useBrevo = Boolean(config.mail.brevoApiKey);
 
 const isConfigured =
-  useGmailApi ||
   useBrevo ||
   (config.mail.host &&
     config.mail.user &&
@@ -33,16 +29,14 @@ const isConfigured =
     !config.mail.pass.includes('placeholder') &&
     !config.mail.pass.includes('your-smtp'));
 
-/** Human-readable name of the active provider, for logs. */
-const providerName = useGmailApi ? 'Gmail API' : useBrevo ? 'Brevo HTTP API' : 'SMTP';
-
 /**
- * Provider-agnostic send. Routes to Gmail API, Brevo (HTTP), or SMTP per config.
+ * Provider-agnostic send. Routes to Brevo (HTTP) or SMTP depending on config.
  * @param {object} msg  nodemailer-style message ({ from, to, replyTo, subject, html, attachments }).
  */
 async function deliver(msg) {
-  if (useGmailApi) return gmailMailer.sendMail(msg);
-  if (useBrevo) return brevoMailer.sendMail(msg);
+  if (useBrevo) {
+    return brevoMailer.sendMail(msg);
+  }
   const transporter = await getTransporter();
   return transporter.sendMail(msg);
 }
@@ -92,16 +86,7 @@ function getTransporter() {
 /** Verify the active mail provider at startup; logs but does not crash the app. */
 async function verifyTransport() {
   if (!isConfigured) {
-    logger.warn('Email is not configured (no Gmail API, no Brevo key, no SMTP creds). Email sending is mocked.');
-    return;
-  }
-  if (useGmailApi) {
-    try {
-      await gmailMailer.verify();
-      logger.info('Email provider ready: Gmail API.');
-    } catch (err) {
-      logger.error(`Gmail API readiness check failed: ${err.message}`);
-    }
+    logger.warn('Email is not configured (no Brevo key and no SMTP creds). Email sending is mocked.');
     return;
   }
   if (useBrevo) {
@@ -131,7 +116,7 @@ async function sendHrNotification(app) {
     logger.info(`[MOCK EMAIL] HR notification for candidate ${app.fullName} (${app.position}) - resume: ${app.resume?.originalName}`);
     return;
   }
-  const subject = `New Career Application | ${app.position} | ${app.fullName}`;
+  const subject = `New application: ${app.fullName} — ${app.position}`;
   await deliver({
     from: config.mail.from,
     to: config.mail.hrEmail,
@@ -139,20 +124,11 @@ async function sendHrNotification(app) {
     subject,
     html: templates.hrNotification(app),
     attachments: [
-      // Resume bytes come from MongoDB (Buffer); fall back to a path if present.
-      app.resume.data
-        ? {
-            filename: app.resume.originalName,
-            content: Buffer.isBuffer(app.resume.data)
-              ? app.resume.data
-              : Buffer.from(app.resume.data.buffer || app.resume.data),
-            contentType: app.resume.mimeType,
-          }
-        : {
-            filename: app.resume.originalName,
-            path: app.resume.path,
-            contentType: app.resume.mimeType,
-          },
+      {
+        filename: app.resume.originalName,
+        path: app.resume.path,
+        contentType: app.resume.mimeType,
+      },
     ],
   });
   logger.info(`HR notification sent for ${app.submissionId}`);
