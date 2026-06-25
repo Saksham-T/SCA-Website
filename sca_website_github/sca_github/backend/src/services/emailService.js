@@ -8,21 +8,11 @@
  * resume attached) and acknowledging the candidate.
  */
 
-const dns = require('dns');
+const dns = require('dns').promises;
 const nodemailer = require('nodemailer');
 const config = require('../config');
 const logger = require('../config/logger');
 const templates = require('../utils/emailTemplates');
-
-// Force every SMTP DNS resolution to IPv4. Render has no outbound IPv6 route,
-// and Gmail's host resolves to an AAAA (IPv6) record first, which fails with
-// "connect ENETUNREACH <ipv6>". This custom lookup pins family 4 at the socket
-// layer, independent of nodemailer's own option handling.
-function ipv4Lookup(hostname, options, callback) {
-  const opts = typeof options === 'function' ? {} : { ...options };
-  const cb = typeof options === 'function' ? options : callback;
-  return dns.lookup(hostname, { ...opts, family: 4 }, cb);
-}
 
 const isConfigured =
   config.mail.host &&
@@ -31,18 +21,47 @@ const isConfigured =
   !config.mail.pass.includes('placeholder') &&
   !config.mail.pass.includes('your-smtp');
 
-const transporter = nodemailer.createTransport({
-  host: config.mail.host,
-  port: config.mail.port,
-  secure: config.mail.secure,
-  auth: { user: config.mail.user, pass: config.mail.pass },
-  // Force IPv4 (see ipv4Lookup above) — Render cannot route outbound IPv6.
-  family: 4,
-  lookup: ipv4Lookup,
-  connectionTimeout: config.mail.timeoutMs, // generous: cloud->SMTP handshakes are slow
-  greetingTimeout: config.mail.timeoutMs,
-  socketTimeout: config.mail.timeoutMs,
-});
+/**
+ * Build the SMTP transporter, dialing the host's IPv4 address directly.
+ *
+ * Render has no outbound IPv6 route, but Gmail's SMTP host resolves to an
+ * AAAA (IPv6) record first -> "connect ENETUNREACH <ipv6>". We resolve the A
+ * (IPv4) record ourselves and connect to that IP, keeping `tls.servername` set
+ * to the original hostname so certificate validation still succeeds.
+ *
+ * The transporter is built once and cached (as a promise) so the DNS lookup
+ * happens a single time.
+ */
+let transporterPromise = null;
+
+async function buildTransporter() {
+  let host = config.mail.host;
+  try {
+    const { address } = await dns.lookup(config.mail.host, { family: 4 });
+    host = address; // dial the IPv4 address directly
+    logger.info(`SMTP resolved ${config.mail.host} -> ${address} (IPv4)`);
+  } catch (err) {
+    logger.warn(`SMTP IPv4 resolution failed for ${config.mail.host}: ${err.message}. Falling back to hostname.`);
+  }
+
+  return nodemailer.createTransport({
+    host,
+    port: config.mail.port,
+    secure: config.mail.secure,
+    auth: { user: config.mail.user, pass: config.mail.pass },
+    family: 4, // belt-and-suspenders: never attempt IPv6
+    tls: { servername: config.mail.host }, // cert is for the hostname, not the IP
+    connectionTimeout: config.mail.timeoutMs, // cloud->SMTP handshakes can be slow
+    greetingTimeout: config.mail.timeoutMs,
+    socketTimeout: config.mail.timeoutMs,
+  });
+}
+
+/** Lazily create and cache the transporter. */
+function getTransporter() {
+  if (!transporterPromise) transporterPromise = buildTransporter();
+  return transporterPromise;
+}
 
 /** Verify SMTP connectivity at startup; logs but does not crash the app. */
 async function verifyTransport() {
@@ -51,10 +70,11 @@ async function verifyTransport() {
     return;
   }
   try {
+    const transporter = await getTransporter();
     await transporter.verify();
-    logger.info('SMTP transport verified and ready. [ipv4-forced build]');
+    logger.info('SMTP transport verified and ready. [ipv4-direct build]');
   } catch (err) {
-    logger.error(`SMTP verification failed: ${err.message}`);
+    logger.error(`SMTP verification failed [ipv4-direct build]: ${err.message}`);
   }
 }
 
@@ -68,6 +88,7 @@ async function sendHrNotification(app) {
     return;
   }
   const subject = `New Career Application | ${app.position} | ${app.fullName}`;
+  const transporter = await getTransporter();
   await transporter.sendMail({
     from: config.mail.from,
     to: config.mail.hrEmail,
@@ -94,6 +115,7 @@ async function sendCandidateAcknowledgement(app) {
     logger.info(`[MOCK EMAIL] Candidate acknowledgement for ${app.fullName} <${app.email}>`);
     return;
   }
+  const transporter = await getTransporter();
   await transporter.sendMail({
     from: config.mail.from,
     to: app.email,
@@ -113,6 +135,7 @@ async function sendInquiryNotification(inquiry) {
     return;
   }
   const subject = `New Project Inquiry | ${inquiry.need} | ${inquiry.company}`;
+  const transporter = await getTransporter();
   await transporter.sendMail({
     from: config.mail.from,
     to: config.mail.hrEmail, // notify the core team inbox
