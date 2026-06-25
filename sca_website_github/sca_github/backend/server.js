@@ -6,6 +6,15 @@
  * process without a log line.
  */
 
+const dns = require('dns');
+
+// Prefer IPv4 DNS results process-wide. Render has no outbound IPv6 route, so
+// any host that resolves to an AAAA record first (e.g. smtp.gmail.com) would
+// otherwise fail with "connect ENETUNREACH <ipv6>".
+if (typeof dns.setDefaultResultOrder === 'function') {
+  dns.setDefaultResultOrder('ipv4first');
+}
+
 const createApp = require('./src/app');
 const connectDB = require('./src/config/db');
 const config = require('./src/config');

@@ -25,6 +25,10 @@ const transporter = nodemailer.createTransport({
   port: config.mail.port,
   secure: config.mail.secure,
   auth: { user: config.mail.user, pass: config.mail.pass },
+  // Force IPv4: Render has no outbound IPv6 route, and Gmail resolves to an
+  // AAAA (IPv6) record first -> "connect ENETUNREACH <ipv6>". Pinning family 4
+  // makes Node dial the A (IPv4) record instead.
+  family: 4,
   connectionTimeout: config.mail.timeoutMs, // generous: cloud->SMTP handshakes are slow
   greetingTimeout: config.mail.timeoutMs,
   socketTimeout: config.mail.timeoutMs,
