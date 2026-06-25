@@ -70,6 +70,9 @@ const config = {
     pass: required('SMTP_PASS'),
     from: optional('EMAIL_FROM', `Careers <${process.env.SMTP_USER}>`),
     hrEmail: required('HR_EMAIL'),
+    // Brevo (HTTP API) — preferred on hosts that block outbound SMTP (e.g.
+    // Render). When set, email is sent over HTTPS:443 instead of SMTP.
+    brevoApiKey: optional('BREVO_API_KEY', ''),
     companyName: optional('COMPANY_NAME', 'SeeTusk'),
     companyWebsite: optional('COMPANY_WEBSITE', 'https://www.seetusk.com'),
     brandColor: optional('BRAND_COLOR', '#2e54ea'),

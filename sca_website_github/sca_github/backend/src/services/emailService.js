@@ -1,11 +1,15 @@
 'use strict';
 
 /**
- * Email service built on Nodemailer.
+ * Email service.
  *
- * A single reusable transporter is created from config. The service exposes two
- * high-level operations used by the application workflow: notifying HR (with the
- * resume attached) and acknowledging the candidate.
+ * Two delivery providers are supported behind a single `deliver()` call:
+ *   - Brevo HTTP API (preferred) — used when BREVO_API_KEY is set. Sends over
+ *     HTTPS:443, which works on hosts that block outbound SMTP (e.g. Render).
+ *   - SMTP via Nodemailer (fallback) — used for local dev / when no API key.
+ *
+ * The service exposes high-level operations used by the application workflow:
+ * notifying HR (with the resume attached) and acknowledging the candidate.
  */
 
 const dns = require('dns').promises;
@@ -13,13 +17,29 @@ const nodemailer = require('nodemailer');
 const config = require('../config');
 const logger = require('../config/logger');
 const templates = require('../utils/emailTemplates');
+const brevoMailer = require('./brevoMailer');
+
+const useBrevo = Boolean(config.mail.brevoApiKey);
 
 const isConfigured =
-  config.mail.host &&
-  config.mail.user &&
-  config.mail.pass &&
-  !config.mail.pass.includes('placeholder') &&
-  !config.mail.pass.includes('your-smtp');
+  useBrevo ||
+  (config.mail.host &&
+    config.mail.user &&
+    config.mail.pass &&
+    !config.mail.pass.includes('placeholder') &&
+    !config.mail.pass.includes('your-smtp'));
+
+/**
+ * Provider-agnostic send. Routes to Brevo (HTTP) or SMTP depending on config.
+ * @param {object} msg  nodemailer-style message ({ from, to, replyTo, subject, html, attachments }).
+ */
+async function deliver(msg) {
+  if (useBrevo) {
+    return brevoMailer.sendMail(msg);
+  }
+  const transporter = await getTransporter();
+  return transporter.sendMail(msg);
+}
 
 /**
  * Build the SMTP transporter, dialing the host's IPv4 address directly.
@@ -63,10 +83,19 @@ function getTransporter() {
   return transporterPromise;
 }
 
-/** Verify SMTP connectivity at startup; logs but does not crash the app. */
+/** Verify the active mail provider at startup; logs but does not crash the app. */
 async function verifyTransport() {
   if (!isConfigured) {
-    logger.warn('SMTP credentials are not fully configured (using placeholders). Email sending is mocked.');
+    logger.warn('Email is not configured (no Brevo key and no SMTP creds). Email sending is mocked.');
+    return;
+  }
+  if (useBrevo) {
+    try {
+      await brevoMailer.verify();
+      logger.info('Email provider ready: Brevo HTTP API.');
+    } catch (err) {
+      logger.error(`Brevo readiness check failed: ${err.message}`);
+    }
     return;
   }
   try {
@@ -88,8 +117,7 @@ async function sendHrNotification(app) {
     return;
   }
   const subject = `New Career Application | ${app.position} | ${app.fullName}`;
-  const transporter = await getTransporter();
-  await transporter.sendMail({
+  await deliver({
     from: config.mail.from,
     to: config.mail.hrEmail,
     replyTo: `"${app.fullName}" <${app.email}>`,
@@ -115,8 +143,7 @@ async function sendCandidateAcknowledgement(app) {
     logger.info(`[MOCK EMAIL] Candidate acknowledgement for ${app.fullName} <${app.email}>`);
     return;
   }
-  const transporter = await getTransporter();
-  await transporter.sendMail({
+  await deliver({
     from: config.mail.from,
     to: app.email,
     subject: `We've received your application | ${config.mail.companyName}`,
@@ -135,8 +162,7 @@ async function sendInquiryNotification(inquiry) {
     return;
   }
   const subject = `New Project Inquiry | ${inquiry.need} | ${inquiry.company}`;
-  const transporter = await getTransporter();
-  await transporter.sendMail({
+  await deliver({
     from: config.mail.from,
     to: config.mail.hrEmail, // notify the core team inbox
     replyTo: `"${inquiry.name}" <${inquiry.email}>`,
