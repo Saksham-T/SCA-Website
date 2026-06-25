@@ -13,15 +13,29 @@ const config = require('../config');
 const logger = require('../config/logger');
 const templates = require('../utils/emailTemplates');
 
+const isConfigured =
+  config.mail.host &&
+  config.mail.user &&
+  config.mail.pass &&
+  !config.mail.pass.includes('placeholder') &&
+  !config.mail.pass.includes('your-smtp');
+
 const transporter = nodemailer.createTransport({
   host: config.mail.host,
   port: config.mail.port,
   secure: config.mail.secure,
   auth: { user: config.mail.user, pass: config.mail.pass },
+  connectionTimeout: 5000, // 5 seconds
+  greetingTimeout: 5000,   // 5 seconds
+  socketTimeout: 5000,     // 5 seconds
 });
 
 /** Verify SMTP connectivity at startup; logs but does not crash the app. */
 async function verifyTransport() {
+  if (!isConfigured) {
+    logger.warn('SMTP credentials are not fully configured (using placeholders). Email sending is mocked.');
+    return;
+  }
   try {
     await transporter.verify();
     logger.info('SMTP transport verified and ready.');
@@ -35,6 +49,10 @@ async function verifyTransport() {
  * @param {object} app  Stored application (plain object).
  */
 async function sendHrNotification(app) {
+  if (!isConfigured) {
+    logger.info(`[MOCK EMAIL] HR notification for candidate ${app.fullName} (${app.position}) - resume: ${app.resume?.originalName}`);
+    return;
+  }
   const subject = `New Career Application | ${app.position} | ${app.fullName}`;
   await transporter.sendMail({
     from: config.mail.from,
@@ -58,6 +76,10 @@ async function sendHrNotification(app) {
  * @param {object} app  Stored application (plain object).
  */
 async function sendCandidateAcknowledgement(app) {
+  if (!isConfigured) {
+    logger.info(`[MOCK EMAIL] Candidate acknowledgement for ${app.fullName} <${app.email}>`);
+    return;
+  }
   await transporter.sendMail({
     from: config.mail.from,
     to: app.email,
@@ -72,6 +94,10 @@ async function sendCandidateAcknowledgement(app) {
  * @param {object} inquiry  Stored inquiry (plain object).
  */
 async function sendInquiryNotification(inquiry) {
+  if (!isConfigured) {
+    logger.info(`[MOCK EMAIL] Inquiry notification for ${inquiry.name} <${inquiry.email}> - Need: ${inquiry.need}`);
+    return;
+  }
   const subject = `New Project Inquiry | ${inquiry.need} | ${inquiry.company}`;
   await transporter.sendMail({
     from: config.mail.from,
@@ -89,3 +115,4 @@ module.exports = {
   sendCandidateAcknowledgement,
   sendInquiryNotification,
 };
+
