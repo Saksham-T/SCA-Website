@@ -8,10 +8,21 @@
  * resume attached) and acknowledging the candidate.
  */
 
+const dns = require('dns');
 const nodemailer = require('nodemailer');
 const config = require('../config');
 const logger = require('../config/logger');
 const templates = require('../utils/emailTemplates');
+
+// Force every SMTP DNS resolution to IPv4. Render has no outbound IPv6 route,
+// and Gmail's host resolves to an AAAA (IPv6) record first, which fails with
+// "connect ENETUNREACH <ipv6>". This custom lookup pins family 4 at the socket
+// layer, independent of nodemailer's own option handling.
+function ipv4Lookup(hostname, options, callback) {
+  const opts = typeof options === 'function' ? {} : { ...options };
+  const cb = typeof options === 'function' ? options : callback;
+  return dns.lookup(hostname, { ...opts, family: 4 }, cb);
+}
 
 const isConfigured =
   config.mail.host &&
@@ -25,10 +36,9 @@ const transporter = nodemailer.createTransport({
   port: config.mail.port,
   secure: config.mail.secure,
   auth: { user: config.mail.user, pass: config.mail.pass },
-  // Force IPv4: Render has no outbound IPv6 route, and Gmail resolves to an
-  // AAAA (IPv6) record first -> "connect ENETUNREACH <ipv6>". Pinning family 4
-  // makes Node dial the A (IPv4) record instead.
+  // Force IPv4 (see ipv4Lookup above) — Render cannot route outbound IPv6.
   family: 4,
+  lookup: ipv4Lookup,
   connectionTimeout: config.mail.timeoutMs, // generous: cloud->SMTP handshakes are slow
   greetingTimeout: config.mail.timeoutMs,
   socketTimeout: config.mail.timeoutMs,
@@ -42,7 +52,7 @@ async function verifyTransport() {
   }
   try {
     await transporter.verify();
-    logger.info('SMTP transport verified and ready.');
+    logger.info('SMTP transport verified and ready. [ipv4-forced build]');
   } catch (err) {
     logger.error(`SMTP verification failed: ${err.message}`);
   }
