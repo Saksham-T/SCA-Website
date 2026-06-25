@@ -53,7 +53,9 @@ const submitApplication = asyncHandler(async (req, res) => {
   logger.info(`Application saved: ${application.submissionId} (${application.email})`);
 
   // 2. Fire the two emails. Failures are captured, not fatal.
-  const plain = application.toObject();
+  // flattenMaps: turn the `additionalFields` Map into a plain object so the
+  // email template can iterate it (Object.entries on a Map yields nothing).
+  const plain = application.toObject({ flattenMaps: true });
   const emailStatus = { hr: false, candidate: false };
 
   try {

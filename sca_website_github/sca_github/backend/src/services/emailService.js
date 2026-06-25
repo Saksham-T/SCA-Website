@@ -18,10 +18,14 @@ const config = require('../config');
 const logger = require('../config/logger');
 const templates = require('../utils/emailTemplates');
 const brevoMailer = require('./brevoMailer');
+const gmailMailer = require('./gmailMailer');
 
-const useBrevo = Boolean(config.mail.brevoApiKey);
+const g = config.mail.gmail;
+const useGmailApi = Boolean(g.clientId && g.clientSecret && g.refreshToken);
+const useBrevo = !useGmailApi && Boolean(config.mail.brevoApiKey);
 
 const isConfigured =
+  useGmailApi ||
   useBrevo ||
   (config.mail.host &&
     config.mail.user &&
@@ -29,14 +33,16 @@ const isConfigured =
     !config.mail.pass.includes('placeholder') &&
     !config.mail.pass.includes('your-smtp'));
 
+/** Human-readable name of the active provider, for logs. */
+const providerName = useGmailApi ? 'Gmail API' : useBrevo ? 'Brevo HTTP API' : 'SMTP';
+
 /**
- * Provider-agnostic send. Routes to Brevo (HTTP) or SMTP depending on config.
+ * Provider-agnostic send. Routes to Gmail API, Brevo (HTTP), or SMTP per config.
  * @param {object} msg  nodemailer-style message ({ from, to, replyTo, subject, html, attachments }).
  */
 async function deliver(msg) {
-  if (useBrevo) {
-    return brevoMailer.sendMail(msg);
-  }
+  if (useGmailApi) return gmailMailer.sendMail(msg);
+  if (useBrevo) return brevoMailer.sendMail(msg);
   const transporter = await getTransporter();
   return transporter.sendMail(msg);
 }
@@ -86,7 +92,16 @@ function getTransporter() {
 /** Verify the active mail provider at startup; logs but does not crash the app. */
 async function verifyTransport() {
   if (!isConfigured) {
-    logger.warn('Email is not configured (no Brevo key and no SMTP creds). Email sending is mocked.');
+    logger.warn('Email is not configured (no Gmail API, no Brevo key, no SMTP creds). Email sending is mocked.');
+    return;
+  }
+  if (useGmailApi) {
+    try {
+      await gmailMailer.verify();
+      logger.info('Email provider ready: Gmail API.');
+    } catch (err) {
+      logger.error(`Gmail API readiness check failed: ${err.message}`);
+    }
     return;
   }
   if (useBrevo) {

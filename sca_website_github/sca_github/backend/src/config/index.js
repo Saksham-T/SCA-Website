@@ -70,8 +70,16 @@ const config = {
     pass: required('SMTP_PASS'),
     from: optional('EMAIL_FROM', `Careers <${process.env.SMTP_USER}>`),
     hrEmail: required('HR_EMAIL'),
-    // Brevo (HTTP API) — preferred on hosts that block outbound SMTP (e.g.
-    // Render). When set, email is sent over HTTPS:443 instead of SMTP.
+    // Gmail API (OAuth2, HTTPS:443) — first-party sending from your own Google
+    // account; no third-party relay and not blocked by Render. Preferred when
+    // fully configured.
+    gmail: {
+      clientId: optional('GMAIL_CLIENT_ID', ''),
+      clientSecret: optional('GMAIL_CLIENT_SECRET', ''),
+      refreshToken: optional('GMAIL_REFRESH_TOKEN', ''),
+    },
+    // Brevo (HTTP API) — alternative on hosts that block outbound SMTP. When
+    // set (and Gmail API is not), email is sent over HTTPS:443 instead of SMTP.
     brevoApiKey: optional('BREVO_API_KEY', ''),
     companyName: optional('COMPANY_NAME', 'SeeTusk'),
     companyWebsite: optional('COMPANY_WEBSITE', 'https://www.seetusk.com'),
