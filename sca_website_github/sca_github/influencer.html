@@ -33,81 +33,50 @@
       overflow-x: hidden;
     }
 
-    /* ── HERO SLIDER ── */
+    /* ── HERO — single frame, background slideshow only ── */
     #hero {
       position: relative;
       height: 100vh; min-height: 600px;
       overflow: hidden;
     }
 
-    .slide {
-      position: absolute; inset: 0;
-      opacity: 0; transition: opacity 1s ease;
-      pointer-events: none;
-    }
-    .slide.active { opacity: 1; pointer-events: all; }
-
-    .slide-bg {
+    /* Background slideshow: only the photo behind changes */
+    .hero-bg-stack { position: absolute; inset: 0; z-index: 0; }
+    .hero-slide-bg {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
-      transform: scale(1.08);
-      transition: transform 8s ease, opacity 0.4s ease;
+      opacity: 0; transform: scale(1.06);
+      transition: opacity 1.2s ease, transform 7s ease;
     }
-    .slide.active .slide-bg { transform: scale(1); }
-
-    /* Pop in & Settle animations for Slide BG */
-    .slide-bg.popping {
-      transform: scale(0.9) !important;
-      opacity: 0 !important;
-      transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease !important;
-    }
-    .slide-bg.settling {
-      transform: scale(1) !important;
-      opacity: 1 !important;
-      transition: transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.4s ease !important;
-    }
+    .hero-slide-bg.active { opacity: 1; transform: scale(1); }
 
     .slide-overlay {
-      position: absolute; inset: 0;
+      position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         105deg,
-        rgba(0,0,0,0.82) 0%,
-        rgba(0,0,0,0.5) 45%,
-        rgba(0,0,0,0.15) 100%
+        rgba(0,0,0,0.86) 0%,
+        rgba(0,0,0,0.55) 45%,
+        rgba(0,0,0,0.22) 100%
       );
     }
 
-    .slide-content {
-      position: absolute; inset: 0;
-      display: flex; align-items: center;
-      padding: 0 48px; 
-      padding-top: 80px;
-      padding-bottom: 120px; /* Generous bottom spacing to prevent overlapping elements */
+    .hero-inner {
+      position: relative; z-index: 2;
+      height: 100%;
+      max-width: 1320px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px;
+      padding: 80px 48px 120px;
     }
 
-    .slide-left {
-      flex: 0 0 450px; max-width: 450px;
-      transform: translateY(30px); opacity: 0;
-      transition: transform 0.8s ease 0.3s, opacity 0.8s ease 0.3s;
-      background: rgba(10, 10, 12, 0.12); /* 88% transparent glassmorphism background */
-      backdrop-filter: blur(1px) saturate(110%); 
-      -webkit-backdrop-filter: blur(1px) saturate(110%); 
-      border: 1px solid rgba(255, 255, 255, 0.18); /* Crisper highlight border */
-      border-radius: 20px;
-      padding: 40px 36px;
-      box-shadow: 
-        0 40px 80px rgba(0, 0, 0, 0.8), /* Stronger drop shadow for 3D depth */
-        0 15px 30px rgba(0, 0, 0, 0.55), /* Secondary ambient shadow */
-        inset 0 1.5px 0px rgba(255, 255, 255, 0.35), /* Bevel light highlight on the top edge */
-        inset 0 -1.5px 2px rgba(0, 0, 0, 0.6); /* Bevel shadow on the bottom edge to give volume */
-    }
-    .slide.active .slide-left { transform: translateY(0); opacity: 1; }
+    /* Floating text — no card box */
+    .hero-text { flex: 0 0 520px; max-width: 520px; }
 
     .slide-label {
       display: flex; align-items: center; gap: 12px;
       font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
       text-transform: uppercase; color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
     .slide-label::before {
       content: ''; display: block; width: 28px; height: 1px; background: var(--accent);
@@ -115,10 +84,10 @@
 
     .slide-title {
       font-family: var(--font-display);
-      font-size: clamp(56px, 7vw, 96px); line-height: 0.92;
-      letter-spacing: 0.02em; color: #fff;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65));
+      font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
+      letter-spacing: -0.01em; color: #fff; font-weight: 800;
+      margin-bottom: 22px;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
     }
     .glass-text {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 100%);
@@ -134,8 +103,8 @@
     }
 
     .slide-desc {
-      font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.65);
-      font-weight: 300; margin-bottom: 32px; max-width: 340px;
+      font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.72);
+      font-weight: 300; margin-bottom: 32px; max-width: 420px;
     }
 
     .slide-btn {
@@ -154,77 +123,46 @@
     .slide-btn:hover { background: #fff; color: #000; border-color: #fff; }
     .slide-btn:hover::before { background: #000; }
 
-    /* Card rail */
-    .slide-right {
-      flex: 1;
-      display: flex; align-items: flex-end;
-      padding-bottom: 20px; /* Offset spacing to align with container padding */
-      padding-left: 60px;
-      gap: 16px;
-      overflow: hidden;
-      transform: translateX(60px); opacity: 0;
-      transition: transform 0.9s ease 0.5s, opacity 0.9s ease 0.5s;
+    /* 3 floating images alongside */
+    .hero-floats {
+      flex: 0 0 auto;
+      display: flex; align-items: center; gap: 22px;
     }
-    .slide.active .slide-right { transform: translateX(0); opacity: 1; }
+    .float-card {
+      position: relative;
+      width: 200px; height: 290px;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.55), 0 10px 20px rgba(0,0,0,0.4);
+      animation: heroFloat 6s ease-in-out infinite;
+    }
+    .float-card:nth-child(1) { transform: rotate(-2deg); animation-delay: 0s; }
+    .float-card:nth-child(2) { transform: rotate(1.5deg); width: 210px; height: 304px; margin-top: -44px; animation-delay: 1.1s; }
+    .float-card:nth-child(3) { transform: rotate(2deg); animation-delay: 2.2s; }
+    .float-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .float-card .fc-cap {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 16px 14px 13px; margin: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0) 100%);
+      font-family: var(--font-mono);
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .float-card .fc-cap strong {
+      display: block; margin-top: 4px;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 16px; letter-spacing: 0; text-transform: uppercase; color: #fff;
+    }
+    @keyframes heroFloat {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .float-card { animation: none; } }
 
-    .dest-card {
-      flex: 0 0 200px; height: 280px;
-      position: relative; border-radius: 10px; overflow: hidden;
-      cursor: pointer; transition: transform 0.3s, flex-basis 0.3s;
-      transform: rotate(-1deg);
-    }
-    .dest-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 2px solid transparent;
-      border-radius: 10px;
-      pointer-events: none;
-      transition: border-color 0.3s;
-      z-index: 5;
-    }
-    .dest-card:hover::after {
-      border-color: rgba(255, 255, 255, 0.35); /* Subtle border on hover */
-    }
-    .dest-card.selected::after {
-      border-color: var(--accent); /* Selected accent border */
-    }
-    .dest-card:nth-child(2n) { transform: rotate(1deg) translateY(-10px); }
-    .dest-card:hover { flex-basis: 240px; transform: rotate(0deg) scale(1.03); }
-  
-    /* Active/Selected card state */
-    .dest-card.selected {
-      transform: scale(1.05) rotate(0deg);
-      flex-basis: 240px;
-    }
-
-    .dest-card-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transition: transform 0.5s;
-    }
-    .dest-card:hover .dest-card-bg { transform: scale(1.08); }
-    .dest-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.1) 60%);
-    }
-    .dest-card-info {
-      position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 12px;
-    }
-    .dest-card-sub {
-      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 4px;
-    }
-    .dest-card-title {
-      font-family: var(--font-display);
-      font-size: 16px; font-weight: 700; line-height: 1.1; color: #fff;
-      text-transform: uppercase;
-    }
-
-    /* Slider controls */
+    /* Slider controls (drive the background) */
     .slider-controls {
       position: absolute; bottom: 36px; left: 48px;
-      display: flex; align-items: center; gap: 24px; z-index: 10;
+      display: flex; align-items: center; gap: 24px; z-index: 3;
     }
     .slider-arrow {
       width: 38px; height: 38px; border-radius: 50%;
@@ -243,13 +181,6 @@
       border-radius: 2px; cursor: pointer; transition: all 0.3s;
     }
     .progress-dot.active { background: var(--accent); width: 48px; }
-
-    .slide-number {
-      position: absolute; bottom: 40px; right: 48px;
-      font-family: var(--font-display);
-      font-size: 72px; color: rgba(255,255,255,0.06);
-      line-height: 1; user-select: none;
-    }
 
     /* ── SECTION DIVIDER LABEL ── */
     .section-label {
@@ -624,22 +555,17 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 992px) {
-      .slide-content { 
-        padding: 0 24px; 
-        padding-top: 80px; 
-        flex-direction: column; 
-        justify-content: flex-end; 
-        padding-bottom: 140px; /* Leave proper space for bottom controls on mobile */
+      .hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 80px 24px 140px;
+        gap: 28px;
       }
-      .slide-left { 
-        flex: none; 
-        max-width: 100%; 
-        margin-bottom: 32px; 
-        padding: 24px 20px; 
-        border-radius: 16px;
-      }
-      .slide-right { padding-left: 0; padding-bottom: 0; flex: none; width: 100%; }
-      .dest-card { flex: 0 0 120px; height: 170px; }
+      .hero-text { flex: none; max-width: 100%; }
+      .hero-floats { width: 100%; gap: 12px; }
+      .float-card,
+      .float-card:nth-child(2) { width: 33%; height: 160px; margin-top: 0; animation: none; }
       #problem, #roster { padding: 72px 24px; }
       .problem-grid { grid-template-columns: 1fr; gap: 48px; }
       .campaign-container { flex-direction: column; }
@@ -671,67 +597,7 @@
       }
     }
 
-    /* ── DYNAMIC HERO SLIDE LAYOUT SHIFTS (Desktop only) ── */
-    @media (min-width: 993px) {
-      /* Slide 2: Flipped Split (Cards Left, Text Right) */
-      .slide[data-index="1"] .slide-content {
-        flex-direction: row-reverse;
-      }
-      .slide[data-index="1"] .slide-right {
-        padding-left: 0;
-        padding-right: 60px;
-        transform: translateX(-60px);
-      }
-      .slide[data-index="1"].active .slide-right {
-        transform: translateX(0);
-      }
-
-      /* Slide 3: Centered Column (Text Centered at Top, Cards Centered below) */
-      .slide[data-index="2"] .slide-content {
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding-top: 90px !important;
-        padding-bottom: 110px !important;
-      }
-      .slide[data-index="2"] .slide-left {
-        flex: none !important;
-        max-width: 800px !important;
-        margin-bottom: 32px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-      }
-      .slide[data-index="2"] .slide-label {
-        justify-content: center !important;
-        margin-bottom: 12px !important;
-      }
-      .slide[data-index="2"] .slide-title {
-        font-size: clamp(38px, 4.2vw, 56px) !important;
-        line-height: 1.1 !important;
-        margin-bottom: 16px !important;
-      }
-      .slide[data-index="2"] .slide-title br {
-        display: none !important;
-      }
-      .slide[data-index="2"] .slide-desc {
-        max-width: 520px !important;
-        font-size: 13.5px !important;
-        margin-bottom: 24px !important;
-      }
-      .slide[data-index="2"] .slide-right {
-        flex: none !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding-left: 0 !important;
-        width: 100% !important;
-        transform: translateY(30px) !important;
-      }
-      .slide[data-index="2"].active .slide-right {
-        transform: translateY(0) !important;
-      }
-    }
+    /* Hero is a single frame now — no per-slide layout shifts. */
 
     /* ── NAVBAR BOOTSTRAP OVERRIDES ── */
     .nav {
@@ -776,6 +642,38 @@
       letter-spacing: 0.06em;
       border-radius: 999px;
     }
+
+    /* ── READABILITY + UNIFORM TYPE PASS ── */
+    /* Align to the SCA type system — League Spartan + EB Garamond only.
+       Drop JetBrains Mono (not part of our design system): map both mono
+       variables to the display face so every label matches the rest of the site. */
+    body { --inf-mono: var(--font-display); --font-mono: var(--font-display); }
+    /* Labels / eyebrows — one consistent treatment, a touch larger */
+    .inf-eyebrow, .section-label, .slide-label,
+    .inf-case-meta, .inf-case-stamp, .inf-case-row .k, .inf-faq-q .ix {
+      font-family: var(--font-display) !important;
+      font-size: 12.5px !important;
+      letter-spacing: 0.1em;
+    }
+    /* Section intro paragraphs */
+    .inf-head p { font-size: clamp(17px, 1.5vw, 20px) !important; line-height: 1.65; }
+    /* System steps */
+    .inf-step p { font-size: clamp(17px, 1.4vw, 20px) !important; }
+    /* Case studies */
+    .inf-case h3 { font-size: 26px !important; }
+    .inf-case-row .v { font-size: 16.5px !important; line-height: 1.55; }
+    /* Testimonials */
+    .inf-quote blockquote { font-size: clamp(20px, 1.6vw, 23px) !important; line-height: 1.5; }
+    /* FAQ */
+    .inf-faq-q { font-size: clamp(19px, 1.7vw, 26px) !important; }
+    .inf-faq-a-inner { font-size: 18px !important; line-height: 1.7; }
+    /* Problem section */
+    .problem-left p { font-size: 16.5px !important; line-height: 1.8; }
+    .problem-item h4 { font-size: 15.5px !important; }
+    .problem-item p { font-size: 15.5px !important; line-height: 1.7; }
+    /* Hero + newsletter */
+    .slide-desc { font-size: 16px !important; line-height: 1.7; }
+    #newsletter p { font-size: 15.5px !important; line-height: 1.65; }
   </style>
 </head>
 <body>
@@ -800,148 +698,51 @@
   </div>
 </nav>
 
-<!-- HERO SLIDER -->
+<!-- HERO -->
 <section id="hero">
 
-  <!-- Slide 1: The Problem -->
-  <div class="slide active" data-index="0">
-    <div class="slide-bg" style="background-image: url('images/g-white-studio.jpeg')"></div>
-    <div class="slide-overlay"></div>
-    <div class="slide-content">
-      <div class="slide-left">
-        <div class="slide-label">01 / The problem</div>
-        <h1 class="slide-title"><span class="glass-text">Why most<br>influencer</span><br><span class="tint-text">spend is<br>wasted.</span></h1>
-        <p class="slide-desc">Brands pay creators. Creators post. Nothing converts. Everyone moves on. The issue isn't the creators — it's the machine around them.</p>
-        <a href="#problem" class="slide-btn">See the fix</a>
-      </div>
-      <div class="slide-right" role="tablist" aria-label="Method tabs">
-        <div class="dest-card" data-info-key="brief-fit-first" role="tab" tabindex="0" aria-selected="false" aria-label="Brief and Fit First method">
-          <div class="dest-card-bg" style="background-image: url('images/g-director-set.png')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Our method</div>
-            <div class="dest-card-title">Brief &amp; Fit First</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="tracked-links" role="tab" tabindex="0" aria-selected="false" aria-label="Tracked Links method">
-          <div class="dest-card-bg" style="background-image: url('images/g-interview-set.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Our method</div>
-            <div class="dest-card-title">Tracked Links</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="live-dashboard" role="tab" tabindex="0" aria-selected="false" aria-label="Live Dashboard method">
-          <div class="dest-card-bg" style="background-image: url('images/g-studio-redlight.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Our method</div>
-            <div class="dest-card-title">Live Dashboard</div>
-          </div>
-        </div>
-      </div>
+  <!-- Background slideshow: only the photo behind changes -->
+  <div class="hero-bg-stack" aria-hidden="true">
+    <div class="hero-slide-bg active" style="background-image: url('images/g-white-studio.jpeg')"></div>
+    <div class="hero-slide-bg" style="background-image: url('images/g-director-set.png')"></div>
+    <div class="hero-slide-bg" style="background-image: url('images/g-studio-redlight.jpeg')"></div>
+    <div class="hero-slide-bg" style="background-image: url('images/g-interview-set.jpeg')"></div>
+  </div>
+  <div class="slide-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="slide-label">Influencer marketing / SCA</div>
+      <h1 class="slide-title"><span class="glass-text">Creator campaigns</span><br><span class="tint-text">that actually convert.</span></h1>
+      <p class="slide-desc">We run influencer marketing like performance media &mdash; vetted creators, tracked links and a live dashboard. You see real orders by creator, not vanity reach.</p>
+      <a href="#problem" class="slide-btn">See how it works</a>
     </div>
-    <div class="slide-number">01</div>
+
+    <div class="hero-floats" aria-hidden="true">
+      <figure class="float-card">
+        <img src="images/g-director-set.png" alt="" loading="eager" decoding="async">
+        <figcaption class="fc-cap">Our method<strong>Brief &amp; Fit</strong></figcaption>
+      </figure>
+      <figure class="float-card">
+        <img src="images/g-interview-set.jpeg" alt="" loading="eager" decoding="async">
+        <figcaption class="fc-cap">Our method<strong>Tracked Links</strong></figcaption>
+      </figure>
+      <figure class="float-card">
+        <img src="images/g-studio-redlight.jpeg" alt="" loading="eager" decoding="async">
+        <figcaption class="fc-cap">Our method<strong>Live Dashboard</strong></figcaption>
+      </figure>
+    </div>
   </div>
 
-  <!-- Slide 2: Campaign That Converts -->
-  <div class="slide" data-index="1">
-    <div class="slide-bg" style="background-image: url('images/g-director-set.png')"></div>
-    <div class="slide-overlay"></div>
-    <div class="slide-content">
-      <div class="slide-left">
-        <div class="slide-label">Vertical 02 / Rent distribution</div>
-        <h1 class="slide-title"><span class="glass-text">Creator campaigns</span><br><span class="tint-text">that actually<br>convert.</span></h1>
-        <p class="slide-desc">We run creator campaigns the way a performance marketer would run paid media. Tracked. Contracted. Accountable.</p>
-        <a href="#campaigns" class="slide-btn">How we deploy</a>
-      </div>
-      <div class="slide-right" role="tablist" aria-label="Campaign types">
-        <div class="dest-card" data-info-key="launch-raid" role="tab" tabindex="0" aria-selected="false" aria-label="Launch Raid campaign">
-          <div class="dest-card-bg" style="background-image: url('images/g-interview-set.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Campaign type</div>
-            <div class="dest-card-title">Launch Raid</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="always-on-drip" role="tab" tabindex="0" aria-selected="false" aria-label="Always On Drip campaign">
-          <div class="dest-card-bg" style="background-image: url('images/g-product-setup.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Campaign type</div>
-            <div class="dest-card-title">Always-On Drip</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="ambassador-tier" role="tab" tabindex="0" aria-selected="false" aria-label="Ambassador Tier campaign">
-          <div class="dest-card-bg" style="background-image: url('images/g-firvt-launch.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Campaign type</div>
-            <div class="dest-card-title">Ambassador Tier</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="event-ugc-push" role="tab" tabindex="0" aria-selected="false" aria-label="Event and UGC Push campaign">
-          <div class="dest-card-bg" style="background-image: url('images/g-camera-operator.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Campaign type</div>
-            <div class="dest-card-title">Event &amp; UGC Push</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slide-number">02</div>
-  </div>
-
-  <!-- Slide 3: Roster -->
-  <div class="slide" data-index="2">
-    <div class="slide-bg" style="background-image: url('images/g-studio-redlight.jpeg')"></div>
-    <div class="slide-overlay"></div>
-    <div class="slide-content">
-      <div class="slide-left">
-        <div class="slide-label">03 / The roster</div>
-        <h1 class="slide-title"><span class="glass-text">A vetted roster,</span><br><span class="tint-text">matched to fit.</span></h1>
-        <p class="slide-desc">Nano to macro across Pune, Mumbai, Bengaluru and Delhi. Matched to fit — not follower count. Every creator has worked with us at least twice.</p>
-        <a href="#roster" class="slide-btn">See tiers</a>
-      </div>
-      <div class="slide-right" role="tablist" aria-label="Creator tiers">
-        <div class="dest-card" data-info-key="tier-nano" role="tab" tabindex="0" aria-selected="false" aria-label="Nano creator tier">
-          <div class="dest-card-bg" style="background-image: url('images/g-product-setup.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Tier / Nano</div>
-            <div class="dest-card-title">10k – 50k</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="tier-micro" role="tab" tabindex="0" aria-selected="false" aria-label="Micro creator tier">
-          <div class="dest-card-bg" style="background-image: url('images/g-firvt-launch.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Tier / Micro</div>
-            <div class="dest-card-title">50k – 200k</div>
-          </div>
-        </div>
-        <div class="dest-card" data-info-key="tier-macro" role="tab" tabindex="0" aria-selected="false" aria-label="Macro creator tier">
-          <div class="dest-card-bg" style="background-image: url('images/g-camera-operator.jpeg')"></div>
-          <div class="dest-card-overlay"></div>
-          <div class="dest-card-info">
-            <div class="dest-card-sub">Tier / Macro</div>
-            <div class="dest-card-title">1M+</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slide-number">03</div>
-  </div>
-
-  <!-- Slider Controls -->
+  <!-- Background controls -->
   <div class="slider-controls">
-    <button class="slider-arrow" id="prevBtn" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
-    <button class="slider-arrow" id="nextBtn" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
-    <div class="slider-progress" id="progressDots" role="tablist" aria-label="Slider progress indicator">
-      <div class="progress-dot active" data-idx="0" role="tab" tabindex="0" aria-selected="true" aria-label="Go to slide 1"></div>
-      <div class="progress-dot" data-idx="1" role="tab" tabindex="0" aria-selected="false" aria-label="Go to slide 2"></div>
-      <div class="progress-dot" data-idx="2" role="tab" tabindex="0" aria-selected="false" aria-label="Go to slide 3"></div>
+    <button class="slider-arrow" id="prevBtn" aria-label="Previous background"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="slider-arrow" id="nextBtn" aria-label="Next background"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="slider-progress" id="progressDots" role="tablist" aria-label="Background slideshow">
+      <div class="progress-dot active" data-idx="0" role="tab" tabindex="0" aria-selected="true" aria-label="Background 1"></div>
+      <div class="progress-dot" data-idx="1" role="tab" tabindex="0" aria-selected="false" aria-label="Background 2"></div>
+      <div class="progress-dot" data-idx="2" role="tab" tabindex="0" aria-selected="false" aria-label="Background 3"></div>
+      <div class="progress-dot" data-idx="3" role="tab" tabindex="0" aria-selected="false" aria-label="Background 4"></div>
     </div>
   </div>
 
@@ -1121,218 +922,12 @@
   </div>
 </section>
 
-<!-- CAMPAIGNS SECTION -->
-<section id="campaigns">
-  <div class="campaign-container">
-    <div class="campaign-left">
-      <div class="section-label">03 / Campaign types</div>
-      <h2>Four campaign archetypes.<br>One system of<br>accountability.</h2>
-      <p>Launch raids, always-on drips, ambassador tiers and IRL activations — run like paid media. Every archetype comes with full tracking, legal paperwork, and a live dashboard.</p>
-    </div>
-    <div class="campaign-right">
-      <div class="archetype-card">
-        <div class="archetype-num">
-          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><path d="M4.5 16.5c-1.5 1.25-2.5 3.5-2.5 3.5s2.25-1 3.5-2.5L18.5 4.5 19.5 5.5l-14 11z"></path><path d="M12 5l9 9"></path><path d="M9 15l3 3"></path></svg>
-          Archetype 01
-        </div>
-        <h3>Launch Raid</h3>
-        <p>6–20 creators, 10-day window, one coordinated push. Used for product launches &amp; bursts.</p>
-        <div class="archetype-meta">
-          <span class="archetype-tag">10 days</span>
-          <span class="archetype-tag">₹5,00,000–₹18,00,000 <span style="font-size: 9px; opacity: 0.7;">(₹5–18 Lakh)</span></span>
-        </div>
-      </div>
-      <div class="archetype-card">
-        <div class="archetype-num">
-          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
-          Archetype 02
-        </div>
-        <h3>Always-On Drip</h3>
-        <p>2–4 creators/month, ongoing. Builds brand recall and steady top-of-funnel traffic.</p>
-        <div class="archetype-meta">
-          <span class="archetype-tag">Monthly</span>
-          <span class="archetype-tag">₹3,00,000+ <span style="font-size: 9px; opacity: 0.7;">(₹3 Lakh+)</span></span>
-        </div>
-      </div>
-      <div class="archetype-card">
-        <div class="archetype-num">
-          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          Archetype 03
-        </div>
-        <h3>Ambassador Tier</h3>
-        <p>Long-form deals with 3–5 creators. Usage rights, exclusivity, affiliate-style splits.</p>
-        <div class="archetype-meta">
-          <span class="archetype-tag">6–12 mo</span>
-          <span class="archetype-tag">Negotiated</span>
-        </div>
-      </div>
-      <div class="archetype-card">
-        <div class="archetype-num">
-          <svg class="archetype-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; color: var(--accent);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          Archetype 04
-        </div>
-        <h3>Event &amp; UGC Push</h3>
-        <p>Creator-led activations IRL. Store openings, pop-ups, tastings, launches.</p>
-        <div class="archetype-meta">
-          <span class="archetype-tag">Per event</span>
-          <span class="archetype-tag">₹4,00,000+ <span style="font-size: 9px; opacity: 0.7;">(₹4 Lakh+)</span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ROSTER SECTION -->
-<section id="roster">
-  <div class="roster-inner">
-    <div class="roster-header">
-      <div>
-        <div class="section-label">04 / Roster</div>
-        <h2>A vetted roster.<br>On retainer-adjacent<br>terms.</h2>
-      </div>
-      <p>Every creator on our roster has worked with us at least twice before we recommend them. No cold-calling someone's manager on a Friday. We match to fit, not to follower count.</p>
-    </div>
-
-    <!-- Roster Grid -->
-    <div class="roster-grid">
-      <figure class="roster-item strip-img" data-info-key="strip-set" tabindex="0" role="button" aria-label="Set category - professional filming setups">
-        <div class="image-container">
-          <img src="images/g-interview-set.webp" alt="Creator interview setup with studio lighting and high-definition cameras" width="260" height="340" loading="lazy" decoding="async" />
-        </div>
-        <figcaption class="strip-img-label">Set</figcaption>
-        <div class="strip-img-num">01</div>
-      </figure>
-      <figure class="roster-item strip-img" data-info-key="strip-product" tabindex="0" role="button" aria-label="Product category - prop setups and flatlays">
-        <div class="image-container">
-          <img src="images/g-product-setup.webp" alt="A styled product display with natural shadows and props" width="260" height="340" loading="lazy" decoding="async" />
-        </div>
-        <figcaption class="strip-img-label">Product</figcaption>
-        <div class="strip-img-num">02</div>
-      </figure>
-      <figure class="roster-item strip-img" data-info-key="strip-activation" tabindex="0" role="button" aria-label="Activation category - live events and launches">
-        <div class="image-container">
-          <picture>
-  <source srcset="images/g-firvt-launch-mobile.webp" media="(max-width: 768px)">
-  <img src="images/g-firvt-launch.webp" alt="Crowd gathered at a brand launch event with dynamic ambient lighting" width="260" height="340" loading="lazy" decoding="async" />
-</picture>
-        </div>
-        <figcaption class="strip-img-label">Activation</figcaption>
-        <div class="strip-img-num">03</div>
-      </figure>
-      <figure class="roster-item strip-img" data-info-key="strip-bts" tabindex="0" role="button" aria-label="BTS category - camera operators on set">
-        <div class="image-container">
-          <img src="images/g-camera-operator.webp" alt="Professional camera operator holding a cinema rig filming on set" width="260" height="340" loading="lazy" decoding="async" />
-        </div>
-        <figcaption class="strip-img-label">BTS</figcaption>
-        <div class="strip-img-num">04</div>
-      </figure>
-      <figure class="roster-item strip-img" data-info-key="strip-studio" tabindex="0" role="button" aria-label="Studio category - white cyclorama setup">
-        <div class="image-container">
-          <img src="images/g-white-studio.webp" alt="A clean white cyclorama stage inside a professional photo studio" width="260" height="340" loading="lazy" decoding="async" />
-        </div>
-        <figcaption class="strip-img-label">Studio</figcaption>
-        <div class="strip-img-num">05</div>
-      </figure>
-      <figure class="roster-item strip-img" data-info-key="strip-director" tabindex="0" role="button" aria-label="Director category - crew collaborating on set">
-        <div class="image-container">
-          <img src="images/g-director-set.webp" alt="Creative director reviewing framing on the production monitor with the camera crew" width="260" height="340" loading="lazy" decoding="async" />
-        </div>
-        <figcaption class="strip-img-label">Director</figcaption>
-        <div class="strip-img-num">06</div>
-      </figure>
-      <figure class="roster-item strip-img" data-info-key="strip-studio-color" tabindex="0" role="button" aria-label="Studio category - neon-colored soundstages">
-        <div class="image-container">
-          <picture>
-  <source srcset="images/g-studio-redlight-mobile.webp" media="(max-width: 768px)">
-  <img src="images/g-studio-redlight.webp" alt="Modular soundstage illuminated with dramatic neon red and blue accents" width="260" height="340" loading="lazy" decoding="async" />
-</picture>
-        </div>
-        <figcaption class="strip-img-label">Studio</figcaption>
-        <div class="strip-img-num">07</div>
-      </figure>
-    </div>
-
-    <!-- Tier grid -->
-    <div class="tier-grid">
-      <div class="tier-card">
-        <div class="tier-label">Tier / Nano</div>
-        <h3>10k–50k</h3>
-        <p>Hyperlocal. Pune &amp; Mumbai neighbourhood creators. Best for F&amp;B, real estate.</p>
-        <span class="tier-badge">Hyperlocal tier</span>
-      </div>
-      <div class="tier-card">
-        <div class="tier-label">Tier / Micro</div>
-        <h3>50k–200k</h3>
-        <p>Category specialists. Beauty, fitness, food, tech. High engagement &amp; trust.</p>
-        <span class="tier-badge">Category tier</span>
-      </div>
-      <div class="tier-card">
-        <div class="tier-label">Tier / Mid</div>
-        <h3>200k–1M</h3>
-        <p>National reach. For brand recall pushes and product-launch raids.</p>
-        <span class="tier-badge">National tier</span>
-      </div>
-      <div class="tier-card">
-        <div class="tier-label">Tier / Macro</div>
-        <h3>1M+</h3>
-        <p>Select talent we co-produce with. Booked through direct relationships only.</p>
-        <span class="tier-badge">Select talent</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST TICKER -->
-<div class="inf-ticker-band" aria-label="Brands and cities we work across">
-  <span class="inf-ticker-label">Trusted across</span>
-  <div class="inf-ticker-track">
-    <div class="inf-ticker" aria-hidden="true">
-      <span>Amb&auml;r Coffee</span><span>Fevistik</span><span>WKND Wines</span><span>Rosatum</span><span>Cycada</span><span>Surf Excel</span><span>Pulsar</span><span>Pune</span><span>Mumbai</span><span>Bengaluru</span><span>Delhi</span>
-      <span>Amb&auml;r Coffee</span><span>Fevistik</span><span>WKND Wines</span><span>Rosatum</span><span>Cycada</span><span>Surf Excel</span><span>Pulsar</span><span>Pune</span><span>Mumbai</span><span>Bengaluru</span><span>Delhi</span>
-    </div>
-  </div>
-</div>
-
-<!-- PROOF METRICS -->
-<section id="metrics" class="inf-section">
-  <span class="inf-wm" aria-hidden="true">05</span>
-  <div class="inf-shell">
-    <div class="inf-head sr">
-      <div class="inf-eyebrow">05 / Proof</div>
-      <h2>Numbers we will<br>put our name to.</h2>
-      <p>Outcomes are tracked the same way across every campaign &mdash; tied to GA4 and Shopify, not screenshots. A blended view across recent creator work.</p>
-    </div>
-    <div class="inf-metrics-grid sr-stag">
-      <div class="inf-metric">
-        <span class="lbl">Creators on roster</span>
-        <span class="val"><span data-count="140">0</span><small>+</small></span>
-        <span class="foot">Vetted across four metros; each used at least twice.</span>
-      </div>
-      <div class="inf-metric">
-        <span class="lbl">Campaigns tracked</span>
-        <span class="val"><span data-count="90">0</span><small>+</small></span>
-        <span class="foot">Every one wired to GA4 &amp; Shopify from day one.</span>
-      </div>
-      <div class="inf-metric">
-        <span class="lbl">Avg. tracked CTR</span>
-        <span class="val"><span data-count="3.8">0</span><small>%</small></span>
-        <span class="foot">On link-in-bio and story swipe-ups across the roster.</span>
-      </div>
-      <div class="inf-metric">
-        <span class="lbl">Repeat-brief rate</span>
-        <span class="val"><span data-count="72">0</span><small>%</small></span>
-        <span class="foot">Brands who run a second campaign within the year.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CASE STUDIES RAIL -->
 <section id="cases" class="inf-section alt">
-  <span class="inf-wm" aria-hidden="true">06</span>
+  <span class="inf-wm" aria-hidden="true">03</span>
   <div class="inf-shell">
     <div class="inf-head sr">
-      <div class="inf-eyebrow">06 / Selected campaigns</div>
+      <div class="inf-eyebrow">03 / Selected campaigns</div>
       <h2>Creator campaigns,<br>with receipts.</h2>
       <p>A look at the kind of work we run. Names and verified numbers drop in as each case clears for release.</p>
     </div>
@@ -1406,10 +1001,10 @@
 
 <!-- TESTIMONIALS -->
 <section id="voices" class="inf-section">
-  <span class="inf-wm" aria-hidden="true">07</span>
+  <span class="inf-wm" aria-hidden="true">04</span>
   <div class="inf-shell">
     <div class="inf-head sr">
-      <div class="inf-eyebrow">07 / Voices</div>
+      <div class="inf-eyebrow">04 / Voices</div>
       <h2>What founders<br>say after.</h2>
     </div>
     <div class="inf-voices-grid sr-stag">
@@ -1434,10 +1029,10 @@
 
 <!-- FAQ -->
 <section id="faq" class="inf-section alt">
-  <span class="inf-wm" aria-hidden="true">08</span>
+  <span class="inf-wm" aria-hidden="true">05</span>
   <div class="inf-shell">
     <div class="inf-head sr" style="text-align:center;margin-left:auto;margin-right:auto;">
-      <div class="inf-eyebrow" style="justify-content:center;">08 / FAQ</div>
+      <div class="inf-eyebrow" style="justify-content:center;">05 / FAQ</div>
       <h2>The questions brands<br>actually ask.</h2>
     </div>
     <div class="inf-faq sr">
@@ -1471,10 +1066,10 @@
 
 <!-- SEGMENTED CTA FUNNEL -->
 <section id="inf-cta" class="inf-section">
-  <span class="inf-wm" aria-hidden="true">09</span>
+  <span class="inf-wm" aria-hidden="true">06</span>
   <div class="inf-shell">
     <div class="inf-cta-head sr">
-      <div class="inf-eyebrow">09 / Next move</div>
+      <div class="inf-eyebrow">06 / Next move</div>
       <h2>Start where it makes<br>sense for <span class="accent">you.</span></h2>
     </div>
     <div class="inf-cta-grid sr-stag">
@@ -1543,198 +1138,24 @@
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Hero defaults database
-  const slideDefaults = {
-    0: {
-      image: 'images/g-white-studio.jpeg',
-      label: '01 / The problem',
-      title: '<span class="glass-text">Why most<br>influencer</span><br><span class="tint-text">spend is<br>wasted.</span>',
-      desc: 'Brands pay creators. Creators post. Nothing converts. Everyone moves on. The issue isn\'t the creators — it\'s the machine around them.'
-    },
-    1: {
-      image: 'images/g-director-set.png',
-      label: 'Vertical 02 / Rent distribution',
-      title: '<span class="glass-text">Creator campaigns</span><br><span class="tint-text">that actually<br>convert.</span>',
-      desc: 'We run creator campaigns the way a performance marketer would run paid media. Tracked. Contracted. Accountable.'
-    },
-    2: {
-      image: 'images/g-studio-redlight.jpeg',
-      label: '03 / The roster',
-      title: '<span class="glass-text">A vetted roster,</span><br><span class="tint-text">matched to fit.</span>',
-      desc: 'Nano to macro across Pune, Mumbai, Bengaluru and Delhi. Matched to fit — not follower count. Every creator has worked with us at least twice.'
-    }
-  };
-
-  // Card details database
-  const cardInfo = {
-    // Slide 1 Cards
-    'brief-fit-first': {
-      slideIndex: 0,
-      image: 'images/g-director-set.png',
-      label: 'Our Method / Quality',
-      title: '<span class="glass-text">Brief &amp;</span> <span class="tint-text">Fit First</span>',
-      desc: 'No automated templates. Every creator is briefed by a human strategist who matches your brand goals with the creator\'s tone, ensuring natural integration and higher audience trust.'
-    },
-    'tracked-links': {
-      slideIndex: 0,
-      image: 'images/g-interview-set.jpeg',
-      label: 'Our Method / Tech',
-      title: '<span class="glass-text">100% Tracked</span> <span class="tint-text">Links</span>',
-      desc: 'Every link, discount code, and UTM parameter is integrated with Shopify and Google Analytics. We attribute every order and session directly back to the creator who drove it.'
-    },
-    'live-dashboard': {
-      slideIndex: 0,
-      image: 'images/g-studio-redlight.jpeg',
-      label: 'Our Method / Transparency',
-      title: '<span class="glass-text">Live Client</span> <span class="tint-text">Dashboard</span>',
-      desc: 'Ditch end-of-month PDFs. Access a real-time dashboard displaying active creator posts, link click-throughs, engagement, and actual cost-per-acquisition metrics 24/7.'
-    },
-
-    // Slide 2 Cards
-    'launch-raid': {
-      slideIndex: 1,
-      image: 'images/g-interview-set.jpeg',
-      label: 'Campaign Type / Raid',
-      title: '<span class="glass-text">Launch Raid</span> <span class="tint-text">Burst</span>',
-      desc: 'We coordinate 6–20 vetted creators to post within a strict 10-day window. This synchronized push floods target audience feeds, mimics organic trends, and maximizes brand search interest.'
-    },
-    'always-on-drip': {
-      slideIndex: 1,
-      image: 'images/g-product-setup.jpeg',
-      label: 'Campaign Type / Drip',
-      title: '<span class="glass-text">Always-On</span> <span class="tint-text">Drip</span>',
-      desc: 'Retain 2–4 key creators monthly on rolling terms. This embeds your product natively in ongoing routines, establishing consistent top-of-funnel traffic and building organic brand recall.'
-    },
-    'ambassador-tier': {
-      slideIndex: 1,
-      image: 'images/g-firvt-launch.jpeg',
-      label: 'Campaign Type / Ambassador',
-      title: '<span class="glass-text">Ambassador</span> <span class="tint-text">Tier</span>',
-      desc: 'Long-term partnership deals with 3–5 core creators. Includes exclusive rights, whitelisting for paid social ads, performance-based splits, and continuous custom content.'
-    },
-    'event-ugc-push': {
-      slideIndex: 1,
-      image: 'images/g-camera-operator.jpeg',
-      label: 'Campaign Type / Event',
-      title: '<span class="glass-text">IRL Event &amp;</span> <span class="tint-text">UGC Push</span>',
-      desc: 'Creator-led activations at physical pop-ups, retail openings, and tastings. We combine real-world foot traffic with high-fidelity vertical UGC captured and published live.'
-    },
-
-    // Slide 3 Cards
-    'tier-nano': {
-      slideIndex: 2,
-      image: 'images/g-product-setup.jpeg',
-      label: 'Roster / Nano Tier',
-      title: '<span class="glass-text">Nano /</span> <span class="tint-text">10k–50k</span>',
-      desc: 'Dense local followings in Pune, Mumbai, Delhi, and Bengaluru. They hold exceptional personal trust and high direct response metrics, making them perfect for F&B and local activations.'
-    },
-    'tier-micro': {
-      slideIndex: 2,
-      image: 'images/g-firvt-launch.jpeg',
-      label: 'Roster / Micro Tier',
-      title: '<span class="glass-text">Micro /</span> <span class="tint-text">50k–200k</span>',
-      desc: 'Niche category specialists in tech, beauty, wellness, and finance. Audiences rely on their expertise, resulting in high click-through rates and strong purchase intent.'
-    },
-    'tier-macro': {
-      slideIndex: 2,
-      image: 'images/g-camera-operator.jpeg',
-      label: 'Roster / Macro Tier',
-      title: '<span class="glass-text">Macro /</span> <span class="tint-text">1M+ Reach</span>',
-      desc: 'Broad national reach. Co-produced content talent and direct relations. Ideal for driving massive brand-recall drops, product-launch raids, and co-branded drops.'
-    },
-
-    // Roster strip capabilities (updates slide 3)
-    'strip-set': {
-      slideIndex: 2,
-      image: 'images/g-interview-set.jpeg',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">Modular</span> <span class="tint-text">Studio Sets</span>',
-      desc: 'Professional multi-camera filming sets matching creator comfort with brand directives. We capture high-fidelity vertical shorts, creator-led product close-ups, and interviews.'
-    },
-    'strip-product': {
-      slideIndex: 2,
-      image: 'images/g-product-setup.jpeg',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">Product Setup</span> <span class="tint-text">Styling</span>',
-      desc: 'Bespoke prop setups and camera angles styled in-house to frame physical products beautifully, matching the aesthetic expectations of premium Indian audiences.'
-    },
-    'strip-activation': {
-      slideIndex: 2,
-      image: 'images/g-firvt-launch.jpeg',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">Live Event</span> <span class="tint-text">Activation</span>',
-      desc: 'Mobile studio setups and B-roll support for on-location creator events, capturing organic reactions, live product experiences, and local retail store openings.'
-    },
-    'strip-bts': {
-      slideIndex: 2,
-      image: 'images/g-camera-operator.jpeg',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">Behind-The-Scenes</span> <span class="tint-text">B-Roll</span>',
-      desc: 'Our cinema operators record professional B-roll alongside creators, adding premium visual layers and high production value to standard mobile footage.'
-    },
-    'strip-studio': {
-      slideIndex: 2,
-      image: 'images/g-white-studio.jpeg',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">Umbrella</span> <span class="tint-text">Cyclorama</span>',
-      desc: 'Modular white studio stages with professional diffusion grids and umbrella key lights, perfect for clean apparel styling shots and high-key product reveals.'
-    },
-    'strip-director': {
-      slideIndex: 2,
-      image: 'images/g-director-set.png',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">On-Set Script</span> <span class="tint-text">Direction</span>',
-      desc: 'Experienced creative directors refine creator hooks, pacing, and brand messaging during filming to ensure high hook rates and message alignment.'
-    },
-    'strip-studio-color': {
-      slideIndex: 2,
-      image: 'images/g-studio-redlight.jpeg',
-      label: 'Roster / Capabilities',
-      title: '<span class="glass-text">Color Accent</span> <span class="tint-text">Soundstages</span>',
-      desc: 'RGB nanlite-styled stages perfect for shooting rapid transition reels, tech demonstrations, and lifestyle short-form assets that demand immediate viewer retention.'
-    }
-  };
-
-  // Hero slider
-  const slides = document.querySelectorAll('.slide');
+  // Hero background slideshow — only the photo behind the hero changes
+  const bgs = document.querySelectorAll('.hero-slide-bg');
   const dots = document.querySelectorAll('.progress-dot');
   let current = 0;
   let timer;
 
   function goTo(idx) {
-    // Reset previous active slide content to defaults
-    const prevSlideIdx = current;
-    const prevSlide = slides[prevSlideIdx];
-    if (prevSlide) {
-      const defaultData = slideDefaults[prevSlideIdx];
-      if (defaultData) {
-        const bg = prevSlide.querySelector('.slide-bg');
-        const label = prevSlide.querySelector('.slide-label');
-        const title = prevSlide.querySelector('.slide-title');
-        const desc = prevSlide.querySelector('.slide-desc');
-      
-        if (bg) {
-          bg.classList.remove('popping', 'settling');
-          bg.style.backgroundImage = `url('${defaultData.image}')`;
-        }
-        if (label) label.innerHTML = defaultData.label;
-        if (title) title.innerHTML = defaultData.title;
-        if (desc) desc.innerHTML = defaultData.desc;
-      }
-      prevSlide.querySelectorAll('.dest-card').forEach(card => card.classList.remove('selected'));
-    }
-
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (idx + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
+    bgs[current].classList.remove('active');
+    if (dots[current]) { dots[current].classList.remove('active'); dots[current].setAttribute('aria-selected', 'false'); }
+    current = (idx + bgs.length) % bgs.length;
+    bgs[current].classList.add('active');
+    if (dots[current]) { dots[current].classList.add('active'); dots[current].setAttribute('aria-selected', 'true'); }
     resetTimer();
   }
 
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(() => goTo(current + 1), 6000);
+    timer = setInterval(() => goTo(current + 1), 5000);
   }
 
   document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
@@ -1750,120 +1171,6 @@
   });
 
   resetTimer();
-
-  // Helper to transition slide elements and apply content
-  function updateSlideContent(slideIdx, data, cardElement) {
-    const slide = slides[slideIdx];
-    if (!slide) return;
-
-    // Reset auto-slide timer temporarily so content doesn't flip away while user reads
-    clearInterval(timer);
-
-    const bg = slide.querySelector('.slide-bg');
-    const label = slide.querySelector('.slide-label');
-    const title = slide.querySelector('.slide-title');
-    const desc = slide.querySelector('.slide-desc');
-    const btn = slide.querySelector('.slide-btn');
-
-    // Pop-out (scale down & fade out) the background image immediately
-    if (bg) {
-      bg.classList.remove('settling');
-      bg.classList.add('popping');
-    }
-
-    // Fade out slide elements slightly
-    const fadeElements = [label, title, desc, btn].filter(Boolean);
-    fadeElements.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(15px)';
-      el.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-    });
-
-    // Swap content and apply springy settle animation
-    setTimeout(() => {
-      if (bg) {
-        bg.style.backgroundImage = `url('${data.image}')`;
-        bg.classList.remove('popping');
-        bg.classList.add('settling');
-      }
-      if (label) label.innerHTML = data.label;
-      if (title) title.innerHTML = data.title;
-      if (desc) desc.innerHTML = data.desc;
-
-      fadeElements.forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      });
-
-      // After settle spring finishes, remove class so default 8s zoom is active
-      setTimeout(() => {
-        if (bg) bg.classList.remove('settling');
-      }, 750);
-    }, 250);
-
-    // Update active highlight on cards in this slide
-    slide.querySelectorAll('.dest-card').forEach(card => card.classList.remove('selected'));
-    if (cardElement) {
-      cardElement.classList.add('selected');
-    }
-  }
-
-  // Setup click and keyboard triggers on Slide Cards (.dest-card)
-  document.querySelectorAll('.dest-card').forEach(card => {
-    const handleTrigger = () => {
-      const key = card.getAttribute('data-info-key');
-      const data = cardInfo[key];
-      if (data) {
-        updateSlideContent(data.slideIndex, data, card);
-        // Set aria-selected state
-        card.setAttribute('aria-selected', 'true');
-        // Set other sibling cards to false
-        const parent = card.closest('[role="tablist"]');
-        if (parent) {
-          parent.querySelectorAll('.dest-card').forEach(sibling => {
-            if (sibling !== card) sibling.setAttribute('aria-selected', 'false');
-          });
-        }
-      }
-    };
-    card.addEventListener('click', (e) => {
-      e.stopPropagation(); // Avoid triggering any bubble events
-      handleTrigger();
-    });
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleTrigger();
-      }
-    });
-  });
-
-  // Setup click and keyboard triggers on Roster Strip Images (.strip-img)
-  // Clicking them switches to slide 3, updates slide 3 with details, and scrolls top
-  document.querySelectorAll('.roster-grid .strip-img').forEach(img => {
-    const handleTrigger = () => {
-      const key = img.getAttribute('data-info-key');
-      const data = cardInfo[key];
-      if (data) {
-        // Switch to Roster slide (index 2)
-        goTo(2);
-        // Apply roster cap details to roster slide
-        updateSlideContent(2, data, null);
-        // Smoothly scroll window to the top (intro hero section)
-        window.scrollTo({
-          top: 0,
-          behavior: 'auto'
-        });
-      }
-    };
-    img.addEventListener('click', handleTrigger);
-    img.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleTrigger();
-      }
-    });
-  });
 
   // Intersection observer for section animations (fading/sliding them in nicely)
   const observer = new IntersectionObserver((entries) => {

@@ -36,7 +36,7 @@ body.inf ::selection { background: rgba(34,87,255,0.4); color: #fff; }
 .inf-shell { width: min(100%, 1240px); margin: 0 auto; padding: 0 48px; }
 
 /* ---- Shared section scaffolding --------------------------- */
-.inf-section { position: relative; padding: clamp(88px, 11vw, 152px) 0; overflow: hidden; }
+.inf-section { position: relative; padding: clamp(88px, 11vw, 152px) 0; overflow: clip; }
 .inf-section.alt { background: var(--inf-bg-2); }
 .inf-section + .inf-section { border-top: 1px solid var(--inf-line-soft); }
 
