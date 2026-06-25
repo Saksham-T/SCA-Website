@@ -12,37 +12,14 @@
  * `resumeUpload` so the central error handler returns clean 400 responses.
  */
 
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
 const multer = require('multer');
 const config = require('../config');
 const ApiError = require('../utils/ApiError');
 
-// Ensure the upload directory exists at startup.
-fs.mkdirSync(config.upload.dir, { recursive: true });
-
-/** Slugify the original base name to a safe ascii token. */
-function safeBaseName(originalName) {
-  const base = path.basename(originalName, path.extname(originalName));
-  return (
-    base
-      .toLowerCase()
-      .normalize('NFKD')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .slice(0, 40) || 'resume'
-  );
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, config.upload.dir),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    const unique = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}`;
-    cb(null, `${safeBaseName(file.originalname)}-${unique}${ext}`);
-  },
-});
+// In-memory storage: the file lands in `req.file.buffer`, which the controller
+// persists into MongoDB. We do NOT write to disk because the host's filesystem
+// is ephemeral and the actual sending happens later, off-host.
+const storage = multer.memoryStorage();
 
 function fileFilter(req, file, cb) {
   const ext = path.extname(file.originalname).toLowerCase();

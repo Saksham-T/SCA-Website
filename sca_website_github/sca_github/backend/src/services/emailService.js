@@ -139,11 +139,20 @@ async function sendHrNotification(app) {
     subject,
     html: templates.hrNotification(app),
     attachments: [
-      {
-        filename: app.resume.originalName,
-        path: app.resume.path,
-        contentType: app.resume.mimeType,
-      },
+      // Resume bytes come from MongoDB (Buffer); fall back to a path if present.
+      app.resume.data
+        ? {
+            filename: app.resume.originalName,
+            content: Buffer.isBuffer(app.resume.data)
+              ? app.resume.data
+              : Buffer.from(app.resume.data.buffer || app.resume.data),
+            contentType: app.resume.mimeType,
+          }
+        : {
+            filename: app.resume.originalName,
+            path: app.resume.path,
+            contentType: app.resume.mimeType,
+          },
     ],
   });
   logger.info(`HR notification sent for ${app.submissionId}`);

@@ -23,7 +23,10 @@ const resumeSchema = new mongoose.Schema(
   {
     originalName: { type: String, required: true },
     storedName: { type: String, required: true },
-    path: { type: String, required: true },
+    // The actual file bytes are stored in MongoDB so a later (off-host) job can
+    // attach them — Render's disk is ephemeral, so `path` is not reliable.
+    data: { type: Buffer, required: true },
+    path: { type: String, default: '' },
     url: { type: String, default: '' },
     mimeType: { type: String, required: true },
     size: { type: Number, required: true },
@@ -80,6 +83,11 @@ const applicationSchema = new mongoose.Schema(
     resume: { type: resumeSchema, required: true },
 
     status: { type: String, enum: STATUSES, default: 'New', index: true },
+
+    // --- Email delivery tracking (handled by an off-host scheduled job) ---
+    emailedToHr: { type: Boolean, default: false, index: true },
+    emailedCandidate: { type: Boolean, default: false },
+    emailedAt: { type: Date, default: null },
 
     // Light request metadata for auditing / abuse investigation.
     meta: {

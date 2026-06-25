@@ -1,0 +1,50 @@
+name: Send pending application emails
+
+# Emails HR (with resume attached) for any applications stored by the website
+# that haven't been sent yet. Runs off-host so SMTP egress works (Render blocks
+# it). Idempotent — only un-emailed records are processed.
+
+on:
+  schedule:
+    - cron: '0 * * * *' # hourly, on the hour (UTC)
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+# Prevent overlapping runs from double-sending.
+concurrency:
+  group: send-applications
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sca_website_github/sca_github/backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sca_website_github/sca_github/backend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Send pending application emails
+        run: node scripts/send-pending-emails.js
+        env:
+          NODE_ENV: production
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          # Pure nodemailer over Gmail SMTP (GitHub runners allow SMTP egress).
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SECURE: ${{ secrets.SMTP_SECURE }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          HR_EMAIL: ${{ secrets.HR_EMAIL }}
+          COMPANY_NAME: ${{ secrets.COMPANY_NAME }}
+          COMPANY_WEBSITE: ${{ secrets.COMPANY_WEBSITE }}
+          # Leave GMAIL_* and BREVO_API_KEY unset so the SMTP/nodemailer path is used.
