@@ -270,6 +270,41 @@
   <div class="intro-bar"></div>
 </div>
 
+<!-- Intro driver: plays the loader sequence and reveals the page. Runs inline so
+     it never depends on assets/sca-kinetic.js loading — guaranteeing the page is
+     always revealed even if that external script fails. sca-kinetic.js detects
+     the already-handled intro and skips its own duplicate run. -->
+<script>
+  (function () {
+    function driveIntro() {
+      var intro = document.getElementById('intro');
+      if (!intro) { document.body.classList.remove('intro-locked'); return; }
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        intro.setAttribute('hidden', '');
+        document.body.classList.remove('intro-locked');
+        return;
+      }
+
+      document.body.classList.add('intro-locked');
+      requestAnimationFrame(function () { intro.classList.add('go'); });
+      setTimeout(function () { intro.classList.add('reveal'); }, 1950);
+      setTimeout(function () {
+        intro.classList.add('lift');
+        document.body.classList.remove('intro-locked');
+        // reveal the hero headline once the curtain lifts (kinetic script does
+        // this too, but this guarantees it if that script never runs)
+        document.querySelectorAll('.kin-line').forEach(function (l) { l.classList.add('in'); });
+      }, 3300);
+      setTimeout(function () { intro.setAttribute('hidden', ''); }, 4200);
+    }
+
+    if (document.readyState !== 'loading') driveIntro();
+    else document.addEventListener('DOMContentLoaded', driveIntro);
+  })();
+</script>
+
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
@@ -700,8 +735,8 @@
         </picture>
         <div class="team-info">
           <h3>Saksham Thakur</h3>
-          <p>Co-founder &middot; Production &amp; Ops</p>
-          <p class="team-bio">Turns the plan into shoots, edits and a calendar that actually ships.</p>
+          <p>Co-founder &middot; Web &amp; Technology</p>
+          <p class="team-bio">Builds the sites, landers and tools that catch the attention we create.</p>
         </div>
       </div>
       <div class="team-card">
@@ -711,8 +746,8 @@
         </picture>
         <div class="team-info">
           <h3>Melbin Alexander</h3>
-          <p>Co-founder &middot; Web &amp; Technology</p>
-          <p class="team-bio">Builds the sites, landers and tools that catch the attention we create.</p>
+          <p>Co-founder &middot; Production &amp; Ops</p>
+          <p class="team-bio">Turns the plan into shoots, edits and a calendar that actually ships.</p>
         </div>
       </div>
     </div>
