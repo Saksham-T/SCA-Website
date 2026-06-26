@@ -203,9 +203,9 @@
       return;
     }
 
-    let introT = 0;
+    let introT = 1;
     let introStartTime = null;
-    let introDone = false;
+    let introDone = true;
     const INTRO_MS = 1500;
     let ticking = false;
 
@@ -252,9 +252,8 @@
       requestDraw();
     });
 
-    // start the intro on first paint
-    render(0, 0);
-    requestAnimationFrame(introFrame);
+    // Start in the visible hero state so the page never lands on a blank deck.
+    render(progress(), 1);
   }
 
   function boot() {
