@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web &amp; Tech for ambitious brands — SeeTusk / SCA</title>
+<title>Web &amp; Tech for ambitious brands - SeeTusk / SCA</title>
 <meta name="description" content="Custom brand websites, conversion landers, digital products and analytics-ready stacks. Copy, design, code and measurement built as one system for speed, SEO and conversion.">
 <link rel="canonical" href="https://seetusk.agency/web.html">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://seetusk.agency/web.html">
-<meta property="og:title" content="Web &amp; Tech for ambitious brands — SeeTusk / SCA">
+<meta property="og:title" content="Web &amp; Tech for ambitious brands - SeeTusk / SCA">
 <meta property="og:description" content="Custom brand websites, conversion landers, digital products and analytics-ready stacks. Built as one system for speed, SEO, and conversion.">
 <meta property="og:image" content="https://seetusk.agency/images/web-laptop.png">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://seetusk.agency/web.html">
-<meta property="twitter:title" content="Web &amp; Tech for ambitious brands — SeeTusk / SCA">
+<meta property="twitter:title" content="Web &amp; Tech for ambitious brands - SeeTusk / SCA">
 <meta property="twitter:description" content="Custom brand websites, conversion landers, digital products and analytics-ready stacks. Built as one system for speed, SEO, and conversion.">
 <meta property="twitter:image" content="https://seetusk.agency/images/web-laptop.png">
 <!-- Preload Critical Fonts -->
@@ -26,6 +26,63 @@
 <link rel="preload" href="assets/fonts/eb-garamond-italic-400-6.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
+<style>
+.web-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.48fr);gap:clamp(28px,4vw,64px);align-items:start}
+.web-hero-copy{max-width:960px}
+.web-hero-kicker{display:inline-flex;gap:10px;align-items:center;color:#8197ff;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;margin-bottom:16px}
+.web-hero-kicker:before{content:"";width:34px;height:1px;background:#7d8fff}
+.web-hero-h1{margin:0;color:#f7f8fa;font-size:clamp(44px,5vw,76px);line-height:.9;text-transform:uppercase;letter-spacing:0;font-weight:900}
+.web-hero-h1 .accent{display:block;color:#3158ff}
+.web-mobile-break{display:none}
+.web-hero-lead{margin:24px 0 0;max-width:760px;color:rgba(247,248,250,.76);font-size:clamp(17px,1.65vw,24px);line-height:1.5}
+.web-hero-support{margin-top:14px;color:rgba(247,248,250,.58);font-size:14px;line-height:1.6;max-width:720px}
+.web-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.web-chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;max-width:760px}
+.web-chip{border:1px solid rgba(129,151,255,.28);background:rgba(7,10,24,.58);border-radius:999px;color:rgba(247,248,250,.82);padding:9px 13px;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:800}
+.web-hero-note{margin-top:16px;color:rgba(247,248,250,.52);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+.web-snapshot{border:1px solid rgba(129,151,255,.24);background:linear-gradient(180deg,rgba(11,15,34,.9),rgba(5,7,15,.78));box-shadow:0 22px 80px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.05);border-radius:24px;padding:22px;position:relative;overflow:hidden}
+.web-snapshot:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 10%,rgba(49,88,255,.22),transparent 36%);pointer-events:none}
+.web-snapshot h2{margin:0 0 16px;color:#fff;text-transform:uppercase;letter-spacing:.08em;font-size:13px}
+.web-snap-list{display:grid;gap:12px;position:relative}
+.web-snap-item{display:grid;grid-template-columns:auto 1fr;gap:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);border-radius:14px;padding:14px}
+.web-snap-no{color:#7890ff;font-size:12px;font-weight:900}
+.web-snap-item strong{display:block;color:#fff;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
+.web-snap-item span{display:block;margin-top:5px;color:rgba(247,248,250,.58);font-size:13px;line-height:1.45}
+.web-section-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.web-card{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);border-radius:18px;padding:22px;min-height:180px}
+.web-card .n,.web-build-card .n{display:block;color:#7890ff;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;margin-bottom:16px}
+.web-card h3,.web-build-card h3,.web-faq-item h3{margin:0;color:#fff;text-transform:uppercase;letter-spacing:.02em;font-size:22px;line-height:1}
+.web-card p,.web-build-card p,.web-faq-item p{margin:14px 0 0;color:rgba(247,248,250,.64);line-height:1.65}
+.web-process-grid{display:grid;grid-template-columns:repeat(6,minmax(150px,1fr));gap:12px}
+.web-process-step{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.032);border-radius:16px;padding:18px;min-height:210px}
+.web-process-step strong{display:block;color:#fff;text-transform:uppercase;font-size:17px;line-height:1.05;margin-bottom:12px}
+.web-process-step p{margin:0;color:rgba(247,248,250,.58);font-size:14px;line-height:1.55}
+.web-build-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.web-build-card{border:1px solid rgba(129,151,255,.2);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));border-radius:20px;padding:22px;display:flex;flex-direction:column;min-height:430px}
+.web-build-card dl{margin:18px 0 0;display:grid;gap:14px}
+.web-build-card dt{color:rgba(247,248,250,.45);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:900}
+.web-build-card dd{margin:5px 0 0;color:rgba(247,248,250,.73);line-height:1.5}
+.web-build-card .price{margin-top:auto;color:#fff;font-weight:900;text-transform:uppercase;letter-spacing:.05em}
+.web-build-card .case-cta{margin-top:18px}
+.web-two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.web-list-card{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);border-radius:20px;padding:24px}
+.web-list-card h3{margin:0 0 18px;color:#fff;text-transform:uppercase;font-size:24px}
+.web-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.web-list li{color:rgba(247,248,250,.68);line-height:1.55;padding-left:20px;position:relative}
+.web-list li:before{content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;border-radius:50%;background:#3158ff}
+.web-measure-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.web-measure{border:1px solid rgba(255,255,255,.09);background:#070a15;border-radius:18px;padding:20px;min-height:170px}
+.web-measure strong{display:block;color:#fff;text-transform:uppercase;font-size:16px}
+.web-measure span{display:block;margin-top:10px;color:rgba(247,248,250,.58);line-height:1.55}
+.web-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.web-faq-item{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.032);border-radius:18px;padding:22px}
+.web-anchor-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.web-anchor-row a{color:rgba(247,248,250,.72);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:9px 13px;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:800;text-decoration:none}
+.web-anchor-row a:hover{color:#fff;border-color:rgba(129,151,255,.5)}
+.case-status{display:inline-flex;margin-top:10px;color:#9fb0ff;border:1px solid rgba(129,151,255,.28);border-radius:999px;padding:7px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
+@media (max-width:1100px){.web-hero-grid,.web-two-col{grid-template-columns:1fr}.web-section-grid,.web-measure-grid,.web-faq-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.web-process-grid,.web-build-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.nav-cta{display:none}.lb-hero{overflow:hidden}.lb-inner,.web-hero-grid,.web-hero-copy,.web-chip-row{width:100%;max-width:100%;min-width:0;box-sizing:border-box}.lb-inner{padding-inline:20px}.web-hero-h1{font-size:clamp(36px,11vw,44px);line-height:.95;max-width:100%;overflow-wrap:break-word}.web-hero-lead{max-width:28ch}.web-hero-support{max-width:34ch}.web-mobile-break{display:block}.web-chip{max-width:100%;white-space:normal}.web-section-grid,.web-process-grid,.web-build-grid,.web-measure-grid,.web-faq-grid{grid-template-columns:1fr}.web-snapshot{padding:16px}.web-card,.web-build-card{min-height:auto}.web-hero-actions .btn{width:100%;justify-content:center}}
+</style>
 </head>
 <body>
 
@@ -42,531 +99,168 @@
       <a href="about.html">About</a>
       <a href="careers.html">Career</a>
     </div>
-    <div class="nav-cta"><a href="contact.html" class="btn accent">Start a project <span class="arr" aria-hidden="true">-></span></a></div>
+    <div class="nav-cta"><a href="contact.html" class="btn accent">Start a web project <span class="arr" aria-hidden="true">-&gt;</span></a></div>
   </div>
 </nav>
 
-<!-- ============ HERO — LIVE BUILD ============ -->
-<section class="lb-hero" data-screen-label="Web hero — Live Build">
+<!-- ============ HERO / WEB SYSTEM ============ -->
+<section class="lb-hero" data-screen-label="Web hero">
   <div class="lb-hero-bg" style="background-image:url('images/c-desk-setup.png')" role="img" aria-label="A studio desk setup where the team builds websites"></div>
   <div class="lb-watermark" aria-hidden="true">03</div>
   <div class="lb-inner">
-
-    <div class="lb-top">
-      <div>
-        <div class="lb-kicker">Vertical 03 / Build</div>
-        <h1 class="lb-h1"><span class="glass-text">Websites, landers,<br>and </span><span class="tint-text">tools that pay.</span></h1>
-      </div>
-      <div>
-        <p class="lb-lead">No templates. We write the copy, design the system, and ship the code &mdash; built for speed, SEO, and conversion.</p>
-        <div class="lb-ctas">
-          <a href="#work" class="btn accent">See selected builds <span class="arr" aria-hidden="true">-></span></a>
-          <a href="#stack" class="btn ghost">The stack</a>
+    <div class="web-hero-grid">
+      <div class="web-hero-copy">
+        <div class="web-hero-kicker">Vertical 03 / Web &amp; Tech</div>
+        <h1 class="web-hero-h1">Websites,<span class="web-mobile-break"></span> landers <span class="web-mobile-break"></span>and tools <span class="accent">that turn <span class="web-mobile-break"></span>attention <span class="web-mobile-break"></span>into action.</span></h1>
+        <p class="web-hero-lead">We write, design and build fast digital experiences for brands that need a page, storefront, dashboard or internal tool to do a real job.</p>
+        <p class="web-hero-support">Speed, SEO, conversion paths and tracking are part of the build, so the work can be launched, measured and improved without guessing.</p>
+        <div class="web-hero-actions">
+          <a href="contact.html" class="btn accent">Build my web system <span class="arr" aria-hidden="true">-&gt;</span></a>
+          <a href="#build-types" class="btn ghost">See build types</a>
+        </div>
+        <div class="web-chip-row" aria-label="Common web build types">
+          <span class="web-chip">Brand websites</span>
+          <span class="web-chip">Campaign landing pages</span>
+          <span class="web-chip">Shopify commerce</span>
+          <span class="web-chip">Dashboards &amp; internal tools</span>
+        </div>
+        <div class="web-hero-note">Copy / Design / Code / SEO / Analytics</div>
+        <div class="web-anchor-row" aria-label="Page sections">
+          <a href="#build-types">Build types</a>
+          <a href="#stack">Stack</a>
+          <a href="#work">Work</a>
+          <a href="#faq">FAQ</a>
         </div>
       </div>
+
+      <aside class="web-snapshot" aria-label="What we build snapshot">
+        <h2>What we build</h2>
+        <div class="web-snap-list">
+          <div class="web-snap-item"><span class="web-snap-no">01</span><div><strong>Brand websites</strong><span>Clear positioning, strong pages and a CMS your team can use.</span></div></div>
+          <div class="web-snap-item"><span class="web-snap-no">02</span><div><strong>Landing pages</strong><span>Campaign pages built for ads, creators, launches and lead capture.</span></div></div>
+          <div class="web-snap-item"><span class="web-snap-no">03</span><div><strong>Storefronts</strong><span>Shopify and commerce flows that make product discovery easier.</span></div></div>
+          <div class="web-snap-item"><span class="web-snap-no">04</span><div><strong>Tools</strong><span>Light dashboards, portals and workflows for teams that need less manual work.</span></div></div>
+          <div class="web-snap-item"><span class="web-snap-no">05</span><div><strong>Tracking</strong><span>Events, pixels and reporting so launches can be read properly.</span></div></div>
+        </div>
+      </aside>
     </div>
 
-    <div class="lb-stage">
-      <!-- editor -->
+    <div class="lb-stage" aria-label="Live build preview">
       <div class="win">
-        <div class="win-bar">
-          <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
-          <span class="tab">Site.jsx</span>
-          <span class="live" aria-hidden="true">writing</span>
-        </div>
+        <div class="win-bar"><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="tab">Site.jsx</span><span class="live" aria-hidden="true">writing</span></div>
         <pre class="code" id="code" aria-hidden="true"></pre>
       </div>
-
-      <!-- preview: the real amb├ñr coffee site assembling -->
       <div class="win">
-        <div class="win-bar">
-          <span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span>
-          <span class="url">ambar.coffee</span>
-          <span class="live" aria-hidden="true">live</span>
-        </div>
+        <div class="win-bar"><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span><span class="url">campaign.page</span><span class="live" aria-hidden="true">live</span></div>
         <div class="pv" id="pv">
-
-          <!-- skeleton guides -->
-          <div class="skel" id="skel" aria-hidden="true">
-            <span class="sk" data-for="0"></span>
-            <span class="sk" data-for="0b"></span>
-            <span class="sk" data-for="2"></span>
-            <span class="sk" data-for="3"></span>
-            <span class="sk" data-for="4"></span>
-            <span class="sk" data-for="5"></span>
-          </div>
-
-          <div class="pv-block pv-nav" data-pv="0">
-            <span class="pv-logo">amb&auml;r</span>
-            <span class="pv-links"><span>Shop</span><span>Story</span><span>Brew</span></span>
-          </div>
-
-          <div class="pv-body">
-            <div class="pv-col">
-              <div class="pv-block pv-eyebrow" data-pv="1">Single origin</div>
-              <h2 class="pv-block pv-h" data-pv="2">Coffee, <span class="accent">reimagined</span> for mornings.</h2>
-              <p class="pv-block pv-sub" data-pv="3">Slow-roasted, small-batch, shipped fresh across India.</p>
-              <a class="pv-block pv-btn" data-pv="4">Shop the roast <span aria-hidden="true">-></span></a>
-            </div>
-            <div class="pv-block pv-img" data-pv="5"><img src="images/ambar-coffee-clean.webp" alt="Amb├ñr coffee being poured into a cup" loading="lazy" decoding="async"></div>
-          </div>
-
+          <div class="skel" id="skel" aria-hidden="true"><span class="sk" data-for="0"></span><span class="sk" data-for="0b"></span><span class="sk" data-for="2"></span><span class="sk" data-for="3"></span><span class="sk" data-for="4"></span><span class="sk" data-for="5"></span></div>
+          <div class="pv-block pv-nav" data-pv="0"><span class="pv-logo">brand</span><span class="pv-links"><span>Offer</span><span>Proof</span><span>Buy</span></span></div>
+          <div class="pv-body"><div class="pv-col"><div class="pv-block pv-eyebrow" data-pv="1">Campaign ready</div><h2 class="pv-block pv-h" data-pv="2">A page built around the action.</h2><p class="pv-block pv-sub" data-pv="3">One offer, clean proof, fast load, tracked from the first click.</p><a class="pv-block pv-btn" data-pv="4">Start the flow <span aria-hidden="true">-&gt;</span></a></div><div class="pv-block pv-img" data-pv="5"><img src="images/ambar-coffee-clean.webp" alt="Product image inside a web build preview" loading="lazy" decoding="async"></div></div>
         </div>
       </div>
-
-      <div class="lb-flow" aria-hidden="true">-></div>
+      <div class="lb-flow" aria-hidden="true">-&gt;</div>
     </div>
-
     <div class="lb-progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-
   </div>
 </section>
 
-<!-- ============ ASCII MOTION FEATURE ============ -->
-<section id="ascii-motion" class="section section--cine" data-screen-label="ASCII Motion Feature" style="border-top:1px solid var(--line);">
-  <span class="sect-wm" aria-hidden="true">00</span>
-  <div class="shell">
-    <div class="ascii-grid">
-      <div class="ascii-left sr">
-        <div class="section-label">Core Tech / Open Source</div>
-        <h2 class="section-title">Code Meets Movement</h2>
-        <p class="section-sub">Images, reimagined as motion.</p>
-        <p class="ascii-desc">ASCII Motion transforms static images and videos into dynamic, animated character grids. It combines retro terminal aesthetics with smooth, modern performance, optimized for the web.</p>
-      
-        <div class="ascii-buttons">
-          <a href="https://asciimotion.dev/gallery" class="btn accent" target="_blank" rel="noopener">View Gallery <span class="arr" aria-hidden="true">-></span></a>
-          <a href="https://asciimotion.dev/docs" class="btn ghost" target="_blank" rel="noopener">Documentation</a>
-          <a href="https://asciimotion.dev/demo" class="btn ghost" target="_blank" rel="noopener">Live Demo</a>
-        </div>
-      </div>
-      <div class="ascii-right sr-stag">
-        <figure class="ascii-figure">
-          <img 
-            src="images/ed-denoised-horse.webp" 
-            alt="ASCII Motion rendering of a horse in retro-futuristic character grid format" 
-            loading="lazy" 
-            decoding="async" 
-            width="600" 
-            height="400"
-          />
-          <figcaption>ASCII Motion Gallery — Images as animated text grids</figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROOF METRICS BAND ============ -->
-<section class="proof-metrics" aria-label="Proof and outcomes" data-screen-label="Proof metrics">
-  <div class="shell">
-    <div class="pm-head sr">
-      <span class="pm-eyebrow">Signal / Proof</span>
-      <p class="pm-note">Outcome metrics are verified across recent builds &mdash; direct-to-consumer and business-to-business signals.</p>
-    </div>
-    <div class="pm-grid sr-stag">
-      <div class="pm-cell">
-        <span class="pm-label">Projects delivered</span>
-        <span class="pm-value">40<span>+</span></span>
-        <span class="pm-foot">Verified D2C &amp; SaaS builds</span>
-      </div>
-      <div class="pm-cell">
-        <span class="pm-label">Conversion improvement</span>
-        <span class="pm-value">32<span>%</span></span>
-        <span class="pm-foot">Average lift post-launch</span>
-      </div>
-      <div class="pm-cell">
-        <span class="pm-label">Client satisfaction</span>
-        <span class="pm-value">98<span>%</span></span>
-        <span class="pm-foot">Post-delivery feedback</span>
-      </div>
-      <div class="pm-cell">
-        <span class="pm-label">Industries served</span>
-        <span class="pm-value">6<span>+</span></span>
-        <span class="pm-foot">D2C, F&amp;B, SaaS, FinTech &amp; more</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 01 / STACK & FIT ============ -->
-<section class="section section--cine" id="stack" data-screen-label="Stack & fit">
+<!-- ============ 01 / PROBLEM ============ -->
+<section class="section section--cine" id="problem" data-screen-label="Problem" style="border-top:1px solid var(--line);">
   <span class="sect-wm" aria-hidden="true">01</span>
   <div class="shell">
-    <div class="section-head sr">
-      <div class="section-num">01 / Stack &amp; Fit</div>
-      <div>
-        <div class="section-label">A deliberately small stack</div>
-        <h2 class="section-title">Boring where it should be. Sharp where it counts.</h2>
-        <p class="section-sub">We build custom web experiences designed for speed, measurement, and marketing control. Copywriters write the words, designers frame the layout, developers deploy the code.</p>
-      </div>
-    </div>
-
-    <div class="stack-grid sr-stag">
-      <article class="stack-card">
-        <div class="tech-badges">
-          <span class="tech-badge lang">TypeScript</span>
-          <span class="tech-badge type">Full-Stack</span>
-        </div>
-        <div class="stack-top"><span class="stack-idx">S / 01</span><span class="stack-cat">Custom build</span></div>
-        <h3>Next.js / React / TypeScript</h3>
-        <p>For custom builds, productised tools, and anything with complex state.</p>
-      </article>
-      <article class="stack-card">
-        <div class="tech-badges">
-          <span class="tech-badge lang">No-Code</span>
-          <span class="tech-badge type">Marketing</span>
-        </div>
-        <div class="stack-top"><span class="stack-idx">S / 02</span><span class="stack-cat">Marketing</span></div>
-        <h3>Webflow + Framer</h3>
-        <p>When marketing control matters more than custom software engineering.</p>
-      </article>
-      <article class="stack-card">
-        <div class="tech-badges">
-          <span class="tech-badge lang">Hydrogen</span>
-          <span class="tech-badge type">Headless</span>
-        </div>
-        <div class="stack-top"><span class="stack-idx">S / 03</span><span class="stack-cat">Commerce</span></div>
-        <h3>Shopify + Hydrogen</h3>
-        <p>For D2C builds that need headless flexibility without reinventing commerce.</p>
-      </article>
-      <article class="stack-card">
-        <div class="tech-badges">
-          <span class="tech-badge lang">GraphQL</span>
-          <span class="tech-badge type">CMS</span>
-        </div>
-        <div class="stack-top"><span class="stack-idx">S / 04</span><span class="stack-cat">Content</span></div>
-        <h3>Sanity / Payload / Notion CMS</h3>
-        <p>Content models the marketing and content team can actually write to.</p>
-      </article>
-      <article class="stack-card">
-        <div class="tech-badges">
-          <span class="tech-badge lang">Serverless</span>
-          <span class="tech-badge type">Edge</span>
-        </div>
-        <div class="stack-top"><span class="stack-idx">S / 05</span><span class="stack-cat">Infra</span></div>
-        <h3>Vercel / Cloudflare / AWS</h3>
-        <p>We ship fast, keep it cheap, and do not babysit complex server infrastructure.</p>
-      </article>
-      <article class="stack-card">
-        <div class="tech-badges">
-          <span class="tech-badge lang">Analytics</span>
-          <span class="tech-badge type">Tracking</span>
-        </div>
-        <div class="stack-top"><span class="stack-idx">S / 06</span><span class="stack-cat">Analytics</span></div>
-        <h3>PostHog / GA4 / Segment</h3>
-        <p>Analytics instrumentation wired from day one. You ship with measurement.</p>
-      </article>
+    <div class="section-head sr"><div class="section-num">01 / Problem</div><div><div class="section-label">Where attention leaks</div><h2 class="section-title">Most websites are not broken. They are unclear.</h2><p class="section-sub">A good build makes the offer obvious, reduces friction and gives your team a clean way to read what visitors do next.</p></div></div>
+    <div class="web-section-grid sr-stag">
+      <article class="web-card"><span class="n">Leak 01</span><h3>The offer is buried</h3><p>Visitors arrive with intent, then spend the first few seconds trying to understand what the business actually does.</p></article>
+      <article class="web-card"><span class="n">Leak 02</span><h3>Traffic lands on the wrong page</h3><p>Ads, creators and search often point to generic pages instead of pages built around the promise in the click.</p></article>
+      <article class="web-card"><span class="n">Leak 03</span><h3>The site is slow on mobile</h3><p>Heavy pages hurt trust before copy or design gets a chance to work.</p></article>
+      <article class="web-card"><span class="n">Leak 04</span><h3>Teams cannot update it</h3><p>Every small copy change becomes a developer task, so the site slowly falls behind the business.</p></article>
+      <article class="web-card"><span class="n">Leak 05</span><h3>No one can read the funnel</h3><p>Clicks, forms, purchases and drop-offs are not wired cleanly, so decisions turn into guesswork.</p></article>
+      <article class="web-card"><span class="n">Fix</span><h3>Build around the next action</h3><p>We start with the action the page needs to drive, then shape copy, layout, code and tracking around that job.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ============ 02 / SERVICES ============ -->
-<section class="section section--cine" data-screen-label="Services" style="border-top:1px solid var(--line);">
+<!-- ============ 02 / BUILD SYSTEM ============ -->
+<section class="section section--cine" id="process" data-screen-label="Build system" style="border-top:1px solid var(--line);">
   <span class="sect-wm" aria-hidden="true">02</span>
   <div class="shell">
-    <div class="section-head sr">
-      <div class="section-num">02 / Services</div>
-      <div>
-        <div class="section-label">Four ways we build</div>
-        <h2 class="section-title">Sites, products, and landing pages. Shipped with speed.</h2>
-      </div>
-    </div>
-
-    <div class="process-grid sr-stag">
-      <div class="process-step" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-        <div>
-          <span class="n">Vertical 01</span>
-          <h4>Brand websites</h4>
-          <p>Custom-designed marketing sites. Typography-first, fast, owned by you. Next.js or Webflow depending on needs.</p>
-          <ul class="includes-list">
-            <li>Custom design system</li>
-            <li>Fully responsive layouts</li>
-            <li>SEO structural markup</li>
-            <li>CMS integration</li>
-          </ul>
-        </div>
-        <div>
-          <span class="dur">₹4,00,000 – ₹6,00,000 <span class="unit-label">(₹4–6 Lakh)</span></span>
-          <a href="contact.html" class="vert-btn">Get Started <span aria-hidden="true">-></span></a>
-        </div>
-      </div>
-      <div class="process-step" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-        <div>
-          <span class="n">Vertical 02</span>
-          <h4>Conversion landers</h4>
-          <p>High-intent pages for product launches and campaigns. Copy, design, build, and AB-tested against real traffic.</p>
-          <ul class="includes-list">
-            <li>Conversion landing copy</li>
-            <li>AB-tested layouts</li>
-            <li>Sub-second mobile loads</li>
-            <li>GA4 & Pixel tracking</li>
-          </ul>
-        </div>
-        <div>
-          <span class="dur">₹2,50,000 – ₹5,00,000 <span class="unit-label">(₹2.5–5 Lakh)</span></span>
-          <a href="contact.html" class="vert-btn">Get Started <span aria-hidden="true">-></span></a>
-        </div>
-      </div>
-      <div class="process-step" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-        <div>
-          <span class="n">Vertical 03</span>
-          <h4>Digital products</h4>
-          <p>Internal tools, member portals, light SaaS. We scope, design, build, and hand over, or run it on retainer.</p>
-          <ul class="includes-list">
-            <li>Custom scoped web app</li>
-            <li>Membership & SaaS portals</li>
-            <li>Cloudflare edge hosting</li>
-            <li>Developer handoff</li>
-          </ul>
-        </div>
-        <div>
-          <span class="dur">₹8,00,000 – ₹15,00,000 <span class="unit-label">(₹8–15 Lakh)</span></span>
-          <a href="contact.html" class="vert-btn">Get Started <span aria-hidden="true">-></span></a>
-        </div>
-      </div>
-      <div class="process-step" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-        <div>
-          <span class="n">Vertical 04</span>
-          <h4>Stack &amp; CMS integration</h4>
-          <p>Headless setups (Hydrogen, Shopify), CMS configurations (Sanity, Payload), and analytics instrumentation.</p>
-          <ul class="includes-list">
-            <li>Headless Shopify setups</li>
-            <li>Sanity / Payload CMS configuration</li>
-            <li>Custom API &amp; ERP integrations</li>
-            <li>Monthly retainers</li>
-          </ul>
-        </div>
-        <div>
-          <span class="dur">Ongoing / Negotiated</span>
-          <a href="contact.html" class="vert-btn">Get Started <span aria-hidden="true">-></span></a>
-        </div>
-      </div>
+    <div class="section-head sr"><div class="section-num">02 / Build system</div><div><div class="section-label">How we ship</div><h2 class="section-title">A clear build path from brief to launch.</h2><p class="section-sub">The same team handles the message, interface, build and measurement layer, so the final page feels like one system.</p></div></div>
+    <div class="web-process-grid sr-stag">
+      <div class="web-process-step"><span class="n">01</span><strong>Map the job</strong><p>Audience, offer, proof, traffic source and the action the page must drive.</p></div>
+      <div class="web-process-step"><span class="n">02</span><strong>Write the path</strong><p>Headlines, page flow, objections, CTAs and the copy blocks that remove friction.</p></div>
+      <div class="web-process-step"><span class="n">03</span><strong>Design the interface</strong><p>Responsive layouts, visual rhythm, component states and handoff-ready screens.</p></div>
+      <div class="web-process-step"><span class="n">04</span><strong>Build the system</strong><p>Frontend, CMS, commerce, forms, integrations and content structures.</p></div>
+      <div class="web-process-step"><span class="n">05</span><strong>Wire tracking</strong><p>Events, pixels, analytics views and launch checks before traffic starts moving.</p></div>
+      <div class="web-process-step"><span class="n">06</span><strong>Launch and tune</strong><p>QA, speed checks, redirects, post-launch fixes and a practical improvement list.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ 03 / SELECTED WORK ============ -->
-<section class="section section--cine" id="work" data-screen-label="Selected work" style="border-top:1px solid var(--line);">
+<!-- ============ 03 / STACK & FIT ============ -->
+<section class="section section--cine" id="stack" data-screen-label="Stack and fit" style="border-top:1px solid var(--line);">
   <span class="sect-wm" aria-hidden="true">03</span>
   <div class="shell">
-    <div class="section-head sr">
-      <div class="section-num">03 / Selected work</div>
-      <div>
-        <div class="section-label">Build, ship, measure</div>
-        <h2 class="section-title">Selected signals from the build floor.</h2>
-        <p class="section-sub">A look at the kind of work we take on. Client names, screenshots, and verified results drop in as each case is cleared for release.</p>
-      </div>
-    </div>
-
-    <div class="case-rail sr-stag">
-
-      <article class="case-card">
-        <div class="case-shot">
-          <div class="case-bar">
-            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            <span class="case-url">ambar.coffee</span>
-            <span class="case-stamp">Live storefront</span>
-          </div>
-          <img src="images/g-ambar-coffee.webp" alt="Ambar Coffee premium storefront redesign showcase" class="case-img-shot" loading="lazy" width="600" height="400" />
-        </div>
-        <div class="case-body">
-          <div class="case-meta">
-            <span class="case-tag">Website Development</span>
-            <span class="case-client">Ambar Coffee</span>
-          </div>
-          <h3>High-converting single-origin coffee storefront</h3>
-          <div class="case-rows">
-            <div class="case-row"><span class="k">Challenge</span><span class="v">A slow, bloated Shopify template that buried the subscription coffee plan and leaked mobile conversions.</span></div>
-            <div class="case-row"><span class="k">Delivered</span><span class="v">Custom typography-first Next.js storefront, optimized headless cart, and automated subscription flow syncing with Shopify.</span></div>
-          </div>
-          <span class="case-result">+38% conversion lift (verified via GA4)</span>
-          <a href="contact.html" class="case-cta">Discuss a similar project <span class="arr" aria-hidden="true">-></span></a>
-        </div>
-      </article>
-
-      <article class="case-card">
-        <div class="case-shot">
-          <div class="case-bar">
-            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            <span class="case-url">devknight.in</span>
-            <span class="case-stamp">SEO optimized</span>
-          </div>
-          <img src="images/g-devknight-stationery.webp" alt="DevKnight custom stationery and agency service pages website" class="case-img-shot" loading="lazy" width="600" height="400" />
-        </div>
-        <div class="case-body">
-          <div class="case-meta">
-            <span class="case-tag">SEO &amp; CMS</span>
-            <span class="case-client">DevKnight</span>
-          </div>
-          <h3>SEO service console for developer agency</h3>
-          <div class="case-rows">
-            <div class="case-row"><span class="k">Challenge</span><span class="v">Service offerings were invisible in local organic search engine queries and lacked buyer-intent layouts.</span></div>
-            <div class="case-row"><span class="k">Delivered</span><span class="v">Technical search engine optimization, restructuring of service page layouts, and a Notion-backed CMS.</span></div>
-          </div>
-          <span class="case-result">+120% organic search traffic inside 90 days</span>
-          <a href="contact.html" class="case-cta">Discuss a similar project <span class="arr" aria-hidden="true">-></span></a>
-        </div>
-      </article>
-
-      <article class="case-card">
-        <div class="case-shot">
-          <div class="case-bar">
-            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            <span class="case-url">fevistik.in</span>
-            <span class="case-stamp">High performance</span>
-          </div>
-          <picture>
-  <source srcset="images/g-fevistik-mobile.webp" media="(max-width: 768px)">
-  <img src="images/g-fevistik.webp" alt="Fevistik product campaign landing page showcase" class="case-img-shot" loading="lazy" width="600" height="400" />
-</picture>
-        </div>
-        <div class="case-body">
-          <div class="case-meta">
-            <span class="case-tag">Landing Page</span>
-            <span class="case-client">Fevistik</span>
-          </div>
-          <h3>High-speed landing page for campaign launches</h3>
-          <div class="case-rows">
-            <div class="case-row"><span class="k">Challenge</span><span class="v">Paid traffic from creator campaigns landing on a slow corporate page that leaked advertising budget.</span></div>
-            <div class="case-row"><span class="k">Delivered</span><span class="v">Sub-second mobile landing page, custom analytics hooks, and custom AB testing scripts.</span></div>
-          </div>
-          <span class="case-result">+45% conversion rate on lead forms</span>
-          <a href="contact.html" class="case-cta">Discuss a similar project <span class="arr" aria-hidden="true">-></span></a>
-        </div>
-      </article>
-
-      <article class="case-card">
-        <div class="case-shot">
-          <div class="case-bar">
-            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            <span class="case-url">wkndwines.com</span>
-            <span class="case-stamp">Headless commerce</span>
-          </div>
-          <picture>
-  <source srcset="images/wknd-wines-mobile.webp" media="(max-width: 768px)">
-  <img src="images/wknd-wines.webp" alt="WKND Wines custom headless Shopify website design" class="case-img-shot" loading="lazy" width="600" height="400" />
-</picture>
-        </div>
-        <div class="case-body">
-          <div class="case-meta">
-            <span class="case-tag">Web App / Headless</span>
-            <span class="case-client">WKND Wines</span>
-          </div>
-          <h3>Headless commerce for modern wine brand</h3>
-          <div class="case-rows">
-            <div class="case-row"><span class="k">Challenge</span><span class="v">Outgrowing template capabilities and facing layout performance drops on mobile devices.</span></div>
-            <div class="case-row"><span class="k">Delivered</span><span class="v">Shopify Hydrogen (headless React framework) integration, custom Payload CMS, and Cloudflare edge hosting.</span></div>
-          </div>
-          <span class="case-result">98/100 Lighthouse Performance score</span>
-          <a href="contact.html" class="case-cta">Discuss a similar project <span class="arr" aria-hidden="true">-></span></a>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="case-foot sr">
-      <p>Have a build that looks like one of these? We will give you a sharp read and a practical way forward.</p>
-      <a href="contact.html" class="btn accent">Discuss a similar project <span class="arr" aria-hidden="true">-></span></a>
+    <div class="section-head sr"><div class="section-num">03 / Stack &amp; fit</div><div><div class="section-label">Pick the right build for the job</div><h2 class="section-title">The tool choice depends on how the page needs to move.</h2><p class="section-sub">We keep the stack understandable for clients: fast to launch, easy to own and strong enough for the business case.</p></div></div>
+    <div class="stack-grid sr-stag">
+      <article class="stack-card"><div class="tech-badges"><span class="tech-badge lang">Fast</span><span class="tech-badge type">Custom</span></div><div class="stack-top"><span class="stack-idx">S / 01</span><span class="stack-cat">Websites</span></div><h3>Next.js</h3><p>Best when a brand needs speed, custom interaction, SEO control and room to grow into tools or commerce.</p></article>
+      <article class="stack-card"><div class="tech-badges"><span class="tech-badge lang">Editable</span><span class="tech-badge type">CMS</span></div><div class="stack-top"><span class="stack-idx">S / 02</span><span class="stack-cat">Marketing</span></div><h3>Webflow</h3><p>Best when the team needs a polished marketing site they can update quickly without calling a developer for every change.</p></article>
+      <article class="stack-card"><div class="tech-badges"><span class="tech-badge lang">Commerce</span><span class="tech-badge type">Store</span></div><div class="stack-top"><span class="stack-idx">S / 03</span><span class="stack-cat">Shopify</span></div><h3>Shopify / Hydrogen</h3><p>Best when product discovery, buying flow, merchandising and campaign pages need to work together.</p></article>
+      <article class="stack-card"><div class="tech-badges"><span class="tech-badge lang">Content</span><span class="tech-badge type">Editable</span></div><div class="stack-top"><span class="stack-idx">S / 04</span><span class="stack-cat">CMS</span></div><h3>Sanity / Payload</h3><p>Best when the site has many pages, resources, products or landing pages that your team needs to manage cleanly.</p></article>
+      <article class="stack-card"><div class="tech-badges"><span class="tech-badge lang">Internal</span><span class="tech-badge type">Tools</span></div><div class="stack-top"><span class="stack-idx">S / 05</span><span class="stack-cat">Dashboards</span></div><h3>React / Supabase</h3><p>Best for lightweight portals, dashboards and workflows where spreadsheets are becoming too slow or messy.</p></article>
+      <article class="stack-card"><div class="tech-badges"><span class="tech-badge lang">Readable</span><span class="tech-badge type">Analytics</span></div><div class="stack-top"><span class="stack-idx">S / 06</span><span class="stack-cat">Tracking</span></div><h3>GA4 / PostHog / Pixels</h3><p>Best when you need to see form starts, purchases, scroll depth, campaign source and drop-offs after launch.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ============ 04 / IN-HOUSE PRODUCTS ============ -->
-<section class="section section--cine" id="products" data-screen-label="In-house products" style="border-top:1px solid var(--line);">
+<!-- ============ 04 / BUILD TYPES ============ -->
+<section class="section section--cine" id="build-types" data-screen-label="Build types" style="border-top:1px solid var(--line);">
   <span class="sect-wm" aria-hidden="true">04</span>
   <div class="shell">
-    <div class="section-head sr">
-      <div class="section-num">04 / In-house products</div>
-      <div>
-        <div class="section-label">What we're building for ourselves</div>
-        <h2 class="section-title">Tools we wanted for our own work. Now productised.</h2>
-        <p class="section-sub">Recurring revenue, independent of our team's hours. Part of the long game, and a reason our best engineers stay.</p>
-      </div>
-    </div>
-
-    <div class="verticals sr-stag">
-      <div class="vert" style="min-height: 400px; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="vert-num" style="display: flex; align-items: center; gap: 8px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px; color: var(--accent-blue);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            SCA/01 / Live (Public Beta)
-          </div>
-          <h3 class="vert-title">Brandscope</h3>
-          <p class="vert-body">Scan any D2C brand's site, social media, and paid ads layer to identify conversion bottlenecks and performance leaks.</p>
-          <ul class="includes-list">
-            <li>Free: 5 site audits / month</li>
-            <li>Pro: ₹990 / month (Unlimited)</li>
-            <li>Full exportable PDF reports</li>
-          </ul>
-        </div>
-        <div class="vert-meta">
-          <a href="https://brandscope.in" target="_blank" rel="noopener" class="vert-btn">Visit Brandscope <span class="arrow" aria-hidden="true">-></span></a>
-        </div>
-      </div>
-      <div class="vert" style="min-height: 400px; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="vert-num" style="display: flex; align-items: center; gap: 8px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px; color: var(--accent-blue);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            SCA/02 / Private Beta
-          </div>
-          <h3 class="vert-title">Roster</h3>
-          <p class="vert-body">The internal creator CRM we use to track, brief, and measure influencer campaigns. Now opening to select marketing agencies.</p>
-          <ul class="includes-list">
-            <li>Creator relationship management</li>
-            <li>Exclusivity tracking &amp; contracts</li>
-            <li>Automated escrow &amp; payouts</li>
-          </ul>
-        </div>
-        <div class="vert-meta">
-          <a href="contact.html" class="vert-btn">Request Invite <span class="arrow" aria-hidden="true">-></span></a>
-        </div>
-      </div>
-      <div class="vert" style="min-height: 400px; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="vert-num" style="display: flex; align-items: center; gap: 8px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px; color: var(--accent-blue);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            SCA/03 / Soon (Q3 2026)
-          </div>
-          <h3 class="vert-title">Calendar</h3>
-          <p class="vert-body">Content calendar + approval workflow built for Indian marketing teams. WhatsApp-first interface for rapid feedback.</p>
-          <ul class="includes-list">
-            <li>WhatsApp-first approvals</li>
-            <li>Shared editorial timeline</li>
-            <li>Asset organization &amp; export</li>
-          </ul>
-        </div>
-        <div class="vert-meta">
-          <a href="contact.html" class="vert-btn">Join Waitlist <span class="arrow" aria-hidden="true">-></span></a>
-        </div>
-      </div>
+    <div class="section-head sr"><div class="section-num">04 / Build types</div><div><div class="section-label">What you can hire us for</div><h2 class="section-title">Five practical web builds for active brands.</h2><p class="section-sub">Each scope includes copy direction, interface design, development, speed checks, SEO basics and launch tracking.</p></div></div>
+    <div class="web-build-grid sr-stag">
+      <article class="web-build-card"><span class="n">Build 01</span><h3>Brand website</h3><p>A sharp home base for the company, its offer and its proof.</p><dl><div><dt>Best for</dt><dd>Founders, service brands, studios, agencies and D2C brands rebuilding trust.</dd></div><div><dt>Includes</dt><dd>Page strategy, copy flow, responsive design, CMS setup, SEO basics and analytics.</dd></div></dl><div class="price">From Rs. 4L</div><a href="contact.html" class="case-cta">Start a brand site <span class="arr" aria-hidden="true">-&gt;</span></a></article>
+      <article class="web-build-card"><span class="n">Build 02</span><h3>Campaign lander</h3><p>A fast page for launches, ads, creator traffic or lead capture.</p><dl><div><dt>Best for</dt><dd>Performance campaigns, new offers, waitlists, events and product drops.</dd></div><div><dt>Includes</dt><dd>Offer copy, page design, build, forms, pixels, events and QA.</dd></div></dl><div class="price">From Rs. 2.5L</div><a href="contact.html" class="case-cta">Build a lander <span class="arr" aria-hidden="true">-&gt;</span></a></article>
+      <article class="web-build-card"><span class="n">Build 03</span><h3>Storefront</h3><p>A commerce experience that helps people find, trust and buy the product.</p><dl><div><dt>Best for</dt><dd>Shopify brands, product-led launches and collections that need better storytelling.</dd></div><div><dt>Includes</dt><dd>Theme or headless build, product pages, collection flow, checkout support and tracking.</dd></div></dl><div class="price">From Rs. 5L</div><a href="contact.html" class="case-cta">Improve a store <span class="arr" aria-hidden="true">-&gt;</span></a></article>
+      <article class="web-build-card"><span class="n">Build 04</span><h3>Dashboard or tool</h3><p>A lightweight internal product when a spreadsheet, Notion board or manual process is slowing the team down.</p><dl><div><dt>Best for</dt><dd>Operations, sales, creator management, reporting and approval workflows.</dd></div><div><dt>Includes</dt><dd>User flows, interface design, frontend, database, auth, permissions and handoff notes.</dd></div></dl><div class="price">Scoped after audit</div><a href="contact.html" class="case-cta">Scope a tool <span class="arr" aria-hidden="true">-&gt;</span></a></article>
+      <article class="web-build-card"><span class="n">Build 05</span><h3>Tracking reset</h3><p>A clean measurement layer for a site that already exists but is hard to read.</p><dl><div><dt>Best for</dt><dd>Brands running paid media, creator traffic, SEO or multiple landing pages.</dd></div><div><dt>Includes</dt><dd>Event map, GA4 or PostHog setup, pixel checks, dashboards and launch notes.</dd></div></dl><div class="price">From Rs. 1.5L</div><a href="contact.html" class="case-cta">Fix tracking <span class="arr" aria-hidden="true">-&gt;</span></a></article>
     </div>
   </div>
 </section>
+
+<!-- ============ 05 / WHAT THIS IS NOT ============ -->
+<section class="section section--cine" id="not" data-screen-label="What this is not" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">05</span><div class="shell"><div class="section-head sr"><div class="section-num">05 / What this is not</div><div><div class="section-label">Clear boundaries</div><h2 class="section-title">Not a random template job. Not a mystery dev handoff.</h2></div></div><div class="web-two-col sr-stag"><article class="web-list-card"><h3>We do not sell</h3><ul class="web-list"><li>Template swaps with new colors and the same unclear story.</li><li>Code-only builds where the offer, copy and funnel are left untouched.</li><li>Launches without speed checks, responsive QA or tracking.</li><li>Pretty pages that your team cannot edit after delivery.</li></ul></article><article class="web-list-card"><h3>We do build</h3><ul class="web-list"><li>Pages around one clear business action.</li><li>Copy and design that explain the offer quickly.</li><li>Systems your team can own, update and measure.</li><li>Cross-channel paths for <a href="content.html">content</a>, <a href="influencer.html">creator traffic</a> and paid media.</li></ul></article></div></div></section>
+
+<!-- ============ 06 / MEASURED ============ -->
+<section class="section section--cine" id="measurement" data-screen-label="Measurement" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">06</span><div class="shell"><div class="section-head sr"><div class="section-num">06 / Built to be measured</div><div><div class="section-label">Launch with readable signals</div><h2 class="section-title">A page should tell you what happened after people arrived.</h2><p class="section-sub">We do not add unverified performance claims. We build the measurement layer so the next round of decisions can be based on real behavior.</p></div></div><div class="web-measure-grid sr-stag"><div class="web-measure"><strong>Event map</strong><span>Clicks, form starts, form submits, product actions, checkout steps and scroll depth.</span></div><div class="web-measure"><strong>Traffic source</strong><span>Campaign tags, creator links, paid traffic and organic sessions kept readable.</span></div><div class="web-measure"><strong>Speed checks</strong><span>Mobile load review, image weight control and performance fixes before launch.</span></div><div class="web-measure"><strong>Launch dashboard</strong><span>A simple view of the signals your team should watch after the page goes live.</span></div></div></div></section>
+
+<!-- ============ 07 / SELECTED WORK ============ -->
+<section class="section section--cine" id="work" data-screen-label="Selected work" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">07</span><div class="shell"><div class="section-head sr"><div class="section-num">07 / Selected work</div><div><div class="section-label">Approved samples and build formats</div><h2 class="section-title">Examples of the kind of work we shape.</h2><p class="section-sub">Client names, screenshots and performance numbers are shown only when approved. Where approval is pending, the format is described without exact results.</p></div></div><div class="case-rail sr-stag">
+      <article class="case-card"><div class="case-shot"><div class="case-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="case-url">commerce build</span><span class="case-stamp">Storefront</span></div><img src="images/g-ambar-coffee.webp" alt="Commerce storefront build sample" class="case-img-shot" loading="lazy" width="600" height="400" /></div><div class="case-body"><div class="case-meta"><span class="case-tag">Shopify / Story</span><span class="case-client">Approved format</span></div><h3>Product storefront with clearer discovery</h3><div class="case-rows"><div class="case-row"><span class="k">Need</span><span class="v">Make the product range easier to understand and reduce friction between product interest and purchase.</span></div><div class="case-row"><span class="k">Delivered</span><span class="v">Landing flow, product storytelling, collection structure, mobile QA and purchase event tracking.</span></div></div><span class="case-status">Metrics shown after client approval</span><a href="contact.html" class="case-cta">Discuss a similar build <span class="arr" aria-hidden="true">-&gt;</span></a></div></article>
+      <article class="case-card"><div class="case-shot"><div class="case-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="case-url">service pages</span><span class="case-stamp">SEO</span></div><img src="images/g-devknight-stationery.webp" alt="Service website build sample" class="case-img-shot" loading="lazy" width="600" height="400" /></div><div class="case-body"><div class="case-meta"><span class="case-tag">Brand site / CMS</span><span class="case-client">Approved format</span></div><h3>Service website built around buyer intent</h3><div class="case-rows"><div class="case-row"><span class="k">Need</span><span class="v">Explain services quickly, create stronger search pages and give the team control over updates.</span></div><div class="case-row"><span class="k">Delivered</span><span class="v">Service page architecture, copy blocks, CMS structure, schema basics and analytics events.</span></div></div><span class="case-status">Search data shared only when cleared</span><a href="contact.html" class="case-cta">Discuss a similar build <span class="arr" aria-hidden="true">-&gt;</span></a></div></article>
+      <article class="case-card"><div class="case-shot"><div class="case-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="case-url">campaign page</span><span class="case-stamp">Landing page</span></div><picture><source srcset="images/g-fevistik-mobile.webp" media="(max-width: 768px)"><img src="images/g-fevistik.webp" alt="Campaign landing page build sample" class="case-img-shot" loading="lazy" width="600" height="400" /></picture></div><div class="case-body"><div class="case-meta"><span class="case-tag">Launch / Ads</span><span class="case-client">Approved format</span></div><h3>Campaign page for paid and creator traffic</h3><div class="case-rows"><div class="case-row"><span class="k">Need</span><span class="v">Route campaign traffic to a focused page instead of a broad corporate website.</span></div><div class="case-row"><span class="k">Delivered</span><span class="v">Offer-first copy, fast mobile page, form path, UTM structure and conversion events.</span></div></div><span class="case-status">Performance numbers pending approval</span><a href="contact.html" class="case-cta">Discuss a similar build <span class="arr" aria-hidden="true">-&gt;</span></a></div></article>
+    </div><div class="case-foot sr"><p>Have a site, landing page or tool that needs a sharper path? Bring us the current link and we will show you where the page is leaking attention.</p><a href="contact.html" class="btn accent">Start a web project <span class="arr" aria-hidden="true">-&gt;</span></a></div></div></section>
+
+<!-- ============ 08 / MOTION EXPERIMENTS ============ -->
+<section id="ascii-motion" class="section section--cine" data-screen-label="Motion experiments" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">08</span><div class="shell"><div class="ascii-grid"><div class="ascii-left sr"><div class="section-label">Build proof / Motion experiments</div><h2 class="section-title">Motion, code and performance can live on the same page.</h2><p class="section-sub">ASCII Motion is an in-house experiment that turns images and video into animated character grids for the web.</p><p class="ascii-desc">It sits here as proof of taste and technical range: playful enough to feel alive, disciplined enough to stay fast in a browser.</p><div class="ascii-buttons"><a href="https://asciimotion.dev/gallery" class="btn accent" target="_blank" rel="noopener">View Gallery <span class="arr" aria-hidden="true">-&gt;</span></a><a href="https://asciimotion.dev/docs" class="btn ghost" target="_blank" rel="noopener">Documentation</a><a href="https://asciimotion.dev/demo" class="btn ghost" target="_blank" rel="noopener">Live Demo</a></div></div><div class="ascii-right sr-stag"><figure class="ascii-figure"><img src="images/ed-denoised-horse.webp" alt="ASCII Motion rendering of a horse in a character grid style" loading="lazy" decoding="async" width="600" height="400" /><figcaption>ASCII Motion Gallery - images as animated text grids</figcaption></figure></div></div></div></section>
+
+<!-- ============ 09 / IN-HOUSE PRODUCTS ============ -->
+<section class="section section--cine" id="products" data-screen-label="In-house products" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">09</span><div class="shell"><div class="section-head sr"><div class="section-num">09 / In-house products</div><div><div class="section-label">We build tools for our own studio too</div><h2 class="section-title">Our products are proof that we understand web systems beyond brochure pages.</h2><p class="section-sub">These products come from the same thinking we bring to client builds: cleaner workflows, readable data and interfaces teams actually use.</p></div></div><div class="verticals sr-stag"><div class="vert"><div><div class="vert-num">SCA/01 / Live beta</div><h3 class="vert-title">Brandscope</h3><p class="vert-body">A brand audit product that reviews a site, social presence and paid layer to find leaks in the customer path.</p><ul class="includes-list"><li>Site and offer checks</li><li>Exportable reports</li><li>Used to sharpen client audits</li></ul></div><div class="vert-meta"><a href="https://brandscope.in" target="_blank" rel="noopener" class="vert-btn">Visit Brandscope <span class="arrow" aria-hidden="true">-&gt;</span></a></div></div><div class="vert"><div><div class="vert-num">SCA/02 / Private beta</div><h3 class="vert-title">Roster</h3><p class="vert-body">The creator CRM we use to track briefs, approvals, contracts and campaign reporting.</p><ul class="includes-list"><li>Creator relationship management</li><li>Brief and contract tracking</li><li>Campaign status views</li></ul></div><div class="vert-meta"><a href="contact.html" class="vert-btn">Request invite <span class="arrow" aria-hidden="true">-&gt;</span></a></div></div><div class="vert"><div><div class="vert-num">SCA/03 / Planned</div><h3 class="vert-title">Calendar</h3><p class="vert-body">A content calendar and approval workflow built for teams that need faster feedback and cleaner asset movement.</p><ul class="includes-list"><li>Shared editorial timeline</li><li>Approval status</li><li>Asset handoff</li></ul></div><div class="vert-meta"><a href="contact.html" class="vert-btn">Join waitlist <span class="arrow" aria-hidden="true">-&gt;</span></a></div></div></div></div></section>
+
+<!-- ============ 10 / HANDOFF ============ -->
+<section class="section section--cine" id="handoff" data-screen-label="Handoff and ownership" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">10</span><div class="shell"><div class="section-head sr"><div class="section-num">10 / Handoff &amp; ownership</div><div><div class="section-label">Own the build after launch</div><h2 class="section-title">You should not be trapped by the team that built your website.</h2><p class="section-sub">We hand over the practical pieces your team needs: access, documentation, CMS notes, tracking map and a clear maintenance path.</p></div></div><div class="web-section-grid sr-stag"><article class="web-card"><span class="n">Handoff 01</span><h3>Access map</h3><p>Domains, hosting, CMS, analytics, pixels and source access documented in one place.</p></article><article class="web-card"><span class="n">Handoff 02</span><h3>Editor guide</h3><p>Clear notes for the people updating copy, pages, products or posts after launch.</p></article><article class="web-card"><span class="n">Handoff 03</span><h3>Next actions</h3><p>A short list of fixes, tests and content ideas worth doing after launch data starts coming in.</p></article></div></div></section>
+
+<!-- ============ 11 / FAQ ============ -->
+<section class="section section--cine" id="faq" data-screen-label="FAQ" style="border-top:1px solid var(--line);"><span class="sect-wm" aria-hidden="true">11</span><div class="shell"><div class="section-head sr"><div class="section-num">11 / FAQ</div><div><div class="section-label">Questions before a build</div><h2 class="section-title">The practical answers.</h2></div></div><div class="web-faq-grid sr-stag"><article class="web-faq-item"><h3>Can you work with our current brand?</h3><p>Yes. We can build inside your existing identity, sharpen the web expression or recommend brand changes only where the page needs them.</p></article><article class="web-faq-item"><h3>Do you write the copy?</h3><p>Yes. We shape the page message, CTAs, section order and proof blocks so design and development are not carrying unclear copy.</p></article><article class="web-faq-item"><h3>Can this connect with content or creators?</h3><p>Yes. We often build landing pages for <a href="content.html">content systems</a>, <a href="influencer.html">creator campaigns</a>, paid media and launch calendars.</p></article><article class="web-faq-item"><h3>Do we need a custom build?</h3><p>Not always. If Webflow or Shopify gets the job done faster and cleaner, we will say that. Custom code is for cases that need it.</p></article><article class="web-faq-item"><h3>What happens after launch?</h3><p>You get a handoff, tracking map and post-launch recommendations. We can also stay on for optimization or new pages.</p></article><article class="web-faq-item"><h3>How do we start?</h3><p>Send the current site or the page you want to build. We will review the offer, traffic source and next action before scoping.</p></article></div></div></section>
 
 <!-- ============ CLOSING CTA ============ -->
-<section class="cta-block" data-screen-label="CTA">
-  <div class="shell">
-    <div class="sr">
-      <div class="section-label" style="color:rgba(247,248,250,.6);">05 / Next move</div>
-      <h2 class="cta-h">Let's build a site that <span class="accent">pays its way.</span></h2>
-      <div class="cta-row">
-        <div class="num">05</div>
-        <p>Bring us the stuck point: a site that buries the offer, a lander that leaks spend, or a tool you keep meaning to build. You will get a sharp read, a scope, and a build plan &mdash; instrumented for speed, SEO, and conversion from day one.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="contact.html" class="btn accent" data-cursor="Start">Start a project <span class="arr" aria-hidden="true">-></span></a>
-          <a href="#work" class="btn ghost" data-cursor="View work">See the work</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="cta-block" data-screen-label="CTA"><div class="shell"><div class="sr"><div class="section-label" style="color:rgba(247,248,250,.6);">12 / Next move</div><h2 class="cta-h">Bring us the page where <span class="accent">attention is leaking.</span></h2><div class="cta-row"><div class="num">12</div><p>Send the current link, campaign brief or tool idea. We will give you a sharp read on the action the page should drive, the build type that fits and the tracking it needs from day one.</p><div style="display:flex;gap:12px;flex-wrap:wrap;"><a href="contact.html" class="btn accent" data-cursor="Start">Start a web project <span class="arr" aria-hidden="true">-&gt;</span></a><a href="#work" class="btn ghost" data-cursor="View work">See selected builds</a></div><div class="web-chip-row"><span class="web-chip">Brand website</span><span class="web-chip">Landing page</span><span class="web-chip">Storefront</span><span class="web-chip">Dashboard</span></div></div></div></div></section>
 
 <footer class="site-footer">
   <div class="sfoot-shell">
     <div class="sfoot-news">
       <div class="sfoot-news-copy">
-        <h4>Read what we ship.</h4>
-        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
+        <h4>Want to see how we think about builds?</h4>
+        <p>Notes on websites, landing pages, tracking and the decisions behind better digital systems. No fluff.</p>
       </div>
       <form class="sfoot-form" onsubmit="return false;">
         <label class="sr-only" for="news-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>

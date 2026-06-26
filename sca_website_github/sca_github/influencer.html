@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Influencer campaigns that actually convert &mdash; SeeTusk / SCA</title>
-  <meta name="description" content="Creator campaigns with tracked ROI. Vetted roster, live dashboards, and guaranteed results. Launch raids, ongoing drips, ambassador partnerships—performance marketing for Indian brands." />
+  <title>Creator campaigns with proof &mdash; SeeTusk / SCA</title>
+  <meta name="description" content="SeeTusk plans, shortlists, briefs, contracts, tracks and reports creator campaigns with links, codes, usage rights and creator-level performance." />
 
   <!-- Vendor libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
@@ -674,9 +674,104 @@
     /* Hero + newsletter */
     .slide-desc { font-size: 16px !important; line-height: 1.7; }
     #newsletter p { font-size: 15.5px !important; line-height: 1.65; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+    .slide-btn.secondary { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); }
+    .hero-chips, .anchor-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .hero-chip, .anchor-links a {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.76); border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055); border-radius: 999px; padding: 8px 12px; text-decoration: none;
+    }
+    .hero-note { margin-top: 18px; max-width: 520px; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,.56); }
+    .inf-eyebrow {
+      display: inline-flex; align-items: center; gap: 14px; color: var(--accent);
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 22px;
+    }
+    .inf-eyebrow::before { content: ""; width: 30px; height: 1px; background: currentColor; }
+    .inf-head h2, .inf-cta-head h2 {
+      font-family: var(--font-display); font-weight: 800; font-size: clamp(42px,5.4vw,76px);
+      line-height: .94; letter-spacing: -.02em; margin: 0 0 22px; color: #fff;
+    }
+    .inf-cta-head p { color: rgba(255,255,255,.62); line-height: 1.65; max-width: 720px; margin: 0 auto; }
+    .method-panel {
+      flex: 0 0 470px; display: grid; gap: 12px; padding: 18px; border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px; background: rgba(10,10,12,.62); backdrop-filter: blur(14px);
+      box-shadow: 0 34px 80px rgba(0,0,0,.42);
+    }
+    .method-title { font-family: var(--font-display); font-weight: 800; font-size: 28px; margin: 0 0 4px; }
+    .method-card { border: 1px solid rgba(255,255,255,.09); border-radius: 12px; padding: 16px; background: rgba(255,255,255,.035); }
+    .method-card span, .mini-label {
+      display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .method-card h3 { font-family: var(--font-display); font-size: 24px; font-weight: 800; margin: 0 0 6px; }
+    .method-card p { margin: 0; color: rgba(255,255,255,.66); font-size: 14.5px; line-height: 1.5; }
+    .problem-copy { display: grid; gap: 18px; }
+    .problem-cards, .manage-grid, .campaign-grid, .criteria-grid, .rights-grid, .insight-grid, .next-grid {
+      display: grid; gap: 18px; position: relative; z-index: 1;
+    }
+    .problem-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .manage-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .campaign-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .criteria-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .rights-grid, .insight-grid, .next-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .clarity-card, .campaign-card, .criteria-card {
+      border: 1px solid rgba(255,255,255,.09); border-radius: 16px; background: rgba(255,255,255,.026);
+      padding: clamp(22px,2.2vw,32px);
+    }
+    .clarity-card h3, .campaign-card h3, .criteria-card h3 {
+      font-family: var(--font-display); font-weight: 800; font-size: clamp(22px,2vw,30px);
+      line-height: 1.02; margin: 0 0 10px;
+    }
+    .clarity-card p, .campaign-card p, .criteria-card p { color: rgba(255,255,255,.64); line-height: 1.58; margin: 0; }
+    .campaign-card { min-height: 520px; display: flex; flex-direction: column; }
+    .campaign-card .best { margin: 18px 0; padding: 14px; border-radius: 12px; background: rgba(34,87,255,.08); border: 1px solid rgba(34,87,255,.24); }
+    .campaign-card .best b { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .clean-list { list-style: none; padding: 0; margin: 16px 0 24px; display: grid; gap: 9px; }
+    .clean-list li { color: rgba(255,255,255,.72); font-size: 14.5px; line-height: 1.45; display: flex; gap: 9px; }
+    .clean-list li::before { content: ""; flex: 0 0 6px; width: 6px; height: 6px; margin-top: 8px; border-radius: 50%; background: var(--accent); }
+    .campaign-card .slide-btn { margin-top: auto; align-self: flex-start; padding: 11px 18px; }
+    .tracking-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px,4vw,56px); align-items: start; position: relative; z-index: 1; }
+    .sample-dash { border: 1px solid rgba(255,255,255,.1); border-radius: 18px; background: rgba(12,12,15,.82); overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.35); }
+    .inf-dash-bar { display: flex; align-items: center; gap: 7px; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.025); }
+    .inf-dash-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.16); }
+    .inf-dash-url { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: rgba(255,255,255,.42); margin-left: 8px; }
+    .inf-dash-live { margin-left: auto; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #72dfa4; }
+    .inf-step-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.42); margin-bottom: 16px; }
+    .sample-dash-head { display: flex; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,.08); font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,.62); }
+    .sample-row { display: grid; grid-template-columns: 1.1fr .8fr .8fr .8fr .9fr; gap: 10px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.06); align-items: center; }
+    .sample-row.header { color: rgba(255,255,255,.42); font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .sample-row:not(.header) { color: rgba(255,255,255,.78); font-size: 14px; }
+    .pill-status { display: inline-flex; width: max-content; border-radius: 999px; padding: 5px 9px; background: rgba(79,209,139,.12); color: #72dfa4; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+    .strong-line { margin-top: 28px; font-family: var(--font-display); font-size: clamp(26px,2.8vw,42px); line-height: 1; color: #fff; max-width: 860px; }
+    .cross-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .cross-links a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.26); padding-bottom: 4px; }
+    .not-sure { margin-top: 28px; padding: 20px; border: 1px solid rgba(34,87,255,.28); border-radius: 16px; background: rgba(34,87,255,.06); color: rgba(255,255,255,.72); }
+    @media (max-width: 1080px) {
+      .method-panel { flex-basis: auto; width: min(100%, 560px); }
+      .hero-inner { flex-direction: column; align-items: flex-start; height: auto; min-height: 100%; padding-top: 130px; }
+      .manage-grid, .criteria-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .tracking-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .problem-cards, .campaign-grid, .rights-grid, .insight-grid, .next-grid { grid-template-columns: 1fr; }
+      .manage-grid, .criteria-grid { grid-template-columns: 1fr; }
+      .sample-row { grid-template-columns: 1fr; gap: 6px; }
+      #hero { height: auto; min-height: 100vh; }
+      .hero-inner { padding-inline: 24px; gap: 28px; }
+      .hero-text { flex: 1 1 auto !important; flex-basis: auto !important; width: min(330px, 82vw) !important; max-width: min(330px, 82vw) !important; min-width: 0; }
+      .slide-desc, .hero-note, .hero-actions, .hero-chips, .anchor-links { width: 100%; max-width: min(330px, 82vw); overflow-wrap: break-word; }
+      .slide-title { font-size: clamp(42px, 13vw, 58px); }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .hero-actions .slide-btn { width: 100%; max-width: 100%; justify-content: center; }
+      .method-panel { width: 100%; }
+      body.inf .nav-cta { display: none; }
+      .slider-controls { display: none; }
+    }
   </style>
 </head>
-<body>
+<body class="inf">
 
 <!-- NAVBAR -->
 <nav class="nav">
@@ -700,8 +795,6 @@
 
 <!-- HERO -->
 <section id="hero">
-
-  <!-- Background slideshow: only the photo behind changes -->
   <div class="hero-bg-stack" aria-hidden="true">
     <div class="hero-slide-bg active" style="background-image: url('images/g-white-studio.jpeg')"></div>
     <div class="hero-slide-bg" style="background-image: url('images/g-director-set.png')"></div>
@@ -712,29 +805,37 @@
 
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="slide-label">Influencer marketing / SCA</div>
-      <h1 class="slide-title"><span class="glass-text">Creator campaigns</span><br><span class="tint-text">that actually convert.</span></h1>
-      <p class="slide-desc">We run influencer marketing like performance media &mdash; vetted creators, tracked links and a live dashboard. You see real orders by creator, not vanity reach.</p>
-      <a href="#problem" class="slide-btn">See how it works</a>
+      <div class="slide-label">Vertical 02 / Influencer Marketing</div>
+      <h1 class="slide-title"><span class="glass-text">Creator campaigns</span><br><span class="tint-text">with proof.</span></h1>
+      <p class="slide-desc">We plan, shortlist, brief, contract, track and report influencer campaigns for brands that need more than reach screenshots.</p>
+      <p class="slide-desc">Every creator gets a reason, a brief, a tracked link, a code and a role in the campaign, so you know who created attention, clicks, content and orders.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="slide-btn">Launch a creator campaign</a>
+        <a href="#tracking" class="slide-btn secondary">See sample dashboard</a>
+      </div>
+      <div class="hero-chips" aria-label="What SeeTusk manages">
+        <span class="hero-chip">Creator shortlisting</span>
+        <span class="hero-chip">Contracts &amp; usage rights</span>
+        <span class="hero-chip">UTM links and codes</span>
+        <span class="hero-chip">Live campaign dashboard</span>
+      </div>
+      <div class="anchor-links" aria-label="Page shortcuts">
+        <a href="#campaign-types">Campaign types</a>
+        <a href="#tracking">Tracking</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <p class="hero-note">For launches, store openings, founder-led brands, D2C drops, hospitality, lifestyle, FMCG and local growth campaigns.</p>
     </div>
 
-    <div class="hero-floats" aria-hidden="true">
-      <figure class="float-card">
-        <img src="images/g-director-set.png" alt="" loading="eager" decoding="async">
-        <figcaption class="fc-cap">Our method<strong>Brief &amp; Fit</strong></figcaption>
-      </figure>
-      <figure class="float-card">
-        <img src="images/g-interview-set.jpeg" alt="" loading="eager" decoding="async">
-        <figcaption class="fc-cap">Our method<strong>Tracked Links</strong></figcaption>
-      </figure>
-      <figure class="float-card">
-        <img src="images/g-studio-redlight.jpeg" alt="" loading="eager" decoding="async">
-        <figcaption class="fc-cap">Our method<strong>Live Dashboard</strong></figcaption>
-      </figure>
+    <div class="method-panel" aria-label="How SeeTusk runs creator campaigns">
+      <h2 class="method-title">How we run it</h2>
+      <article class="method-card"><span>01 / Match</span><h3>Fit before follower count.</h3><p>Creators are shortlisted by city, niche, audience fit, content style and campaign goal.</p></article>
+      <article class="method-card"><span>02 / Brief</span><h3>Clear before live.</h3><p>Each creator gets talking points, do-nots, deliverables and a posting window.</p></article>
+      <article class="method-card"><span>03 / Track</span><h3>Links, codes, UTMs.</h3><p>Creator-level tracking connects posts to traffic, redemptions, leads and orders.</p></article>
+      <article class="method-card"><span>04 / Report</span><h3>No screenshot theatre.</h3><p>One dashboard shows reach, clicks, redemptions, engagement, delivery and learning.</p></article>
     </div>
   </div>
 
-  <!-- Background controls -->
   <div class="slider-controls">
     <button class="slider-arrow" id="prevBtn" aria-label="Previous background"><i class="fa-solid fa-chevron-left"></i></button>
     <button class="slider-arrow" id="nextBtn" aria-label="Next background"><i class="fa-solid fa-chevron-right"></i></button>
@@ -745,366 +846,187 @@
       <div class="progress-dot" data-idx="3" role="tab" tabindex="0" aria-selected="false" aria-label="Background 4"></div>
     </div>
   </div>
-
-  <a href="#problem" class="scroll-cue" aria-label="Scroll down to problem section">
-    <span>Scroll ↓</span>
-  </a>
 </section>
 
-<!-- PROBLEM SECTION -->
 <section id="problem">
   <div class="problem-grid">
     <div class="problem-left">
       <div class="section-label">01 / The problem</div>
-      <h2>Brands pay creators.<br>Creators post.<br>Nothing converts.<br>Everyone moves on.</h2>
-      <p>The issue isn't the creators. It's the machine around them: mismatched briefs, zero tracking, vanity metrics, and hope-based budgeting.</p>
-      <p>We fix the machine. We run creator campaigns the way a performance marketer would run paid media.</p>
+      <h2>Most influencer campaigns die at "posted."</h2>
+      <div class="problem-copy">
+        <p>A creator posts. The brand gets screenshots. Someone says the reach was good. Then nobody knows what actually happened.</p>
+        <p>The real problem is not creators. It is the missing system around them: weak shortlisting, loose briefs, no tracking, unclear usage rights, and reporting that stops at vanity numbers.</p>
+        <p>We fix the system around creator marketing.</p>
+      </div>
     </div>
-    <div class="problem-items">
-      <div class="problem-item">
-        <div class="problem-arrow">→</div>
-        <div>
-          <h3>Brief &amp; fit before contract</h3>
-          <p>Every creator is briefed by a human, not a template. We say no more than we say yes.</p>
-        </div>
-      </div>
-      <div class="problem-item">
-        <div class="problem-arrow">→</div>
-        <div>
-          <h3>Tracked links, codes and UTMs</h3>
-          <p>If it didn't happen in GA or Shopify, it didn't happen. We measure the path from impressions to orders.</p>
-        </div>
-      </div>
-      <div class="problem-item">
-        <div class="problem-arrow">→</div>
-        <div>
-          <h3>Contracts you can enforce</h3>
-          <p>Legal paperwork that actually protects you. Usage rights, exclusivity, deliverable SLAs.</p>
-        </div>
-      </div>
-      <div class="problem-item">
-        <div class="problem-arrow">→</div>
-        <div>
-          <h3>One report. Live dashboard.</h3>
-          <p>No end-of-month screenshots. A live link you can share with your board.</p>
-        </div>
-      </div>
+    <div class="problem-cards">
+      <article class="clarity-card"><span class="mini-label">Wrong creator</span><h3>Right-looking profile.</h3><p>A creator can look perfect and still be wrong for the campaign. We check fit before follower count.</p></article>
+      <article class="clarity-card"><span class="mini-label">No tracking</span><h3>Good content, weak truth.</h3><p>If a post has no link, code or UTM, you are guessing. We track the path from creator to action.</p></article>
+      <article class="clarity-card"><span class="mini-label">Loose rights</span><h3>Content you cannot reuse.</h3><p>A strong creator video is useless if the brand cannot reuse it. We lock usage, whitelisting and exclusivity before go-live.</p></article>
+      <article class="clarity-card"><span class="mini-label">Pretty report</span><h3>No vanity reach.</h3><p>We do not end campaigns with screenshots. We show which creators moved attention, clicks, codes and orders.</p></article>
     </div>
   </div>
 </section>
 
-<!-- SYSTEM SECTION — sticky scrollytelling + live dashboard -->
 <section id="system" class="inf-section">
   <span class="inf-wm" aria-hidden="true">02</span>
   <div class="inf-shell">
-    <div class="inf-head sr">
-      <div class="inf-eyebrow">02 / The system</div>
-      <h2>We run creators<br>like paid media.</h2>
-      <p>The creators were never the problem &mdash; the machine around them was. Here is the operating system we wrap around every campaign, from brief to attributed revenue.</p>
-    </div>
-
+    <div class="inf-head sr"><div class="inf-eyebrow">02 / The system</div><h2>We run creators<br>like paid media.</h2><p>Influencer marketing should not feel like a favour economy. It should feel like a campaign system: clear objective, right creators, clean briefs, tracked links, enforceable contracts and a report that tells you what to do next.</p></div>
     <div class="inf-system-grid">
-      <!-- Sticky dashboard stage -->
       <div class="inf-stage">
-        <div class="inf-dash" role="img" aria-label="Live campaign dashboard preview showing creators, tracked links, metrics and daily performance">
-          <div class="inf-dash-bar">
-            <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
-            <span class="inf-dash-url">roster.seetusk.app</span>
-            <span class="inf-dash-live">Live</span>
-          </div>
+        <div class="inf-dash" role="img" aria-label="Sample creator campaign dashboard preview">
+          <div class="inf-dash-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="inf-dash-url">sample-dashboard.seetusk</span><span class="inf-dash-live">Sample</span></div>
           <div class="inf-dash-body">
-            <div class="inf-dash-head">
-              <h4>Amb&auml;r Coffee &mdash; Launch Raid</h4>
-              <span>Day 6 of 10</span>
-            </div>
-
+            <div class="inf-dash-head"><h4>Creator campaign / sample dashboard</h4><span>Creator-level results</span></div>
             <div class="inf-dash-region" data-region="creators">
-              <div class="inf-dash-creators">
-                <div class="inf-dash-creator">
-                  <span class="inf-dash-avatar">AC</span>
-                  <span class="inf-dash-handle">@arefa.cooks</span>
-                  <span class="inf-dash-tier">Micro</span>
-                  <span class="inf-dash-status live">Posted</span>
-                </div>
-                <div class="inf-dash-creator">
-                  <span class="inf-dash-avatar">PE</span>
-                  <span class="inf-dash-handle">@pune.eats</span>
-                  <span class="inf-dash-tier">Nano</span>
-                  <span class="inf-dash-status live">Posted</span>
-                </div>
-                <div class="inf-dash-creator">
-                  <span class="inf-dash-avatar">BF</span>
-                  <span class="inf-dash-handle">@theblrfoodie</span>
-                  <span class="inf-dash-tier">Macro</span>
-                  <span class="inf-dash-status queue">Queued</span>
-                </div>
-              </div>
+              <div class="sample-row header"><span>Creator</span><span>Status</span><span>Tracking</span><span>Result</span><span>Next move</span></div>
+              <div class="sample-row"><span>@city.foodnotes</span><span><i class="pill-status">Posted</i></span><span>UTM + code</span><span>Creator-level result</span><span>Repeat</span></div>
+              <div class="sample-row"><span>@founder.fit</span><span><i class="pill-status">Live</i></span><span>Link + code</span><span>Campaign total</span><span>Watch</span></div>
+              <div class="sample-row"><span>@neighbourhoodwalks</span><span><i class="pill-status">Queued</i></span><span>UTM ready</span><span>Live metric</span><span>Approve</span></div>
             </div>
-
-            <div class="inf-dash-region" data-region="links" style="margin-top:10px;">
-              <div class="inf-dash-links">
-                <div class="inf-dash-link">
-                  <code>ambar.coffee/?c=arefa</code>
-                  <span class="util">UTM</span>
-                  <span class="clk">6,210</span>
-                </div>
-                <div class="inf-dash-link">
-                  <code>AMBAR15</code>
-                  <span class="util">CODE</span>
-                  <span class="clk">412 used</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="inf-dash-region" data-region="metrics" style="margin-top:10px;">
-              <div class="inf-dash-stats">
-                <div class="inf-dash-stat">
-                  <span class="lbl">Reach</span>
-                  <span class="val"><span data-count="2.4">0</span><small>M</small></span>
-                </div>
-                <div class="inf-dash-stat">
-                  <span class="lbl">Link clicks</span>
-                  <span class="val"><span data-count="18.4">0</span><small>K</small></span>
-                </div>
-                <div class="inf-dash-stat">
-                  <span class="lbl">Redemptions</span>
-                  <span class="val"><span data-count="1240">0</span></span>
-                </div>
-                <div class="inf-dash-stat">
-                  <span class="lbl">Attr. revenue</span>
-                  <span class="val">&#8377;<span data-count="14.8">0</span><small>L</small></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="inf-dash-region" data-region="chart" style="margin-top:10px;">
-              <div class="inf-dash-chart">
-                <div class="ttl"><span>Attributed orders / day</span><span>CPA &#8377;390</span></div>
-                <div class="inf-dash-bars" aria-hidden="true">
-                  <span data-h="0.35"></span>
-                  <span data-h="0.5"></span>
-                  <span data-h="0.62"></span>
-                  <span data-h="0.55"></span>
-                  <span data-h="0.78"></span>
-                  <span data-h="0.92"></span>
-                  <span data-h="0.7"></span>
-                </div>
-              </div>
-            </div>
+            <div class="inf-dash-region" data-region="links"><div class="inf-dash-links"><div class="inf-dash-link"><code>/launch?creator=cityfood</code><span class="u">UTM</span><span class="c">Post link</span></div><div class="inf-dash-link"><code>CREATOR15</code><span class="u">CODE</span><span class="c">Code usage</span></div></div></div>
+            <div class="inf-dash-region" data-region="metrics"><div class="inf-dash-stats"><div class="inf-dash-stat"><span class="l">Reach</span><span class="v">Live metric</span></div><div class="inf-dash-stat"><span class="l">Clicks</span><span class="v">Creator-wise</span></div><div class="inf-dash-stat"><span class="l">Codes</span><span class="v">Campaign total</span></div><div class="inf-dash-stat"><span class="l">Learning</span><span class="v">Repeat / pause</span></div></div></div>
+            <div class="inf-dash-region" data-region="chart"><div class="inf-dash-chart"><div class="ttl"><span>Best-performing content</span><span>Sample dashboard</span></div><div class="inf-dash-bars" aria-hidden="true"><span data-h="0.42"></span><span data-h="0.64"></span><span data-h="0.58"></span><span data-h="0.82"></span><span data-h="0.72"></span></div></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Scrolling steps -->
       <div class="inf-steps">
-        <article class="inf-step" data-lit="creators">
-          <div class="inf-step-num">Step 01 &mdash; Brief &amp; fit</div>
-          <h3>Brief &amp; fit, before a rupee moves.</h3>
-          <p>Every creator is matched and briefed by a human &mdash; by city, niche and intent. Each has worked with us at least twice. We say no more than we say yes.</p>
-        </article>
-        <article class="inf-step" data-lit="links">
-          <div class="inf-step-num">Step 02 &mdash; Contract &amp; track</div>
-          <h3>Contracts and tracking, locked in.</h3>
-          <p>Usage rights, exclusivity and deliverable SLAs on paper. Every post ships with its own UTM link and code, wired into GA4 and Shopify before it goes live.</p>
-        </article>
-        <article class="inf-step" data-lit="metrics">
-          <div class="inf-step-num">Step 03 &mdash; Live dashboard</div>
-          <h3>One live dashboard, not a month-end PDF.</h3>
-          <p>Reach, clicks, redemptions and engagement update in real time. A single link you can drop straight into a board deck and share with confidence.</p>
-        </article>
-        <article class="inf-step" data-lit="chart">
-          <div class="inf-step-num">Step 04 &mdash; Attributed revenue</div>
-          <h3>Attributed revenue, per creator.</h3>
-          <p>We close the loop from impression to order &mdash; so you see real cost-per-acquisition by creator, not a blended vanity-reach figure.</p>
-        </article>
+        <article class="inf-step" data-lit="creators"><div class="inf-step-num">Step 01 / Campaign objective</div><h3>Decide what the campaign must move.</h3><p>Product launch, store visits, UGC, awareness, city testing, sale support or reusable content. The campaign shape follows the job.</p></article>
+        <article class="inf-step" data-lit="creators"><div class="inf-step-num">Step 02 / Creator shortlist</div><h3>Right creator before right price.</h3><p>We shortlist by audience fit, city, niche, content quality, credibility, engagement quality and brand safety.</p></article>
+        <article class="inf-step" data-lit="links"><div class="inf-step-num">Step 03 / Brief and contract</div><h3>Rights, timelines and usage locked before go-live.</h3><p>Each creator gets the story, cues, deliverables, posting windows, usage rights, exclusivity and disclosure requirements.</p></article>
+        <article class="inf-step" data-lit="metrics"><div class="inf-step-num">Step 04 / Track and launch</div><h3>One live view of what each creator did.</h3><p>Every creator goes live with their own link, UTM, code or tracking setup. We monitor while the campaign is running.</p></article>
+        <article class="inf-step" data-lit="chart"><div class="inf-step-num">Step 05 / Dashboard and learning</div><h3>Creator-wise clicks, codes, orders and learning.</h3><p>You know who to repeat, who to cut, and what type of content deserves more money.</p></article>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASE STUDIES RAIL -->
-<section id="cases" class="inf-section alt">
+<section id="manage" class="inf-section alt">
   <span class="inf-wm" aria-hidden="true">03</span>
   <div class="inf-shell">
-    <div class="inf-head sr">
-      <div class="inf-eyebrow">03 / Selected campaigns</div>
-      <h2>Creator campaigns,<br>with receipts.</h2>
-      <p>A look at the kind of work we run. Names and verified numbers drop in as each case clears for release.</p>
-    </div>
-
-    <div class="inf-rail-wrap sr">
-      <div class="inf-rail" aria-label="Selected creator campaigns">
-        <article class="inf-case">
-          <div class="inf-case-shot">
-            <div class="inf-case-bar"><i></i><i></i><i></i></div>
-            <span class="inf-case-stamp">Launch Raid &middot; 10 days</span>
-            <img src="images/g-ambar-coffee.webp" alt="Ambar Coffee creator launch campaign" loading="lazy" decoding="async" width="440" height="275" />
-          </div>
-          <div class="inf-case-body">
-            <div class="inf-case-meta"><span class="inf-case-tag">Launch Raid</span><span class="inf-case-client">Amb&auml;r Coffee</span></div>
-            <h3>Single-origin coffee, sold out in a weekend.</h3>
-            <div class="inf-case-row"><span class="k">Challenge</span><span class="v">A premium roast nobody in Pune had heard of, and a launch that needed to move units &mdash; not just reach.</span></div>
-            <div class="inf-case-row"><span class="k">Delivered</span><span class="v">12 food &amp; lifestyle micro-creators in one coordinated 10-day raid, every post code-tracked into Shopify.</span></div>
-            <p class="inf-case-result">+38% <span>checkout conversion</span> on tracked traffic</p>
-          </div>
-        </article>
-
-        <article class="inf-case">
-          <div class="inf-case-shot">
-            <div class="inf-case-bar"><i></i><i></i><i></i></div>
-            <span class="inf-case-stamp">IRL activation</span>
-            <img src="images/pulsar-night-ride.webp" alt="Pulsar night ride creator activation" loading="lazy" decoding="async" width="440" height="275" />
-          </div>
-          <div class="inf-case-body">
-            <div class="inf-case-meta"><span class="inf-case-tag">Event &amp; UGC</span><span class="inf-case-client">Pulsar</span></div>
-            <h3>A midnight ride that filmed itself.</h3>
-            <div class="inf-case-row"><span class="k">Challenge</span><span class="v">Turn a city ride-out into shareable, on-brand vertical content without a film crew on every corner.</span></div>
-            <div class="inf-case-row"><span class="k">Delivered</span><span class="v">8 moto creators briefed and mic'd, live UGC captured and published the same night with tracked links.</span></div>
-            <p class="inf-case-result">1.9M <span>organic reach</span> in 72 hours</p>
-          </div>
-        </article>
-
-        <article class="inf-case">
-          <div class="inf-case-shot">
-            <div class="inf-case-bar"><i></i><i></i><i></i></div>
-            <span class="inf-case-stamp">Ongoing retainer</span>
-            <img src="images/wknd-wines.webp" alt="WKND Wines always-on creator drip" loading="lazy" decoding="async" width="440" height="275" />
-          </div>
-          <div class="inf-case-body">
-            <div class="inf-case-meta"><span class="inf-case-tag">Always-On Drip</span><span class="inf-case-client">WKND Wines</span></div>
-            <h3>Always-on wine, minus the ad spend.</h3>
-            <div class="inf-case-row"><span class="k">Challenge</span><span class="v">Build steady top-of-funnel demand for a young wine label in the gaps between launches.</span></div>
-            <div class="inf-case-row"><span class="k">Delivered</span><span class="v">3 lifestyle creators on a monthly drip, each on enforceable usage rights for paid whitelisting.</span></div>
-            <p class="inf-case-result">&minus;24% <span>blended CAC</span> vs. paid social</p>
-          </div>
-        </article>
-
-        <article class="inf-case">
-          <div class="inf-case-shot">
-            <div class="inf-case-bar"><i></i><i></i><i></i></div>
-            <span class="inf-case-stamp">6-month deal</span>
-            <img src="images/g-surf-excel.webp" alt="Surf Excel ambassador campaign" loading="lazy" decoding="async" width="440" height="275" />
-          </div>
-          <div class="inf-case-body">
-            <div class="inf-case-meta"><span class="inf-case-tag">Ambassador Tier</span><span class="inf-case-client">Surf Excel</span></div>
-            <h3>Category trust at national scale.</h3>
-            <div class="inf-case-row"><span class="k">Challenge</span><span class="v">Move a mass FMCG message through creators without it reading like a TV spot.</span></div>
-            <div class="inf-case-row"><span class="k">Delivered</span><span class="v">5 ambassadors on six-month exclusivity, co-produced content and affiliate-style splits.</span></div>
-            <p class="inf-case-result">4.1% <span>tracked CTR</span> across the flight</p>
-          </div>
-        </article>
-      </div>
-      <div class="inf-rail-cue"><span>Drag / scroll</span><span class="bar"><i></i></span><span>&rarr;</span></div>
+    <div class="inf-head sr"><div class="inf-eyebrow">03 / What we manage</div><h2>The creator campaign,<br>start to finish.</h2><p>You do not just get a list of influencers. You get the campaign machinery around them.</p></div>
+    <div class="manage-grid sr-stag">
+      <article class="clarity-card"><span class="mini-label">Strategy</span><h3>Campaign shape</h3><p>Goal, audience, platform, budget split, campaign window and creator role.</p></article>
+      <article class="clarity-card"><span class="mini-label">Shortlisting</span><h3>Creator fit</h3><p>Nano, micro, mid-tier or macro creators selected by geography, category and content quality.</p></article>
+      <article class="clarity-card"><span class="mini-label">Negotiation</span><h3>Creator ops</h3><p>Communication, availability checks, deliverable discussions and pricing coordination.</p></article>
+      <article class="clarity-card"><span class="mini-label">Briefing</span><h3>Content rules</h3><p>Storyline, product cues, hook ideas, talking points, do-nots, deadlines and posting instructions.</p></article>
+      <article class="clarity-card"><span class="mini-label">Contracts</span><h3>Compliance</h3><p>Usage rights, exclusivity windows, whitelisting rights, deliverable terms and disclosure labels.</p></article>
+      <article class="clarity-card"><span class="mini-label">Tracking</span><h3>Measurement setup</h3><p>UTM links, creator codes, landing-page links, Shopify or GA4 coordination and dashboard structure.</p></article>
+      <article class="clarity-card"><span class="mini-label">Operations</span><h3>Go-live control</h3><p>Posting calendar, reminders, approvals, go-live tracking and issue resolution.</p></article>
+      <article class="clarity-card"><span class="mini-label">Reporting</span><h3>Creator-wise truth</h3><p>Reach, clicks, saves, engagement, redemptions, orders, CPA and learning notes.</p></article>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section id="voices" class="inf-section">
+<section id="campaign-types" class="inf-section">
   <span class="inf-wm" aria-hidden="true">04</span>
   <div class="inf-shell">
-    <div class="inf-head sr">
-      <div class="inf-eyebrow">04 / Voices</div>
-      <h2>What founders<br>say after.</h2>
-    </div>
-    <div class="inf-voices-grid sr-stag">
-      <figure class="inf-quote">
-        <span class="mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>We had burned a year of budget on &ldquo;reach.&rdquo; SeeTusk was the first team that showed us orders, by creator, on a live link.</blockquote>
-        <figcaption class="who"><span class="a">AM</span><span><span class="n">Aarti Menon</span><br><span class="r">Founder, Amb&auml;r Coffee</span></span></figcaption>
-      </figure>
-      <figure class="inf-quote">
-        <span class="mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>The dashboard ended every month-end argument. I forward one link to my board and we move on.</blockquote>
-        <figcaption class="who"><span class="a">RS</span><span><span class="n">Rohan Shah</span><br><span class="r">CMO, WKND Wines</span></span></figcaption>
-      </figure>
-      <figure class="inf-quote">
-        <span class="mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>They said no to half the creators we picked. That is when I knew they were running it like media, not a favour economy.</blockquote>
-        <figcaption class="who"><span class="a">NK</span><span><span class="n">Neha Kulkarni</span><br><span class="r">Head of Growth, Cycada</span></span></figcaption>
-      </figure>
+    <div class="inf-head sr"><div class="inf-eyebrow">04 / Campaign types</div><h2>Pick the campaign shape<br>that fits the moment.</h2><p>Not every brand needs the same influencer plan. A product launch, store opening, monthly content drip and long-term ambassador campaign should not be sold as the same thing.</p></div>
+    <div class="campaign-grid sr-stag">
+      <article class="campaign-card"><span class="mini-label">Launch Raid</span><h3>A coordinated burst around a launch.</h3><p>A short, sharp wave of creator posts around a product launch, drop, store opening, event or campaign window.</p><div class="best"><b>Best for</b>New product launches, D2C drops, cafe openings, event pushes, offers and city-level awareness.</div><ul class="clean-list"><li>Creators go live within a tight window</li><li>Tracked links, codes and a common message</li><li>Posts, reels, stories, dashboard and report</li></ul><a href="contact.html" class="slide-btn">Plan a Launch Raid</a></article>
+      <article class="campaign-card"><span class="mini-label">Always-On Drip</span><h3>A monthly creator rhythm.</h3><p>A planned creator cadence that keeps the brand visible without relying only on paid ads or random one-off posts.</p><div class="best"><b>Best for</b>Brands that need steady awareness, recurring content, social proof and continuous creator-led discovery.</div><ul class="clean-list"><li>Monthly creator calendar</li><li>Recurring posts and content rights</li><li>Tracking dashboard and monthly report</li></ul><a href="contact.html" class="slide-btn">Start an Always-On Drip</a></article>
+      <article class="campaign-card"><span class="mini-label">IRL &amp; UGC Push</span><h3>Creators capture the real world.</h3><p>Creators attend, experience, film and publish the campaign while the brand receives content it can reuse.</p><div class="best"><b>Best for</b>Events, store launches, activations, tastings, campus events, community meetups and offline campaigns.</div><ul class="clean-list"><li>Creator attendance and live stories</li><li>UGC clips and event recap content</li><li>Usage-ready assets for the brand</li></ul><a href="contact.html" class="slide-btn">Build an IRL Push</a></article>
+      <article class="campaign-card"><span class="mini-label">Ambassador Tier</span><h3>Recurring voices for the brand.</h3><p>A longer partnership with selected creators who repeatedly show up for the brand over a few months.</p><div class="best"><b>Best for</b>Trust-building, category education, founder-led brands, premium products and high-consideration purchases.</div><ul class="clean-list"><li>Monthly posts and co-created content</li><li>Exclusivity and usage rights</li><li>Performance reviews and renewal recommendations</li></ul><a href="contact.html" class="slide-btn">Explore Ambassador Tier</a></article>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" class="inf-section alt">
+<section id="selection" class="inf-section alt">
   <span class="inf-wm" aria-hidden="true">05</span>
   <div class="inf-shell">
-    <div class="inf-head sr" style="text-align:center;margin-left:auto;margin-right:auto;">
-      <div class="inf-eyebrow" style="justify-content:center;">05 / FAQ</div>
-      <h2>The questions brands<br>actually ask.</h2>
+    <div class="inf-head sr"><div class="inf-eyebrow">05 / Creator selection</div><h2>Chosen by fit,<br>not follower count.</h2><p>A big profile is not always a useful profile. We look at whether the creator can actually move the right audience for the right reason.</p></div>
+    <div class="criteria-grid sr-stag">
+      <article class="criteria-card"><h3>Audience</h3><p>City, audience location, niche, category fit, audience trust and expected buyer belief.</p></article>
+      <article class="criteria-card"><h3>Content</h3><p>Content quality, format strength, posting consistency and ability to follow a brief.</p></article>
+      <article class="criteria-card"><h3>Credibility</h3><p>Comment quality, past brand work, brand safety and whether engagement looks real.</p></article>
+      <article class="criteria-card"><h3>Value</h3><p>Expected cost vs value, usage flexibility, whitelisting flexibility and campaign role.</p></article>
     </div>
-    <div class="inf-faq sr">
-      <div class="inf-faq-item">
-        <button class="inf-faq-q" type="button"><span class="ix">01</span>How do you track ROI, really?<span class="pm" aria-hidden="true"></span></button>
-        <div class="inf-faq-a"><div class="inf-faq-a-inner">Every post ships with its own UTM-tagged link and, where it fits, a discount code. Those wire directly into your GA4 and Shopify, so we attribute sessions, redemptions and orders back to the individual creator &mdash; not a blended &ldquo;reach&rdquo; number.</div></div>
-      </div>
-      <div class="inf-faq-item">
-        <button class="inf-faq-q" type="button"><span class="ix">02</span>What does reporting look like?<span class="pm" aria-hidden="true"></span></button>
-        <div class="inf-faq-a"><div class="inf-faq-a-inner">A live dashboard link, updated in real time &mdash; not an end-of-month PDF. You will see reach, clicks, code usage, engagement and attributed revenue, and you can share the same link with your board.</div></div>
-      </div>
-      <div class="inf-faq-item">
-        <button class="inf-faq-q" type="button"><span class="ix">03</span>Who owns the content and usage rights?<span class="pm" aria-hidden="true"></span></button>
-        <div class="inf-faq-a"><div class="inf-faq-a-inner">You do, on terms set before anyone posts. Contracts cover usage rights, exclusivity windows and whitelisting for paid social &mdash; so you can run the best-performing creator content as ads.</div></div>
-      </div>
-      <div class="inf-faq-item">
-        <button class="inf-faq-q" type="button"><span class="ix">04</span>How are creators chosen?<span class="pm" aria-hidden="true"></span></button>
-        <div class="inf-faq-a"><div class="inf-faq-a-inner">By fit, not follower count. Every creator is matched by city, niche and intent, and has worked with us at least twice before we recommend them. We say no more than we say yes.</div></div>
-      </div>
-      <div class="inf-faq-item">
-        <button class="inf-faq-q" type="button"><span class="ix">05</span>What does a campaign cost?<span class="pm" aria-hidden="true"></span></button>
-        <div class="inf-faq-a"><div class="inf-faq-a-inner">Launch Raids run &#8377;5&ndash;18 lakh for a coordinated 10-day push; Always-On Drips start at &#8377;3 lakh/month; IRL &amp; UGC pushes from &#8377;4 lakh. Ambassador tiers are scoped per deal. You will get a fixed scope before we start.</div></div>
-      </div>
-      <div class="inf-faq-item">
-        <button class="inf-faq-q" type="button"><span class="ix">06</span>How fast can we go live?<span class="pm" aria-hidden="true"></span></button>
-        <div class="inf-faq-a"><div class="inf-faq-a-inner">A Launch Raid is typically briefed, contracted and live within two to three weeks. Always-on retainers start the following content cycle.</div></div>
-      </div>
-    </div>
+    <p class="strong-line">The best creator is not always the biggest one. It is the one your buyer actually believes.</p>
   </div>
 </section>
 
-<!-- SEGMENTED CTA FUNNEL -->
-<section id="inf-cta" class="inf-section">
+<section id="tracking" class="inf-section">
   <span class="inf-wm" aria-hidden="true">06</span>
   <div class="inf-shell">
-    <div class="inf-cta-head sr">
-      <div class="inf-eyebrow">06 / Next move</div>
-      <h2>Start where it makes<br>sense for <span class="accent">you.</span></h2>
-    </div>
-    <div class="inf-cta-grid sr-stag">
-      <a href="contact.html" class="inf-cta-card primary" data-cursor="Start">
-        <span class="ix">01 / Brands</span>
-        <h3>Launch a campaign</h3>
-        <p>Bring us the product and the window. You will get a creator shortlist, a fixed scope, and a tracked plan.</p>
-        <span class="go">Start a project <span aria-hidden="true">&rarr;</span></span>
-      </a>
-      <a href="#system" class="inf-cta-card">
-        <span class="ix">02 / See it first</span>
-        <h3>See a sample dashboard</h3>
-        <p>Want proof before a call? Jump to the live dashboard preview and see exactly what you would get.</p>
-        <span class="go">View the dashboard <span aria-hidden="true">&rarr;</span></span>
-      </a>
-      <a href="contact.html" class="inf-cta-card">
-        <span class="ix">03 / Access</span>
-        <h3>Request roster access</h3>
-        <p>Agencies and brands can request access to Roster &mdash; the CRM we run every campaign on.</p>
-        <span class="go">Request access <span aria-hidden="true">&rarr;</span></span>
-      </a>
+    <div class="inf-head sr"><div class="inf-eyebrow">06 / Tracking</div><h2>You see what each creator<br>actually did.</h2><p>Every creator gets their own tracking setup. The campaign is not judged only by screenshots, views or "good engagement." You can see who drove attention, clicks, saves, redemptions and orders.</p></div>
+    <div class="tracking-grid">
+      <div class="clarity-card"><span class="mini-label">Dashboard metrics</span><ul class="clean-list"><li>Creator name and deliverable status</li><li>Post links, reach, views and engagement</li><li>Link clicks, code usage, orders or leads</li><li>CPA, best-performing content and usage-rights status</li><li>Repeat, pause or cut recommendation</li></ul><a href="contact.html" class="slide-btn">See a sample dashboard</a></div>
+      <div class="sample-dash" aria-label="Sample dashboard preview"><div class="sample-dash-head"><span>Sample dashboard</span><span>No zero-value placeholders</span></div><div class="sample-row header"><span>Creator</span><span>Status</span><span>Clicks</span><span>Codes</span><span>Recommendation</span></div><div class="sample-row"><span>@localtaste</span><span><i class="pill-status">Live</i></span><span>Creator-level result</span><span>Campaign total</span><span>Repeat</span></div><div class="sample-row"><span>@dailyfit</span><span><i class="pill-status">Posted</i></span><span>Live metric</span><span>Code usage</span><span>Scale story</span></div><div class="sample-row"><span>@streetlens</span><span><i class="pill-status">Review</i></span><span>Post link</span><span>Tracked</span><span>Pause</span></div></div>
     </div>
   </div>
 </section>
 
+<section id="rights" class="inf-section alt">
+  <span class="inf-wm" aria-hidden="true">07</span>
+  <div class="inf-shell">
+    <div class="inf-head sr"><div class="inf-eyebrow">07 / Compliance and rights</div><h2>The boring paperwork<br>makes the campaign usable.</h2><p>Influencer marketing moves fast, but the paperwork cannot be loose. We clarify deliverables, timelines, disclosure labels, usage rights and exclusivity before creators go live.</p></div>
+    <div class="rights-grid sr-stag"><article class="clarity-card"><h3>Disclosure and safety</h3><p>Paid partnership labels, platform-specific requirements, brand safety checks and category-specific caution for regulated products.</p></article><article class="clarity-card"><h3>Usage and whitelisting</h3><p>Reposting rights, ad usage permissions, whitelisting terms and content reuse windows are defined up front.</p></article><article class="clarity-card"><h3>Deliverable control</h3><p>Exclusivity windows, deliverable SLAs, approval flow, posting windows and creator responsibilities are locked before launch.</p></article></div>
+    <p class="strong-line">A great creator video is not valuable if the brand cannot legally use it again.</p>
+  </div>
+</section>
+
+<section id="cases" class="inf-section">
+  <span class="inf-wm" aria-hidden="true">08</span>
+  <div class="inf-shell">
+    <div class="inf-head sr"><div class="inf-eyebrow">08 / Campaign examples</div><h2>Campaign shapes,<br>with receipts.</h2><p>These are sample campaign formats. Replace sample labels with approved brand names and verified metrics when case studies are cleared for publication.</p></div>
+    <div class="inf-rail-wrap sr"><div class="inf-rail" aria-label="Sample creator campaign formats">
+      <article class="inf-case"><div class="inf-case-shot"><span class="inf-case-stamp">Sample campaign format</span><img src="images/g-ambar-coffee.webp" alt="Coffee creator campaign format" loading="lazy" decoding="async" width="440" height="275"></div><div class="inf-case-body"><div class="inf-case-meta"><span class="tg">Launch Raid</span><span class="cl">Coffee / F&amp;B</span></div><h3>Fast awareness with tracked purchase intent.</h3><div class="inf-case-row"><span class="k">Challenge</span><span class="v">A new product needed one-city awareness and a way to read purchase intent.</span></div><div class="inf-case-row"><span class="k">Creator plan</span><span class="v">Food and lifestyle creators posted over 10 days with a common message and individual tracking codes.</span></div><div class="inf-case-row"><span class="k">Tracking</span><span class="v">Creator-wise UTM links and discount codes connected to the store.</span></div><p class="inf-case-result">Result pending approval <span>/ learning: trust beat size</span></p></div></article>
+      <article class="inf-case"><div class="inf-case-shot"><span class="inf-case-stamp">Sample campaign format</span><img src="images/g-interview-set.webp" alt="IRL creator campaign format" loading="lazy" decoding="async" width="440" height="275"></div><div class="inf-case-body"><div class="inf-case-meta"><span class="tg">IRL &amp; UGC Push</span><span class="cl">Event / activation</span></div><h3>Real-world moments turned into reusable content.</h3><div class="inf-case-row"><span class="k">Challenge</span><span class="v">An offline activation needed attendance, social proof and usable content.</span></div><div class="inf-case-row"><span class="k">Creator plan</span><span class="v">Creators attended, filmed, posted live and handed over usage-ready assets.</span></div><div class="inf-case-row"><span class="k">Tracking</span><span class="v">Post links, story frames, attendance, content delivery and usage rights.</span></div><p class="inf-case-result">Result pending approval <span>/ learning: brief quality changed output</span></p></div></article>
+      <article class="inf-case"><div class="inf-case-shot"><span class="inf-case-stamp">Sample campaign format</span><img src="images/g-lifestyle.webp" alt="Always-on creator drip format" loading="lazy" decoding="async" width="440" height="275"></div><div class="inf-case-body"><div class="inf-case-meta"><span class="tg">Always-On Drip</span><span class="cl">Lifestyle / retail</span></div><h3>Monthly proof without random posting.</h3><div class="inf-case-row"><span class="k">Challenge</span><span class="v">The brand needed steady discovery between major launches.</span></div><div class="inf-case-row"><span class="k">Creator plan</span><span class="v">A small monthly creator set with planned themes, rights and reporting.</span></div><div class="inf-case-row"><span class="k">Tracking</span><span class="v">Recurring links, codes, post URLs and monthly creator-wise learning.</span></div><p class="inf-case-result">Result pending approval <span>/ learning: repetition built recall</span></p></div></article>
+    </div><div class="inf-rail-cue"><span>Drag / scroll</span><span class="bar"><i></i></span><span>-&gt;</span></div></div>
+  </div>
+</section>
+
+<section id="voices" class="inf-section alt">
+  <span class="inf-wm" aria-hidden="true">09</span>
+  <div class="inf-shell">
+    <div class="inf-head sr"><div class="inf-eyebrow">09 / Client notes</div><h2>What brands care about<br>after the campaign.</h2></div>
+    <div class="insight-grid sr-stag"><article class="clarity-card"><h3>"We finally knew which creators were worth repeating."</h3><p>The dashboard makes creator selection sharper after every campaign.</p></article><article class="clarity-card"><h3>"The content became reusable, not disposable."</h3><p>Rights and usage terms turn creator output into a brand asset.</p></article><article class="clarity-card"><h3>"The campaign was easier to defend internally."</h3><p>Creator-wise tracking gives founders and CMOs a clean story for what worked.</p></article></div>
+  </div>
+</section>
+
+<section id="faq" class="inf-section">
+  <span class="inf-wm" aria-hidden="true">10</span>
+  <div class="inf-shell">
+    <div class="inf-head sr" style="text-align:center;margin-left:auto;margin-right:auto;"><div class="inf-eyebrow" style="justify-content:center;">10 / FAQ</div><h2>The questions brands<br>actually ask.</h2></div>
+    <div class="inf-faq sr">
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">01</span>Do you just connect us with influencers?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">No. We manage the campaign around the creator: shortlisting, outreach, negotiation, briefing, contracts, tracking, go-live operations and reporting.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">02</span>How do you choose creators?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">By fit, not follower count. We look at audience location, category fit, content quality, comment quality, brand safety, past work, pricing and ability to follow a brief.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">03</span>Can you work with nano and micro creators?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">Yes. Nano and micro creators are often more useful for city-level campaigns, trust-led categories, launches and UGC. We recommend the creator mix based on the campaign goal.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">04</span>How do you track performance?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">Creators get individual links, codes or UTMs where possible. We track traffic, redemptions, orders, engagement and content delivery by creator.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">05</span>What do we get at the end?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">You get a dashboard, creator-wise performance summary, live links, content usage notes, learning points and a recommendation on who to repeat or cut.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">06</span>Who owns the creator content?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">Usage rights are defined before the campaign starts. We clarify where the brand can reuse the content, for how long, and whether it can be used in paid ads.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">07</span>Do you handle disclosure and compliance?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">Yes. Sponsored content and paid partnerships need clear disclosure. We include disclosure requirements in creator briefs and contracts.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">08</span>How much does a campaign cost?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">Launch Raids run &#8377;5-18 lakh. Always-On Drips start from &#8377;3 lakh/month. IRL &amp; UGC pushes start from &#8377;4 lakh. Ambassador tiers are scoped per deal. Final scope depends on creator tier, number of creators, usage rights, category, city, timeline and production needs.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">09</span>How fast can we go live?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">A focused launch campaign can move faster than a long ambassador program, but timelines depend on creator availability, contract approvals, product access and tracking setup.</div></div></div>
+      <div class="inf-faq-item"><button class="inf-faq-q" type="button"><span class="ix">10</span>Can you help after the influencer campaign?<span class="pm" aria-hidden="true"></span></button><div class="inf-faq-a"><div class="inf-faq-a-inner">Yes. If the campaign creates attention, the brand still needs content to keep showing up. See <a href="content.html">Content &amp; Brand</a> for weekly retainers or <a href="web.html">Web &amp; Tech</a> for landing pages and conversion flows.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="inf-cta" class="inf-section alt">
+  <span class="inf-wm" aria-hidden="true">11</span>
+  <div class="inf-shell">
+    <div class="inf-cta-head sr"><div class="inf-eyebrow">11 / Next move</div><h2>Start with the<br>campaign problem.</h2><p>Tell us what you are trying to move: a launch, a store opening, a city, a product, a creator content bank, or a long-term trust play. We will recommend the smallest campaign shape that makes sense.</p></div>
+    <div class="next-grid sr-stag">
+      <a href="contact.html" class="inf-cta-card primary"><span class="ix">01 / Launch</span><h3>Launch a campaign</h3><p>For brands ready to run a creator campaign with a fixed window, creator shortlist, tracking plan and report.</p><span class="go">Start a project <span aria-hidden="true">-&gt;</span></span></a>
+      <a href="#tracking" class="inf-cta-card"><span class="ix">02 / Dashboard</span><h3>See a sample dashboard</h3><p>For founders and CMOs who want to understand creator-wise tracking before booking a call.</p><span class="go">View dashboard <span aria-hidden="true">-&gt;</span></span></a>
+      <a href="contact.html" class="inf-cta-card"><span class="ix">03 / Planning</span><h3>Request creator planning</h3><p>For teams that already have creators in mind but need help with fit, contracts, tracking and structure.</p><span class="go">Request planning help <span aria-hidden="true">-&gt;</span></span></a>
+      <a href="content.html" class="inf-cta-card"><span class="ix">04 / Content</span><h3>Need weekly brand content too?</h3><p>If the campaign creates attention, the brand still needs content to keep showing up.</p><span class="go">Explore Content &amp; Brand <span aria-hidden="true">-&gt;</span></span></a>
+    </div>
+    <div class="not-sure"><b>Not sure?</b> Tell us what you are launching. We will suggest the smallest useful creator plan.</div>
+  </div>
+</section>
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="sfoot-shell">
     <div class="sfoot-news">
       <div class="sfoot-news-copy">
-        <h4>Read what we ship.</h4>
-        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
+        <h4>Want to see how we think about creators?</h4>
+        <p>Read our notes on creator shortlisting, campaign tracking, UGC, usage rights, influencer mistakes, launch planning and the difference between reach and results.</p>
       </div>
       <form class="sfoot-form" onsubmit="return false;">
-        <input type="email" name="email" placeholder="you@company.com" required>
+        <input type="email" name="email" placeholder="Enter your email" required>
         <button type="submit">Subscribe <span aria-hidden="true">-&gt;</span></button>
       </form>
     </div>
