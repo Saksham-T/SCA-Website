@@ -91,17 +91,19 @@
 
   /* Client logo marquee — scale up from the 96px design-system default */
   .client-logo {
-    height: 132px;
+    height: 99px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    border: none;
   }
   .client-logo img {
     width: auto;
     height: auto;
-    max-height: 132px;
+    max-height: 99px;
     object-fit: contain;
+    border: none;
   }
 
   /* Fix #2: CLS — gallery/studio stills aspect ratio reservation */
@@ -251,23 +253,21 @@
   .faq-a { padding: 0 64px 28px 0; color: var(--text-muted); font-size: 19px; line-height: 1.55; max-width: 78ch; }
 
   /* ============ NAVBAR EDGE-LIGHT (index only) ============ */
-  /* A bright arc continuously travels around the border of BOTH navbar pills
-     (the SEETUSK / SCA brand and the CONTENT/CREATORS/… links), sharing one
-     identical effect. Scoped to index.html so it never runs on other pages. */
+  /* On the index page the traveling edge light belongs to the SEETUSK / SCA
+     brand pill ONLY. The nav-links pill keeps its plain glassy look here; its
+     own edge light (from sca.css) is reserved for the other pages. */
   @property --brand-edge {
     syntax: '<angle>';
     initial-value: 0deg;
     inherits: false;
   }
-  .brand,
-  .nav-links {
+  .brand {
     position: relative;
     isolation: isolate;
     overflow: visible; /* let the outer bloom show beyond the pill */
   }
   /* the running edge light, masked to just the border ring */
-  .brand::before,
-  .nav-links::before {
+  .brand::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -282,18 +282,17 @@
       #ffffff 332deg,
       #cfe0ff 344deg,
       rgba(34, 87, 255, 0.35) 360deg
-    ) !important;
+    );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask-composite: exclude;
-    animation: brandEdgeSpin 4.2s linear infinite !important;
+    animation: brandEdgeSpin 4.2s linear infinite;
     pointer-events: none;
     z-index: 5;
   }
   /* soft outer bloom that follows the same arc */
-  .brand::after,
-  .nav-links::after {
+  .brand::after {
     content: "";
     position: absolute;
     inset: -2px;
@@ -311,15 +310,15 @@
     pointer-events: none;
     z-index: -1;
   }
-  /* keep the logo mark, text and nav links above the glow layers */
-  .brand > *,
-  .nav-links a { position: relative; z-index: 10; }
+  /* keep the logo mark + text above the glow layers */
+  .brand > * { position: relative; z-index: 10; }
   @keyframes brandEdgeSpin {
     to { --brand-edge: 360deg; }
   }
+  /* Suppress the nav-links pill's edge light on the index page only */
+  .nav-links::before { display: none !important; }
   @media (prefers-reduced-motion: reduce) {
-    .brand::before, .brand::after,
-    .nav-links::before, .nav-links::after { animation: none; }
+    .brand::before, .brand::after { animation: none; }
   }
 </style>
 </head>
@@ -771,56 +770,6 @@
         <h4>Your distribution team</h4>
         <p>An ongoing monthly partnership. We become the team that ships your brand.</p>
         <span class="dur">Monthly</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOUNDERS ============ -->
-<section class="section" id="founders" data-screen-label="Founders">
-  <div class="shell">
-    <div class="section-head sr">
-      <div class="section-num">007 / Founders</div>
-      <div>
-        <div class="section-label">The people you'll actually work with</div>
-        <h2 class="section-title">No layers. The founders are on the work.</h2>
-        <p class="section-sub">SeeTusk is run by three founders who each own a part of the engine &mdash; and stay close to every account.</p>
-      </div>
-    </div>
-
-    <div class="team-grid sr-stag">
-      <div class="team-card">
-        <picture>
-          <source srcset="images/team-sarthak-mobile.webp" media="(max-width: 768px)">
-          <img src="images/team-sarthak.webp" alt="Sarthak Thakur, Founder at SeeTusk Creative Agency" loading="lazy" decoding="async" width="400" height="533">
-        </picture>
-        <div class="team-info">
-          <h3>Sarthak Thakur</h3>
-          <p>Founder &middot; Strategy &amp; Brand</p>
-          <p class="team-bio">Figures out what your brand should say, and why anyone should care.</p>
-        </div>
-      </div>
-      <div class="team-card">
-        <picture>
-          <source srcset="images/team-saksham-mobile.webp" media="(max-width: 768px)">
-          <img src="images/team-saksham.webp" alt="Saksham Thakur, Co-founder at SeeTusk Creative Agency" loading="lazy" decoding="async" width="400" height="533">
-        </picture>
-        <div class="team-info">
-          <h3>Saksham Thakur</h3>
-          <p>Co-founder &middot; Web &amp; Technology</p>
-          <p class="team-bio">Builds the sites, landers and tools that catch the attention we create.</p>
-        </div>
-      </div>
-      <div class="team-card">
-        <picture>
-          <source srcset="images/team-melbin-mobile.webp" media="(max-width: 768px)">
-          <img src="images/team-melbin.webp" alt="Melbin Alexander, Co-founder at SeeTusk Creative Agency" loading="lazy" decoding="async" width="400" height="533">
-        </picture>
-        <div class="team-info">
-          <h3>Melbin Alexander</h3>
-          <p>Co-founder &middot; Production &amp; Ops</p>
-          <p class="team-bio">Turns the plan into shoots, edits and a calendar that actually ships.</p>
-        </div>
       </div>
     </div>
   </div>
