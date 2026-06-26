@@ -8,8 +8,8 @@
   window.addEventListener('load', function () { window.scrollTo(0, 0); });
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SeeTusk Creative Agency. Motion-first creative distribution studio</title>
-<meta name="description" content="SCA builds distribution for brands that need to be seen. Content systems, creator networks, web experiences, and campaign engines from Pune, India.">
+<title>SeeTusk Creative Agency &mdash; Content, Creator Campaigns &amp; Web (Pune, India)</title>
+<meta name="description" content="SeeTusk helps growing Indian brands get seen and chosen — through content systems, creator campaigns, and websites built to convert. Based in Pune, working pan-India.">
 <!-- Fix #6: Updated theme-color to match dark theme (#0e0e0e) -->
 <meta name="theme-color" content="#0e0e0e">
 <meta name="robots" content="index, follow">
@@ -249,6 +249,78 @@
   .faq-plus { flex-shrink: 0; color: var(--accent-orange); font-weight: 700; transition: transform .3s var(--ease); font-size: 28px; line-height: 1; }
   .faq-item[open] .faq-plus { transform: rotate(45deg); }
   .faq-a { padding: 0 64px 28px 0; color: var(--text-muted); font-size: 19px; line-height: 1.55; max-width: 78ch; }
+
+  /* ============ NAVBAR EDGE-LIGHT (index only) ============ */
+  /* A bright arc continuously travels around the border of BOTH navbar pills
+     (the SEETUSK / SCA brand and the CONTENT/CREATORS/… links), sharing one
+     identical effect. Scoped to index.html so it never runs on other pages. */
+  @property --brand-edge {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  .brand,
+  .nav-links {
+    position: relative;
+    isolation: isolate;
+    overflow: visible; /* let the outer bloom show beyond the pill */
+  }
+  /* the running edge light, masked to just the border ring */
+  .brand::before,
+  .nav-links::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--brand-edge),
+      transparent 0deg,
+      transparent 230deg,
+      rgba(34, 87, 255, 0.35) 285deg,
+      #cfe0ff 320deg,
+      #ffffff 332deg,
+      #cfe0ff 344deg,
+      rgba(34, 87, 255, 0.35) 360deg
+    ) !important;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    animation: brandEdgeSpin 4.2s linear infinite !important;
+    pointer-events: none;
+    z-index: 5;
+  }
+  /* soft outer bloom that follows the same arc */
+  .brand::after,
+  .nav-links::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--brand-edge),
+      transparent 0deg,
+      transparent 250deg,
+      rgba(120, 170, 255, 0.55) 320deg,
+      transparent 360deg
+    );
+    filter: blur(7px);
+    opacity: 0.7;
+    animation: brandEdgeSpin 4.2s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+  /* keep the logo mark, text and nav links above the glow layers */
+  .brand > *,
+  .nav-links a { position: relative; z-index: 10; }
+  @keyframes brandEdgeSpin {
+    to { --brand-edge: 360deg; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .brand::before, .brand::after,
+    .nav-links::before, .nav-links::after { animation: none; }
+  }
 </style>
 </head>
 <body class="intro-locked">
@@ -270,6 +342,41 @@
   <div class="intro-bar"></div>
 </div>
 
+<!-- Intro driver: plays the loader sequence and reveals the page. Runs inline so
+     it never depends on assets/sca-kinetic.js loading — guaranteeing the page is
+     always revealed even if that external script fails. sca-kinetic.js detects
+     the already-handled intro and skips its own duplicate run. -->
+<script>
+  (function () {
+    function driveIntro() {
+      var intro = document.getElementById('intro');
+      if (!intro) { document.body.classList.remove('intro-locked'); return; }
+
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        intro.setAttribute('hidden', '');
+        document.body.classList.remove('intro-locked');
+        return;
+      }
+
+      document.body.classList.add('intro-locked');
+      requestAnimationFrame(function () { intro.classList.add('go'); });
+      setTimeout(function () { intro.classList.add('reveal'); }, 1950);
+      setTimeout(function () {
+        intro.classList.add('lift');
+        document.body.classList.remove('intro-locked');
+        // reveal the hero headline once the curtain lifts (kinetic script does
+        // this too, but this guarantees it if that script never runs)
+        document.querySelectorAll('.kin-line').forEach(function (l) { l.classList.add('in'); });
+      }, 3300);
+      setTimeout(function () { intro.setAttribute('hidden', ''); }, 4200);
+    }
+
+    if (document.readyState !== 'loading') driveIntro();
+    else document.addEventListener('DOMContentLoaded', driveIntro);
+  })();
+</script>
+
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
@@ -278,10 +385,9 @@
     </a>
     <div class="nav-links">
       <a href="content.html" data-scramble>Content</a>
-      <a href="influencer.html" data-scramble>Influencer</a>
+      <a href="influencer.html" data-scramble>Creators</a>
       <a href="web.html" data-scramble>Web &amp; Tech</a>
       <a href="about.html" data-scramble>About</a>
-      <a href="careers.html" data-scramble>Career</a>
     </div>
     <!-- <div class="nav-cta">
       <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
@@ -324,9 +430,9 @@
     <div class="hero-sub">
       <span class="num">&#8627; 001</span>
       <p>
-        SeeTusk is a creative distribution studio in Pune. We make the content,
-        run the creator campaigns, and build the websites that get growing Indian
-        brands seen &mdash; and we ship something new every single week.
+        We make the content, run the creator campaigns, and build the websites
+        that turn attention into customers &mdash; shipped on a weekly rhythm
+        from our creative distribution studio in Pune.
       </p>
       <div class="cta-col">
         <a href="contact.html" class="btn accent" data-magnetic="0.3" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
@@ -701,8 +807,8 @@
         </picture>
         <div class="team-info">
           <h3>Saksham Thakur</h3>
-          <p>Co-founder &middot; Production &amp; Ops</p>
-          <p class="team-bio">Turns the plan into shoots, edits and a calendar that actually ships.</p>
+          <p>Co-founder &middot; Web &amp; Technology</p>
+          <p class="team-bio">Builds the sites, landers and tools that catch the attention we create.</p>
         </div>
       </div>
       <div class="team-card">
@@ -712,8 +818,8 @@
         </picture>
         <div class="team-info">
           <h3>Melbin Alexander</h3>
-          <p>Co-founder &middot; Web &amp; Technology</p>
-          <p class="team-bio">Builds the sites, landers and tools that catch the attention we create.</p>
+          <p>Co-founder &middot; Production &amp; Ops</p>
+          <p class="team-bio">Turns the plan into shoots, edits and a calendar that actually ships.</p>
         </div>
       </div>
     </div>
@@ -765,7 +871,7 @@
     <div class="faq-list sr">
       <details class="faq-item">
         <summary>What does SeeTusk actually do?<span class="faq-plus" aria-hidden="true">+</span></summary>
-        <div class="faq-a">We're a creative distribution studio. We make your content, run your creator and influencer campaigns, and build your website and tools &mdash; and we keep it all shipping on a weekly rhythm. Think of us as your outsourced brand and content team.</div>
+        <div class="faq-a">We're a creative distribution studio. We make your content, run your creator campaigns, and build the websites and tools that turn attention into customers &mdash; all shipping on a weekly rhythm.</div>
       </details>
       <details class="faq-item">
         <summary>How do you charge?<span class="faq-plus" aria-hidden="true">+</span></summary>
@@ -828,7 +934,7 @@
           <img src="images/sca-logo-mark.webp" alt="SeeTusk SCA logo mark">
           <span>SeeTusk / SCA</span>
         </div>
-        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <p>SeeTusk Creative Agency. We build content, creator campaigns, and web systems that get ambitious Indian brands seen and chosen. Headquartered in Pune.</p>
         <!-- Fix #13: Social links updated with real URLs + target/rel -->
         <div class="sfoot-socials">
           <a href="https://www.youtube.com/@seetuskcreativeagency" title="YouTube" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
@@ -837,8 +943,8 @@
           <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Career</a></nav>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content</a><a href="influencer.html">Creators</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
       <!-- Fix #13: Footer elsewhere links with real URLs -->
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
@@ -852,5 +958,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
+<!-- Homepage-only kinetic behaviors; also dismisses the .intro loader by removing body.intro-locked -->
+<script src="assets/sca-kinetic.js?v=1.0.4"></script>
 </body>
 </html>
