@@ -250,19 +250,24 @@
   .faq-item[open] .faq-plus { transform: rotate(45deg); }
   .faq-a { padding: 0 64px 28px 0; color: var(--text-muted); font-size: 19px; line-height: 1.55; max-width: 78ch; }
 
-  /* ============ NAVBAR BRAND EDGE-LIGHT (index only) ============ */
-  /* A bright arc continuously travels around the SEETUSK / SCA pill's border. */
+  /* ============ NAVBAR EDGE-LIGHT (index only) ============ */
+  /* A bright arc continuously travels around the border of BOTH navbar pills
+     (the SEETUSK / SCA brand and the CONTENT/CREATORS/… links), sharing one
+     identical effect. Scoped to index.html so it never runs on other pages. */
   @property --brand-edge {
     syntax: '<angle>';
     initial-value: 0deg;
     inherits: false;
   }
-  .brand {
+  .brand,
+  .nav-links {
     position: relative;
     isolation: isolate;
+    overflow: visible; /* let the outer bloom show beyond the pill */
   }
   /* the running edge light, masked to just the border ring */
-  .brand::before {
+  .brand::before,
+  .nav-links::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -277,17 +282,18 @@
       #ffffff 332deg,
       #cfe0ff 344deg,
       rgba(34, 87, 255, 0.35) 360deg
-    );
+    ) !important;
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
             mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
             mask-composite: exclude;
-    animation: brandEdgeSpin 4.2s linear infinite;
+    animation: brandEdgeSpin 4.2s linear infinite !important;
     pointer-events: none;
-    z-index: 2;
+    z-index: 5;
   }
   /* soft outer bloom that follows the same arc */
-  .brand::after {
+  .brand::after,
+  .nav-links::after {
     content: "";
     position: absolute;
     inset: -2px;
@@ -305,13 +311,15 @@
     pointer-events: none;
     z-index: -1;
   }
-  /* keep the logo mark + text above the glow layers */
-  .brand > * { position: relative; z-index: 3; }
+  /* keep the logo mark, text and nav links above the glow layers */
+  .brand > *,
+  .nav-links a { position: relative; z-index: 10; }
   @keyframes brandEdgeSpin {
     to { --brand-edge: 360deg; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .brand::before, .brand::after { animation: none; }
+    .brand::before, .brand::after,
+    .nav-links::before, .nav-links::after { animation: none; }
   }
 </style>
 </head>
