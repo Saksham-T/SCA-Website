@@ -83,25 +83,39 @@
     line-height: 1.32;
     max-width: 46ch;
   }
+  /* No side index marker on the hero sub — paragraph aligns flush-left under the H1 */
+  .hero .hero-sub {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
   .cta-row p {
     font-size: var(--body-lead);
     line-height: 1.3;
     max-width: 34ch;
   }
 
-  /* Client logo marquee — scale up from the 96px design-system default */
+  /* Marquee speed — 2× faster than the 46s bundle default;
+     gap (distance between logos) cut 30% from the bundle clamp(64px,7vw,120px) */
+  .clients-track { animation-duration: 23s; gap: clamp(45px, 4.9vw, 84px); }
+
+  /* Marquee band/frame — 120px base, then occupancy increased 30% (120 → 156px) */
+  .clients { height: 156px; }
+
+  /* Client logos — grown 30% to fill the taller band (79 → 103px),
+     with +20% horizontal occupancy via inline padding */
   .client-logo {
-    height: 99px;
+    height: 103px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     border: none;
+    padding-inline: 14px;
   }
   .client-logo img {
     width: auto;
     height: auto;
-    max-height: 99px;
+    max-height: 103px;
     object-fit: contain;
     border: none;
   }
@@ -135,8 +149,8 @@
   .result-num {
     font-family: var(--font-display);
     color: #F8F4EC;
-    font-size: clamp(54px, 6.4vw, 104px);
-    line-height: .86;
+    font-size: clamp(34px, 3.6vw, 54px);
+    line-height: .9;
     font-weight: 900;
     letter-spacing: -.01em;
   }
@@ -320,7 +334,232 @@
   @media (prefers-reduced-motion: reduce) {
     .brand::before, .brand::after { animation: none; }
   }
+
+  /* =====================================================================
+     DESIGN SYSTEM TYPE SCALE + SPACING (home page only)
+     Per "SeeTusk Website Design System Standards".
+     Breakpoints: Desktop (base) / Tablet <=1023px / Mobile <=767px.
+     Font family + accent colours intentionally kept as the current brand.
+     This whole block can be removed to revert.
+     ===================================================================== */
+
+  /* --- Type scale: Desktop --- */
+  .hero-h1 { font-size: 72px; }                                   /* Hero H1 72 */
+  .hero-sub p { font-size: 22px; line-height: 1.5; max-width: 700px; } /* Hero desc 22 / 700px */
+  .section-title { font-size: 48px; line-height: 1.05; }          /* H2 48 */
+  .cta-h { font-size: 48px; line-height: 1.05; }                  /* Final CTA = H2 48 */
+  .lab-card h3,
+  .project-meta h3,
+  .why-col h3,
+  .quote-card blockquote { font-size: 28px; line-height: 1.12; }  /* H3 28 */
+  .process-step h4,
+  .faq-item summary { font-size: 24px; line-height: 1.15; }       /* H4 / card title 24 */
+
+  /* Body 18 / Small 16 / Labels 14 / Button 16 */
+  :root { --body: 18px; }
+  .section-sub,
+  .lab-card .lab-desc,
+  .process-step p,
+  .faq-a,
+  .why-list li,
+  .project-meta p,
+  .cta-row p,
+  #lab .section-sub,
+  .camera-step .section-sub { font-size: 18px; line-height: 1.55; }
+  .result-label,
+  .team-bio,
+  .quote-by span { font-size: 16px; }
+  .section-label,
+  .section-num,
+  .why-eyebrow { font-size: 14px; }
+  .btn { font-size: 16px; }
+
+  /* --- Spacing: Desktop --- */
+  .section,
+  .results,
+  .lab,
+  .cta-block { padding-top: 80px; padding-bottom: 80px; }         /* Section padding — compact (was 120) */
+  .lab-grid,
+  .work-grid,
+  .process-grid,
+  .quotes-grid { gap: 24px; }                                     /* Card gap 24 */
+  .section-sub { margin-top: 24px; }                              /* Heading -> paragraph 24 */
+  .hero-sub .cta-col,
+  .cta-row > div:last-child { margin-top: 32px; }                 /* Paragraph -> CTA 32 */
+
+  /* CTA row has no side number now — drop the empty number column so the
+     description sits flush-left (text | buttons), stacking on mobile */
+  .cta-block .cta-row { grid-template-columns: minmax(0, 1fr) auto; }
+  @media (max-width: 767px) {
+    .cta-block .cta-row { grid-template-columns: 1fr; }
+  }
+
+  /* --- Tablet: 768–1023px --- */
+  @media (max-width: 1023px) {
+    .hero-h1 { font-size: 60px; }
+    .hero-sub p { font-size: 20px; }
+    .section-title, .cta-h { font-size: 40px; }
+    .lab-card h3, .project-meta h3, .why-col h3, .quote-card blockquote { font-size: 24px; }
+    .process-step h4, .faq-item summary { font-size: 22px; }
+    :root { --body: 17px; }
+    .section-sub, .lab-card .lab-desc, .process-step p, .faq-a, .why-list li,
+    .project-meta p, .cta-row p, #lab .section-sub, .camera-step .section-sub { font-size: 17px; }
+    .result-label, .team-bio, .quote-by span { font-size: 15px; }
+    .section, .results, .lab, .cta-block { padding-top: 56px; padding-bottom: 56px; }
+    .lab-grid, .work-grid, .process-grid, .quotes-grid { gap: 20px; }
+    .section-sub { margin-top: 20px; }
+    .hero-sub .cta-col, .cta-row > div:last-child { margin-top: 24px; }
+  }
+
+  /* --- Mobile: <=767px --- */
+  @media (max-width: 767px) {
+    .hero-h1 { font-size: 42px; }
+    .hero-sub p { font-size: 18px; }
+    .section-title, .cta-h { font-size: 32px; }
+    .lab-card h3, .project-meta h3, .why-col h3, .quote-card blockquote { font-size: 22px; }
+    .process-step h4, .faq-item summary { font-size: 20px; }
+    :root { --body: 16px; }
+    .section-sub, .lab-card .lab-desc, .process-step p, .faq-a, .why-list li,
+    .project-meta p, .cta-row p, #lab .section-sub, .camera-step .section-sub { font-size: 16px; }
+    .result-label, .team-bio, .quote-by span { font-size: 14px; }
+    .section-label, .section-num, .why-eyebrow { font-size: 13px; }
+    .btn { font-size: 15px; }
+    .section, .results, .lab, .cta-block { padding-top: 44px; padding-bottom: 44px; }
+    .lab-grid, .work-grid, .process-grid, .quotes-grid { gap: 16px; }
+    .section-sub { margin-top: 16px; }
+    .hero-sub .cta-col, .cta-row > div:last-child { margin-top: 20px; }
+  }
+
+  /* ============ CASE-STUDY DRAWERS (featured work cards) ============ */
+  .case-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+  .project-link { text-decoration: none; }
+  .case-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+  }
+  .case-toggle:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+  .case-toggle-icon { position: relative; width: 11px; height: 11px; flex-shrink: 0; }
+  .case-toggle-icon::before,
+  .case-toggle-icon::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+    transition: transform .35s var(--ease), opacity .35s var(--ease);
+  }
+  .case-toggle-icon::before { top: 5px; left: 0; width: 11px; height: 1.5px; }
+  .case-toggle-icon::after  { left: 5px; top: 0; width: 1.5px; height: 11px; }
+  .case-toggle[aria-expanded="true"] .case-toggle-icon::after { transform: scaleY(0); opacity: 0; }
+
+  .project-card:hover .case-toggle { border-color: rgba(255,255,255,.55); color: #fff; }
+  .project-card:hover .case-toggle:hover { background: #fff; color: var(--accent-blue); border-color: #fff; }
+
+  .case-drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .45s var(--ease);
+  }
+  .case-drawer.is-open { grid-template-rows: 1fr; }
+  .case-drawer-inner { overflow: hidden; min-height: 0; }
+
+  .case-detail {
+    margin: 18px 0 2px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-soft);
+    display: grid;
+    gap: 14px;
+  }
+  .case-row {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .case-row dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent-orange);
+    padding-top: 3px;
+  }
+  .case-row dd {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .project-card:hover .case-detail { border-color: rgba(255,255,255,.28); }
+  .project-card:hover .case-row dt { color: #fff; }
+  .project-card:hover .case-row dd { color: rgba(255,255,255,.92); }
+
+  @media (max-width: 600px) {
+    .case-row { grid-template-columns: 1fr; gap: 4px; }
+    .case-row dt { padding-top: 0; }
+  }
+
 </style>
+<!-- ============ STRUCTURED DATA (SEO) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SeeTusk Creative Agency",
+  "alternateName": "SCA",
+  "url": "https://seetusk.agency/",
+  "logo": "https://seetusk.agency/images/sca-logo-mark.webp",
+  "description": "SeeTusk helps growing Indian brands get seen and chosen through content, creator campaigns, and websites that convert.",
+  "email": "contact@seetusk.com",
+  "telephone": "+91-89836-60794",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pune",
+    "addressRegion": "Maharashtra",
+    "postalCode": "411021",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.instagram.com/seetusk.agency",
+    "https://www.linkedin.com/company/seetusk",
+    "https://x.com/seetusk",
+    "https://www.youtube.com/@seetuskcreativeagency"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SeeTusk Creative Agency",
+  "image": "https://seetusk.agency/og.jpg",
+  "url": "https://seetusk.agency/",
+  "areaServed": "IN",
+  "priceRange": "$$",
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content and Brand" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Creator Campaigns" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web and Tech" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Campaign Launches" } }
+  ]
+}
+</script>
 </head>
 <body class="intro-locked">
 
@@ -380,7 +619,6 @@
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
-      <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
       <a href="content.html" data-scramble>Content</a>
@@ -427,15 +665,11 @@
     </h1>
 
     <div class="hero-sub">
-      <span class="num">&#8627; 001</span>
       <p>
-        We make the content, run the creator campaigns, and build the websites
-        that turn attention into customers &mdash; shipped on a weekly rhythm
-        from our creative distribution studio in Pune.
+        We help growing Indian brands get seen and chosen through content,
+        creator campaigns, and websites that convert &mdash; shipped on a
+        weekly rhythm from our creative distribution studio in Pune.
       </p>
-      <div class="cta-col">
-        <a href="contact.html" class="btn accent" data-magnetic="0.3" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
-      </div>
     </div>
   </div>
 </header>
@@ -497,7 +731,7 @@
 
     <div class="lab-grid">
       <a class="lab-card up" href="content.html" data-cursor="Explore">
-        <div class="lab-card-top"><span class="idx">01</span><span>Content</span></div>
+        <div class="lab-card-top"><span class="idx"></span><span>Content &amp; Brand</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
   <source srcset="images/ed-content-carton-mobile.webp" media="(max-width: 768px)">
@@ -510,7 +744,7 @@
       </a>
 
       <a class="lab-card up" href="influencer.html" data-cursor="Explore">
-        <div class="lab-card-top"><span class="idx">02</span><span>Creators</span></div>
+        <div class="lab-card-top"><span class="idx"></span><span>Creator Campaigns</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
   <source srcset="images/ed-prada-street-mobile.webp" media="(max-width: 768px)">
@@ -523,7 +757,7 @@
       </a>
 
       <a class="lab-card up" href="web.html" data-cursor="Explore">
-        <div class="lab-card-top"><span class="idx">03</span><span>Web</span></div>
+        <div class="lab-card-top"><span class="idx"></span><span>Web &amp; Tech</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
   <source srcset="images/ed-ss24-phone-mobile.webp" media="(max-width: 768px)">
@@ -535,8 +769,8 @@
         <span class="lab-link">See web &amp; tech -></span>
       </a>
 
-      <a class="lab-card up" href="contact.html" data-cursor="Start">
-        <div class="lab-card-top"><span class="idx">04</span><span>Campaigns</span></div>
+      <a class="lab-card up" href="contact.html?service=campaign-launches" data-cursor="Start">
+        <div class="lab-card-top"><span class="idx"></span><span>Campaign Launches</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
   <source srcset="images/ed-friday-rickshaw-mobile.webp" media="(max-width: 768px)">
@@ -596,7 +830,7 @@
     </div>
 
     <div class="work-grid sr-stag" data-stacking-cards>
-      <a class="project-card" href="content.html" data-cursor="View case">
+      <article class="project-card" id="case-ambar">
         <div class="project-media clip-rise">
           <picture>
   <source srcset="images/ed-cambium-cups-mobile.webp" media="(max-width: 768px)">
@@ -607,11 +841,28 @@
           <div class="project-top"><span>Ambar Coffee</span><span>F&amp;B / Content</span></div>
           <h3>Weekly cafe content that fills tables</h3>
           <p>Positioning, monthly shoots and a weekly publishing rhythm for a Pune coffee brand. Result: a feed that finally looks like the cafe &mdash; and walk-ins who mention the reels.</p>
-          <span class="project-link">View case -></span>
+          <div class="case-actions">
+            <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-ambar-detail">
+              <span class="case-toggle-label">View case</span>
+              <span class="case-toggle-icon" aria-hidden="true"></span>
+            </button> -->
+            <a class="project-link" href="content.html">See the service -></a>
+          </div>
+          <div class="case-drawer" id="case-ambar-detail" role="region" aria-label="Ambar Coffee case study">
+            <div class="case-drawer-inner">
+              <dl class="case-detail">
+                <div class="case-row"><dt>Problem</dt><dd>A Pune coffee brand with a room people loved but a feed that didn't look like it &mdash; sporadic posting, and walk-ins that leaned on luck rather than content.</dd></div>
+                <div class="case-row"><dt>Work</dt><dd>Repositioning, a monthly shoot day and a weekly publishing calendar built around the real menu and the moments that actually happen in the cafe.</dd></div>
+                <div class="case-row"><dt>Result</dt><dd>A feed that finally reads like the cafe &mdash; and regulars who quote the reels at the counter.</dd></div>
+                <div class="case-row"><dt>Timeline</dt><dd>6-week setup, then an ongoing monthly rhythm.</dd></div>
+                <div class="case-row"><dt>Deliverables</dt><dd>Brand positioning &middot; monthly photo &amp; video shoots &middot; weekly reels &amp; posts &middot; content calendar.</dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="project-card" href="influencer.html" data-cursor="View case">
+      <article class="project-card" id="case-firvt">
         <div class="project-media clip-rise">
           <img src="images/ed-loewe-chair.webp" alt="Editorial creator campaign" loading="lazy" decoding="async">
         </div>
@@ -619,11 +870,28 @@
           <div class="project-top"><span>FIRVT</span><span>Launch / Creators</span></div>
           <h3>Launch coverage that outran a quarter</h3>
           <p>Creator mapping, on-ground event capture and social edits for a high-velocity drop. One launch week of creator coverage moved more than the previous quarter of paid.</p>
-          <span class="project-link">View case -></span>
+          <div class="case-actions">
+            <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-firvt-detail">
+              <span class="case-toggle-label">View case</span>
+              <span class="case-toggle-icon" aria-hidden="true"></span>
+            </button> -->
+            <a class="project-link" href="influencer.html">See the service -></a>
+          </div>
+          <div class="case-drawer" id="case-firvt-detail" role="region" aria-label="FIRVT case study">
+            <div class="case-drawer-inner">
+              <dl class="case-detail">
+                <div class="case-row"><dt>Problem</dt><dd>A high-velocity product drop with a single launch window and no creator-coverage plan to make the moment land.</dd></div>
+                <div class="case-row"><dt>Work</dt><dd>Creator mapping and briefs, on-ground event capture and fast daily social edits timed to the drop.</dd></div>
+                <div class="case-row"><dt>Result</dt><dd>One launch week of creator coverage moved more than the previous quarter of paid.</dd></div>
+                <div class="case-row"><dt>Timeline</dt><dd>3-week ramp into one intensive launch week.</dd></div>
+                <div class="case-row"><dt>Deliverables</dt><dd>Creator shortlist &amp; briefs &middot; event capture &middot; daily social edits &middot; launch recap.</dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="project-card" href="web.html" data-cursor="View case">
+      <article class="project-card" id="case-devknight">
         <div class="project-media clip-rise">
           <picture>
   <source srcset="images/ed-marble-circuit-mobile.webp" media="(max-width: 768px)">
@@ -634,11 +902,28 @@
           <div class="project-top"><span>DevKnight</span><span>Brand / Web</span></div>
           <h3>A brand and site that finally match</h3>
           <p>Brand language, stationery, web direction and content surfaces &mdash; sharp, technical, usable. The brand and the website now read like the same company, three times its size.</p>
-          <span class="project-link">View case -></span>
+          <div class="case-actions">
+            <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-devknight-detail">
+              <span class="case-toggle-label">View case</span>
+              <span class="case-toggle-icon" aria-hidden="true"></span>
+            </button> -->
+            <a class="project-link" href="web.html">See the service -></a>
+          </div>
+          <div class="case-drawer" id="case-devknight-detail" role="region" aria-label="DevKnight case study">
+            <div class="case-drawer-inner">
+              <dl class="case-detail">
+                <div class="case-row"><dt>Problem</dt><dd>A capable tech company that read smaller than it was &mdash; the brand and the website looked like two different companies.</dd></div>
+                <div class="case-row"><dt>Work</dt><dd>Brand language, a stationery system, web direction and content surfaces &mdash; sharp, technical and genuinely usable.</dd></div>
+                <div class="case-row"><dt>Result</dt><dd>Brand and site now read like the same company &mdash; one that looks three times its size.</dd></div>
+                <div class="case-row"><dt>Timeline</dt><dd>8&ndash;10 weeks end to end.</dd></div>
+                <div class="case-row"><dt>Deliverables</dt><dd>Brand identity &middot; stationery system &middot; web direction &middot; content surfaces.</dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </a>
+      </article>
 
-      <a class="project-card" href="content.html" data-cursor="View case">
+      <article class="project-card" id="case-fevistik">
         <div class="project-media clip-rise">
           <picture>
   <source srcset="images/ed-creative-linear-mobile.webp" media="(max-width: 768px)">
@@ -649,9 +934,26 @@
           <div class="project-top"><span>Fevistik</span><span>Campaign / OOH</span></div>
           <h3>An outdoor moment people remembered</h3>
           <p>Campaign visuals, shoot adaptation and platform cuts built for a playful, high-recall brand moment that travelled from billboard to feed without losing its punch.</p>
-          <span class="project-link">View case -></span>
+          <div class="case-actions">
+            <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-fevistik-detail">
+              <span class="case-toggle-label">View case</span>
+              <span class="case-toggle-icon" aria-hidden="true"></span>
+            </button> -->
+            <a class="project-link" href="content.html">See the service -></a>
+          </div>
+          <div class="case-drawer" id="case-fevistik-detail" role="region" aria-label="Fevistik case study">
+            <div class="case-drawer-inner">
+              <dl class="case-detail">
+                <div class="case-row"><dt>Problem</dt><dd>A playful brand needed a high-recall outdoor moment that wouldn't die on the billboard the moment people scrolled past.</dd></div>
+                <div class="case-row"><dt>Work</dt><dd>Campaign visuals, shoot adaptation and platform-specific cuts engineered to travel from billboard to feed.</dd></div>
+                <div class="case-row"><dt>Result</dt><dd>A campaign that moved from OOH to social without losing its punch &mdash; one moment, many surfaces.</dd></div>
+                <div class="case-row"><dt>Timeline</dt><dd>4&ndash;6 weeks from concept to live cuts.</dd></div>
+                <div class="case-row"><dt>Deliverables</dt><dd>Campaign concept &middot; key visuals &middot; shoot adaptation &middot; platform cuts.</dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </a>
+      </article>
     </div>
   </div>
 </section>
@@ -746,7 +1048,7 @@
     </div>
 
     <div class="section-head sr" style="margin-top: clamp(56px, 7vw, 96px);">
-      <div class="section-num">&mdash;</div>
+      <div class="section-num"></div>
       <div>
         <div class="section-label">Three ways to start</div>
         <h2 class="section-title" style="font-size: clamp(30px, 4vw, 56px);">Pick the gear that fits where you are.</h2>
@@ -850,14 +1152,13 @@
 <section class="cta-block" data-screen-label="CTA">
   <div class="shell">
     <div class="sr">
-      <div class="section-label" style="color:rgba(248,244,236,.62);">010 / Next move</div>
+      <div class="section-label" style="color:var(--accent-blue);">010 / Next move</div>
       <h2 class="cta-h">Ready to build a brand people actually <span class="accent">notice?</span></h2>
       <div class="cta-row">
-        <div class="num">007</div>
         <p>Tell us the stuck point: quiet content, underused creators, a launch coming up, or a site that doesn't carry the brand. We'll give you a straight read and a practical way to fix it.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
-          <a href="#featured-work" class="btn ghost" data-magnetic="0.4" data-cursor="View case">See the work</a>
+          <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
+          <a href="#featured-work" class="btn ghost" data-magnetic="0.4" data-cursor="See work">See the work</a>
         </div>
       </div>
     </div>
@@ -909,5 +1210,21 @@
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 <!-- Homepage-only kinetic behaviors; also dismisses the .intro loader by removing body.intro-locked -->
 <script src="assets/sca-kinetic.js?v=1.0.4"></script>
+<!-- Featured-work case-study drawers: expand real proof inline (problem/work/result/timeline/deliverables) -->
+<script>
+  (function () {
+    document.querySelectorAll('.case-toggle').forEach(function (btn) {
+      var drawer = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!drawer) return;
+      var label = btn.querySelector('.case-toggle-label');
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        drawer.classList.toggle('is-open', !open);
+        if (label) label.textContent = open ? 'View case' : 'Hide case';
+      });
+    });
+  })();
+</script>
 </body>
 </html>
