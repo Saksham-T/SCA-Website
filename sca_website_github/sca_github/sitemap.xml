@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://seetusk.agency/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://seetusk.agency/content.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://seetusk.agency/influencer.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://seetusk.agency/web.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://seetusk.agency/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://seetusk.agency/contact.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seetusk.agency/content</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://seetusk.agency/influencer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://seetusk.agency/web</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://seetusk.agency/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seetusk.agency/careers</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seetusk.agency/contact</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>

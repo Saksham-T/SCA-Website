@@ -137,10 +137,12 @@
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 
-    let mx = window.innerWidth / 2;
-    let my = window.innerHeight / 2;
+    let mx = -100;
+    let my = -100;
     let rx = mx;
     let ry = my;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
 
     let vx = 0;
     let vy = 0;

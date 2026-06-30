@@ -1,5 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /export/
+Disallow: /_github_drop/
+Disallow: /uploads/
+Disallow: /sca_github/
+Disallow: /redesign/
+Disallow: /hero-concepts/
+Disallow: /Fixing-files/
+Disallow: /Careers-webpage/
 
 Sitemap: https://seetusk.agency/sitemap.xml
