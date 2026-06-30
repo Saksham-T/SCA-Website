@@ -46,18 +46,16 @@
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
       opacity: 0; transform: scale(1.06);
+      filter: brightness(.34) saturate(1.06) contrast(1.02);
       transition: opacity 1.2s ease, transform 7s ease;
     }
     .hero-slide-bg.active { opacity: 1; transform: scale(1); }
 
     .slide-overlay {
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        105deg,
-        rgba(0,0,0,0.86) 0%,
-        rgba(0,0,0,0.55) 45%,
-        rgba(0,0,0,0.22) 100%
-      );
+      background:
+        linear-gradient(105deg, rgba(7,7,10,0.82) 0%, rgba(7,7,10,0.5) 54%, rgba(7,7,10,0.2) 100%),
+        linear-gradient(180deg, transparent 30%, rgba(7,7,10,0.62) 100%);
     }
 
     .hero-inner {
@@ -87,19 +85,22 @@
       font-size: clamp(48px, 6vw, 88px); line-height: 0.95;
       letter-spacing: -0.01em; color: #fff; font-weight: 800;
       margin-bottom: 22px;
-      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+    }
+    /* Hero headline — match Web & Tech look: bold uppercase, solid white → blue */
+    #hero .slide-title {
+      text-transform: uppercase;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: 0;
     }
     .glass-text {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.25);
+      color: #f7f8fa;
+      -webkit-text-fill-color: #f7f8fa;
     }
     .tint-text {
-      background: linear-gradient(180deg, rgba(140, 175, 255, 0.95) 0%, rgba(46, 98, 255, 0.4) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 0.5px rgba(46, 98, 255, 0.35);
+      display: block;
+      color: #3158ff;
+      -webkit-text-fill-color: #3158ff;
     }
 
     .slide-desc {
@@ -629,6 +630,18 @@
       letter-spacing: -0.01em;
     }
     .slide-title { font-size: clamp(40px, 5vw, 72px); line-height: 0.95; }
+
+    /* ── Descending heading hierarchy: hero biggest, sections step down ── */
+    .slide-title { font-size: clamp(52px, 6.3vw, 90px) !important; }
+    #problem h2        { font-size: clamp(33px, 4.6vw, 60px); }
+    #system .inf-head h2   { font-size: clamp(32px, 4.3vw, 55px); }
+    #manage .inf-head h2   { font-size: clamp(31px, 4.0vw, 50px); }
+    #campaign-types .inf-head h2 { font-size: clamp(30px, 3.8vw, 46px); }
+    #tracking .inf-head h2 { font-size: clamp(29px, 3.6vw, 43px); }
+    #cases .inf-head h2    { font-size: clamp(28px, 3.4vw, 40px); }
+    #voices .inf-head h2   { font-size: clamp(27px, 3.2vw, 37px); }
+    #faq .inf-head h2      { font-size: clamp(26px, 3.0vw, 35px); }
+    #inf-cta .inf-cta-head h2 { font-size: clamp(26px, 3.0vw, 34px); }
     .slide-label, .section-label, .archetype-tag, .strip-img-label,
     .strip-img-num, .tier-label {
       font-family: var(--font-mono);
@@ -648,6 +661,9 @@
        Drop JetBrains Mono (not part of our design system): map both mono
        variables to the display face so every label matches the rest of the site. */
     body { --inf-mono: var(--font-display); --font-mono: var(--font-display); }
+    /* Shared nav defaults to JetBrains Mono in the global bundle — keep this page
+       on League Spartan + EB Garamond only by overriding the nav face. */
+    .brand, .nav-links, .nav-links a { font-family: var(--font-display) !important; }
     /* Labels / eyebrows — one consistent treatment, a touch larger */
     .inf-eyebrow, .section-label, .slide-label,
     .inf-case-meta, .inf-case-stamp, .inf-case-row .k, .inf-faq-q .ix {
@@ -769,6 +785,62 @@
       body.inf .nav-cta { display: none; }
       .slider-controls { display: none; }
     }
+
+    /* ── Remove section marker eyebrows across the page ── */
+    .slide-label,
+    .section-label,
+    .inf-eyebrow,
+    .method-card span { display: none !important; }
+
+    /* ════════════ DUAL ACCENT — orange signal + blue structure ════════════
+       Orange (#FC7233) marks every numeral / index / category label / status /
+       live indicator; blue stays the structural + interactive accent (headings,
+       hover borders, glow, bullets, links). Mirrors the careers + web pages. */
+    :root{ --sig:#FC7233; --sig-deep:#E05A1A; --sig-soft:rgba(252,114,51,.16); --inf-ease:cubic-bezier(.165,.84,.44,1); }
+
+    /* — index / label / status markers go orange — */
+    .mini-label,
+    .tier-label,
+    .tier-badge,
+    .campaign-card .best b,
+    .inf-faq-q .ix,
+    .inf-cta-card .ix,
+    .inf-case-stamp,
+    .inf-case-meta,
+    .inf-case-row .k,
+    .archetype-tag,
+    .strip-img-num,
+    .inf-step-num { color: var(--sig) !important; }
+
+    /* dashboard live indicator → pulsing orange dot + orange label */
+    .inf-dash-live { color: var(--sig) !important; display: inline-flex; align-items: center; gap: 7px; }
+    .inf-dash-live::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--sig); box-shadow:0 0 0 0 rgba(252,114,51,.5); animation:inf-sig-pulse 2.2s infinite; }
+    @keyframes inf-sig-pulse{0%{box-shadow:0 0 0 0 rgba(252,114,51,.5)}70%{box-shadow:0 0 0 7px rgba(252,114,51,0)}100%{box-shadow:0 0 0 0 rgba(252,114,51,0)}}
+
+    /* — orange hover accent bar on cards (blue hover border already in place) — */
+    .clarity-card,
+    .campaign-card,
+    .criteria-card,
+    .tier-card,
+    .inf-cta-card { position: relative; overflow: hidden; }
+    .clarity-card::after,
+    .campaign-card::after,
+    .criteria-card::after,
+    .tier-card::after,
+    .inf-cta-card::after { content:""; position:absolute; left:0; top:0; height:2px; width:100%; background:var(--sig); transform:scaleX(0); transform-origin:left; transition:transform .32s var(--inf-ease); z-index:2; }
+    .clarity-card:hover::after,
+    .campaign-card:hover::after,
+    .criteria-card:hover::after,
+    .tier-card:hover::after,
+    .inf-cta-card:hover::after { transform:scaleX(1); }
+
+    /* case-format cards: orange stamp already set; add orange edge on hover */
+    .inf-case { transition: border-color .3s var(--inf-ease), transform .3s var(--inf-ease); }
+    .inf-case:hover { border-color: rgba(252,114,51,.4); }
+
+    /* faq rows: orange numeral, orange left edge when open */
+    .inf-faq-item { transition: border-color .28s var(--inf-ease); }
+    .inf-faq-item:hover { border-color: rgba(46,84,234,.4); }
   </style>
 </head>
 <body class="inf">
@@ -778,17 +850,15 @@
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
-      <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
       <a href="content.html" data-scramble>Content</a>
       <a href="influencer.html" class="active" aria-current="page" data-scramble>Influencer</a>
       <a href="web.html" data-scramble>Web &amp; Tech</a>
       <a href="about.html" data-scramble>About</a>
-      <a href="careers.html" data-scramble>Career</a>
     </div>
     <div class="nav-cta">
-      <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
+      <a href="contact.html" class="btn accent" data-magnetic-spring="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
     </div>
   </div>
 </nav>
@@ -806,7 +876,7 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="slide-label">Vertical 02 / Influencer Marketing</div>
-      <h1 class="slide-title"><span class="glass-text">Creator campaigns</span><br><span class="tint-text">with proof.</span></h1>
+      <h1 class="slide-title"><span class="glass-text">Creator campaigns</span> <span class="tint-text">with proof.</span></h1>
       <p class="slide-desc">We plan, shortlist, brief, contract, track and report influencer campaigns for brands that need more than reach screenshots.</p>
       <p class="slide-desc">Every creator gets a reason, a brief, a tracked link, a code and a role in the campaign, so you know who created attention, clicks, content and orders.</p>
       <div class="hero-actions">
@@ -824,7 +894,6 @@
         <a href="#tracking">Tracking</a>
         <a href="#faq">FAQ</a>
       </div>
-      <p class="hero-note">For launches, store openings, founder-led brands, D2C drops, hospitality, lifestyle, FMCG and local growth campaigns.</p>
     </div>
 
     <div class="method-panel" aria-label="How SeeTusk runs creator campaigns">
@@ -1108,5 +1177,6 @@
   }
 </script>
 <script src="assets/sca-influencer.js?v=1.0.0"></script>
+<script src="assets/sca-magnetic.js?v=1.0.0"></script>
 </body>
 </html>

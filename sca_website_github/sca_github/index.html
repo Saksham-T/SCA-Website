@@ -320,6 +320,34 @@
   @media (prefers-reduced-motion: reduce) {
     .brand::before, .brand::after { animation: none; }
   }
+
+  /* ════════════ DUAL ACCENT — orange signal + blue structure ════════════
+     The dark theme remaps --accent-orange to a periwinkle (#8597F1), making
+     every "orange" accent render as light blue. Restore the real brand orange
+     so section numbers, card indexes, result marks, eyebrows, quote marks and
+     the FAQ plus read correctly. Blue (#2E54EA) already matches the brand.
+     Then add the Web & Tech card treatment: an orange hover accent bar with a
+     blue lift/glow, plus blue selection + focus. */
+  :root { --accent-orange: #FC7233; }
+
+  ::selection { background: var(--accent-blue); color: #fff; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; border-radius: 4px; }
+
+  /* orange hover accent bar on the card families */
+  .lab-card, .quote-card, .why-col, .project-card { position: relative; }
+  .quote-card, .why-col { overflow: hidden; }
+  .lab-card::after, .quote-card::after, .why-col::after, .project-card::after {
+    content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%;
+    background: var(--accent-orange); transform: scaleX(0); transform-origin: left;
+    transition: transform .34s var(--ease); z-index: 6; pointer-events: none;
+  }
+  .lab-card:hover::after, .quote-card:hover::after, .why-col:hover::after, .project-card:hover::after { transform: scaleX(1); }
+
+  /* give the static testimonial + comparison cards a blue lift on hover */
+  .quote-card, .why-col { transition: transform .34s var(--ease), border-color .34s var(--ease), box-shadow .34s var(--ease); }
+  .quote-card:hover, .why-col:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent-blue) 50%, transparent); box-shadow: var(--shadow-blue); }
+  /* lab cards keep their orange hover tint, now with a blue glow underneath */
+  .lab-card:hover { box-shadow: var(--shadow-blue); }
 </style>
 </head>
 <body class="intro-locked">
@@ -380,7 +408,6 @@
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
-      <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
       <a href="content.html" data-scramble>Content</a>
@@ -434,7 +461,7 @@
         from our creative distribution studio in Pune.
       </p>
       <div class="cta-col">
-        <a href="contact.html" class="btn accent" data-magnetic="0.3" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
+        <a href="contact.html" class="btn accent" data-magnetic-spring="0.3" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
       </div>
     </div>
   </div>
@@ -856,7 +883,7 @@
         <div class="num">007</div>
         <p>Tell us the stuck point: quiet content, underused creators, a launch coming up, or a site that doesn't carry the brand. We'll give you a straight read and a practical way to fix it.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
+          <a href="contact.html" class="btn accent" data-magnetic-spring="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
           <a href="#featured-work" class="btn ghost" data-magnetic="0.4" data-cursor="View case">See the work</a>
         </div>
       </div>
@@ -909,5 +936,6 @@
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 <!-- Homepage-only kinetic behaviors; also dismisses the .intro loader by removing body.intro-locked -->
 <script src="assets/sca-kinetic.js?v=1.0.4"></script>
+<script src="assets/sca-magnetic.js?v=1.0.0"></script>
 </body>
 </html>

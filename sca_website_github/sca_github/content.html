@@ -13,18 +13,42 @@
 
 <link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
 <style>
-  /* Slightly larger, more readable "Who it's for" bullet list */
-  .bullet-list h3 { font-size: 23px; line-height: 1.15; }
-  .bullet-list p { font-size: 20px; line-height: 1.55; }
+  /* ── Accent token fix ──────────────────────────────────────────
+     The dark theme redefines --accent-orange to a periwinkle (#8597F1),
+     which made every "orange" accent render as light blue. Restore the
+     real brand orange so the dual-accent system reads correctly. Blue
+     (#2E54EA) already matches the home page. */
+  :root { --accent-orange: #FC7233; }
 
-  /* Content engine — numbered steps */
-  .cb-steps { display: grid; gap: 0; }
-  .cb-step { display: grid; grid-template-columns: 120px 1fr; gap: clamp(20px,3vw,52px); padding: clamp(24px,2.6vw,38px) 0; border-top: 1px solid var(--border-soft); align-items: start; }
-  .cb-step:last-child { border-bottom: 1px solid var(--border-soft); }
-  .cb-step-n { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-orange); }
-  .cb-step-n b { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(38px,4vw,60px); color: var(--text-main); line-height: .9; margin-top: 8px; }
-  .cb-step h4 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(22px,2vw,32px); line-height: 1; color: var(--text-main); margin-bottom: 10px; }
-  .cb-step p { font-family: var(--font-body); font-size: clamp(18px,1.3vw,21px); line-height: 1.5; color: var(--text-muted); max-width: 56ch; }
+  /* Section 01 — Who it's for (redesigned) */
+  .who-wrap { display: block; }
+  .who-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .who-card { position: relative; border: 1px solid var(--border-soft); border-radius: var(--radius); background: var(--bg-card); padding: clamp(22px,1.9vw,32px); display: flex; flex-direction: column; gap: 14px; transition: transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease); }
+  .who-card-n { font-family: var(--font-display); font-weight: 900; font-size: clamp(30px,2.6vw,44px); line-height: .85; color: var(--accent-orange); }
+  .who-card h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(18px,1.5vw,23px); line-height: 1.04; color: var(--text-main); }
+  .who-card p { font-family: var(--font-body); font-size: 17.5px; line-height: 1.5; color: var(--text-muted); }
+  .who-card:hover { transform: translateY(-4px); border-color: var(--accent-blue); background: var(--card-2); }
+  @media (max-width: 900px) { .who-wrap { grid-template-columns: 1fr; gap: 28px; } .who-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .who-grid { grid-template-columns: 1fr; } }
+
+  /* Content engine — 5-step image cards */
+  .cb-steps { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 14px; }
+  .cb-step { position: relative; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--border-soft); border-radius: var(--radius); background: var(--bg-card); transition: transform .38s var(--ease), border-color .38s var(--ease), box-shadow .38s var(--ease); }
+  .cb-step::after { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%; background: var(--accent-orange); transform: scaleX(0); transform-origin: left; transition: transform .38s var(--ease); z-index: 4; }
+  .cb-step:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent-blue) 50%, transparent); box-shadow: var(--shadow-blue); }
+  .cb-step:hover::after { transform: scaleX(1); }
+  .cb-step-shot { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+  .cb-step-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s var(--ease); }
+  .cb-step:hover .cb-step-shot img { transform: scale(1.06); }
+  .cb-step-shot::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8,8,10,.66) 0%, rgba(8,8,10,0) 36%, rgba(8,8,10,0) 58%, rgba(8,8,10,.82) 100%); }
+  .cb-step-n { position: absolute; top: 14px; left: 16px; z-index: 2; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-orange); }
+  .cb-step-n b { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(34px,2.6vw,46px); color: #fff; line-height: .86; margin-top: 4px; }
+  .cb-step-body { padding: 18px clamp(16px,1.3vw,20px) clamp(20px,1.6vw,24px); display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .cb-step h4 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(19px,1.4vw,23px); line-height: 1.02; color: var(--text-main); margin: 0; }
+  .cb-step p { font-family: var(--font-body); font-size: 16px; line-height: 1.5; color: var(--text-muted); margin: 0; }
+  @media (max-width: 1100px) { .cb-steps { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 740px) { .cb-steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .cb-steps { grid-template-columns: 1fr; } .cb-step-shot { aspect-ratio: 16 / 10; } }
 
   /* What's included — pillar rows */
   .cb-pillar { display: grid; grid-template-columns: 1.1fr 1.4fr; gap: clamp(22px,3vw,56px); padding: clamp(26px,2.8vw,42px) 0; border-top: 1px solid var(--border-soft); }
@@ -37,6 +61,16 @@
   .cb-pillar-deliver li::before { content: ""; flex: 0 0 6px; width: 6px; height: 6px; margin-top: 8px; border-radius: 1px; background: var(--accent-blue); }
   .cb-freq-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-soft); border-radius: 999px; padding: 7px 13px; background: rgba(255,255,255,.04); }
   .cb-freq-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-orange); }
+
+  /* Zigzag: mirror every other pillar so the eye steps left → right → left.
+     Column widths stay constant (text track 1.1fr, deliverables track 1.4fr);
+     only their order and the text block's alignment flip. */
+  .cb-pillar > div { align-self: start; }
+  .cb-pillar:nth-child(even) { grid-template-columns: 1.4fr 1.1fr; }
+  .cb-pillar:nth-child(even) > div:first-child { order: 2; text-align: right; }
+  /* keep the running copy left-aligned for readability, but hug the right edge */
+  .cb-pillar:nth-child(even) .cb-pillar-desc { text-align: left; margin-left: auto; }
+  .cb-pillar:nth-child(even) .cb-pillar-deliver { margin-left: 0; }
 
   /* What this is not — comparison */
   .cb-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -84,12 +118,96 @@
   .cb-pricing-note { margin-top: 28px; max-width: 60ch; font-family: var(--font-body); font-size: 19px; line-height: 1.5; color: var(--text-muted); }
   .cb-pricing-note b { color: var(--text-main); }
 
+  /* ════════════ DUAL ACCENT — orange hover bar + blue hover edge ════════════
+     Markers already split orange (numerals/index/status) vs blue (links,
+     bullets, structure). This adds the signature orange hover accent bar +
+     blue lift on cards, matching the Web & Tech and Influencer pages. */
+  .who-card, .cb-comp, .cb-ba-col, .vert { overflow: hidden; }
+  .who-card::before, .cb-comp::before, .cb-ba-col::before, .vert::after {
+    content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%;
+    background: var(--accent-orange); transform: scaleX(0); transform-origin: left;
+    transition: transform .32s cubic-bezier(.16,1,.3,1); z-index: 3;
+  }
+  .who-card:hover::before, .cb-comp:hover::before, .cb-ba-col:hover::before, .vert:hover::after { transform: scaleX(1); }
+
+  /* give the static comparison + before/after panels a blue lift on hover */
+  .cb-comp, .cb-ba-col { position: relative; transition: transform .32s cubic-bezier(.16,1,.3,1), border-color .32s, box-shadow .32s; }
+  .cb-comp:hover, .cb-ba-col.before:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent-blue) 45%, transparent); box-shadow: var(--shadow-blue); }
+  .cb-ba-col.after:hover { transform: translateY(-4px); box-shadow: var(--shadow-blue); }
+
+  /* ── Remove section marker eyebrows from all headings ─────────── */
+  .deck-kicker,
+  .section-label,
+  .section-num,
+  .vert-num { display: none !important; }
+  /* Tighten the hero: pull the title up into the space the kicker
+     vacated and enlarge it so the frame stays full. */
+  .deck-copy--a { top: clamp(6%, 7vh, 10%) !important; }
+  .deck-copy--a .deck-title { font-size: clamp(52px, 6.3vw, 90px); max-width: 14ch; }
+  /* Section number lived in the left grid column — collapse it so
+     the heading sits flush left without an empty gutter. */
+  .section-head { grid-template-columns: 1fr !important; }
+
+  /* ── Descending heading hierarchy ──────────────────────────────
+     Hero (.deck-title) stays the largest type on the page; each
+     section title below it steps down in size, section by section. */
+  main > section:nth-of-type(2) .section-title { font-size: clamp(33px, 5vw, 66px); }
+  main > section:nth-of-type(3) .section-title { font-size: clamp(31px, 4.6vw, 60px); max-width: none; }
+  main > section:nth-of-type(4) .section-title { font-size: clamp(30px, 4.1vw, 53px); }
+  main > section:nth-of-type(5) .section-title { font-size: clamp(28px, 3.8vw, 48px); }
+  main > section:nth-of-type(6) .section-title { font-size: clamp(27px, 3.5vw, 43px); }
+  main > section:nth-of-type(7) .section-title { font-size: clamp(26px, 3.2vw, 39px); }
+  main > section:nth-of-type(8) .section-title { font-size: clamp(25px, 3vw, 35px); }
+
   @media (max-width: 900px) {
     .cb-pillar { grid-template-columns: 1fr; gap: 16px; }
+    .cb-pillar:nth-child(even) { grid-template-columns: 1fr; }
+    .cb-pillar:nth-child(even) > div:first-child { order: 0; text-align: left; }
     .cb-compare, .cb-ba { grid-template-columns: 1fr; }
-    .cb-step { grid-template-columns: 1fr; gap: 8px; }
   }
   @media (max-width: 640px) { .cb-pillar-deliver { columns: 1; } }
+
+  /* ════════════ DUAL ACCENT — full enforcement (careers parity) ════════════
+     Orange (#FC7233) = signal: emphasis words, numerals, primary CTA, tick
+     markers, active indicators. Blue (#2257FF) = structure/interaction:
+     selection, focus, category tags, ghost hovers, after-state, links. */
+  ::selection { background: var(--accent-blue); color: #fff; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, .vert:focus-visible, input:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; border-radius: 4px; }
+
+  /* emphasis words in headlines → orange */
+  .deck-title .accent, .cta-h .accent { color: var(--accent-orange) !important; }
+  /* hero headline dual-accent: 60% white / 30% blue / 10% orange */
+  .deck-title .accent.blue { color: var(--accent-blue) !important; }
+
+  /* hero deck cards: orange numeral + blue category, paired */
+  .dcard-num { color: var(--accent-orange) !important; }
+  .dcard-tag { color: var(--accent-blue) !important; }
+  .deck-dots .on { background: var(--accent-orange) !important; }
+
+  /* ── HERO 60 / 30 / 10 ──────────────────────────────────────────
+     White (~60%): headlines + lead copy carry the section.
+     Blue (~30%): structural labels — kickers and card category tags.
+     Orange (~10%): signal pops only — card numerals + the active dot
+     + a single emphasis word per headline. */
+  .deck-kicker { color: var(--accent-blue) !important; }
+  .deck-lead { color: rgba(247,248,250,.9) !important; }
+  .deck-dots i { background: rgba(247,248,250,.26) !important; }
+  .deck-dots .on { background: var(--accent-orange) !important; }
+
+  /* primary CTA orange (signal); ghost/secondary go blue on hover */
+  .btn.accent { background: var(--accent-orange) !important; border-color: var(--accent-orange) !important; color: #fff !important; }
+  .btn.ghost:hover { border-color: var(--accent-blue) !important; color: var(--accent-blue) !important; }
+
+  /* pricing "what's included" → orange tick markers */
+  .includes-list li { position: relative; padding-left: 22px; }
+  .includes-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent-orange); font-family: var(--font-mono); font-weight: 700; font-size: 12px; transition: color .25s; }
+  .vert:hover .includes-list li::before { color: #fff; }
+
+  /* before / after: after list reads blue (positive), before muted */
+  .cb-ba-col ul li { position: relative; padding-left: 20px; }
+  .cb-ba-col ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; }
+  .cb-ba-col.before ul li::before { background: var(--text-muted); opacity: .5; }
+  .cb-ba-col.after ul li::before { background: var(--accent-blue); }
 </style>
 </head>
 <body>
@@ -99,15 +217,14 @@
     <div class="nav-inner">
       <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
         <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt="SCA Logo" width="40" height="40"></span>
-        <span>SeeTusk / SCA</span>
       </a>
       <div class="nav-links">
-        <a href="content.html">Content</a>
+        <a href="content.html" class="active">Content</a>
         <a href="influencer.html">Influencer</a>
         <a href="web.html">Web &amp; Tech</a>
         <a href="about.html">About</a>
-        <a href="careers.html">Career</a>
       </div>
+      <div class="nav-cta"><a href="contact.html" class="btn accent" data-magnetic-spring="0.4" data-cursor="Start">Start a project <span class="arr">↗</span></a></div>
     </div>
   </nav>
 </header>
@@ -119,7 +236,7 @@
 
         <div class="deck-copy deck-copy--a" data-deck-copy="0">
           <div class="deck-kicker">Vertical 01 / Content &amp; Brand</div>
-          <h1 class="deck-title">Your brand's weekly <span class="accent">content team.</span></h1>
+          <h1 class="deck-title">Your brand's weekly <span class="accent blue">content</span> <span class="accent">team.</span></h1>
         </div>
 
         <div class="deck-copy deck-copy--b" data-deck-copy="1">
@@ -133,7 +250,7 @@
         <div class="deck-copy deck-copy--c" data-deck-copy="2">
           <div class="deck-inner">
             <div class="deck-kicker">One team</div>
-            <h2 class="deck-title">Your <span class="accent">content engine.</span></h2>
+            <h2 class="deck-title">Your <span class="accent blue">content engine.</span></h2>
             <p class="deck-lead">One dedicated pod that keeps your brand planned, produced and visible, not another vendor sending a Drive folder on Friday.</p>
           </div>
         </div>
@@ -166,49 +283,28 @@
         </div>
       </div>
 
-      <div class="two-col sr">
-        <div>
-          <p class="pull">We become the team that keeps your brand <span class="accent">planned, produced and visible.</span></p>
-        </div>
-        <div>
-          <ul class="bullet-list">
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>We help you say it better</h3>
-                <p>We turn your product, offer and founder POV into content pillars people can actually understand.</p>
-              </div>
-            </li>
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>You stop chasing five different people</h3>
-                <p>Strategy, writing, design, shoot planning and edits sit with one team that knows your brand.</p>
-              </div>
-            </li>
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>Your brand starts looking consistent</h3>
-                <p>Every reel, static, caption, email and campaign asset feels like it came from the same company.</p>
-              </div>
-            </li>
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>You know what is working</h3>
-                <p>Monthly reviews show what to repeat, what to improve, and what's not worth making again.</p>
-              </div>
-            </li>
-          </ul>
+      <div class="who-wrap sr">
+        <div class="who-grid sr-stag">
+          <article class="who-card">
+            <span class="who-card-n">01</span>
+            <h3>We help you say it better</h3>
+            <p>We turn your product, offer and founder POV into content pillars people can actually understand.</p>
+          </article>
+          <article class="who-card">
+            <span class="who-card-n">02</span>
+            <h3>You stop chasing five different people</h3>
+            <p>Strategy, writing, design, shoot planning and edits sit with one team that knows your brand.</p>
+          </article>
+          <article class="who-card">
+            <span class="who-card-n">03</span>
+            <h3>Your brand starts looking consistent</h3>
+            <p>Every reel, static, caption, email and campaign asset feels like it came from the same company.</p>
+          </article>
+          <article class="who-card">
+            <span class="who-card-n">04</span>
+            <h3>You know what is working</h3>
+            <p>Monthly reviews show what to repeat, what to improve, and what's not worth making again.</p>
+          </article>
         </div>
       </div>
     </div>
@@ -226,26 +322,56 @@
       </div>
 
       <div class="cb-steps sr-stag">
-        <div class="cb-step">
-          <div class="cb-step-n">Step <b>01</b></div>
-          <div><h4>Find the voice</h4><p>We define the brand POV, tone, content pillars, audience, references, do-nots and recurring formats.</p></div>
-        </div>
-        <div class="cb-step">
-          <div class="cb-step-n">Step <b>02</b></div>
-          <div><h4>Plan the month</h4><p>We turn business priorities into a clean content calendar: launches, offers, founder posts, product stories, education, culture and campaigns.</p></div>
-        </div>
-        <div class="cb-step">
-          <div class="cb-step-n">Step <b>03</b></div>
-          <div><h4>Produce the assets</h4><p>We handle the shoot plan, scripts, captions, edits, design system and content packaging.</p></div>
-        </div>
-        <div class="cb-step">
-          <div class="cb-step-n">Step <b>04</b></div>
-          <div><h4>Ship every week</h4><p>Reels, statics, written posts and campaign assets move through a predictable weekly workflow.</p></div>
-        </div>
-        <div class="cb-step">
-          <div class="cb-step-n">Step <b>05</b></div>
-          <div><h4>Review and improve</h4><p>Every month, we look at performance and decide what deserves more energy, and what to stop making.</p></div>
-        </div>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-01.png" alt="Abstract orange and black liquid forms" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>01</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Find the voice</h4>
+            <p>We define the brand POV, tone, content pillars, audience, references, do-nots and recurring formats.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-02.png" alt="Ribbed-glass portrait lit in orange" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>02</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Plan the month</h4>
+            <p>We turn business priorities into a clean content calendar: launches, offers, founder posts, product stories, education, culture and campaigns.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/ed-studio-shoot.webp" alt="Studio production shoot in progress" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>03</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Produce the assets</h4>
+            <p>We handle the shoot plan, scripts, captions, edits, design system and content packaging.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-04.png" alt="Editorial scene with a figure on a red couch" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>04</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Ship every week</h4>
+            <p>Reels, statics, written posts and campaign assets move through a predictable weekly workflow.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-05.png" alt="Basketball on a two-tone court" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>05</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Review and improve</h4>
+            <p>Every month, we look at performance and decide what deserves more energy, and what to stop making.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -572,5 +698,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 <script src="assets/sca-deck.js?v=1.0.4"></script>
+<script src="assets/sca-magnetic.js?v=1.0.0"></script>
 </body>
 </html>

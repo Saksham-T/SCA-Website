@@ -31,7 +31,7 @@
 .web-hero-copy{max-width:960px}
 .web-hero-kicker{display:inline-flex;gap:10px;align-items:center;color:#8197ff;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;margin-bottom:16px}
 .web-hero-kicker:before{content:"";width:34px;height:1px;background:#7d8fff}
-.web-hero-h1{margin:0;color:#f7f8fa;font-size:clamp(44px,5vw,76px);line-height:.9;text-transform:uppercase;letter-spacing:0;font-weight:900}
+.web-hero-h1{margin:0;color:#f7f8fa;font-size:clamp(52px,6.3vw,90px);line-height:.9;text-transform:uppercase;letter-spacing:0;font-weight:900}
 .web-hero-h1 .accent{display:block;color:#3158ff}
 .web-mobile-break{display:none}
 .web-hero-lead{margin:24px 0 0;max-width:760px;color:rgba(247,248,250,.76);font-size:clamp(17px,1.65vw,24px);line-height:1.5}
@@ -82,6 +82,87 @@
 .case-status{display:inline-flex;margin-top:10px;color:#9fb0ff;border:1px solid rgba(129,151,255,.28);border-radius:999px;padding:7px 10px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
 @media (max-width:1100px){.web-hero-grid,.web-two-col{grid-template-columns:1fr}.web-section-grid,.web-measure-grid,.web-faq-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.web-process-grid,.web-build-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.nav-cta{display:none}.lb-hero{overflow:hidden}.lb-inner,.web-hero-grid,.web-hero-copy,.web-chip-row{width:100%;max-width:100%;min-width:0;box-sizing:border-box}.lb-inner{padding-inline:20px}.web-hero-h1{font-size:clamp(36px,11vw,44px);line-height:.95;max-width:100%;overflow-wrap:break-word}.web-hero-lead{max-width:28ch}.web-hero-support{max-width:34ch}.web-mobile-break{display:block}.web-chip{max-width:100%;white-space:normal}.web-section-grid,.web-process-grid,.web-build-grid,.web-measure-grid,.web-faq-grid{grid-template-columns:1fr}.web-snapshot{padding:16px}.web-card,.web-build-card{min-height:auto}.web-hero-actions .btn{width:100%;justify-content:center}}
+/* ── Remove section markers across the page ── */
+.web-hero-kicker,.section-num,.section-label{display:none!important}
+.section-head{grid-template-columns:1fr!important}
+
+/* ── Descending heading hierarchy: hero biggest, sections step down ── */
+.web-hero-h1{font-size:clamp(48px,6vw,92px)!important}
+#problem .section-title{font-size:clamp(34px,4.8vw,64px)}
+#process .section-title{font-size:clamp(32px,4.4vw,58px)}
+#stack .section-title{font-size:clamp(31px,4.1vw,53px)}
+#build-types .section-title{font-size:clamp(30px,3.8vw,49px)}
+#not .section-title{font-size:clamp(29px,3.6vw,45px)}
+#measurement .section-title{font-size:clamp(28px,3.4vw,42px)}
+#products .section-title{font-size:clamp(27px,3.2vw,39px)}
+#faq .section-title{font-size:clamp(26px,3vw,37px)}
+.cta-h{font-size:clamp(30px,3.8vw,48px)}
+
+/* ════════════ DUAL ACCENT — orange signal + blue structure ════════════
+   Orange (#FC7233) marks every numeral / index / status / live indicator;
+   blue stays the structural + interactive accent (headings, bullets,
+   hover borders, glow, links). Mirrors the careers page treatment. */
+:root{--sig:#FC7233;--sig-deep:#E05A1A;--sig-soft:rgba(252,114,51,.16)}
+
+/* — numeric + index markers go orange — */
+.web-snap-no,
+.web-card .n,
+.web-build-card .n,
+.web-process-step .n,
+.stack-idx,
+.vert-num,
+.cta-row .num{color:var(--sig)!important}
+
+/* live-build window status + flow arrow */
+.win-bar .live{color:var(--sig)!important}
+.win-bar .live:before{background:var(--sig)!important;box-shadow:0 0 0 0 rgba(252,114,51,.5);animation:web-sig-pulse 2.2s infinite}
+@keyframes web-sig-pulse{0%{box-shadow:0 0 0 0 rgba(252,114,51,.5)}70%{box-shadow:0 0 0 7px rgba(252,114,51,0)}100%{box-shadow:0 0 0 0 rgba(252,114,51,0)}}
+.lb-flow{color:var(--sig)!important}
+
+/* status pill → orange */
+.case-status{color:var(--sig)!important;border-color:rgba(252,114,51,.4)!important;background:var(--sig-soft)}
+
+/* preview eyebrow + button keep dual read */
+.pv-eyebrow{color:var(--sig)!important}
+
+/* — orange hover accent bar + blue hover border/glow on cards — */
+.web-card,
+.web-build-card,
+.web-process-step,
+.web-measure,
+.web-faq-item{position:relative;overflow:hidden;transition:transform .32s var(--ease),border-color .32s var(--ease),box-shadow .32s var(--ease),background .32s var(--ease)}
+.web-card:before,
+.web-build-card:before,
+.web-process-step:before,
+.web-measure:before,
+.web-faq-item:before{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:var(--sig);transform:scaleX(0);transform-origin:left;transition:transform .32s var(--ease)}
+.web-card:hover,
+.web-build-card:hover,
+.web-process-step:hover,
+.web-measure:hover,
+.web-faq-item:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent-blue) 50%,transparent);box-shadow:var(--shadow-blue)}
+.web-card:hover:before,
+.web-build-card:hover:before,
+.web-process-step:hover:before,
+.web-measure:hover:before,
+.web-faq-item:hover:before{transform:scaleX(1)}
+
+/* snapshot rows: orange numeral, blue hover edge */
+.web-snap-item{transition:border-color .28s var(--ease),background .28s var(--ease)}
+.web-snap-item:hover{border-color:color-mix(in srgb,var(--accent-blue) 45%,transparent);background:rgba(46,84,234,.06)}
+
+/* one list bullet column stays blue, the other turns orange for rhythm */
+.web-two-col .web-list-card:first-child .web-list li:before{background:var(--sig)}
+
+/* chips: blue border default, orange on hover */
+.web-chip{transition:border-color .25s,color .25s}
+.web-chip:hover{border-color:rgba(252,114,51,.55);color:#fff}
+
+/* tech badges: split the two badge types across the two accents */
+.tech-badge.lang{color:var(--sig);background:var(--sig-soft)}
+.tech-badge.type{color:#9fb0ff;background:rgba(46,84,234,.14)}
+/* Shared nav defaults to JetBrains Mono in the global bundle — keep this page on League Spartan + EB Garamond only. */
+.brand,.nav-links,.nav-links a{font-family:var(--font-display)!important}
 </style>
 </head>
 <body>
@@ -90,16 +171,14 @@
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency, home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
-      <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
       <a href="content.html">Content</a>
       <a href="influencer.html">Influencer</a>
       <a href="web.html">Web &amp; Tech</a>
       <a href="about.html">About</a>
-      <a href="careers.html">Career</a>
     </div>
-    <div class="nav-cta"><a href="contact.html" class="btn accent">Start a web project <span class="arr" aria-hidden="true">-&gt;</span></a></div>
+    <div class="nav-cta"><a href="contact.html" class="btn accent" data-magnetic-spring="0.4">Start a web project <span class="arr" aria-hidden="true">-&gt;</span></a></div>
   </div>
 </nav>
 
@@ -113,7 +192,6 @@
         <div class="web-hero-kicker">Vertical 03 / Web &amp; Tech</div>
         <h1 class="web-hero-h1">Websites,<span class="web-mobile-break"></span> landers <span class="web-mobile-break"></span>and tools <span class="accent">that turn <span class="web-mobile-break"></span>attention <span class="web-mobile-break"></span>into action.</span></h1>
         <p class="web-hero-lead">We write, design and build fast digital experiences for brands that need a page, storefront, dashboard or internal tool to do a real job.</p>
-        <p class="web-hero-support">Speed, SEO, conversion paths and tracking are part of the build, so the work can be launched, measured and improved without guessing.</p>
         <div class="web-hero-actions">
           <a href="contact.html" class="btn accent">Build my web system <span class="arr" aria-hidden="true">-&gt;</span></a>
           <a href="#build-types" class="btn ghost">See build types</a>
@@ -283,5 +361,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="assets/sca-livebuild.js?v=1.0.5"></script>
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
+<script src="assets/sca-magnetic.js?v=1.0.0"></script>
 </body>
 </html>
