@@ -35,7 +35,7 @@
 <link rel="preload" href="assets/fonts/eb-garamond-normal-400-20.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/eb-garamond-italic-400-6.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
+<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.5">
 <style>
   /* the H2 ↔ body pair: H2 lead size ≈ body × φ. */
   :root {
@@ -560,6 +560,59 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SeeTusk Creative Agency",
+  "alternateName": "SCA",
+  "url": "https://seetusk.agency/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "SiteNavigationElement",
+      "position": 1,
+      "name": "Content & Brand",
+      "url": "https://seetusk.agency/content.html"
+      },
+      {
+      "@type": "SiteNavigationElement",
+      "position": 2,
+      "name": "Creators",
+      "url": "https://seetusk.agency/influencer.html"
+      },
+      {
+      "@type": "SiteNavigationElement",
+      "position": 3,
+      "name": "Web & Tech",
+      "url": "https://seetusk.agency/web.html"
+      },
+      {
+      "@type": "SiteNavigationElement",
+      "position": 4,
+      "name": "About",
+      "url": "https://seetusk.agency/about.html"
+      },
+      {
+      "@type": "SiteNavigationElement",
+      "position": 5,
+      "name": "Careers",
+      "url": "https://seetusk.agency/careers"
+      },
+      {
+      "@type": "SiteNavigationElement",
+      "position": 6,
+      "name": "Contact",
+      "url": "https://seetusk.agency/contact.html"
+    }
+  ]
+}
+</script>
 </head>
 <body class="intro-locked">
 
@@ -617,14 +670,14 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
+    <a href="./" class="brand" aria-label="SeeTusk Creative Agency. Home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
     </a>
     <div class="nav-links">
-      <a href="content.html" data-scramble>Content</a>
-      <a href="influencer.html" data-scramble>Creators</a>
-      <a href="web.html" data-scramble>Web &amp; Tech</a>
-      <a href="about.html" data-scramble>About</a>
+      <a href="content" data-scramble>Content</a>
+      <a href="influencer" data-scramble>Creators</a>
+      <a href="web" data-scramble>Web &amp; Tech</a>
+      <a href="about" data-scramble>About</a>
     </div>
     <!-- <div class="nav-cta">
       <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
@@ -721,7 +774,7 @@
 <section class="lab" id="lab" data-screen-label="What we do">
   <div class="shell">
     <div class="section-head up">
-      <div class="section-num">002 / What we do</div>
+      <div class="section-num">What we do</div>
       <div>
         <div class="section-label">Four ways we get your brand seen</div>
         <h2 class="section-title">We make the work &mdash; and make sure people see it.</h2>
@@ -789,7 +842,7 @@
 <section class="results" data-screen-label="Results">
   <div class="shell">
     <div class="section-head up" style="border-bottom-color: rgba(248,244,236,.16);">
-      <div class="section-num">003 / Results</div>
+      <div class="section-num">Results</div>
       <div>
         <div class="section-label">What the work has added up to</div>
         <h2 class="section-title">Numbers, not adjectives.</h2>
@@ -822,7 +875,7 @@
 <section class="section featured-work" id="featured-work" data-screen-label="Case studies">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">004 / Case studies</div>
+      <div class="section-num">Case studies</div>
       <div>
         <div class="section-label">Proof, not just pretty pictures</div>
         <h2 class="section-title">Brands we helped get noticed.</h2>
@@ -962,7 +1015,7 @@
 <section class="section" id="industries" data-screen-label="Industries">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">005 / Industries</div>
+      <div class="section-num">Industries</div>
       <div>
         <div class="section-label">Who we work with</div>
         <h2 class="section-title">Built for brands that live or die by attention.</h2>
@@ -1015,7 +1068,7 @@
 <section class="section" id="why" data-screen-label="Why SeeTusk">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">006 / Why SeeTusk</div>
+      <div class="section-num">Why SeeTusk</div>
       <div>
         <div class="section-label">Why us, not another agency</div>
         <h2 class="section-title">A studio that does the work, not a layer that manages it.</h2>
@@ -1081,7 +1134,7 @@
 <section class="section" id="testimonials" data-screen-label="Testimonials">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">008 / Testimonials</div>
+      <div class="section-num">Testimonials</div>
       <div>
         <div class="section-label">In their words</div>
         <h2 class="section-title">What clients say when the work lands.</h2>
@@ -1091,18 +1144,33 @@
     <div class="quotes-grid sr-stag">
       <figure class="quote-card">
         <div class="quote-mark">&ldquo;</div>
-        <blockquote>We went from posting whenever we remembered to a feed that finally looks like the cafe we run. Walk-ins now mention our reels.</blockquote>
-        <figcaption class="quote-by"><strong>Founder</strong><span>Ambar Coffee &middot; HoReCa</span></figcaption>
+        <blockquote>They took over our monthly shoots and turned our raw ideas into a weekly content calendar that actually converts. Our community engagement doubled in two months.</blockquote>
+        <figcaption class="quote-by"><strong>Co-Founder</strong><span>WTF &middot; Content &amp; Brand</span></figcaption>
       </figure>
       <figure class="quote-card">
         <div class="quote-mark">&ldquo;</div>
-        <blockquote>They covered our launch end to end. One week of creator edits did more than our last campaign did in a quarter.</blockquote>
-        <figcaption class="quote-by"><strong>Marketing Lead</strong><span>FIRVT &middot; Launch</span></figcaption>
+        <blockquote>Their creator campaign for our product launch did more than our last quarter of paid ads. Complete transparency from mapping to results.</blockquote>
+        <figcaption class="quote-by"><strong>Marketing Lead</strong><span>Firvt &middot; Creator Campaigns</span></figcaption>
       </figure>
       <figure class="quote-card">
         <div class="quote-mark">&ldquo;</div>
-        <blockquote>The brand and the website finally feel like the same company. It looks like we're three times our size.</blockquote>
-        <figcaption class="quote-by"><strong>Founder</strong><span>DevKnight &middot; Brand &amp; Web</span></figcaption>
+        <blockquote>The custom website and tracking they built let us finally see where our traffic was dropping off. A level of technical execution we couldn't find elsewhere.</blockquote>
+        <figcaption class="quote-by"><strong>Managing Director</strong><span>Jairath Sharma &middot; Web &amp; Tech</span></figcaption>
+      </figure>
+      <figure class="quote-card">
+        <div class="quote-mark">&ldquo;</div>
+        <blockquote>SeeTusk runs our content engine with a weekly shipping rhythm that never misses. We've stopped worrying about what to post and started focusing on fulfillment.</blockquote>
+        <figcaption class="quote-by"><strong>Founder</strong><span>Oldgene &middot; Content &amp; Brand</span></figcaption>
+      </figure>
+      <figure class="quote-card">
+        <div class="quote-mark">&ldquo;</div>
+        <blockquote>We hired them for a campaign launch, and they delivered a visual world that travelled from outdoor billboards to digital feeds seamlessly.</blockquote>
+        <figcaption class="quote-by"><strong>Brand Manager</strong><span>Necesera &middot; Launch</span></figcaption>
+      </figure>
+      <figure class="quote-card">
+        <div class="quote-mark">&ldquo;</div>
+        <blockquote>Our local store walk-ins surged after their reels went viral in the region. They understand local distribution better than any agency we've met.</blockquote>
+        <figcaption class="quote-by"><strong>Owner</strong><span>Silvassa Opticians &middot; Local Retainer</span></figcaption>
       </figure>
     </div>
   </div>
@@ -1112,7 +1180,7 @@
 <section class="section" id="faq" data-screen-label="FAQ">
   <div class="shell">
     <div class="section-head sr">
-      <div class="section-num">009 / FAQ</div>
+      <div class="section-num">FAQ</div>
       <div>
         <div class="section-label">Before you ask</div>
         <h2 class="section-title">The questions every founder asks us.</h2>
@@ -1152,12 +1220,12 @@
 <section class="cta-block" data-screen-label="CTA">
   <div class="shell">
     <div class="sr">
-      <div class="section-label" style="color:var(--accent-blue);">010 / Next move</div>
+      <div class="section-label" style="color:var(--accent-blue);">Next move</div>
       <h2 class="cta-h">Ready to build a brand people actually <span class="accent">notice?</span></h2>
       <div class="cta-row">
         <p>Tell us the stuck point: quiet content, underused creators, a launch coming up, or a site that doesn't carry the brand. We'll give you a straight read and a practical way to fix it.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
+          <a href="contact" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
           <a href="#featured-work" class="btn ghost" data-magnetic="0.4" data-cursor="See work">See the work</a>
         </div>
       </div>
@@ -1193,8 +1261,8 @@
           <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content</a><a href="influencer.html">Creators</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content">Content</a><a href="influencer">Creators</a><a href="web">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about">About</a><a href="contact">Contact</a><a href="careers">Careers</a></nav>
       <!-- Fix #13: Footer elsewhere links with real URLs -->
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
