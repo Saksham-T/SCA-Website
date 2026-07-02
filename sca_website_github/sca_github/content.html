@@ -87,27 +87,28 @@
   @media (max-width: 740px) { .cb-steps { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 460px) { .cb-steps { grid-template-columns: 1fr; } .cb-step-shot { aspect-ratio: 16 / 10; } }
 
-  /* What's included — pillar rows */
-  .cb-pillar { display: grid; grid-template-columns: 1.1fr 1.4fr; gap: clamp(22px,3vw,56px); padding: clamp(26px,2.8vw,42px) 0; border-top: 1px solid var(--border-soft); }
+  /* What's included — zigzag pillar blocks.
+     Heading + deliverables stay together in one column so a pillar reads
+     as a single unit; the block alternates left / right half to keep the
+     stepped "zigzag" rhythm, and all copy stays left-aligned for reading. */
+  .cb-pillar { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(40px,6vw,96px); padding: clamp(30px,3vw,48px) 0; border-top: 1px solid var(--border-soft); }
   .cb-pillar:last-child { border-bottom: 1px solid var(--border-soft); }
+  .cb-pillar > div { grid-column: 1; max-width: 46ch; }
+  .cb-pillar > div + div { margin-top: clamp(16px,1.5vw,24px); }
+  .cb-pillar:nth-child(even) > div { grid-column: 2; }
   .cb-pillar-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-orange); }
   .cb-pillar h3 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(26px,2.6vw,40px); line-height: .96; color: var(--text-main); margin: 10px 0 14px; }
-  .cb-pillar-desc { font-family: var(--font-body); font-size: clamp(18px,1.25vw,21px); line-height: 1.5; color: var(--text-muted); max-width: 42ch; }
-  .cb-pillar-deliver { list-style: none; margin: 0 0 18px; padding: 0; columns: 2; column-gap: 28px; }
-  .cb-pillar-deliver li { break-inside: avoid; display: flex; gap: 10px; align-items: baseline; font-family: var(--font-body); font-size: 17.5px; line-height: 1.45; color: var(--text-main); padding: 5px 0; }
+  .cb-pillar-desc { font-family: var(--font-body); font-size: clamp(18px,1.25vw,21px); line-height: 1.5; color: var(--text-muted); }
+  .cb-pillar-deliver { list-style: none; margin: 0 0 18px; padding: 0; }
+  .cb-pillar-deliver li { display: flex; gap: 12px; align-items: baseline; font-family: var(--font-body); font-size: 18px; line-height: 1.45; color: var(--text-main); padding: 6px 0; }
   .cb-pillar-deliver li::before { content: ""; flex: 0 0 6px; width: 6px; height: 6px; margin-top: 8px; border-radius: 1px; background: var(--accent-blue); }
   .cb-freq-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-soft); border-radius: 999px; padding: 7px 13px; background: rgba(255,255,255,.04); }
   .cb-freq-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-orange); }
 
-  /* Zigzag: mirror every other pillar so the eye steps left → right → left.
-     Column widths stay constant (text track 1.1fr, deliverables track 1.4fr);
-     only their order and the text block's alignment flip. */
-  .cb-pillar > div { align-self: start; }
-  .cb-pillar:nth-child(even) { grid-template-columns: 1.4fr 1.1fr; }
-  .cb-pillar:nth-child(even) > div:first-child { order: 2; text-align: right; }
-  /* keep the running copy left-aligned for readability, but hug the right edge */
-  .cb-pillar:nth-child(even) .cb-pillar-desc { text-align: left; margin-left: auto; }
-  .cb-pillar:nth-child(even) .cb-pillar-deliver { margin-left: 0; }
+  @media (max-width: 760px) {
+    .cb-pillar { grid-template-columns: 1fr; column-gap: 0; }
+    .cb-pillar > div, .cb-pillar:nth-child(even) > div { grid-column: 1; max-width: none; }
+  }
 
   /* What this is not — comparison */
   .cb-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -260,6 +261,7 @@
         <a href="influencer.html">Influencer</a>
         <a href="web.html">Web &amp; Tech</a>
         <a href="about.html">About</a>
+        <a href="careers.html">Careers</a>
       </div>
       <div class="nav-cta"><a href="contact.html" class="btn accent" data-magnetic-spring="0.4" data-cursor="Start">Start a project <span class="arr">↗</span></a></div>
     </div>
@@ -720,8 +722,8 @@
           <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content">Content &amp; Brand</a><a href="influencer">Influencer</a><a href="web">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about">About</a><a href="contact">Contact</a><a href="careers">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">

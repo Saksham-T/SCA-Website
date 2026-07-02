@@ -177,12 +177,38 @@
   /* Why SeeTusk comparison */
   .why-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 26px); margin-top: 8px; }
   .why-col {
+    position: relative;
+    overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius);
     padding: clamp(26px, 3vw, 44px);
     background: var(--card);
+    transition: transform .32s cubic-bezier(.16,1,.3,1), border-color .32s, box-shadow .32s;
   }
-  .why-col.sca { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); }
+  .why-col::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--accent-orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .32s cubic-bezier(.16,1,.3,1);
+    z-index: 3;
+  }
+  .why-col:hover::before {
+    transform: scaleX(1);
+  }
+  .why-col:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--accent-blue) 45%, transparent);
+    box-shadow: var(--shadow-blue);
+  }
+  .why-col.sca {
+    border: 5px solid red !important;
+  }
   .why-eyebrow {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -211,7 +237,6 @@
     line-height: 1.4;
     color: var(--text-muted);
   }
-  .why-col.sca .why-list li { border-top-color: rgba(20,20,20,.14); color: var(--bg-main); }
   .why-mark { flex-shrink: 0; font-family: var(--font-display); font-weight: 900; line-height: 1.3; }
   .why-col.plain .why-mark { color: var(--dim); }
   .why-col.sca .why-mark { color: var(--accent-orange); }
@@ -370,8 +395,16 @@
   .team-bio,
   .quote-by span { font-size: 16px; }
   .section-label,
-  .section-num,
   .why-eyebrow { font-size: 14px; }
+  .section-num {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  @media (min-width: 761px) {
+    .section-num {
+      text-align: right;
+    }
+  }
   .btn { font-size: 16px; }
 
   /* --- Spacing: Desktop --- */
@@ -422,7 +455,8 @@
     .section-sub, .lab-card .lab-desc, .process-step p, .faq-a, .why-list li,
     .project-meta p, .cta-row p, #lab .section-sub, .camera-step .section-sub { font-size: 16px; }
     .result-label, .team-bio, .quote-by span { font-size: 14px; }
-    .section-label, .section-num, .why-eyebrow { font-size: 13px; }
+    .section-label, .why-eyebrow { font-size: 13px; }
+    .section-num { font-size: 16px; font-weight: 700; }
     .btn { font-size: 15px; }
     .section, .results, .lab, .cta-block { padding-top: 44px; padding-bottom: 44px; }
     .lab-grid, .work-grid, .process-grid, .quotes-grid { gap: 16px; }
@@ -515,6 +549,51 @@
     .case-row dt { padding-top: 0; }
   }
 
+  /* ===================================================================
+     BRAND COLOUR SCHEMA — 60% white / 30% blue / 10% orange
+       • Orange (10%) -> section markers (.section-num) + numbers — the
+         existing --accent-orange token (re-pointed to real orange here).
+       • Blue   (30%) -> key words blended inside headers & hero (.hl-blue).
+       • White  (60%) -> body copy, descriptions & hero stay dominant.
+     Scoped to this page via the :root override below.
+     =================================================================== */
+  :root { --accent-orange: #FC7233; --accent-2: #FC7233; }
+  .hl-blue { color: var(--accent-blue); }
+
+  /* Section markers on the right, with copy kept left-aligned. */
+  .section-head {
+    grid-template-columns: minmax(0, 1fr) minmax(72px, 140px);
+  }
+  .section-head > :not(.section-num) {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+  }
+  .section-head .section-num {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    text-align: right;
+  }
+  .section-head .section-sub {
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+  }
+  @media (max-width: 760px) {
+    .section-head {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .section-head > :not(.section-num),
+    .section-head .section-num {
+      grid-column: 1;
+      grid-row: auto;
+    }
+    .section-head .section-num {
+      order: -1;
+      justify-self: end;
+    }
+  }
 </style>
 <!-- ============ STRUCTURED DATA (SEO) ============ -->
 <script type="application/ld+json">
@@ -674,13 +753,14 @@
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
     </a>
     <div class="nav-links">
-      <a href="content" data-scramble>Content</a>
-      <a href="influencer" data-scramble>Creators</a>
-      <a href="web" data-scramble>Web &amp; Tech</a>
-      <a href="about" data-scramble>About</a>
+      <a href="content.html" data-scramble>Content</a>
+      <a href="influencer.html" data-scramble>Creators</a>
+      <a href="web.html" data-scramble>Web &amp; Tech</a>
+      <a href="about.html" data-scramble>About</a>
+      <a href="careers.html" data-scramble>Careers</a>
     </div>
     <!-- <div class="nav-cta">
-      <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
+      <a href="contact" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
     </div> -->
   </div>
 </nav>
@@ -719,9 +799,9 @@
 
     <div class="hero-sub">
       <p>
-        We help growing Indian brands get seen and chosen through content,
-        creator campaigns, and websites that convert &mdash; shipped on a
-        weekly rhythm from our creative distribution studio in Pune.
+        We help growing Indian brands get <span class="hl-blue">seen and chosen</span> through content,
+        creator campaigns, and <span class="hl-blue">websites that convert</span> &mdash; shipped on a
+        <span class="hl-blue">weekly rhythm</span> from our creative distribution studio in Pune.
       </p>
     </div>
   </div>
@@ -732,40 +812,40 @@
   <div class="clients-viewport">
     <div class="clients-track">
       <!-- Fix #1 & #2: Added loading=lazy + decoding=async on all logo images; aspect-ratio reserved via CSS -->
-      <div class="client-logo"><img src="images/logos/clients/bamboo-india.webp" alt="Bamboo India" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/force-motors.webp" alt="Force Motors" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/nift.webp" alt="National Institute of Fashion Technology" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/jeevitnadi.webp" alt="Jeevitnadi Living River Foundation" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/visda-organix.webp" alt="Visda Organix" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/myfitness.webp" alt="MyFitness" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/carandbike.webp" alt="car&amp;bike" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/coffee-cup.webp" alt="Coffee Cup" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/kundan-spaces.webp" alt="Kundan Spaces" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/pune-river-revival.webp" alt="Pune River Revival" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/tridrashya.webp" alt="Tridrashya" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/comedy-clubhouse.webp" alt="The Comedy Clubhouse" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/hindustan-unilever.webp" alt="Hindustan Unilever Limited" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/firvt.webp" alt="FIRVT" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/wtf.webp" alt="WTF" loading="lazy" decoding="async"></div>
-      <div class="client-logo"><img src="images/logos/clients/clover-co.webp" alt="Clover&amp;co" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/bamboo-india.svg" alt="Bamboo India" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/force-motors.svg" alt="Force Motors" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/nift.svg" alt="National Institute of Fashion Technology" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/jeevitnadi.svg" alt="Jeevitnadi Living River Foundation" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/visda-organix.svg" alt="Visda Organix" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/myfitness.svg" alt="MyFitness" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/carandbike.svg" alt="car&amp;bike" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/coffee-cup.svg" alt="Coffee Cup" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/kundan-spaces.svg" alt="Kundan Spaces" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/pune-river-revival.svg" alt="Pune River Revival" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/tridrashya.svg" alt="Tridrashya" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/comedy-clubhouse.svg" alt="The Comedy Clubhouse" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/hindustan-unilever.svg" alt="Hindustan Unilever Limited" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/firvt.svg" alt="FIRVT" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/wtf.svg" alt="WTF" loading="lazy" decoding="async"></div>
+      <div class="client-logo"><img src="images/logos/clients/clover-co.svg" alt="Clover&amp;co" loading="lazy" decoding="async"></div>
 
       <!-- Duplicate set for infinite marquee — aria-hidden so screen readers skip -->
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/bamboo-india.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/force-motors.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/nift.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/jeevitnadi.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/visda-organix.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/myfitness.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/carandbike.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/coffee-cup.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/kundan-spaces.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/pune-river-revival.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/tridrashya.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/comedy-clubhouse.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/hindustan-unilever.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/firvt.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/wtf.webp" alt="" loading="lazy" decoding="async"></div>
-      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/clover-co.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/bamboo-india.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/force-motors.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/nift.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/jeevitnadi.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/visda-organix.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/myfitness.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/carandbike.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/coffee-cup.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/kundan-spaces.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/pune-river-revival.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/tridrashya.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/comedy-clubhouse.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/hindustan-unilever.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/firvt.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/wtf.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="client-logo" aria-hidden="true"><img src="images/logos/clients/clover-co.svg" alt="" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -777,13 +857,13 @@
       <div class="section-num">What we do</div>
       <div>
         <div class="section-label">Four ways we get your brand seen</div>
-        <h2 class="section-title">We make the work &mdash; and make sure people see it.</h2>
+        <h2 class="section-title">We <span class="hl-blue">make the work</span> &mdash; and make sure people <span class="hl-blue">see it.</span></h2>
         <p class="section-sub">Most agencies stop at the deliverable. We run the whole loop: making content, putting it in front of the right audiences, and building the pages that turn that attention into customers. All on one weekly rhythm.</p>
       </div>
     </div>
 
     <div class="lab-grid">
-      <a class="lab-card up" href="content.html" data-cursor="Explore">
+      <a class="lab-card up" href="content" data-cursor="Explore">
         <div class="lab-card-top"><span class="idx"></span><span>Content &amp; Brand</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
@@ -791,12 +871,12 @@
   <img src="images/ed-content-carton.webp" alt="The Content Agency carton on a studio shelf" loading="lazy" decoding="async">
 </picture></div></div>
         </div>
-        <h3 data-scramble>Content that earns attention</h3>
+        <h3 data-scramble>Content that <span class="hl-blue">earns attention</span></h3>
         <p class="lab-desc">We run your content end to end &mdash; strategy, monthly shoots, reels and static &mdash; published weekly so your brand never goes quiet.</p>
         <span class="lab-link">See content work -></span>
       </a>
 
-      <a class="lab-card up" href="influencer.html" data-cursor="Explore">
+      <a class="lab-card up" href="influencer" data-cursor="Explore">
         <div class="lab-card-top"><span class="idx"></span><span>Creator Campaigns</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
@@ -804,12 +884,12 @@
   <img src="images/ed-prada-street.webp" alt="Creator street campaign coverage" loading="lazy" decoding="async">
 </picture></div></div>
         </div>
-        <h3 data-scramble>Creators who lend you their audience</h3>
+        <h3 data-scramble>Creators who lend you <span class="hl-blue">their audience</span></h3>
         <p class="lab-desc">We find the right creators, brief them, run the shoots and turn the coverage into ads &mdash; so you borrow trust instead of buying cold reach.</p>
         <span class="lab-link">See creator work -></span>
       </a>
 
-      <a class="lab-card up" href="web.html" data-cursor="Explore">
+      <a class="lab-card up" href="web" data-cursor="Explore">
         <div class="lab-card-top"><span class="idx"></span><span>Web &amp; Tech</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
@@ -817,12 +897,12 @@
   <img src="images/ed-ss24-phone.webp" alt="Mobile product build foldout" loading="lazy" decoding="async">
 </picture></div></div>
         </div>
-        <h3 data-scramble>Websites and tools that convert</h3>
+        <h3 data-scramble>Websites and tools <span class="hl-blue">that convert</span></h3>
         <p class="lab-desc">Landing pages, full sites and lightweight tools, built fast &mdash; so the attention your content earns turns into leads and sales.</p>
         <span class="lab-link">See web &amp; tech -></span>
       </a>
 
-      <a class="lab-card up" href="contact.html?service=campaign-launches" data-cursor="Start">
+      <a class="lab-card up" href="contact?service=campaign-launches" data-cursor="Start">
         <div class="lab-card-top"><span class="idx"></span><span>Campaign Launches</span></div>
         <div class="lab-stage">
           <div class="lab-object"><div class="lab-object-bob"><picture>
@@ -830,7 +910,7 @@
   <img src="images/ed-friday-rickshaw.webp" alt="Campaign visual" loading="lazy" decoding="async">
 </picture></div></div>
         </div>
-        <h3 data-scramble>Campaigns built to travel</h3>
+        <h3 data-scramble>Campaigns <span class="hl-blue">built to travel</span></h3>
         <p class="lab-desc">Big brand moments &mdash; concept, visual world, shoot and a plan to push it across every channel at once.</p>
         <span class="lab-link">Start a campaign -></span>
       </a>
@@ -845,7 +925,7 @@
       <div class="section-num">Results</div>
       <div>
         <div class="section-label">What the work has added up to</div>
-        <h2 class="section-title">Numbers, not adjectives.</h2>
+        <h2 class="section-title"><span class="hl-blue">Numbers,</span> not adjectives.</h2>
       </div>
     </div>
     <div class="results-grid">
@@ -878,7 +958,7 @@
       <div class="section-num">Case studies</div>
       <div>
         <div class="section-label">Proof, not just pretty pictures</div>
-        <h2 class="section-title">Brands we helped get noticed.</h2>
+        <h2 class="section-title">Brands we helped <span class="hl-blue">get noticed.</span></h2>
       </div>
     </div>
 
@@ -892,14 +972,14 @@
         </div>
         <div class="project-meta">
           <div class="project-top"><span>Ambar Coffee</span><span>F&amp;B / Content</span></div>
-          <h3>Weekly cafe content that fills tables</h3>
+          <h3>Weekly cafe content that <span class="hl-blue">fills tables</span></h3>
           <p>Positioning, monthly shoots and a weekly publishing rhythm for a Pune coffee brand. Result: a feed that finally looks like the cafe &mdash; and walk-ins who mention the reels.</p>
           <div class="case-actions">
             <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-ambar-detail">
               <span class="case-toggle-label">View case</span>
               <span class="case-toggle-icon" aria-hidden="true"></span>
             </button> -->
-            <a class="project-link" href="content.html">See the service -></a>
+            <a class="project-link" href="content">See the service -></a>
           </div>
           <div class="case-drawer" id="case-ambar-detail" role="region" aria-label="Ambar Coffee case study">
             <div class="case-drawer-inner">
@@ -921,14 +1001,14 @@
         </div>
         <div class="project-meta">
           <div class="project-top"><span>FIRVT</span><span>Launch / Creators</span></div>
-          <h3>Launch coverage that outran a quarter</h3>
+          <h3>Launch coverage that <span class="hl-blue">outran a quarter</span></h3>
           <p>Creator mapping, on-ground event capture and social edits for a high-velocity drop. One launch week of creator coverage moved more than the previous quarter of paid.</p>
           <div class="case-actions">
             <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-firvt-detail">
               <span class="case-toggle-label">View case</span>
               <span class="case-toggle-icon" aria-hidden="true"></span>
             </button> -->
-            <a class="project-link" href="influencer.html">See the service -></a>
+            <a class="project-link" href="influencer">See the service -></a>
           </div>
           <div class="case-drawer" id="case-firvt-detail" role="region" aria-label="FIRVT case study">
             <div class="case-drawer-inner">
@@ -953,14 +1033,14 @@
         </div>
         <div class="project-meta">
           <div class="project-top"><span>DevKnight</span><span>Brand / Web</span></div>
-          <h3>A brand and site that finally match</h3>
+          <h3>A brand and site that <span class="hl-blue">finally match</span></h3>
           <p>Brand language, stationery, web direction and content surfaces &mdash; sharp, technical, usable. The brand and the website now read like the same company, three times its size.</p>
           <div class="case-actions">
             <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-devknight-detail">
               <span class="case-toggle-label">View case</span>
               <span class="case-toggle-icon" aria-hidden="true"></span>
             </button> -->
-            <a class="project-link" href="web.html">See the service -></a>
+            <a class="project-link" href="web">See the service -></a>
           </div>
           <div class="case-drawer" id="case-devknight-detail" role="region" aria-label="DevKnight case study">
             <div class="case-drawer-inner">
@@ -985,14 +1065,14 @@
         </div>
         <div class="project-meta">
           <div class="project-top"><span>Fevistik</span><span>Campaign / OOH</span></div>
-          <h3>An outdoor moment people remembered</h3>
+          <h3>An outdoor moment <span class="hl-blue">people remembered</span></h3>
           <p>Campaign visuals, shoot adaptation and platform cuts built for a playful, high-recall brand moment that travelled from billboard to feed without losing its punch.</p>
           <div class="case-actions">
             <!-- <button type="button" class="case-toggle" aria-expanded="false" aria-controls="case-fevistik-detail">
               <span class="case-toggle-label">View case</span>
               <span class="case-toggle-icon" aria-hidden="true"></span>
             </button> -->
-            <a class="project-link" href="content.html">See the service -></a>
+            <a class="project-link" href="content">See the service -></a>
           </div>
           <div class="case-drawer" id="case-fevistik-detail" role="region" aria-label="Fevistik case study">
             <div class="case-drawer-inner">
@@ -1018,7 +1098,7 @@
       <div class="section-num">Industries</div>
       <div>
         <div class="section-label">Who we work with</div>
-        <h2 class="section-title">Built for brands that live or die by attention.</h2>
+        <h2 class="section-title">Built for brands that <span class="hl-blue">live or die</span> by <span class="hl-blue">attention.</span></h2>
         <p class="section-sub">We go deep in a handful of categories where great content and the right creators move real numbers &mdash; not just likes.</p>
       </div>
     </div>
@@ -1071,7 +1151,7 @@
       <div class="section-num">Why SeeTusk</div>
       <div>
         <div class="section-label">Why us, not another agency</div>
-        <h2 class="section-title">A studio that does the work, not a layer that manages it.</h2>
+        <h2 class="section-title">A studio that <span class="hl-blue">does the work,</span> not a layer that manages it.</h2>
       </div>
     </div>
 
@@ -1104,7 +1184,7 @@
       <div class="section-num"></div>
       <div>
         <div class="section-label">Three ways to start</div>
-        <h2 class="section-title" style="font-size: clamp(30px, 4vw, 56px);">Pick the gear that fits where you are.</h2>
+        <h2 class="section-title" style="font-size: clamp(30px, 4vw, 56px);"><span class="hl-blue">Pick the gear</span> that fits where you are.</h2>
       </div>
     </div>
     <div class="process-grid engage-grid sr-stag">
@@ -1137,7 +1217,7 @@
       <div class="section-num">Testimonials</div>
       <div>
         <div class="section-label">In their words</div>
-        <h2 class="section-title">What clients say when the work lands.</h2>
+        <h2 class="section-title">What clients say when <span class="hl-blue">the work lands.</span></h2>
       </div>
     </div>
 
@@ -1183,7 +1263,7 @@
       <div class="section-num">FAQ</div>
       <div>
         <div class="section-label">Before you ask</div>
-        <h2 class="section-title">The questions every founder asks us.</h2>
+        <h2 class="section-title">The questions <span class="hl-blue">every founder</span> asks us.</h2>
       </div>
     </div>
 
@@ -1225,7 +1305,7 @@
       <div class="cta-row">
         <p>Tell us the stuck point: quiet content, underused creators, a launch coming up, or a site that doesn't carry the brand. We'll give you a straight read and a practical way to fix it.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="contact" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
+          <a href="contact.html" class="btn accent" data-magnetic="0.4" data-cursor="Start">Start a project <span class="arr">&#8599;</span></a>
           <a href="#featured-work" class="btn ghost" data-magnetic="0.4" data-cursor="See work">See the work</a>
         </div>
       </div>
@@ -1261,8 +1341,8 @@
           <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content">Content</a><a href="influencer">Creators</a><a href="web">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about">About</a><a href="contact">Contact</a><a href="careers">Careers</a></nav>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content</a><a href="influencer.html">Creators</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
       <!-- Fix #13: Footer elsewhere links with real URLs -->
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>

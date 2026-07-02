@@ -58,7 +58,7 @@
     });
 
     const cta = document.createElement('a');
-    cta.href = 'contact.html';
+    cta.href = 'contact';
     cta.className = 'mobile-menu-cta';
     cta.textContent = 'Start a project';
     panel.appendChild(cta);

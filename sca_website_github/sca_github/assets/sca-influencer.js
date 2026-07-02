@@ -71,26 +71,44 @@
     function lit(key) {
       regions.forEach(function (r) { r.classList.toggle('is-lit', r.getAttribute('data-region') === key); });
     }
+    var current = -1;
     function setActive(idx) {
+      if (idx === current) return;
+      current = idx;
       steps.forEach(function (s, i) { s.classList.toggle('is-active', i === idx); });
       var key = steps[idx] && steps[idx].getAttribute('data-lit');
       if (key) lit(key);
     }
-    if (reduce || !hasIO) {
+    if (reduce) {
       steps.forEach(function (s) { s.classList.add('is-active'); });
       lit('metrics');
       return;
     }
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          var idx = steps.indexOf(e.target);
-          if (idx > -1) setActive(idx);
-        }
-      });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    steps.forEach(function (s) { obs.observe(s); });
-    setActive(0);
+    // Highlight the step whose vertical centre is closest to the viewport
+    // centre. Robust against tall steps, contiguous stacking and ancestor
+    // overflow:clip / transforms that make the thin-band IntersectionObserver
+    // unreliable.
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var mid = window.innerHeight / 2;
+      var best = 0, bestDist = Infinity;
+      for (var i = 0; i < steps.length; i++) {
+        var r = steps[i].getBoundingClientRect();
+        var c = r.top + r.height / 2;
+        var d = Math.abs(c - mid);
+        if (d < bestDist) { bestDist = d; best = i; }
+      }
+      setActive(best);
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
   }
 
   /* ---- inf-rise reveal (hero) ------------------------------- */
