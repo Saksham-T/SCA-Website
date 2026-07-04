@@ -15,7 +15,8 @@ import {
    diagonal "seam" completes. Not two cards. Not a divider layout.
    ============================================================ */
 
-const ACCENT = '#FF6B35';
+const ACCENT_LIGHT_BLUE = '#6688ff';
+const ACCENT_BLUE = '#2E54E8';
 
 const MISSION = {
   index: '01',
@@ -72,7 +73,9 @@ function StaticPurpose() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        style={{ background: `radial-gradient(60% 55% at 30% 40%, ${ACCENT}22, transparent 70%)` }}
+        style={{
+          background: `radial-gradient(60% 55% at 30% 40%, ${ACCENT_BLUE}1c, transparent 70%), radial-gradient(50% 50% at 75% 65%, ${ACCENT_LIGHT_BLUE}12, transparent 70%)`
+        }}
       />
       <h2 id="purpose-heading" className="sr-only">
         Our mission and vision
@@ -83,7 +86,7 @@ function StaticPurpose() {
             {MISSION.lines.join(' ')}
           </p>
         </div>
-        <div className="my-16 h-px w-40 origin-left bg-gradient-to-r from-[#FF6B35] to-transparent" />
+        <div className="my-16 h-px w-40 origin-left bg-gradient-to-r from-[#2E54E8] via-[#6688ff] to-transparent" />
         <div className="ml-auto max-w-[38ch] text-right">
           <p className="font-serif text-[clamp(1.9rem,4.4vw,3.75rem)] font-light leading-[1.1] tracking-tight text-white">
             {VISION.lines.join(' ')}
@@ -100,7 +103,7 @@ function Atmosphere({ progress }: { progress: MotionValue<number> }) {
   const glowX = useTransform(progress, [0, 1], [26, 74]);
   const glowY = useTransform(progress, [0, 0.5, 1], [56, 46, 34]);
   const secondGlow = useTransform(progress, [0, 1], [80, 30]);
-  const meshBg = useMotionTemplate`radial-gradient(48% 50% at ${glowX}% ${glowY}%, ${ACCENT}26, transparent 68%), radial-gradient(40% 46% at ${secondGlow}% 78%, ${ACCENT}10, transparent 70%)`;
+  const meshBg = useMotionTemplate`radial-gradient(48% 50% at ${glowX}% ${glowY}%, rgba(46, 84, 234, 0.20), transparent 68%), radial-gradient(40% 46% at ${secondGlow}% 78%, rgba(102, 136, 255, 0.08), transparent 70%)`;
   const gridOpacity = useTransform(progress, [0, 0.35, 1], [0.02, 0.06, 0.03]);
 
   const particles = [
@@ -131,22 +134,25 @@ function Atmosphere({ progress }: { progress: MotionValue<number> }) {
         }}
       />
       {/* floating accent particles */}
-      {particles.map((p, i) => (
-        <span
-          key={i}
-          className="sca-particle absolute rounded-full"
-          style={{
-            left: p.l,
-            top: p.t,
-            width: p.s,
-            height: p.s,
-            background: ACCENT,
-            opacity: 0.5,
-            boxShadow: `0 0 ${p.s * 4}px ${ACCENT}`,
-            animationDelay: `${p.d}s`,
-          }}
-        />
-      ))}
+      {particles.map((p, i) => {
+        const particleColor = i % 2 === 0 ? ACCENT_BLUE : ACCENT_LIGHT_BLUE;
+        return (
+          <span
+            key={i}
+            className="sca-particle absolute rounded-full"
+            style={{
+              left: p.l,
+              top: p.t,
+              width: p.s,
+              height: p.s,
+              background: particleColor,
+              opacity: 0.5,
+              boxShadow: `0 0 ${p.s * 4}px ${particleColor}`,
+              animationDelay: `${p.d}s`,
+            }}
+          />
+        );
+      })}
       {/* premium grain */}
       <div
         className="absolute inset-0 mix-blend-soft-light"
@@ -268,7 +274,7 @@ function AnimatedPurpose() {
               >
                 <div
                   className="h-full w-px"
-                  style={{ background: `linear-gradient(to bottom, transparent, ${ACCENT}, transparent)` }}
+                  style={{ background: `linear-gradient(to bottom, transparent, ${ACCENT_BLUE}, ${ACCENT_LIGHT_BLUE}, transparent)` }}
                 />
               </motion.div>
               {/* travelling spark */}
@@ -278,7 +284,7 @@ function AnimatedPurpose() {
               >
                 <div
                   className="h-full w-full rounded-full"
-                  style={{ background: '#fff', boxShadow: `0 0 16px 4px ${ACCENT}` }}
+                  style={{ background: '#fff', boxShadow: `0 0 16px 4px ${ACCENT_BLUE}` }}
                 />
               </motion.div>
             </div>
@@ -333,7 +339,7 @@ function AnimatedPurpose() {
           >
             <div
               className="h-full w-full"
-              style={{ background: `linear-gradient(to right, transparent, ${ACCENT}, transparent)` }}
+              style={{ background: `linear-gradient(to right, transparent, ${ACCENT_BLUE}, ${ACCENT_LIGHT_BLUE}, transparent)` }}
             />
           </motion.div>
 
