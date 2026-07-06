@@ -220,7 +220,7 @@
 .floating-layer .num {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-blue);
+  color: var(--accent-orange);
   display: block;
   margin-bottom: 8px;
 }
