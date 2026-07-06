@@ -184,15 +184,15 @@ function AnimatedPurpose() {
   const p = scrollYProgress;
 
   /* ---- Ghost words: TODAY -> TOMORROW parallax cross-fade ---- */
-  const ghostX = useTransform(p, [0, 1], ['-3%', '3%']);
-  const todayOpacity = useTransform(p, [0.02, 0.14, 0.48, 0.58], [0, 0.055, 0.055, 0]);
-  const tomorrowOpacity = useTransform(p, [0.5, 0.64, 1], [0, 0.05, 0.045]);
+  const ghostX = useTransform(p, [0, 0.58, 0.72, 1], ['8%', '20%', '-4%', '-4%']);
+  const todayOpacity = useTransform(p, [0.02, 0.14, 0.48, 0.60], [0, 0.055, 0.055, 0]);
+  const tomorrowOpacity = useTransform(p, [0.62, 0.76, 1], [0, 0.05, 0.045]);
 
   /* ---- Mission: reveals first, then fully clears before Vision ---- */
   const missionLabelOpacity = useTransform(p, [0.02, 0.1], [0, 1]);
-  const missionScale = useTransform(p, [0.50, 0.66], [1, 0.9]);
-  const missionRecede = useTransform(p, [0.50, 0.66], [1, 0]);
-  const missionX = useTransform(p, [0.50, 0.66], ['0%', '-4%']);
+  const missionScale = useTransform(p, [0.50, 0.54], [1, 0.9]);
+  const missionRecede = useTransform(p, [0.48, 0.54, 1], [1, 0, 0]);
+  const missionX = useTransform(p, [0.50, 0.54], ['0%', '-4%']);
 
   /* ---- Seam: diagonal light that grows organically (the connector) ---- */
   const seamScaleY = useTransform(p, [0.42, 0.58], [0, 1]);
@@ -201,18 +201,18 @@ function AnimatedPurpose() {
   const sparkOpacity = useTransform(p, [0.42, 0.48, 0.64, 0.72], [0, 1, 1, 0]);
 
   /* ---- Vision: emerges from depth, brightens fully with room to read ---- */
-  const visionLabelOpacity = useTransform(p, [0.54, 0.62], [0, 1]);
-  const visionOpacity = useTransform(p, [0.56, 0.70], [0, 1]);
-  const visionX = useTransform(p, [0.56, 0.76], ['5%', '0%']);
-  const visionBlur = useTransform(p, [0.56, 0.70], [10, 0]);
+  const visionLabelOpacity = useTransform(p, [0.62, 0.70], [0, 1]);
+  const visionOpacity = useTransform(p, [0.62, 0.76], [0, 1]);
+  const visionX = useTransform(p, [0.62, 0.80], ['8%', '0%']);
+  const visionBlur = useTransform(p, [0.62, 0.76], [10, 0]);
   const visionFilter = useMotionTemplate`blur(${visionBlur}px)`;
 
   /* ---- Mobile sequential transforms ---- */
   const mMissionOpacity = useTransform(p, [0, 0.06, 0.46, 0.56], [0, 1, 1, 0]);
   const mMissionY = useTransform(p, [0.40, 0.58], ['0%', '-14%']);
   const mSeamScaleX = useTransform(p, [0.46, 0.60], [0, 1]);
-  const mVisionOpacity = useTransform(p, [0.54, 0.66], [0, 1]);
-  const mVisionY = useTransform(p, [0.54, 0.78], ['14%', '0%']);
+  const mVisionOpacity = useTransform(p, [0.62, 0.74], [0, 1]);
+  const mVisionY = useTransform(p, [0.62, 0.86], ['14%', '0%']);
 
   return (
     <section
@@ -307,7 +307,7 @@ function AnimatedPurpose() {
           {/* VISION — upper-right, emerges from depth, mask-wipes into balance */}
           <motion.div
             style={{ opacity: visionOpacity, x: visionX, filter: visionFilter, willChange: 'transform, opacity, filter' }}
-            className="absolute right-[6vw] top-[42%] ml-auto max-w-[34ch] -translate-y-1/2 text-right"
+            className="absolute right-[6vw] top-[42%] ml-auto max-w-[clamp(20ch,35vw,34ch)] -translate-y-1/2 text-right"
           >
             <p className="font-serif text-[clamp(2rem,4.2vw,4.25rem)] font-light leading-[1.16] tracking-tight text-white">
               {VISION.lines.map((line, i) => (

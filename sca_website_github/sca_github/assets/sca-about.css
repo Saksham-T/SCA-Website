@@ -101,9 +101,12 @@
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--accent-blue);
-  margin-bottom: 24px;
+  margin-bottom: 0;
   display: block;
   text-align: right;
+  position: absolute;
+  top: clamp(16px, 3.2vw, 32px);
+  right: clamp(20px, 4vw, 48px);
 }
 
 #intro .scene-eyebrow,
@@ -217,7 +220,7 @@
 .floating-layer .num {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--accent-orange);
+  color: var(--accent-blue);
   display: block;
   margin-bottom: 8px;
 }
@@ -772,7 +775,7 @@
 .ig-note p { font-size: 14px; line-height: 1.5; color: var(--text-muted-dark); }
 .ig-tile.ig-quote { background: linear-gradient(135deg, var(--accent-blue), #1e3bb3); color: #fff; }
 .ig-quote p { font-family: var(--font-serif); font-size: clamp(15px, 1.6vw, 21px); font-style: italic; line-height: 1.4; }
-.ig-quote span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; margin-top: 16px; display: block; }
+.ig-quote span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-orange); opacity: 0.85; margin-top: 16px; display: block; }
 
 /* ============================================================
    SCENE 8: CREDIBILITY (SLOW METRICS COUNT)
@@ -794,7 +797,7 @@
 
 .metric-num {
   font-family: var(--font-sans);
-  font-size: clamp(38px, 6vw, 72px);
+  font-size: clamp(28.5px, 4.5vw, 54px);
   font-weight: 800;
   line-height: 0.8;
   color: var(--accent-orange);
@@ -803,7 +806,7 @@
 }
 
 .metric-item:nth-child(2) .metric-num {
-  color: var(--accent-blue);
+  color: var(--accent-orange);
 }
 
 .metric-label {
