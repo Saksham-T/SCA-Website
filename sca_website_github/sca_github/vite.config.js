@@ -12,8 +12,7 @@ files.forEach(file => {
   if (
     file.endsWith('.html') &&
     !file.includes('Handover') &&
-    file !== 'Photo Showcase Hero.html' &&
-    file !== 'careers.html'
+    file !== 'Photo Showcase Hero.html'
   ) {
     const name = file.replace(/\.html$/, '');
     input[name] = resolve(__dirname, file);
