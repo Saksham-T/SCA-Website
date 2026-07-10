@@ -6,6 +6,7 @@ const logger = require('../config/logger');
 const v = require('../utils/validators');
 const ApiError = require('../utils/ApiError');
 const { cleanValue } = require('../middleware/sanitize');
+const { syncNewsletterToTabular } = require('../utils/syncTabular');
 
 /**
  * Handle new newsletter subscriptions.
@@ -43,6 +44,11 @@ const subscribeNewsletter = asyncHandler(async (req, res, next) => {
     });
 
     logger.info(`Newsletter subscription saved: ${subscription._id} (${subscription.email})`);
+
+    // Sync to TabularRecord (non-blocking)
+    syncNewsletterToTabular(subscription).catch((err) => {
+      logger.error(`Error in post-save syncNewsletterToTabular: ${err.message}`);
+    });
 
     return res.status(201).json({
       success: true,

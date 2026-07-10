@@ -25,6 +25,12 @@ async function start() {
   try {
     await connectDB();
 
+    // Run database tabular backfill/migration on startup
+    const migrateAllToTabular = require('./src/scripts/migrateExistingToTabular');
+    migrateAllToTabular().catch((err) => {
+      logger.error(`Error during startup tabular migration: ${err.message}`);
+    });
+
     // Non-blocking SMTP readiness check.
     emailService.verifyTransport();
 

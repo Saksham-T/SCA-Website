@@ -18,6 +18,7 @@ const emailService = require('../services/emailService');
 const asyncHandler = require('../utils/asyncHandler');
 const logger = require('../config/logger');
 const config = require('../config');
+const { syncApplicationToTabular } = require('../utils/syncTabular');
 
 /** Build a public download URL for a stored resume, when a base URL is set. */
 function buildResumeUrl(storedName) {
@@ -51,6 +52,11 @@ const submitApplication = asyncHandler(async (req, res) => {
   });
 
   logger.info(`Application saved: ${application.submissionId} (${application.email})`);
+
+  // Sync to TabularRecord (non-blocking)
+  syncApplicationToTabular(application).catch((err) => {
+    logger.error(`Error in post-save syncApplicationToTabular: ${err.message}`);
+  });
 
   // 2. Fire the two emails. Failures are captured, not fatal.
   const plain = application.toObject();

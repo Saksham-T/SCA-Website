@@ -7,6 +7,7 @@ const logger = require('../config/logger');
 const v = require('../utils/validators');
 const ApiError = require('../utils/ApiError');
 const { cleanValue } = require('../middleware/sanitize');
+const { syncInquiryToTabular } = require('../utils/syncTabular');
 
 /**
  * Handle new client inquiry submissions.
@@ -73,6 +74,11 @@ const submitInquiry = asyncHandler(async (req, res, next) => {
   });
 
   logger.info(`Inquiry saved: ${inquiry._id} (${inquiry.email})`);
+
+  // Sync to TabularRecord (non-blocking)
+  syncInquiryToTabular(inquiry).catch((err) => {
+    logger.error(`Error in post-save syncInquiryToTabular: ${err.message}`);
+  });
 
   // 4. Send email notification (non-blocking)
   try {
