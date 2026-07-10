@@ -60,16 +60,6 @@
 
 <link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.6">
 
-<!-- Pre-animation guard: added only when motion is allowed, removed by GSAP (or the no-JS/reduced-motion fallback). Never leaves content permanently hidden. -->
-<script>
-  (function () {
-    try {
-      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-      if (!mq || !mq.matches) document.documentElement.classList.add('ct-preanim');
-    } catch (e) {}
-  })();
-</script>
-
 <style>
 /* ============================================================
    CONTACT — "The Closing Frame"
@@ -113,20 +103,11 @@ body::before{
 }
 ::selection{ background:var(--ct-orange); color:#160a04; }
 
-/* Pre-animation hidden states (see head guard script) */
-.ct-preanim [data-hero-line] > span{ transform:translateY(120%); }
-.ct-preanim [data-hero-fade]{ opacity:0; }
-
 /* ---------------------------------------------------------- HERO */
 .ct-hero{
   position:relative;
   padding:clamp(116px,15vw,190px) 0 clamp(46px,7vw,84px);
   overflow:hidden;
-}
-@keyframes ctPulse{
-  0%{ box-shadow:0 0 0 0 rgba(252,114,51,.5); }
-  70%{ box-shadow:0 0 0 10px rgba(252,114,51,0); }
-  100%{ box-shadow:0 0 0 0 rgba(252,114,51,0); }
 }
 .ct-kicker{
   display:inline-flex; align-items:center; gap:14px;
@@ -144,7 +125,36 @@ body::before{
   max-width:14ch;
 }
 .ct-line{ display:block; overflow:hidden; padding-bottom:.04em; }
-.ct-line > span{ display:block; will-change:transform; }
+.ct-line > span{
+  display:block;
+  will-change:transform;
+  transform:translateY(0);
+  animation:ctHeroReveal 1.1s var(--ct-ease) both;
+}
+.ct-line:nth-child(1) > span{ animation-delay:0.15s; }
+.ct-line:nth-child(2) > span{ animation-delay:0.27s; }
+
+@keyframes ctHeroReveal{
+  from{ transform:translateY(120%); }
+  to{ transform:translateY(0); }
+}
+
+[data-hero-fade]{
+  opacity:1;
+  transform:translateY(0);
+  animation:ctHeroFade 0.9s var(--ct-ease) both;
+}
+.ct-kicker[data-hero-fade]{ animation-delay:0.1s; }
+.ct-lead[data-hero-fade]{ animation-delay:0.35s; }
+.ct-lead-sub[data-hero-fade]{ animation-delay:0.43s; }
+.ct-scrollcue[data-hero-fade]{ animation-delay:0.51s; }
+.ct-ledger[data-hero-fade]{ animation-delay:0.51s; }
+
+@keyframes ctHeroFade{
+  from{ opacity:0; transform:translateY(22px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
 .ct-hero h1 .o{ color:var(--ct-orange); }
 
 .ct-hero-foot{
@@ -580,50 +590,35 @@ body::before{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<!-- Contact page motion: hero entrance + scroll reveals. Vanilla + guarded.
-     If GSAP is unavailable or motion is reduced, the pre-anim guard is dropped
-     and all content stays fully visible. -->
+<!-- Contact page motion: hero entrance + scroll reveals.
+     Progressive enhancement only. All content is visible by default, and the
+     entrance uses gsap.from() so a created tween always resolves to the visible
+     state. If GSAP is missing, blocked, or motion is reduced, nothing is hidden. -->
 <script>
   (function () {
-    var root = document.documentElement;
-    function reveal(){ root.classList.remove('ct-preanim'); }
-
     try {
-      if (!window.gsap || !root.classList.contains('ct-preanim')) { reveal(); return; }
+      if (!window.gsap) return;
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mq && mq.matches) return;
       var gsap = window.gsap;
       var hasST = !!window.ScrollTrigger;
       if (hasST) gsap.registerPlugin(window.ScrollTrigger);
-
-      // Re-assert hidden states as inline GSAP tweens, then drop the CSS guard.
-      gsap.set('[data-hero-line] > span', { yPercent: 120 });
-      gsap.set('[data-hero-fade]', { opacity: 0, y: 22 });
-      reveal();
-
-      var tl = gsap.timeline({ delay: 0.15 });
-      tl.to('[data-hero-line] > span', {
-        yPercent: 0, duration: 1.15, stagger: 0.12, ease: 'expo.out'
-      }, 0)
-      .to('[data-hero-fade]', {
-        opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out'
-      }, 0.15);
 
       if (hasST) {
         gsap.utils.toArray('[data-ct-reveal]').forEach(function (el) {
           gsap.from(el, {
             y: 32, opacity: 0, duration: 0.9, ease: 'power3.out',
-            scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
           });
         });
         gsap.utils.toArray('[data-ct-stagger]').forEach(function (group) {
           gsap.from(group.children, {
             y: 24, opacity: 0, duration: 0.7, stagger: 0.08, ease: 'power3.out',
-            scrollTrigger: { trigger: group, start: 'top 84%', once: true }
+            scrollTrigger: { trigger: group, start: 'top 86%', once: true }
           });
         });
       }
-    } catch (err) {
-      reveal();
-    }
+    } catch (e) {}
   })();
 </script>
 
