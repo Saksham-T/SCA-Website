@@ -75,11 +75,11 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   font-family: var(--font-display);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: .82;
+  line-height: .94;
   letter-spacing: -.01em;
   color: #FFFFFF;
   font-size: clamp(44px, 8.5vw, 150px);
-  padding-right: .14em;
+  padding: .045em .14em .035em 0;
   overflow: hidden;
 }
 .intro-initial { display: inline-block; }

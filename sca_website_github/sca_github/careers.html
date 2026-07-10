@@ -6,15 +6,55 @@
 function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"698405f86e1c7f001d72f761"})},document.head.appendChild(o)}initApollo();
 </script>
 <meta charset="UTF-8" />
+<!-- Apollo website tracker -->
+<script>
+  function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+  o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+  o.onload=function(){window.trackingFunctions.onLoad({appId:"698405f86e1c7f001d72f761"})},
+  document.head.appendChild(o)}initApollo();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Careers — SeeTusk Creative Agency / Open Channels</title>
-<meta name="description" content="Join SeeTusk Creative Agency — a motion-first creative distribution studio in Pune. 13 open channels across content, creators, code and operations. Skip the layers. Submit your work in 60 seconds." />
+<title>Careers | SeeTusk Creative Agency</title>
+<meta name="description" content="Join SeeTusk — a motion-first creative studio in Pune that ships content, creators and code every week. See open roles and apply with your work." />
 <meta name="theme-color" content="#0E0E11" />
+<link rel="canonical" href="https://seetusk.agency/careers" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="SeeTusk Creative Agency" />
+<meta property="og:title" content="Careers | SeeTusk Creative Agency" />
+<meta property="og:description" content="A motion-first creative studio in Pune that ships content, creators and code every week. See open roles and apply with your work." />
+<meta property="og:url" content="https://seetusk.agency/careers" />
+<meta property="og:image" content="https://seetusk.agency/og.jpg" />
+<meta property="og:image:alt" content="Careers at SeeTusk Creative Agency" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Careers | SeeTusk Creative Agency" />
+<meta name="twitter:description" content="A motion-first creative studio in Pune that ships content, creators and code every week. See open roles and apply with your work." />
+<meta name="twitter:image" content="https://seetusk.agency/og.jpg" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://seetusk.agency/careers#webpage",
+  "url": "https://seetusk.agency/careers",
+  "name": "Careers - SeeTusk Creative Agency",
+  "description": "Join SeeTusk — a motion-first creative studio in Pune that ships content, creators and code every week.",
+  "provider": {
+    "@type": "Organization",
+    "name": "SeeTusk Creative Agency",
+    "url": "https://seetusk.agency/"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
+<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.5">
 <link rel="stylesheet" href="assets/inside-studio.bundle.css">
 <link rel="stylesheet" href="assets/inside-stats.bundle.css">
 <style>
@@ -52,7 +92,7 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
   --pad-x:clamp(18px,3vw,42px);
   --maxw:1440px;
   --ease:cubic-bezier(.2,.7,.2,1);
-  --font-display:'Outfit','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --font-display:'League Spartan','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-body:'Outfit','Helvetica Neue',Helvetica,Arial,sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   /* --- Signal Room: scoped fonts for redesigned regions below hero (hero keeps the vars above) --- */
@@ -118,7 +158,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:.98;letter-
 .display{
   font-family:var(--font-display);font-weight:900;
   text-transform:uppercase;line-height:.92;letter-spacing:-.025em;
-  font-size:clamp(42px,8.4vw,118px);
+  font-size:clamp(52px,6.3vw,90px);
 }
 .h2{font-size:clamp(30px,4.6vw,62px);text-transform:uppercase;line-height:.95;letter-spacing:-.02em}
 .h3{font-size:clamp(20px,2vw,27px);letter-spacing:-.01em;line-height:1.05}
@@ -129,7 +169,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:.98;letter-
 .section{padding-block:clamp(72px,10vw,140px);position:relative;z-index:2}
 /* --- curved interconnecting spine (SVG path drawn through the section title nodes) --- */
 main#top{position:relative}
-.spine-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;overflow:visible}
+.spine-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
 .spine-path{fill:none;stroke:url(#spineGrad);stroke-width:1.6;stroke-linecap:round;
   filter:drop-shadow(0 0 5px rgba(79,124,255,.5));}
 .section-head{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-bottom:clamp(40px,5vw,70px)}
@@ -171,7 +211,8 @@ main#top{position:relative}
 .btn.signal:hover{background:var(--signal-deep);border-color:var(--signal-deep)}
 .btn.ghost{--bg:transparent;--fg:var(--ink);border:1px solid var(--line);}
 .btn.ghost:hover{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
-.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,
+summary:focus-visible,.custom-select-trigger:focus-visible,.drop:focus-visible,[tabindex]:focus-visible{
   outline:2px solid var(--accent-blue);outline-offset:3px;border-radius:4px;
 }
 
@@ -287,14 +328,16 @@ main#top{position:relative}
 .role-list.masonry-ready .role{position:absolute;top:0;left:0;margin:0}
 .role{
   border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-2);
-  display:flex;flex-direction:column;position:relative;overflow:hidden;cursor:pointer;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
   transition:top .4s var(--ease),left .4s var(--ease),width .4s var(--ease),transform .25s var(--ease),border-color .25s ease,box-shadow .3s ease,background .3s ease;
 }
 .role__panel-in{cursor:auto}
 .role::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:var(--accent-orange);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
 .role:hover{transform:translateY(-4px);border-color:var(--ink-20);box-shadow:var(--glow-signal),0 18px 50px rgba(0,0,0,.4);background:var(--paper-3)}
 .role:hover::before{transform:scaleX(1)}
-.role.open{border-color:var(--ink-20)}
+.role:has(.role__panel[open]){border-color:var(--ink-20)}
+/* salary band tag — accent so it scans clearly */
+.role__band{color:#9db4ff !important;border-color:rgba(46,84,234,.45) !important;background:rgba(46,84,234,.08) !important}
 .role__bar{
   display:grid;grid-template-rows:auto auto auto;gap:12px;padding:22px 22px 18px;text-align:left;width:100%;background:transparent;
 }
@@ -305,27 +348,30 @@ main#top{position:relative}
 .role__title .live{font-family:var(--font-mono-2);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#22c55e;display:inline-flex;align-items:center;gap:7px}
 .role__title .live i{width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pulse-sig 2.4s infinite}
 .role__tags{display:flex;flex-wrap:wrap;gap:7px}
-.role__tags span{font-family:var(--font-mono-2);font-size:10.5px;letter-spacing:.03em;color:var(--ink-60);background:var(--paper-3);border:1px solid var(--line);border-radius:5px;padding:4px 9px}
+.role__tags span{font-family:var(--font-mono-2);font-size:10.5px;letter-spacing:.03em;color:var(--ink-80);background:var(--paper-3);border:1px solid var(--line);border-radius:5px;padding:4px 9px}
 .role__lead{font-size:13.5px;line-height:1.5;color:var(--ink-80);padding:0 22px;margin-bottom:4px}
-.role__toggle-row{padding:14px 22px;margin-top:auto}
+/* native <details> accordion — keyboard-focusable, works without JS */
+.role__panel{margin:14px 22px 0}
 .role__toggle{
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
   font-family:var(--font-mono-2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-60);
   border:1px dashed var(--line);border-radius:6px;padding:10px 13px;background:transparent;transition:all .2s ease;
 }
+.role__toggle::-webkit-details-marker{display:none}
+.role__toggle::marker{content:""}
 .role__toggle:hover{border-color:var(--ink-20);color:var(--ink)}
+.role__toggle:focus-visible{outline:2px solid var(--accent-blue);outline-offset:3px}
 .role__toggle .ico{transition:transform .3s var(--ease);color:var(--accent-blue);font-size:14px}
-.role.open .role__toggle .ico{transform:rotate(45deg)}
-.role__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
-.role.open .role__panel{grid-template-rows:1fr}
-.role__panel-inner{overflow:hidden;min-height:0}
-.role__panel-in{padding:4px 22px 22px;display:flex;flex-direction:column;gap:20px}
+.role__panel[open] .role__toggle .ico{transform:rotate(45deg)}
+.role__panel-in{padding:14px 0 4px;display:flex;flex-direction:column;gap:20px}
 .role__block .lbl{font-family:var(--font-mono-2);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-orange);margin-bottom:10px}
 .role__block p{font-size:14px;color:var(--ink-80);line-height:1.55}
 .role__block ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:4px}
 .role__block li{font-size:13.5px;color:var(--ink-80);display:flex;gap:10px;line-height:1.45}
 .role__block li::before{content:"→";color:var(--accent-blue);font-family:var(--font-mono-2);flex:none}
-.role__apply{display:flex;flex-direction:column;align-items:flex-start;gap:12px;border-top:1px dashed var(--line);padding-top:18px}
+.role__apply{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:auto;padding:18px 22px 20px}
+.role__apply .btn{width:100%;justify-content:center}
 .role__apply .skip{font-family:var(--font-mono-2);font-size:11px;letter-spacing:.04em;color:var(--ink-60)}
 .no-results{grid-column:1/-1;padding:60px 8px;text-align:center;font-family:var(--font-mono-2);font-size:13px;color:var(--ink-60);display:none}
 .no-results.show{display:block}
@@ -473,6 +519,10 @@ main#top{position:relative}
 .modal__close{margin-left:auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--console-line);display:grid;place-items:center;color:var(--console-ink-60);transition:all .25s}
 .modal__close:hover{background:var(--accent-blue);color:#fff;border-color:var(--accent-blue)}
 .modal__body{padding:clamp(24px,4vw,40px)}
+/* =================== ON-PAGE APPLY CARD (terminal-window styling, always visible) =================== */
+.apply{background:transparent}
+.apply__card{max-width:780px;margin:0 auto;background:var(--console);color:var(--console-ink);border:1px solid var(--console-line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.apply .field label .opt{color:var(--console-ink-60);font-weight:400;text-transform:none;letter-spacing:0}
 .modal__head{margin-bottom:24px}
 .modal__head .k{font-family:var(--font-mono-2);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-orange);margin-bottom:12px;display:block}
 .modal__head h3{font-family:var(--font-display-2);font-weight:700;font-size:clamp(22px,3vw,30px);text-transform:uppercase;color:var(--console-ink);letter-spacing:-.01em;line-height:1}
@@ -518,6 +568,120 @@ main#top{position:relative}
 .field .err{color:var(--accent-orange);font-family:var(--font-mono-2);font-size:10.5px;letter-spacing:.04em;display:none}
 .field.invalid .err{display:block}
 .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--accent-orange)}
+.field.invalid .custom-select-trigger{border-color:var(--accent-orange)}
+
+/* Custom Select styles */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-radius: 6px;
+  background: #0e0c08;
+  border: 1px solid var(--console-line);
+  color: var(--console-ink);
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .25s;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.custom-select-wrapper.open .custom-select-trigger,
+.custom-select-trigger:hover {
+  border-color: var(--accent-blue);
+  box-shadow: var(--glow-blue);
+}
+.custom-select-arrow {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--accent-orange);
+  transition: transform .2s ease;
+}
+.custom-select-wrapper.open .custom-select-arrow {
+  transform: rotate(180deg);
+}
+.custom-select-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #0e0c08;
+  border: 1px solid var(--console-line);
+  border-radius: 6px;
+  z-index: 100;
+  display: none;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+.custom-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-select-options::-webkit-scrollbar-track {
+  background: #0e0c08;
+}
+.custom-select-options::-webkit-scrollbar-thumb {
+  background: var(--console-line);
+  border-radius: 3px;
+}
+.custom-select-options::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
+}
+.custom-select-wrapper.open .custom-select-options {
+  display: block;
+}
+.custom-select-option {
+  padding: 11px 15px;
+  color: var(--console-ink-60);
+  cursor: pointer;
+  transition: all .15s;
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: left;
+}
+.custom-select-option:hover {
+  background: var(--accent-blue);
+  color: #fff;
+}
+.custom-select-option.selected {
+  color: var(--accent-orange);
+  font-weight: 700;
+  background: rgba(252, 114, 51, 0.08);
+}
+
+.static-role-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 15px;
+  border-radius: 6px;
+  background: #11100d;
+  border: 1px solid var(--console-line);
+  color: var(--console-ink-60);
+  cursor: not-allowed;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+.static-role-display .role-title {
+  font-weight: 500;
+  color: var(--console-ink);
+}
+.static-role-display .lock-tag {
+  font-family: var(--font-mono-2);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  background: rgba(252, 114, 51, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(252, 114, 51, 0.2);
+}
+
 
 /* success */
 .success{display:none;flex-direction:column;align-items:center;text-align:center;padding:30px 10px 16px}
@@ -875,18 +1039,18 @@ main#top{position:relative}
   z-index: 5;
 }
 .display span.em-serif {
-  font-family: var(--font-mono);
-  font-style: italic;
-  font-weight: 500;
-  text-transform: none;
-  background: linear-gradient(135deg, #2E54EA 0%, #a855f7 50%, #ffffff 100%);
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #FC7233 0%, #ff9e6d 50%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #fff;
+  color: #FC7233;
   display: inline-block;
   background-size: 200% 200%;
   animation: shine-sweep 6s linear infinite;
-  text-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+  text-shadow: 0 0 25px rgba(252, 114, 51, 0.25);
 }
 
 @keyframes shine-sweep {
@@ -1056,10 +1220,10 @@ main#top{position:relative}
   overflow: hidden;
 }
 .name-text {
-  font-family: 'Anton', sans-serif;
+  font-family: var(--font-display); /* match careers hero (League Spartan) */
   font-size: clamp(40px, 8vw, 100px);
   color: white;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -1117,9 +1281,8 @@ main#top{position:relative}
 <!-- ===== NAV (matches main website floating glass-pill design) ===== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
+    <a href="./" class="brand" aria-label="SeeTusk Creative Agency. Home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
-      <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
       <span class="nav-spotlight"></span>
@@ -1129,7 +1292,7 @@ main#top{position:relative}
       <a href="influencer.html" data-scramble>Influencer</a>
       <a href="web.html" data-scramble>Web &amp; Tech</a>
       <a href="about.html" data-scramble>About</a>
-      <a href="careers.html" class="active" aria-current="page" data-scramble>Career</a>
+      <a href="careers.html" class="active" aria-current="page" data-scramble>Careers</a>
     </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1143,7 +1306,7 @@ main#top{position:relative}
     <a href="influencer.html">Influencer</a>
     <a href="web.html">Web &amp; Tech</a>
     <a href="about.html">About</a>
-    <a href="careers.html" class="active">Career</a>
+    <a href="careers.html">Careers</a>
     <a href="contact.html" class="mobile-menu-cta">Start a project ↗</a>
   </div>
 </div>
@@ -1202,14 +1365,14 @@ main#top{position:relative}
     <h1 class="display" aria-label="Build work the country actually sees.">
       <span class="c-reveal-line"><span>BUILD WORK</span></span>
       <span class="c-reveal-line"><span>THE COUNTRY</span></span>
-      <span class="c-reveal-line"><span>ACTUALLY <span class="em-serif">sees.</span></span></span>
+      <span class="c-reveal-line"><span>ACTUALLY <span class="em-serif">SEES.</span></span></span>
     </h1>
 
     <div class="hero__sub-row">
       <p class="lede fade-up d1">
         SeeTusk is a motion-first creative distribution studio in Pune. We ship real content,
         creators, and code every week — and the people you meet in the pitch are the people doing
-        the work. No account managers. No layers. Find your channel below.
+        the work. No account managers. No layers. Find your role below.
       </p>
       <div class="fade-up d2">
         <canvas class="wave-canvas" id="heroWave" aria-hidden="true"></canvas>
@@ -1218,7 +1381,7 @@ main#top{position:relative}
 
     <div class="hero__cta-row fade-up d3">
       <a href="#roles" class="btn signal">See open roles <span class="arrow">↓</span></a>
-      <button class="btn ghost" data-apply="" data-role="">Skip to application <span class="arrow">↗</span></button>
+      <a href="#apply" class="btn ghost" data-apply data-role="" data-track="hero-apply">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
     </div>
 
     <!-- INTERACTIVE 3D STATS COUNTERS -->
@@ -1245,7 +1408,7 @@ main#top{position:relative}
   <div class="ticker__track" id="ticker">
     <div class="ticker__group">
       <span class="ticker__item"><span class="sig">●</span> <b>SCA / 2026</b> <span class="ticker__sep">·</span> PUNE, IND</span>
-      <span class="ticker__item">NOW HIRING <span class="ticker__sep">·</span> <b>13 OPEN CHANNELS</b></span>
+      <span class="ticker__item">NOW HIRING <span class="ticker__sep">·</span> <b>13 OPEN ROLES</b></span>
       <span class="ticker__item">MOTION-FIRST CREATIVE DISTRIBUTION STUDIO</span>
       <span class="ticker__item">SKIP THE LAYERS <span class="ticker__sep">·</span> <b>SUBMIT YOUR WORK IN 60s</b></span>
       <span class="ticker__item">CONTENT <span class="ticker__sep">·</span> CREATORS <span class="ticker__sep">·</span> CODE <span class="ticker__sep">·</span> CAMPAIGNS</span>
@@ -1253,7 +1416,7 @@ main#top{position:relative}
     </div>
     <div class="ticker__group" aria-hidden="true">
       <span class="ticker__item"><span class="sig">●</span> <b>SCA / 2026</b> <span class="ticker__sep">·</span> PUNE, IND</span>
-      <span class="ticker__item">NOW HIRING <span class="ticker__sep">·</span> <b>13 OPEN CHANNELS</b></span>
+      <span class="ticker__item">NOW HIRING <span class="ticker__sep">·</span> <b>13 OPEN ROLES</b></span>
       <span class="ticker__item">MOTION-FIRST CREATIVE DISTRIBUTION STUDIO</span>
       <span class="ticker__item">SKIP THE LAYERS <span class="ticker__sep">·</span> <b>SUBMIT YOUR WORK IN 60s</b></span>
       <span class="ticker__item">CONTENT <span class="ticker__sep">·</span> CREATORS <span class="ticker__sep">·</span> CODE <span class="ticker__sep">·</span> CAMPAIGNS</span>
@@ -1266,10 +1429,10 @@ main#top{position:relative}
 <section class="section roles" id="roles" data-spine="left">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag"><span class="num">02 /</span><span class="label">Open Channels</span></div>
+      <div class="section-tag"><span class="label">Open Roles</span></div>
       <div class="roles__head">
         <h2 class="h2">Open <span class="em-serif">roles.</span></h2>
-        <p class="lede">Each role is a live channel. Open one to read the brief and pre-requisites, then transmit your application.</p>
+        <p class="lede">Every role below is live. Open one to read the brief and pre-requisites, then apply with your work.</p>
       </div>
     </div>
 
@@ -1290,19 +1453,451 @@ main#top{position:relative}
     </div>
 
     <div class="roles__meta">
-      <span id="resultCount">13 channels open</span>
+      <span id="resultCount">13 roles open</span>
       <span>SORTED BY DEPARTMENT</span>
     </div>
 
-    <div class="role-list" id="roleList"></div>
-    <div class="no-results" id="noResults">// no channel matches that filter. <button style="color:var(--signal);text-decoration:underline" onclick="resetFilters()">reset filters</button></div>
+    <!-- Roles are server-rendered below so they are visible to crawlers and work without JavaScript.
+         The JS (buildRoles) detects these existing cards and enhances (filter/search/masonry) rather than rebuilding. -->
+    <div class="role-list" id="roleList">
+      <article class="role" data-dept="Marketing" data-type="Full-time" data-search="senior brand manager pune · onsite marketing full-time ₹10–16 lpa lead creative strategies, client communications, and campaign execution for major d2c brands. proven experience managing brand campaigns end to end. excellent communication and leadership skills. deep understanding of motion content and digital distribution.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-01</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-0-title">Senior Brand Manager</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹10–16 LPA</span>
+              <span>3–5 years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Lead creative strategies, client communications, and campaign execution for major D2C brands.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Proven experience managing brand campaigns end to end.</li><li>Excellent communication and leadership skills.</li><li>Deep understanding of motion content and digital distribution.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Senior Brand Manager" data-track="role-apply" aria-label="Apply with your work for Senior Brand Manager">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Marketing" data-type="Full-time" data-search="brand manager pune · onsite marketing full-time ₹6–10 lpa execute digital brand strategies, manage creator partnerships, and coordinate campaign delivery. strong marketing background and visual taste. detail-oriented campaign management skills. ability to translate creator signals into brand ideas.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-02</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-1-title">Brand Manager</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹6–10 LPA</span>
+              <span>2–3 years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Execute digital brand strategies, manage creator partnerships, and coordinate campaign delivery.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Strong marketing background and visual taste.</li><li>Detail-oriented campaign management skills.</li><li>Ability to translate creator signals into brand ideas.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Brand Manager" data-track="role-apply" aria-label="Apply with your work for Brand Manager">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="content strategist pune · onsite production &amp; post full-time ₹5–8 lpa ideate, script, and direct short-form content pipelines for creators and brands. hook-writing and copywriting expertise. fluent in shorts, reels and short-form formats. active interest in internet culture and creator dynamics.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-03</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-2-title">Content Strategist</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹5–8 LPA</span>
+              <span>1–2 years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Ideate, script, and direct short-form content pipelines for creators and brands.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Hook-writing and copywriting expertise.</li><li>Fluent in Shorts, Reels and short-form formats.</li><li>Active interest in internet culture and creator dynamics.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Content Strategist" data-track="role-apply" aria-label="Apply with your work for Content Strategist">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="cinematographer pune · onsite production &amp; post full-time ₹5–9 lpa direct camera movement, set lighting rigs, and shoot cinematic studio and outdoor motion assets. experience with cinema cameras (red, sony fx, arri, blackmagic). expert lighting (interior, studio, natural light). portfolio with exceptional visual framing.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-04</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-3-title">Cinematographer</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹5–9 LPA</span>
+              <span>1–2 years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Direct camera movement, set lighting rigs, and shoot cinematic studio and outdoor motion assets.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Experience with cinema cameras (RED, Sony FX, Arri, Blackmagic).</li><li>Expert lighting (interior, studio, natural light).</li><li>Portfolio with exceptional visual framing.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Cinematographer" data-track="role-apply" aria-label="Apply with your work for Cinematographer">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="sr. video editor pune · onsite production &amp; post full-time ₹8–14 lpa lead the editing team, structure high-tempo edits, and refine visual storytelling standards. advanced premiere pro, davinci resolve or after effects. high speed and precision editing workflow. direct sound design, pacing and color grading.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-05</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-4-title">Sr. Video Editor</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹8–14 LPA</span>
+              <span>3+ years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Lead the editing team, structure high-tempo edits, and refine visual storytelling standards.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Advanced Premiere Pro, DaVinci Resolve or After Effects.</li><li>High speed and precision editing workflow.</li><li>Direct sound design, pacing and color grading.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Sr. Video Editor" data-track="role-apply" aria-label="Apply with your work for Sr. Video Editor">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="intermediate video editor bengaluru · onsite production &amp; post full-time ₹5–8 lpa create visual edits, compile creator reels, and add motion assets and transitions. solid adobe premiere or davinci resolve skills. strong sense of audio timing and pacing. fast, reliable delivery turnarounds.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-06</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-5-title">Intermediate Video Editor</h3>
+            <div class="role__tags">
+              <span>Bengaluru · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹5–8 LPA</span>
+              <span>2+ years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Create visual edits, compile creator reels, and add motion assets and transitions.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Solid Adobe Premiere or DaVinci Resolve skills.</li><li>Strong sense of audio timing and pacing.</li><li>Fast, reliable delivery turnarounds.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Intermediate Video Editor" data-track="role-apply" aria-label="Apply with your work for Intermediate Video Editor">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="video editor pune · onsite production &amp; post full-time ₹4–7 lpa assemble raw footage, cut high-retention vertical videos, and apply motion graphics. premiere pro, capcut and similar tools. engaging transitions, captions and sound effects. eagerness to learn and iterate weekly.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-07</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-6-title">Video Editor</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹4–7 LPA</span>
+              <span>2+ years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Assemble raw footage, cut high-retention vertical videos, and apply motion graphics.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Premiere Pro, CapCut and similar tools.</li><li>Engaging transitions, captions and sound effects.</li><li>Eagerness to learn and iterate weekly.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Video Editor" data-track="role-apply" aria-label="Apply with your work for Video Editor">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="production assistant pune · onsite production &amp; post full-time ₹3–5 lpa coordinate shoot logistics, manage equipment inventory, and support directors on set. highly organised with proactive problem-solving. manage schedules, crew riders and studio setups. passion for production and cinema operations.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-08</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-7-title">Production Assistant</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹3–5 LPA</span>
+              <span>1–2 years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Coordinate shoot logistics, manage equipment inventory, and support directors on set.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Highly organised with proactive problem-solving.</li><li>Manage schedules, crew riders and studio setups.</li><li>Passion for production and cinema operations.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Production Assistant" data-track="role-apply" aria-label="Apply with your work for Production Assistant">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Full-time" data-search="graphic designer pune · onsite production &amp; post full-time ₹4.5–7.5 lpa design high-retention thumbnails, brand identities, and social key visuals. photoshop, illustrator and figma mastery. strong visual hierarchy and bold typography. portfolio of modern, high-contrast design.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-09</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-8-title">Graphic Designer</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹4.5–7.5 LPA</span>
+              <span>2+ years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Design high-retention thumbnails, brand identities, and social key visuals.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Photoshop, Illustrator and Figma mastery.</li><li>Strong visual hierarchy and bold typography.</li><li>Portfolio of modern, high-contrast design.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Graphic Designer" data-track="role-apply" aria-label="Apply with your work for Graphic Designer">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Production &amp; Post" data-type="Intern" data-search="content strategist intern pune · onsite production &amp; post intern ₹15,000–25,000 / month learn scriptwriting, assist in creator research, and brainstorm viral ideas. deeply active on youtube, reels and x. eager to learn copywriting and script structures. no formal experience needed — high curiosity is.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-10</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-9-title">Content Strategist Intern</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Intern</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹15,000–25,000 / month</span>
+              <span>No experience required</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Learn scriptwriting, assist in creator research, and brainstorm viral ideas.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Deeply active on YouTube, Reels and X.</li><li>Eager to learn copywriting and script structures.</li><li>No formal experience needed — high curiosity is.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Content Strategist Intern" data-track="role-apply" aria-label="Apply with your work for Content Strategist Intern">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Growth" data-type="Full-time" data-search="performance marketing executive pune · onsite growth full-time ₹6–10 lpa manage and optimise paid campaigns (meta, google, youtube) to drive brand growth. hands-on running ads and allocating budgets. strong analytics — roas, cac, conversion. brief design on high-performance ad creative.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-11</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-10-title">Performance Marketing Executive</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Full-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹6–10 LPA</span>
+              <span>2+ years</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Manage and optimise paid campaigns (Meta, Google, YouTube) to drive brand growth.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Hands-on running ads and allocating budgets.</li><li>Strong analytics — ROAS, CAC, conversion.</li><li>Brief design on high-performance ad creative.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Performance Marketing Executive" data-track="role-apply" aria-label="Apply with your work for Performance Marketing Executive">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Operations" data-type="Part-time" data-search="human resources pune · onsite operations part-time ₹3–5 lpa manage recruitment pipelines, onboarding flows, and employee engagement. strong screening, sourcing and communication. familiar with creator or tech-agency hiring. empathy and professional workplace management.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-12</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-11-title">Human Resources</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Part-time</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹3–5 LPA</span>
+              <span>1+ year</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Manage recruitment pipelines, onboarding flows, and employee engagement.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Strong screening, sourcing and communication.</li><li>Familiar with creator or tech-agency hiring.</li><li>Empathy and professional workplace management.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="Human Resources" data-track="role-apply" aria-label="Apply with your work for Human Resources">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="role" data-dept="Operations" data-type="Intern" data-search="hr intern pune · onsite operations intern ₹12,000–20,000 / month assist with resume screening, candidate scheduling, and hr database coordination. excellent communication and writing. organised, with sheets / database fluency. pursuing or recently completed an mba / hr degree.">
+        <div class="role__bar">
+          <div class="role__top">
+            <span class="role__ch">CH-13</span>
+            <span class="live"><i></i> Live</span>
+          </div>
+          <div class="role__title">
+            <h3 id="role-12-title">HR Intern</h3>
+            <div class="role__tags">
+              <span>Pune · Onsite</span>
+              <span>Intern</span>
+              <span class="role__band" title="Indicative band — confirmed at offer">₹12,000–20,000 / month</span>
+              <span>No experience required</span>
+            </div>
+          </div>
+        </div>
+        <p class="role__lead">Assist with resume screening, candidate scheduling, and HR database coordination.</p>
+        <details class="role__panel">
+          <summary class="role__toggle">
+            <span class="role__toggle-lbl">View pre-requisites</span>
+            <span class="ico" aria-hidden="true">+</span>
+          </summary>
+          <div class="role__panel-in">
+            <div class="role__block">
+              <div class="lbl">// Pre-requisites</div>
+              <ul><li>Excellent communication and writing.</li><li>Organised, with Sheets / database fluency.</li><li>Pursuing or recently completed an MBA / HR degree.</li></ul>
+            </div>
+          </div>
+        </details>
+        <div class="role__apply">
+          <a class="btn signal" href="#apply" data-apply data-role="HR Intern" data-track="role-apply" aria-label="Apply with your work for HR Intern">Apply with your work <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </div>
+    <div class="no-results" id="noResults">// no role matches that filter. <button style="color:var(--signal);text-decoration:underline" onclick="resetFilters()">reset filters</button></div>
 
     <div class="openapp">
       <div>
-        <h3 class="h3">Don't see your channel?</h3>
+        <h3 class="h3">Don't see your role?</h3>
         <p>We're always looking for sharp, ambitious people. Send your portfolio and a note on what you'd build here.</p>
       </div>
-      <button class="btn ghost" data-apply="" data-role="Open Application">Send an open application <span class="arrow">↗</span></button>
+      <a class="btn ghost" href="#apply" data-apply data-role="Open Application" data-track="role-apply">Send an open application <span class="arrow" aria-hidden="true">↗</span></a>
     </div>
   </div>
 </section>
@@ -1312,7 +1907,7 @@ main#top{position:relative}
   <canvas class="console__wave" id="consoleWave" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag"><span class="num">03 /</span><span class="label">Transmit Pipeline</span></div>
+      <div class="section-tag"><span class="label">Hiring Process</span></div>
       <h2 class="h2">How hiring <span class="em-serif" style="color:var(--signal)">works.</span></h2>
     </div>
     <div class="console__win">
@@ -1361,7 +1956,7 @@ main#top{position:relative}
 <section class="section" data-spine="left">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag"><span class="num">04 /</span><span class="label">Operating System</span></div>
+      <div class="section-tag"><span class="label">How We Work</span></div>
       <h2 class="h2">How we <span class="em-serif">work.</span></h2>
     </div>
     <div class="sys">
@@ -1388,7 +1983,7 @@ main#top{position:relative}
 <section class="section" style="padding-top:0" data-spine="right">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag"><span class="num">05 /</span><span class="label">What You Get</span></div>
+      <div class="section-tag"><span class="label">What You Get</span></div>
       <h2 class="h2">The deal, <span class="em-serif">plainly.</span></h2>
     </div>
     <div class="perks">
@@ -1402,6 +1997,146 @@ main#top{position:relative}
   </div>
 </section>
 
+<!-- ===== APPLY (on-page application form — a real destination, present in the initial HTML) ===== -->
+<section class="section apply" id="apply" data-spine="left">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag"><span class="label">Apply</span></div>
+      <div class="roles__head">
+        <h2 class="h2">Apply with <span class="em-serif">your work.</span></h2>
+        <p class="lede">Skip the layers — one short application, read by a founder, reply within 48h. After you send: <b>review → conversation → paid trial → offer.</b></p>
+      </div>
+    </div>
+    <div class="apply__card">
+      <div class="modal__bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="file">transmit_application.log</span>
+      </div>
+      <div class="modal__body">
+        <!-- form -->
+        <form id="formWrap" novalidate>
+          <div class="modal__head">
+            <span class="k">// LET'S BUILD YOUR APPLICATION</span>
+            <h3 id="applyTitle">Transmit your work</h3>
+            <p>Stand out to the studio with a complete, verified profile. <span id="roleEcho"></span></p>
+          </div>
+          <div class="steps" role="progressbar" aria-label="Application progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
+            <div class="seg active" data-seg="0"><span class="track"><i></i></span><span class="lbl">01 · Identity</span></div>
+            <div class="seg" data-seg="1"><span class="track"><i></i></span><span class="lbl">02 · Terms &amp; Role</span></div>
+            <div class="seg" data-seg="2"><span class="track"><i></i></span><span class="lbl">03 · Experience</span></div>
+          </div>
+
+          <!-- step 1 -->
+          <div class="fstep active" data-step="0">
+            <div class="field">
+              <label for="form-name">Name <span class="req">*</span></label>
+              <input type="text" id="form-name" name="name" autocomplete="name" data-v="req" placeholder="First Last" />
+              <span class="err">// required</span>
+            </div>
+            <div class="grid2">
+              <div class="field">
+                <label for="form-email">Email <span class="req">*</span></label>
+                <input type="email" id="form-email" name="email" autocomplete="email" data-v="email" placeholder="you@email.com" />
+                <span class="err">// valid email required</span>
+              </div>
+              <div class="field">
+                <label for="form-phone">Phone <span class="req">*</span></label>
+                <input type="tel" id="form-phone" name="phone" autocomplete="tel" data-v="req" placeholder="+91 ..." />
+                <span class="err">// required</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="form-linkedin">LinkedIn profile <span class="req">*</span></label>
+              <input type="url" id="form-linkedin" name="linkedin" data-v="req" placeholder="https://linkedin.com/in/username" />
+              <span class="err">// required (LinkedIn link)</span>
+            </div>
+          </div>
+
+          <!-- step 2 -->
+          <div class="fstep" data-step="1">
+            <div class="field" id="roleFieldContainer">
+              <!-- Dynamically populated in openApply() -->
+            </div>
+            <div class="field">
+              <label for="form-ctc">Expected CTC <span class="req">*</span> <small style="display:block;margin-top:4px;color:var(--console-ink-60)">Add exact number, (for 8 Lakh, write 800000)</small></label>
+              <input type="number" id="form-ctc" name="expected_ctc" data-v="req" placeholder="e.g. 800000" min="0" />
+              <span class="err">// required (numbers only)</span>
+            </div>
+            <div class="field">
+              <label for="form-office">Are you willing to work full-time in office in Pune? <span class="req">*</span>
+                <small style="display:block;margin-top:4px;line-height:1.45;color:var(--console-ink-60)">The studio space is in Bavdhan, Pune. We do not have a typical corporate or creative Indian marketing agency office. We have paid special attention to create a creative studio that nurtures and help our talent thrive.</small>
+              </label>
+              <select id="form-office" name="office" data-v="req">
+                <option value="">Select answer…</option>
+                <option value="Yes">Yes, willing to work full-time onsite in Pune</option>
+                <option value="No">No</option>
+              </select>
+              <span class="err">// required</span>
+            </div>
+            <div class="field">
+              <label for="form-joining">Expected Joining Date <span class="req">*</span> <small style="display:block;margin-top:4px;color:var(--console-ink-60)">If you are selected going forward, then by when will you be able to join us? (Date)</small></label>
+              <input type="date" id="form-joining" name="joining" data-v="req" />
+              <span class="err">// select a date</span>
+            </div>
+          </div>
+
+          <!-- step 3 -->
+          <div class="fstep" data-step="2">
+            <div class="field">
+              <label for="form-experience">Do you have prior experience related to the role you’re applying for? <span class="req">*</span>
+                <small style="display:block;margin-top:4px;color:var(--console-ink-60)">Have you worked in a creative/agency/startup-like environment before</small>
+              </label>
+              <select id="form-experience" name="experience" data-v="req">
+                <option value="">Select answer…</option>
+                <option value="Yes">Yes, I have prior relevant experience</option>
+                <option value="No">No, I am a fresher / switching tracks</option>
+              </select>
+              <span class="err">// required</span>
+            </div>
+            <div class="field">
+              <label for="fileInput">Resume <span class="req">*</span></label>
+              <div class="drop" id="drop" role="button" tabindex="0" aria-controls="fileInput">
+                <b>Click to select</b> or drop a PDF resume
+                <small>max file size: 4MB</small>
+              </div>
+              <input type="file" id="fileInput" name="resume" accept="application/pdf" data-v="req" hidden />
+              <span class="err">// resume file required</span>
+            </div>
+            <div class="field">
+              <label for="form-portfolio">Portfolio Link <span class="opt">(optional)</span></label>
+              <input type="url" id="form-portfolio" name="portfolio" placeholder="https://..." />
+            </div>
+            <div class="field">
+              <label for="form-questions">Thank you for applying! Any questions for us? <span class="req">*</span></label>
+              <textarea id="form-questions" name="questions" data-v="req" placeholder="Ask us anything about our culture, work, or studio space..."></textarea>
+              <span class="err">// required (please write your questions or 'None')</span>
+            </div>
+          </div>
+
+          <div class="modal__foot">
+            <button type="button" class="mbtn prev" id="prevBtn" style="visibility:hidden">← Back</button>
+            <span class="spacer"></span>
+            <button type="button" class="mbtn next" id="nextBtn">Continue →</button>
+          </div>
+        </form>
+
+        <!-- success / confirmation -->
+        <div class="success" id="success" role="status" aria-live="polite">
+          <div class="success__mark">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>Application sent</h3>
+          <p>Thanks for putting in the work. A founder reads every application — we reply within <b>48 hours</b> on business days, even when it's a no.</p>
+          <p>If there's a fit, here's what happens next: a <b>45-minute conversation</b> with the people you'd work with → a small <b>paid trial</b> task → an <b>offer</b>.</p>
+          <div class="log">$ transmit --to studio <b>[delivered]</b> · reply &lt; 48h</div>
+          <div class="modal__foot" style="justify-content:center;margin-top:28px">
+            <button type="button" class="mbtn next" id="applyAgainBtn">Apply for another role</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -1426,7 +2161,7 @@ main#top{position:relative}
           <img src="images/sca-logo-mark.webp" alt="SeeTusk SCA logo mark">
           <span>SeeTusk / SCA</span>
         </div>
-        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <p>SeeTusk Creative Agency. We build content, creator campaigns, and web systems that get ambitious Indian brands seen and chosen. Headquartered in Pune.</p>
         <div class="sfoot-socials">
           <a href="https://www.youtube.com/@seetuskcreativeagency" title="YouTube" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
           <a href="https://x.com/seetusk" title="X / Twitter" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
@@ -1434,8 +2169,8 @@ main#top{position:relative}
           <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Career</a></nav>
+      <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">
@@ -1445,84 +2180,26 @@ main#top{position:relative}
   </div>
 </footer>
 
-<!-- ===== APPLICATION MODAL ===== -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal__scrim" data-close></div>
-  <div class="modal__card" role="document">
-    <div class="modal__bar">
-      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <span class="file">transmit_application.log</span>
-      <button class="modal__close" data-close aria-label="Close application">✕</button>
-    </div>
-    <div class="modal__body">
-      <!-- form -->
-      <div id="formWrap">
-        <div class="modal__head">
-          <span class="k">// LET'S BUILD YOUR APPLICATION</span>
-          <h3 id="modalTitle">Transmit your work</h3>
-          <p>Stand out to the studio with a complete, verified profile. <span id="roleEcho"></span></p>
-        </div>
-        <div class="steps" role="progressbar" aria-label="Application progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
-          <div class="seg active" data-seg="0"><span class="track"><i></i></span><span class="lbl">01 · Identity</span></div>
-          <div class="seg" data-seg="1"><span class="track"><i></i></span><span class="lbl">02 · Work</span></div>
-          <div class="seg" data-seg="2"><span class="track"><i></i></span><span class="lbl">03 · Signal</span></div>
-        </div>
-
-        <!-- step 1 -->
-        <div class="fstep active" data-step="0">
-          <div class="field"><label>Full name <span class="req">*</span></label><input type="text" data-v="req" placeholder="First Last" /><span class="err">// required</span></div>
-          <div class="grid2">
-            <div class="field"><label>Email <span class="req">*</span></label><input type="email" data-v="email" placeholder="you@email.com" /><span class="err">// valid email required</span></div>
-            <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" data-v="req" placeholder="+91 ..." /><span class="err">// required</span></div>
-          </div>
-          <div class="field"><label>Role <span class="req">*</span></label>
-            <select data-v="req" id="roleSelect"><option value="">Select a channel…</option></select>
-            <span class="err">// pick a role</span>
-          </div>
-        </div>
-
-        <!-- step 2 -->
-        <div class="fstep" data-step="1">
-          <div class="field"><label>Portfolio / work link <span class="req">*</span></label><input type="url" data-v="req" placeholder="https://…" /><span class="err">// required</span></div>
-          <div class="field"><label>Upload resume (PDF)</label>
-            <div class="drop" id="drop"><b>Click to select</b> or drop a PDF resume<small>max file size: 4MB</small><input type="file" id="fileInput" accept="application/pdf" hidden /></div>
-          </div>
-          <div class="field"><label>Social links (optional)</label><input type="text" placeholder="LinkedIn, Instagram, X…" /></div>
-        </div>
-
-        <!-- step 3 -->
-        <div class="fstep" data-step="2">
-          <div class="field"><label>What is the best thing you've built or shipped? <span class="req">*</span></label>
-            <textarea data-v="req" placeholder="One thing you're proud of. What it was, what you did, what happened."></textarea>
-            <span class="err">// tell us one thing</span>
-          </div>
-          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--console-ink-60);letter-spacing:.04em">// reviewed by Sarthak, Saksham &amp; Melbin · reply within 48h</p>
-        </div>
-
-        <div class="modal__foot">
-          <button class="mbtn prev" id="prevBtn" style="visibility:hidden">← Back</button>
-          <span class="spacer"></span>
-          <button class="mbtn next" id="nextBtn">Continue →</button>
-        </div>
-      </div>
-
-      <!-- success -->
-      <div class="success" id="success">
-        <div class="success__mark">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-        </div>
-        <h3>Application sent</h3>
-        <p>We appreciate you putting in the work. Sarthak, Saksham, or Melbin will reach out directly if there's a fit.</p>
-        <div class="log">$ transmit --to studio <b>[delivered]</b> · reply &lt; 48h</div>
-        <div class="modal__foot" style="justify-content:center;margin-top:28px">
-          <button class="mbtn prev" data-close>Done</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
+let formRenderTs = 0;
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://sca-website.onrender.com'; // Replace with your actual Render URL
+
+/* ============ analytics shim ============
+   Vendor-neutral: pushes to dataLayer (GTM), forwards to gtag (GA4) if present,
+   and dispatches a DOM CustomEvent so any provider can subscribe. No analytics
+   library is wired yet — adding GTM or GA4 will pick these events up automatically. */
+function track(event, params){
+  try{
+    const payload = Object.assign({event:'careers_'+event}, params||{});
+    (window.dataLayer = window.dataLayer || []).push(payload);
+    if(typeof window.gtag === 'function') window.gtag('event', 'careers_'+event, params||{});
+    document.dispatchEvent(new CustomEvent('careers:'+event, {detail: params||{}}));
+  }catch(e){/* analytics must never break the page */}
+}
+
 /* ============ DATA: roles (from SeeTusk careers) ============ */
 const ROLES = [
   {ch:"CH-01",dept:"Marketing",title:"Senior Brand Manager",loc:"Pune · Onsite",exp:"3–5 years",type:"Full-time",
@@ -1566,62 +2243,24 @@ const ROLES = [
    reqs:["Excellent communication and writing.","Organised, with Sheets / database fluency.","Pursuing or recently completed an MBA / HR degree."]},
 ];
 
-/* ============ build role list ============ */
+/* ============ role list ============
+   Cards are SERVER-RENDERED into #roleList (present in the initial HTML, crawlable,
+   and usable without JavaScript). JS only enhances them: it wires the native
+   <details> accordion into the masonry layout and fires analytics — it never
+   rebuilds the cards, so the markup never drifts from the server-rendered source. */
 const roleList = document.getElementById('roleList');
-function buildRoles(){
-  roleList.innerHTML = ROLES.map((r,i)=>`
-    <article class="role" data-dept="${r.dept}" data-search="${(r.title+' '+r.loc+' '+r.dept+' '+r.role+' '+r.reqs.join(' ')).toLowerCase()}">
-      <div class="role__bar">
-        <div class="role__top">
-          <span class="role__ch">${r.ch}</span>
-          <span class="live"><i></i> Live</span>
-        </div>
-        <div class="role__title">
-          <h3>${r.title}</h3>
-          <div class="role__tags"><span>${r.loc}</span><span>${r.exp}</span><span>${r.type}</span></div>
-        </div>
-      </div>
-      <p class="role__lead">${r.role}</p>
-      <div class="role__panel" id="panel-${i}">
-        <div class="role__panel-inner">
-          <div class="role__panel-in">
-            <div class="role__block">
-              <div class="lbl">// Pre-requisites</div>
-              <ul>${r.reqs.map(q=>`<li>${q}</li>`).join('')}</ul>
-            </div>
-            <div class="role__apply">
-              <button class="btn signal" data-apply="" data-role="${r.title}">Apply in 60s <span class="arrow">↗</span></button>
-              <span class="skip">Skip the layers — submit your work in 60s.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="role__toggle-row">
-        <button class="role__toggle" aria-expanded="false" aria-controls="panel-${i}">
-          <span class="role__toggle-lbl">View pre-requisites</span>
-          <span class="ico" aria-hidden="true">+</span>
-        </button>
-      </div>
-    </article>`).join('');
-  bindRoles();
-}
+function buildRoles(){ bindRoles(); }
 function bindRoles(){
   document.querySelectorAll('.role').forEach(role=>{
-    const tgl = role.querySelector('.role__toggle');
-    function setState(open){
-      role.classList.toggle('open', open);
-      if(tgl){
-        tgl.setAttribute('aria-expanded', open?'true':'false');
-        tgl.querySelector('.role__toggle-lbl').textContent = open?'Hide pre-requisites':'View pre-requisites';
-      }
+    const details = role.querySelector('details.role__panel');
+    if(!details || details.dataset.bound) return;
+    details.dataset.bound = '1';
+    const lbl = details.querySelector('.role__toggle-lbl');
+    const title = (role.querySelector('h3')||{}).textContent || '';
+    details.addEventListener('toggle',()=>{
+      if(lbl) lbl.textContent = details.open ? 'Hide pre-requisites' : 'View pre-requisites';
+      if(details.open) track('role_card_click',{role:title});
       if(typeof scheduleLayout==='function') scheduleLayout();
-    }
-    // click anywhere on the card toggles only THIS card; others stay as they are
-    role.addEventListener('click',e=>{
-      // ignore the apply button, links, and clicks inside the open panel (reading prereqs)
-      if(e.target.closest('[data-apply]') || e.target.closest('a')) return;
-      if(e.target.closest('.role__panel') && !e.target.closest('.role__toggle')) return;
-      setState(!role.classList.contains('open'));
     });
   });
 }
@@ -1663,10 +2302,6 @@ if(roleListEl){
   setTimeout(layoutRoles,300); setTimeout(layoutRoles,1000);
 }
 
-/* populate modal role select */
-const roleSelect = document.getElementById('roleSelect');
-roleSelect.innerHTML = '<option value="">Select a channel…</option>' + ROLES.map(r=>`<option>${r.title}</option>`).join('') + '<option>Open Application</option>';
-
 /* ============ filtering + search ============ */
 let activeDept = 'all';
 const roleSearch = document.getElementById('roleSearch');
@@ -1691,13 +2326,12 @@ function applyFilter(){
         role.classList.add('filter-in');
       }
     }
-    if(!show && role.classList.contains('open')){
-      role.classList.remove('open');
-      const tgl = role.querySelector('.role__toggle');
-      if(tgl){tgl.setAttribute('aria-expanded','false');tgl.querySelector('.role__toggle-lbl').textContent='View pre-requisites';}
+    if(!show){
+      const details = role.querySelector('details.role__panel');
+      if(details && details.open) details.open = false;
     }
   });
-  resultCount.textContent = shown+' channel'+(shown===1?'':'s')+' open';
+  resultCount.textContent = shown+' role'+(shown===1?'':'s')+' open';
   noResults.classList.toggle('show', shown===0);
   if(typeof scheduleLayout==='function') scheduleLayout();
 }
@@ -1713,36 +2347,171 @@ document.querySelectorAll('.filter').forEach(f=>{
 roleSearch.addEventListener('input',applyFilter);
 function resetFilters(){roleSearch.value='';activeDept='all';document.querySelectorAll('.filter').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false');});const allBtn=document.querySelector('.filter[data-dept="all"]');allBtn.classList.add('active');allBtn.setAttribute('aria-selected','true');applyFilter();}
 
-/* ============ MODAL ============ */
-const modal = document.getElementById('modal');
+/* ============ ON-PAGE APPLY FORM ============
+   The application form lives in the page at #apply (a real destination that works
+   without JS). Apply links are anchors to #apply; JS prefills the role, smooth-scrolls
+   and moves focus. The custom-select / step-engine code below is scoped to this section. */
+const modal = document.getElementById('apply');
 const formWrap = document.getElementById('formWrap');
 const successEl = document.getElementById('success');
 const roleEcho = document.getElementById('roleEcho');
-let lastFocus = null;
-function openModal(roleName){
-  lastFocus = document.activeElement;
-  formWrap.style.display='block'; successEl.classList.remove('show');
-  goStep(0);
-  if(roleName && roleName!==''){ roleSelect.value = [...roleSelect.options].some(o=>o.value===roleName)?roleName:''; roleEcho.textContent = roleName==='Open Application'?'':'Applying for: '+roleName; }
-  else { roleEcho.textContent=''; }
-  modal.classList.add('show'); document.body.style.overflow='hidden';
-  setTimeout(()=>modal.querySelector('input,select')?.focus(),120);
+
+function initCustomSelects() {
+  const selects = modal.querySelectorAll('select:not(.no-custom)');
+  
+  selects.forEach(select => {
+    let wrapper = select.parentElement.querySelector('.custom-select-wrapper');
+    if (wrapper) {
+      wrapper.remove();
+    }
+    
+    wrapper = document.createElement('div');
+    wrapper.className = 'custom-select-wrapper';
+    
+    const trigger = document.createElement('div');
+    trigger.className = 'custom-select-trigger';
+    trigger.tabIndex = 0;
+    
+    const triggerText = document.createElement('span');
+    const activeOption = select.options[select.selectedIndex];
+    triggerText.textContent = activeOption ? activeOption.textContent : 'Select...';
+    
+    const arrow = document.createElement('span');
+    arrow.className = 'custom-select-arrow';
+    
+    trigger.appendChild(triggerText);
+    trigger.appendChild(arrow);
+    wrapper.appendChild(trigger);
+    
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'custom-select-options';
+    
+    [...select.options].forEach((opt) => {
+      const optionEl = document.createElement('div');
+      optionEl.className = 'custom-select-option';
+      optionEl.textContent = opt.textContent;
+      optionEl.dataset.value = opt.value;
+      if (opt.selected) {
+        optionEl.classList.add('selected');
+      }
+      
+      optionEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        optionsContainer.querySelectorAll('.custom-select-option').forEach(o => o.classList.remove('selected'));
+        optionEl.classList.add('selected');
+        triggerText.textContent = opt.textContent;
+        select.value = opt.value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        select.dispatchEvent(new Event('input', { bubbles: true }));
+        wrapper.classList.remove('open');
+      });
+      
+      optionsContainer.appendChild(optionEl);
+    });
+    
+    wrapper.appendChild(optionsContainer);
+    
+    select.style.position = 'absolute';
+    select.style.opacity = '0';
+    select.style.pointerEvents = 'none';
+    select.style.width = '0';
+    select.style.height = '0';
+    
+    select.parentNode.insertBefore(wrapper, select.nextSibling);
+    
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      modal.querySelectorAll('.custom-select-wrapper').forEach(w => {
+        if (w !== wrapper) w.classList.remove('open');
+      });
+      wrapper.classList.toggle('open');
+    });
+
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        trigger.click();
+      }
+    });
+  });
 }
-function closeModal(){ modal.classList.remove('show'); document.body.style.overflow=''; if(lastFocus)lastFocus.focus(); }
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.custom-select-wrapper')) {
+    document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+  }
+});
+
+function openApply(roleName){
+  if(formWrap) formWrap.style.display='block';
+  successEl.classList.remove('show');
+  goStep(0);
+  formRenderTs = Date.now();
+
+  const roleFieldContainer = document.getElementById('roleFieldContainer');
+  if (roleFieldContainer) {
+    if (roleName && roleName !== '' && roleName !== 'Open Application') {
+      roleFieldContainer.innerHTML = `
+        <label for="roleSelect">Applying for Role</label>
+        <div class="static-role-display">
+          <span class="role-title">${roleName}</span>
+          <span class="lock-tag">Locked</span>
+        </div>
+        <select id="roleSelect" class="no-custom" data-v="req" aria-label="Selected role" style="position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;">
+          <option value="${roleName}" selected>${roleName}</option>
+        </select>
+      `;
+      roleEcho.textContent = 'Applying for: ' + roleName;
+    } else {
+      const optionsHtml = ROLES.map(r => `<option value="${r.title}">${r.title}</option>`).join('');
+      roleFieldContainer.innerHTML = `
+        <label for="roleSelect">Applying for Role <span class="req">*</span></label>
+        <select id="roleSelect" data-v="req">
+          <option value="">Select the role you are applying for</option>
+          ${optionsHtml}
+          <option value="Open Application">Open Application</option>
+        </select>
+        <span class="err">// required</span>
+      `;
+      const selectEl = document.getElementById('roleSelect');
+      if (selectEl && roleName === 'Open Application') {
+        selectEl.value = 'Open Application';
+      }
+      roleEcho.textContent = '';
+    }
+
+    const selectEl = document.getElementById('roleSelect');
+    if (selectEl) {
+      selectEl.addEventListener('input', () => selectEl.closest('.field').classList.remove('invalid'));
+      selectEl.addEventListener('change', () => selectEl.closest('.field').classList.remove('invalid'));
+    }
+  }
+
+  initCustomSelects();
+}
+
+/* Apply triggers are real <a href="#apply"> links — they work without JS.
+   With JS we prefill the chosen role, track the click, smooth-scroll and focus. */
 document.addEventListener('click',e=>{
   const t = e.target.closest('[data-apply]');
-  if(t){e.preventDefault();openModal(t.getAttribute('data-role')||'');}
-  if(e.target.closest('[data-close]')) closeModal();
+  if(!t) return;
+  const roleName = t.getAttribute('data-role')||'';
+  track('apply_click',{role: roleName || 'Open Application'});
+  openApply(roleName);
+  const sec = document.getElementById('apply');
+  if(sec){
+    e.preventDefault();
+    sec.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+    setTimeout(()=>document.getElementById('form-name')?.focus(), reduceMotion?0:450);
+  }
 });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('show'))closeModal(); });
-/* focus trap */
-modal.addEventListener('keydown',e=>{
-  if(e.key!=='Tab')return;
-  const f=[...modal.querySelectorAll('input,select,textarea,button,[tabindex]')].filter(el=>el.offsetParent!==null&&!el.disabled);
-  if(!f.length)return;
-  const first=f[0],last=f[f.length-1];
-  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
-  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+
+/* "Apply for another role" returns the on-page form to step one */
+document.getElementById('applyAgainBtn')?.addEventListener('click',()=>{
+  openApply('');
+  document.getElementById('apply')?.scrollIntoView({behavior: reduceMotion?'auto':'smooth', block:'start'});
+  setTimeout(()=>document.getElementById('form-name')?.focus(), reduceMotion?0:450);
 });
 
 /* step engine */
@@ -1776,20 +2545,119 @@ nextBtn.addEventListener('click',()=>{
   else submitForm();
 });
 prevBtn.addEventListener('click',()=>{ if(step>0)goStep(step-1); });
-steps.forEach(s=>s.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid'))));
+steps.forEach(s=>s.querySelectorAll('input,select,textarea').forEach(el=>{
+  el.addEventListener('input',()=>el.closest('.field').classList.remove('invalid'));
+  el.addEventListener('change',()=>el.closest('.field').classList.remove('invalid'));
+}));
+
+/* Initialise the form (role dropdown + custom selects) so #apply is usable immediately.
+   Runs after the step-engine consts above are initialised to avoid a TDZ error. */
+openApply('');
 
 function submitForm(){
-  formWrap.style.display='none';
-  successEl.classList.add('show');
+  const submitBtn = document.getElementById('nextBtn');
+  const originalText = submitBtn.textContent;
+  
+  // 1. Gather all inputs
+  const nameVal = document.getElementById('form-name').value.trim();
+  const emailVal = document.getElementById('form-email').value.trim();
+  const phoneVal = document.getElementById('form-phone').value.trim();
+  const linkedinVal = document.getElementById('form-linkedin').value.trim();
+  const positionVal = document.getElementById('roleSelect').value;
+  const ctcVal = document.getElementById('form-ctc').value.trim();
+  const officeVal = document.getElementById('form-office').value;
+  const joiningVal = document.getElementById('form-joining').value;
+  const experienceVal = document.getElementById('form-experience').value;
+  const resumeFile = document.getElementById('fileInput').files[0];
+  const portfolioVal = document.getElementById('form-portfolio').value.trim();
+  const questionsVal = document.getElementById('form-questions').value.trim();
+  
+  // 2. Map fields to backend schema
+  const formData = new FormData();
+  formData.append('fullName', nameVal);
+  formData.append('email', emailVal);
+  formData.append('phone', phoneVal);
+  formData.append('linkedin', linkedinVal);
+  formData.append('position', positionVal);
+  formData.append('willingToRelocate', officeVal === 'Yes' ? 'Yes' : 'No');
+  formData.append('preferredWorkMode', officeVal === 'Yes' ? 'On-site' : 'Remote');
+  formData.append('joiningAvailability', joiningVal);
+  formData.append('yearsOfExperience', experienceVal === 'Yes' ? '2' : '0');
+  formData.append('resume', resumeFile);
+  formData.append('portfolio', portfolioVal);
+  formData.append('coverLetter', questionsVal);
+  
+  // Sane defaults for required fields not in form
+  formData.append('location', 'Pune');
+  formData.append('country', 'India');
+  
+  // Add expected ctc and prior experience as additional dynamic fields
+  formData.append('expected_ctc', ctcVal);
+  formData.append('prior_experience_environment', experienceVal);
+  
+  // Honeypot time-trap timestamp
+  formData.append('form_render_ts', formRenderTs.toString());
+  
+  // 3. Show loading UI state
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Transmitting...';
+  
+  console.log('Sending application to backend...', {
+    fullName: nameVal,
+    email: emailVal,
+    position: positionVal,
+    form_render_ts: formRenderTs
+  });
+  
+  fetch(`${API_BASE_URL}/api/applications`, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(err => {
+        throw new Error(err.message || `Server error: ${response.status}`);
+      });
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Application submitted successfully!', data);
+    track('form_submit',{role: positionVal || 'Open Application'});
+    formWrap.style.display = 'none';
+    successEl.classList.add('show');
+    document.getElementById('apply')?.scrollIntoView({behavior: reduceMotion?'auto':'smooth', block:'start'});
+  })
+  .catch(error => {
+    console.error('Application submission failed:', error.message);
+    alert('Transmission error: ' + error.message);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  });
 }
 /* file drop */
 const drop=document.getElementById('drop'),fileInput=document.getElementById('fileInput');
 if(drop){
   drop.addEventListener('click',()=>fileInput.click());
-  fileInput.addEventListener('change',()=>{ if(fileInput.files[0]) drop.innerHTML='<b>'+fileInput.files[0].name+'</b><small>ready to transmit</small>'; });
+  drop.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();fileInput.click();} });
+  fileInput.addEventListener('change',()=>{
+    if(fileInput.files[0]) {
+      drop.innerHTML='<b>'+fileInput.files[0].name+'</b><small>ready to transmit</small>';
+      fileInput.closest('.field').classList.remove('invalid');
+    }
+  });
   ['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('hot');}));
   ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('hot');}));
-  drop.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f&&f.type==='application/pdf'){fileInput.files=e.dataTransfer.files;drop.innerHTML='<b>'+f.name+'</b><small>ready to transmit</small>';} });
+  drop.addEventListener('drop',e=>{
+    const f=e.dataTransfer.files[0];
+    if(f&&f.type==='application/pdf'){
+      fileInput.files=e.dataTransfer.files;
+      drop.innerHTML='<b>'+f.name+'</b><small>ready to transmit</small>';
+      fileInput.closest('.field').classList.remove('invalid');
+    }
+  });
 }
 
 /* ============ newsletter (terminal subscribe + success state) ============ */
@@ -1953,6 +2821,14 @@ waveform(document.getElementById('consoleWave'),{color:'rgba(252,114,51,.22)',lw
 
 /* ============ page-load reveal (GSAP preloader) ============ */
 document.addEventListener('DOMContentLoaded', () => {
+  // Respect reduced motion: skip the cinematic preloader entirely.
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    const loader = document.getElementById('reveal-loader');
+    if (loader) loader.style.display = 'none';
+    document.body.classList.add('loaded');
+    return;
+  }
+
   const text = "CAREER";
   const stampContainer = document.getElementById('reveal-stamp-text');
   if (stampContainer) {
@@ -2047,6 +2923,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('heroParticles');
   
   if (!hero) return;
+  // Respect reduced motion: skip mouse parallax and the ambient particle canvas.
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
 
   // 1. Mouse Spotlight and Parallax
   let mouseX = 0, mouseY = 0;
@@ -2175,5 +3053,466 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
+
+<!-- ===== JobPosting structured data (one per open role; roles are server-rendered above) ===== -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Senior Brand Manager",
+    "description": "Lead creative strategies, client communications, and campaign execution for major D2C brands. Requirements: Proven experience managing brand campaigns end to end. Excellent communication and leadership skills. Deep understanding of motion content and digital distribution.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 1000000,
+        "maxValue": 1600000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Brand Manager",
+    "description": "Execute digital brand strategies, manage creator partnerships, and coordinate campaign delivery. Requirements: Strong marketing background and visual taste. Detail-oriented campaign management skills. Ability to translate creator signals into brand ideas.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 600000,
+        "maxValue": 1000000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Content Strategist",
+    "description": "Ideate, script, and direct short-form content pipelines for creators and brands. Requirements: Hook-writing and copywriting expertise. Fluent in Shorts, Reels and short-form formats. Active interest in internet culture and creator dynamics.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 500000,
+        "maxValue": 800000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Cinematographer",
+    "description": "Direct camera movement, set lighting rigs, and shoot cinematic studio and outdoor motion assets. Requirements: Experience with cinema cameras (RED, Sony FX, Arri, Blackmagic). Expert lighting (interior, studio, natural light). Portfolio with exceptional visual framing.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 500000,
+        "maxValue": 900000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Sr. Video Editor",
+    "description": "Lead the editing team, structure high-tempo edits, and refine visual storytelling standards. Requirements: Advanced Premiere Pro, DaVinci Resolve or After Effects. High speed and precision editing workflow. Direct sound design, pacing and color grading.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 800000,
+        "maxValue": 1400000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Intermediate Video Editor",
+    "description": "Create visual edits, compile creator reels, and add motion assets and transitions. Requirements: Solid Adobe Premiere or DaVinci Resolve skills. Strong sense of audio timing and pacing. Fast, reliable delivery turnarounds.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 500000,
+        "maxValue": 800000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Video Editor",
+    "description": "Assemble raw footage, cut high-retention vertical videos, and apply motion graphics. Requirements: Premiere Pro, CapCut and similar tools. Engaging transitions, captions and sound effects. Eagerness to learn and iterate weekly.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 400000,
+        "maxValue": 700000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Production Assistant",
+    "description": "Coordinate shoot logistics, manage equipment inventory, and support directors on set. Requirements: Highly organised with proactive problem-solving. Manage schedules, crew riders and studio setups. Passion for production and cinema operations.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 300000,
+        "maxValue": 500000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Graphic Designer",
+    "description": "Design high-retention thumbnails, brand identities, and social key visuals. Requirements: Photoshop, Illustrator and Figma mastery. Strong visual hierarchy and bold typography. Portfolio of modern, high-contrast design.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 450000,
+        "maxValue": 750000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Content Strategist Intern",
+    "description": "Learn scriptwriting, assist in creator research, and brainstorm viral ideas. Requirements: Deeply active on YouTube, Reels and X. Eager to learn copywriting and script structures. No formal experience needed — high curiosity is.",
+    "datePosted": "2026-06-30",
+    "employmentType": "INTERN",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 15000,
+        "maxValue": 25000,
+        "unitText": "MONTH"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Performance Marketing Executive",
+    "description": "Manage and optimise paid campaigns (Meta, Google, YouTube) to drive brand growth. Requirements: Hands-on running ads and allocating budgets. Strong analytics — ROAS, CAC, conversion. Brief design on high-performance ad creative.",
+    "datePosted": "2026-06-30",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 600000,
+        "maxValue": 1000000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Human Resources",
+    "description": "Manage recruitment pipelines, onboarding flows, and employee engagement. Requirements: Strong screening, sourcing and communication. Familiar with creator or tech-agency hiring. Empathy and professional workplace management.",
+    "datePosted": "2026-06-30",
+    "employmentType": "PART_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 300000,
+        "maxValue": 500000,
+        "unitText": "YEAR"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  },
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "HR Intern",
+    "description": "Assist with resume screening, candidate scheduling, and HR database coordination. Requirements: Excellent communication and writing. Organised, with Sheets / database fluency. Pursuing or recently completed an MBA / HR degree.",
+    "datePosted": "2026-06-30",
+    "employmentType": "INTERN",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "sameAs": "https://seetusk.agency",
+      "logo": "https://seetusk.agency/images/sca-logo-mark.webp"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    "baseSalary": {
+      "@type": "MonetaryAmount",
+      "currency": "INR",
+      "value": {
+        "@type": "QuantitativeValue",
+        "minValue": 12000,
+        "maxValue": 20000,
+        "unitText": "MONTH"
+      }
+    },
+    "directApply": true,
+    "url": "https://seetusk.agency/careers#apply"
+  }
+]
+</script>
 </body>
 </html>

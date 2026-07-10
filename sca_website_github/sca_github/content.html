@@ -6,33 +6,275 @@
 function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"698405f86e1c7f001d72f761"})},document.head.appendChild(o)}initApollo();
 </script>
 <meta charset="UTF-8">
+<!-- Apollo website tracker -->
+<script>
+  function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+  o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+  o.onload=function(){window.trackingFunctions.onLoad({appId:"698405f86e1c7f001d72f761"})},
+  document.head.appendChild(o)}initApollo();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Content &amp; Brand Infrastructure — SeeTusk / SCA</title>
-<meta name="description" content="SCA is the outsourced creative department for growth-stage brands. Content systems, editorial, motion, and paid — shipped weekly on a predictable cadence.">
-<link rel="canonical" href="https://seetusk.agency/content.html">
+<title>Your brand's weekly content team. SeeTusk / SCA</title>
+<meta name="description" content="SeeTusk becomes your brand's weekly content team. We plan, shoot, write, design and publish the content growing Indian brands need every week, one dedicated pod, one clear calendar, monthly reviews.">
+<link rel="canonical" href="https://seetusk.agency/content">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SeeTusk Creative Agency">
+<meta property="og:title" content="Your brand's weekly content team. SeeTusk / SCA">
+<meta property="og:description" content="SeeTusk becomes your brand's weekly content team. We plan, shoot, write, design and publish the content growing Indian brands need every week.">
+<meta property="og:url" content="https://seetusk.agency/content">
+<meta property="og:image" content="https://seetusk.agency/og.jpg">
+<meta property="og:image:alt" content="SeeTusk Content & Brand systems">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your brand's weekly content team. SeeTusk / SCA">
+<meta name="twitter:description" content="SeeTusk becomes your brand's weekly content team. We plan, shoot, write, design and publish the content growing Indian brands need every week.">
+<meta name="twitter:image" content="https://seetusk.agency/og.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://seetusk.agency/content#webpage",
+  "url": "https://seetusk.agency/content",
+  "name": "Content & Brand Infrastructure - SeeTusk Creative Agency",
+  "description": "SeeTusk becomes your brand's weekly content team. We plan, shoot, write, design and publish the content growing Indian brands need every week.",
+  "mainEntity": {
+    "@type": "Service",
+    "name": "Content and Brand Infrastructure",
+    "description": "Weekly retainers for planning, shooting, writing, designing and publishing brand content with dedicated pods and monthly reviews.",
+    "provider": {
+      "@type": "Organization",
+      "name": "SeeTusk Creative Agency",
+      "url": "https://seetusk.agency/"
+    }
+  }
+}
+</script>
 <!-- Preload Critical Fonts -->
 <link rel="preload" href="assets/fonts/league-spartan-normal-300-49.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/eb-garamond-normal-400-20.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/eb-garamond-italic-400-6.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
+<link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.5">
+<style>
+  /* ── Accent token fix ──────────────────────────────────────────
+     The dark theme redefines --accent-orange to a periwinkle (#8597F1),
+     which made every "orange" accent render as light blue. Restore the
+     real brand orange so the dual-accent system reads correctly. Blue
+     (#2E54EA) already matches the home page. */
+  :root { --accent-orange: #FC7233; }
+
+  /* Section 01 — Who it's for (redesigned) */
+  .who-wrap { display: block; }
+  .who-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  .who-card { position: relative; border: 1px solid var(--border-soft); border-radius: var(--radius); background: var(--bg-card); padding: clamp(22px,1.9vw,32px); display: flex; flex-direction: column; gap: 14px; transition: transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease); }
+  .who-card-n { font-family: var(--font-display); font-weight: 900; font-size: clamp(30px,2.6vw,44px); line-height: .85; color: var(--accent-orange); }
+  .who-card h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(18px,1.5vw,23px); line-height: 1.04; color: var(--text-main); }
+  .who-card p { font-family: var(--font-body); font-size: 17.5px; line-height: 1.5; color: var(--text-muted); }
+  .who-card:hover { transform: translateY(-4px); border-color: var(--accent-blue); background: var(--card-2); }
+  @media (max-width: 900px) { .who-wrap { grid-template-columns: 1fr; gap: 28px; } .who-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .who-grid { grid-template-columns: 1fr; } }
+
+  /* Content engine — 5-step image cards */
+  .cb-steps { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 14px; }
+  .cb-step { position: relative; overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--border-soft); border-radius: var(--radius); background: var(--bg-card); transition: transform .38s var(--ease), border-color .38s var(--ease), box-shadow .38s var(--ease); }
+  .cb-step::after { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%; background: var(--accent-orange); transform: scaleX(0); transform-origin: left; transition: transform .38s var(--ease); z-index: 4; }
+  .cb-step:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent-blue) 50%, transparent); box-shadow: var(--shadow-blue); }
+  .cb-step:hover::after { transform: scaleX(1); }
+  .cb-step-shot { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+  .cb-step-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s var(--ease); }
+  .cb-step:hover .cb-step-shot img { transform: scale(1.06); }
+  .cb-step-shot::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8,8,10,.66) 0%, rgba(8,8,10,0) 36%, rgba(8,8,10,0) 58%, rgba(8,8,10,.82) 100%); }
+  .cb-step-n { position: absolute; top: 14px; left: 16px; z-index: 2; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-orange); }
+  .cb-step-n b { display: block; font-family: var(--font-display); font-weight: 900; font-size: clamp(34px,2.6vw,46px); color: #fff; line-height: .86; margin-top: 4px; }
+  .cb-step-body { padding: 18px clamp(16px,1.3vw,20px) clamp(20px,1.6vw,24px); display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .cb-step h4 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(19px,1.4vw,23px); line-height: 1.02; color: var(--text-main); margin: 0; }
+  .cb-step p { font-family: var(--font-body); font-size: 16px; line-height: 1.5; color: var(--text-muted); margin: 0; }
+  @media (max-width: 1100px) { .cb-steps { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 740px) { .cb-steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .cb-steps { grid-template-columns: 1fr; } .cb-step-shot { aspect-ratio: 16 / 10; } }
+
+  /* What's included — zigzag pillar blocks.
+     Heading + deliverables stay together in one column so a pillar reads
+     as a single unit; the block alternates left / right half to keep the
+     stepped "zigzag" rhythm, and all copy stays left-aligned for reading. */
+  .cb-pillar { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(40px,6vw,96px); padding: clamp(30px,3vw,48px) 0; border-top: 1px solid var(--border-soft); }
+  .cb-pillar:last-child { border-bottom: 1px solid var(--border-soft); }
+  .cb-pillar > div { grid-column: 1; max-width: 46ch; }
+  .cb-pillar > div + div { margin-top: clamp(16px,1.5vw,24px); }
+  .cb-pillar:nth-child(even) > div { grid-column: 2; }
+  .cb-pillar-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-orange); }
+  .cb-pillar h3 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(26px,2.6vw,40px); line-height: .96; color: var(--text-main); margin: 10px 0 14px; }
+  .cb-pillar-desc { font-family: var(--font-body); font-size: clamp(18px,1.25vw,21px); line-height: 1.5; color: var(--text-muted); }
+  .cb-pillar-deliver { list-style: none; margin: 0 0 18px; padding: 0; }
+  .cb-pillar-deliver li { display: flex; gap: 12px; align-items: baseline; font-family: var(--font-body); font-size: 18px; line-height: 1.45; color: var(--text-main); padding: 6px 0; }
+  .cb-pillar-deliver li::before { content: ""; flex: 0 0 6px; width: 6px; height: 6px; margin-top: 8px; border-radius: 1px; background: var(--accent-blue); }
+  .cb-freq-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--border-soft); border-radius: 999px; padding: 7px 13px; background: rgba(255,255,255,.04); }
+  .cb-freq-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-orange); }
+
+  @media (max-width: 760px) {
+    .cb-pillar { grid-template-columns: 1fr; column-gap: 0; }
+    .cb-pillar > div, .cb-pillar:nth-child(even) > div { grid-column: 1; max-width: none; }
+  }
+
+  /* What this is not — comparison */
+  .cb-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cb-comp { border: 1px solid var(--border-soft); border-radius: var(--radius); padding: clamp(26px,2.4vw,38px); background: var(--bg-card); }
+  .cb-comp h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(18px,1.5vw,24px); margin-bottom: 18px; color: var(--text-main); }
+  .cb-comp ul { list-style: none; margin: 0; padding: 0; }
+  .cb-comp li { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; padding: 13px 0; border-top: 1px solid var(--border-soft); font-family: var(--font-body); font-size: 18px; line-height: 1.45; color: var(--text-main); }
+  .cb-comp li .mk { font-family: var(--font-mono); font-weight: 700; line-height: 1.4; }
+  .cb-comp.is-not li .mk { color: #e0603a; }
+  .cb-comp.is-yes li .mk { color: var(--accent-blue); }
+
+  /* The shift — before / after */
+  .cb-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cb-ba-col { border: 1px solid var(--border-soft); border-radius: var(--radius); padding: clamp(26px,2.4vw,40px); }
+  .cb-ba-col.before { background: var(--bg-card); }
+  .cb-ba-col.after { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); }
+  .cb-ba-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+  .cb-ba-col.before .cb-ba-tag { color: var(--text-muted); }
+  .cb-ba-col.after .cb-ba-tag { color: var(--accent-blue); }
+  .cb-ba-col h3 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(24px,2.2vw,36px); line-height: .98; margin: 10px 0 18px; }
+  .cb-ba-col ul { list-style: none; margin: 0; padding: 0; }
+  .cb-ba-col li { padding: 12px 0; border-top: 1px solid var(--border-soft); font-family: var(--font-body); font-size: 18px; line-height: 1.45; }
+  .cb-ba-col.after li { border-top-color: rgba(21,21,21,.14); }
+
+  /* FAQ accordion */
+  .cb-faq { max-width: 920px; }
+  .cb-faq details { border-top: 1px solid var(--border-soft); }
+  .cb-faq details:last-child { border-bottom: 1px solid var(--border-soft); }
+  .cb-faq summary { display: flex; align-items: center; gap: 18px; cursor: pointer; list-style: none; padding: 26px 4px; font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: clamp(19px,1.7vw,27px); color: var(--text-main); }
+  .cb-faq summary::-webkit-details-marker { display: none; }
+  .cb-faq summary .ix { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--accent-orange); flex: 0 0 auto; }
+  .cb-faq summary .pm { margin-left: auto; flex: 0 0 auto; width: 22px; height: 22px; position: relative; }
+  .cb-faq summary .pm::before, .cb-faq summary .pm::after { content: ""; position: absolute; inset: 0; margin: auto; background: var(--text-main); transition: transform .3s ease; }
+  .cb-faq summary .pm::before { width: 16px; height: 2px; }
+  .cb-faq summary .pm::after { width: 2px; height: 16px; }
+  .cb-faq details[open] summary .pm::after { transform: rotate(90deg); opacity: 0; }
+  .cb-faq-a { padding: 0 4px 28px; max-width: 70ch; }
+  .cb-faq-a p { font-family: var(--font-body); font-size: 19px; line-height: 1.6; color: var(--text-muted); }
+  .cb-faq-a a { color: var(--accent-blue); }
+
+  /* Pricing enhancements */
+  .vert-best { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.45; color: var(--text-muted); margin: 0 0 14px; }
+  .vert:hover .vert-best, .vert:hover .includes-list { color: rgba(255,255,255,.82); }
+  .cb-badge { position: absolute; top: 18px; right: 18px; z-index: 2; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: var(--accent-blue); border-radius: 999px; padding: 5px 11px; }
+  .cb-pricing-note { margin-top: 28px; max-width: 60ch; font-family: var(--font-body); font-size: 19px; line-height: 1.5; color: var(--text-muted); }
+  .cb-pricing-note b { color: var(--text-main); }
+
+  /* ════════════ DUAL ACCENT — orange hover bar + blue hover edge ════════════
+     Markers already split orange (numerals/index/status) vs blue (links,
+     bullets, structure). This adds the signature orange hover accent bar +
+     blue lift on cards, matching the Web & Tech and Influencer pages. */
+  .who-card, .cb-comp, .cb-ba-col, .vert { overflow: hidden; }
+  .who-card::before, .cb-comp::before, .cb-ba-col::before, .vert::after {
+    content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%;
+    background: var(--accent-orange); transform: scaleX(0); transform-origin: left;
+    transition: transform .32s cubic-bezier(.16,1,.3,1); z-index: 3;
+  }
+  .who-card:hover::before, .cb-comp:hover::before, .cb-ba-col:hover::before, .vert:hover::after { transform: scaleX(1); }
+
+  /* give the static comparison + before/after panels a blue lift on hover */
+  .cb-comp, .cb-ba-col { position: relative; transition: transform .32s cubic-bezier(.16,1,.3,1), border-color .32s, box-shadow .32s; }
+  .cb-comp:hover, .cb-ba-col.before:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent-blue) 45%, transparent); box-shadow: var(--shadow-blue); }
+  .cb-ba-col.after:hover { transform: translateY(-4px); box-shadow: var(--shadow-blue); }
+
+  /* ── Remove section marker eyebrows from all headings ─────────── */
+  .deck-kicker,
+  .section-label,
+  .section-num,
+  .vert-num { display: none !important; }
+  /* Tighten the hero: pull the title up into the space the kicker
+     vacated and enlarge it so the frame stays full. */
+  .deck-copy--a { top: clamp(6%, 7vh, 10%) !important; }
+  .deck-copy--a .deck-title { font-size: clamp(52px, 6.3vw, 90px); max-width: 14ch; }
+  /* Section number lived in the left grid column — collapse it so
+     the heading sits flush left without an empty gutter. */
+  .section-head { grid-template-columns: 1fr !important; }
+
+  /* ── Descending heading hierarchy ──────────────────────────────
+     Hero (.deck-title) stays the largest type on the page; each
+     section title below it steps down in size, section by section. */
+  main > section:nth-of-type(2) .section-title { font-size: clamp(33px, 5vw, 66px); }
+  main > section:nth-of-type(3) .section-title { font-size: clamp(31px, 4.6vw, 60px); max-width: none; }
+  main > section:nth-of-type(4) .section-title { font-size: clamp(30px, 4.1vw, 53px); }
+  main > section:nth-of-type(5) .section-title { font-size: clamp(28px, 3.8vw, 48px); }
+  main > section:nth-of-type(6) .section-title { font-size: clamp(27px, 3.5vw, 43px); }
+  main > section:nth-of-type(7) .section-title { font-size: clamp(26px, 3.2vw, 39px); }
+  main > section:nth-of-type(8) .section-title { font-size: clamp(25px, 3vw, 35px); }
+
+  @media (max-width: 900px) {
+    .cb-pillar { grid-template-columns: 1fr; gap: 16px; }
+    .cb-pillar:nth-child(even) { grid-template-columns: 1fr; }
+    .cb-pillar:nth-child(even) > div:first-child { order: 0; text-align: left; }
+    .cb-compare, .cb-ba { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) { .cb-pillar-deliver { columns: 1; } }
+
+  /* ════════════ DUAL ACCENT — full enforcement (careers parity) ════════════
+     Orange (#FC7233) = signal: emphasis words, numerals, primary CTA, tick
+     markers, active indicators. Blue (#2257FF) = structure/interaction:
+     selection, focus, category tags, ghost hovers, after-state, links. */
+  ::selection { background: var(--accent-blue); color: #fff; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, .vert:focus-visible, input:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; border-radius: 4px; }
+
+  /* emphasis words in headlines → orange */
+  .deck-title .accent, .cta-h .accent { color: var(--accent-orange) !important; }
+  /* hero headline dual-accent: 60% white / 30% blue / 10% orange */
+  .deck-title .accent.blue { color: var(--accent-blue) !important; }
+
+  /* hero deck cards: orange numeral + blue category, paired */
+  .dcard-num { color: var(--accent-orange) !important; }
+  .dcard-tag { color: var(--accent-blue) !important; }
+  .deck-dots .on { background: var(--accent-orange) !important; }
+
+  /* ── HERO 60 / 30 / 10 ──────────────────────────────────────────
+     White (~60%): headlines + lead copy carry the section.
+     Blue (~30%): structural labels — kickers and card category tags.
+     Orange (~10%): signal pops only — card numerals + the active dot
+     + a single emphasis word per headline. */
+  .deck-kicker { color: var(--accent-blue) !important; }
+  .deck-lead { color: rgba(247,248,250,.9) !important; }
+  .deck-dots i { background: rgba(247,248,250,.26) !important; }
+  .deck-dots .on { background: var(--accent-orange) !important; }
+
+  /* primary CTA orange (signal); ghost/secondary go blue on hover */
+  .btn.accent { background: var(--accent-orange) !important; border-color: var(--accent-orange) !important; color: #fff !important; }
+  .btn.ghost:hover { border-color: var(--accent-blue) !important; color: var(--accent-blue) !important; }
+
+  /* pricing "what's included" → orange tick markers */
+  .includes-list li { position: relative; padding-left: 22px; }
+  .includes-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent-orange); font-family: var(--font-mono); font-weight: 700; font-size: 12px; transition: color .25s; }
+  .vert:hover .includes-list li::before { color: #fff; }
+
+  /* before / after: after list reads blue (positive), before muted */
+  .cb-ba-col ul li { position: relative; padding-left: 20px; }
+  .cb-ba-col ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; }
+  .cb-ba-col.before ul li::before { background: var(--text-muted); opacity: .5; }
+  .cb-ba-col.after ul li::before { background: var(--accent-blue); }
+</style>
 </head>
 <body>
 
 <header>
   <nav class="nav">
     <div class="nav-inner">
-      <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
+      <a href="./" class="brand" aria-label="SeeTusk Creative Agency. Home">
         <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt="SCA Logo" width="40" height="40"></span>
-        <span>SeeTusk / SCA</span>
       </a>
       <div class="nav-links">
-        <a href="content.html">Content</a>
+        <a href="content.html" class="active">Content</a>
         <a href="influencer.html">Influencer</a>
         <a href="web.html">Web &amp; Tech</a>
         <a href="about.html">About</a>
-        <a href="careers.html">Career</a>
+        <a href="careers.html">Careers</a>
       </div>
+      <div class="nav-cta"><a href="contact.html" class="btn accent" data-magnetic-spring="0.4" data-cursor="Start">Start a project <span class="arr">↗</span></a></div>
     </div>
   </nav>
 </header>
@@ -43,34 +285,34 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
       <div class="deck-pin">
 
         <div class="deck-copy deck-copy--a" data-deck-copy="0">
-          <div class="deck-kicker">Vertical 01 / Own distribution</div>
-          <h1 class="deck-title">The outsourced <span class="accent">creative department.</span></h1>
+          <div class="deck-kicker">Vertical 01 / Content &amp; Brand</div>
+          <h1 class="deck-title">Your brand's weekly <span class="accent blue">content</span> <span class="accent">team.</span></h1>
         </div>
 
         <div class="deck-copy deck-copy--b" data-deck-copy="1">
           <div class="deck-inner">
             <div class="deck-kicker">What we ship</div>
-            <h2 class="deck-title">A full content machine, on a predictable cadence.</h2>
-            <p class="deck-lead">Editorial, brand, social, motion and paid &mdash; shipped weekly and reviewed monthly.</p>
+            <h2 class="deck-title">A monthly content system, shipped every week.</h2>
+            <p class="deck-lead">Strategy, shoots, reels, statics, writing and design, planned monthly, shipped weekly, reviewed every month.</p>
           </div>
         </div>
 
         <div class="deck-copy deck-copy--c" data-deck-copy="2">
           <div class="deck-inner">
             <div class="deck-kicker">One team</div>
-            <h2 class="deck-title">Your brand <span class="accent">operating system.</span></h2>
-            <p class="deck-lead">A dedicated pod that owns the voice &mdash; not another vendor sending a Drive folder on Friday.</p>
+            <h2 class="deck-title">Your <span class="accent blue">content engine.</span></h2>
+            <p class="deck-lead">One dedicated pod that keeps your brand planned, produced and visible, not another vendor sending a Drive folder on Friday.</p>
           </div>
         </div>
 
         <div class="deck-cards" data-deck-cards>
-          <figure class="dcard"><img src="images/ed-working.webp" alt="Editorial content and production table at SCA studio" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">Editorial</span><span class="dcard-num">01</span></figure>
-          <figure class="dcard"><img src="images/ed-couch-laptop.webp" alt="Creative studio desk setup with laptop" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">Studio</span><span class="dcard-num">02</span></figure>
-          <figure class="dcard"><img src="images/ed-coffee-iv.webp" alt="Premium F&B photography campaign visual" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">F&amp;B</span><span class="dcard-num">03</span></figure>
-          <figure class="dcard"><img src="images/ed-slushie.webp" alt="Creative outdoor advertisement setup" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">OOH</span><span class="dcard-num">04</span></figure>
-          <figure class="dcard"><img src="images/ed-tech-flatlay.webp" alt="Modern tech brand design system items" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">Brand</span><span class="dcard-num">05</span></figure>
-          <figure class="dcard"><img src="images/ed-jeans-washer.webp" alt="Apparel brand product shoot visual" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">Campaign</span><span class="dcard-num">06</span></figure>
-          <figure class="dcard"><img src="images/ed-ocean-window.webp" alt="Scenic outdoor installation with window concept" loading="lazy" decoding="async" width="210" height="280"><span class="dcard-tag">Outdoor</span><span class="dcard-num">07</span></figure>
+          <figure class="dcard"><img src="images/ed-working.webp" alt="Editorial content and production table at SCA studio" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">Editorial</span><span class="dcard-num">01</span></figure>
+          <figure class="dcard"><img src="images/ed-couch-laptop.webp" alt="Creative studio desk setup with laptop" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">Studio</span><span class="dcard-num">02</span></figure>
+          <figure class="dcard"><img src="images/ed-coffee-iv.webp" alt="Premium F&B photography campaign visual" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">F&amp;B</span><span class="dcard-num">03</span></figure>
+          <figure class="dcard"><img src="images/ed-slushie.webp" alt="Creative outdoor advertisement setup" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">OOH</span><span class="dcard-num">04</span></figure>
+          <figure class="dcard"><img src="images/ed-tech-flatlay.webp" alt="Modern tech brand design system items" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">Brand</span><span class="dcard-num">05</span></figure>
+          <figure class="dcard"><img src="images/ed-jeans-washer.webp" alt="Apparel brand product shoot visual" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">Campaign</span><span class="dcard-num">06</span></figure>
+          <figure class="dcard"><img src="images/ed-ocean-window.webp" alt="Scenic outdoor installation with window concept" loading="eager" fetchpriority="high" decoding="async" width="210" height="280"><span class="dcard-tag">Outdoor</span><span class="dcard-num">07</span></figure>
         </div>
 
         <div class="deck-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
@@ -83,125 +325,287 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
   <section class="section">
     <div class="shell">
       <div class="section-head sr">
-        <div class="section-num">01 / Who it's for</div>
+        <div class="section-num">Who it's for</div>
         <div>
           <div class="section-label">Ideal fit</div>
-          <h2 class="section-title">You're a growth-stage founder or CMO who's done hiring a revolving door of freelancers.</h2>
-          <p class="section-sub">You have a product that's working and a brand that's inconsistent. You need a team that owns the voice, not another vendor who sends a Google Drive folder every Friday.</p>
+          <h2 class="section-title">For brands that have outgrown random posting.</h2>
+          <p class="section-sub">You have a product that works and customers who like it. But your content still depends on last-minute ideas, scattered freelancers, inconsistent visuals, and someone saying &ldquo;we should post something today.&rdquo; That is where we come in.</p>
         </div>
       </div>
 
-      <div class="two-col sr">
-        <div>
-          <p class="pull">We become your <span class="accent">brand OS.</span> You get a marketing team. You don't pay for one.</p>
+      <div class="who-wrap sr">
+        <div class="who-grid sr-stag">
+          <article class="who-card">
+            <span class="who-card-n">01</span>
+            <h3>We help you say it better</h3>
+            <p>We turn your product, offer and founder POV into content pillars people can actually understand.</p>
+          </article>
+          <article class="who-card">
+            <span class="who-card-n">02</span>
+            <h3>You stop chasing five different people</h3>
+            <p>Strategy, writing, design, shoot planning and edits sit with one team that knows your brand.</p>
+          </article>
+          <article class="who-card">
+            <span class="who-card-n">03</span>
+            <h3>Your brand starts looking consistent</h3>
+            <p>Every reel, static, caption, email and campaign asset feels like it came from the same company.</p>
+          </article>
+          <article class="who-card">
+            <span class="who-card-n">04</span>
+            <h3>You know what is working</h3>
+            <p>Monthly reviews show what to repeat, what to improve, and what's not worth making again.</p>
+          </article>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="border-top:1px solid var(--line);">
+    <div class="shell">
+      <div class="section-head sr">
+        <div class="section-num">The content engine</div>
         <div>
-          <ul class="bullet-list">
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>One strategist, one writer, one designer, one ops</h3>
-                <p>A pod dedicated to your account. Same faces every month. No agency churn.</p>
-              </div>
-            </li>
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>A written brand book in week two</h3>
-                <p>Positioning, voice, pillars, do-nots. Signed off before any monthly content is made.</p>
-              </div>
-            </li>
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>Weekly deliverables, monthly review</h3>
-                <p>Public Notion roadmap. No mystery about what's happening this week.</p>
-              </div>
-            </li>
-            <li>
-              <span class="bl-n">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </span>
-              <div>
-                <h3>Outcomes, not outputs</h3>
-                <p>Tied to business metrics you chose. We kill what's not working.</p>
-              </div>
-            </li>
+          <div class="section-label">Rhythm over randomness</div>
+          <h2 class="section-title">A monthly system for everything your brand needs to say.</h2>
+          <p class="section-sub">Most brands do not have a content problem. They have a rhythm problem. Ideas stay in meetings, shoots happen too late, captions get rushed, and the feed becomes a mix of whatever was easiest to post. We build the rhythm around your brand.</p>
+        </div>
+      </div>
+
+      <div class="cb-steps sr-stag">
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-01.png" alt="Abstract orange and black liquid forms" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>01</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Find the voice</h4>
+            <p>We define the brand POV, tone, content pillars, audience, references, do-nots and recurring formats.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-02.png" alt="Ribbed-glass portrait lit in orange" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>02</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Plan the month</h4>
+            <p>We turn business priorities into a clean content calendar: launches, offers, founder posts, product stories, education, culture and campaigns.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/ed-studio-shoot.webp" alt="Studio production shoot in progress" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>03</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Produce the assets</h4>
+            <p>We handle the shoot plan, scripts, captions, edits, design system and content packaging.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-04.png" alt="Editorial scene with a figure on a red couch" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>04</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Ship every week</h4>
+            <p>Reels, statics, written posts and campaign assets move through a predictable weekly workflow.</p>
+          </div>
+        </article>
+        <article class="cb-step">
+          <div class="cb-step-shot">
+            <img src="images/cb-step-05.png" alt="Basketball on a two-tone court" loading="lazy" decoding="async">
+            <div class="cb-step-n">Step <b>05</b></div>
+          </div>
+          <div class="cb-step-body">
+            <h4>Review and improve</h4>
+            <p>Every month, we look at performance and decide what deserves more energy, and what to stop making.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="included" class="section" style="border-top:1px solid var(--line); background:var(--bg-soft);">
+    <div class="shell">
+      <div class="section-head sr">
+        <div class="section-num">What's included</div>
+        <div>
+          <div class="section-label">In the retainer</div>
+          <h2 class="section-title">Everything your brand needs to stay visible, consistent and useful.</h2>
+          <p class="section-sub">The retainer is built for brands that need more than occasional creatives. It gives you the planning, production and publishing rhythm of an in-house content team, without hiring one.</p>
+        </div>
+      </div>
+
+      <div class="cb-pillars sr">
+        <div class="cb-pillar">
+          <div>
+            <div class="cb-pillar-num">Pillar 01</div>
+            <h3>Strategy &amp; brand voice</h3>
+            <p class="cb-pillar-desc">We define what your brand should sound like, what it should talk about, what it should avoid, and which content formats should repeat every month.</p>
+          </div>
+          <div>
+            <ul class="cb-pillar-deliver">
+              <li>Brand voice guide</li>
+              <li>Content pillars</li>
+              <li>Monthly campaign themes</li>
+              <li>Hook bank and content angles</li>
+              <li>Do-not list for off-brand ideas</li>
+            </ul>
+            <span class="cb-freq-tag">Set up in month one, refined monthly</span>
+          </div>
+        </div>
+        <div class="cb-pillar">
+          <div>
+            <div class="cb-pillar-num">Pillar 02</div>
+            <h3>Social content</h3>
+            <p class="cb-pillar-desc">Reels, statics, carousels, captions and short-form campaign assets designed to keep your brand active and recognisable.</p>
+          </div>
+          <div>
+            <ul class="cb-pillar-deliver">
+              <li>Instagram reels</li>
+              <li>Static posts</li>
+              <li>Carousels</li>
+              <li>Captions</li>
+              <li>Story ideas</li>
+              <li>Campaign cutdowns</li>
+            </ul>
+            <span class="cb-freq-tag">Weekly</span>
+          </div>
+        </div>
+        <div class="cb-pillar">
+          <div>
+            <div class="cb-pillar-num">Pillar 03</div>
+            <h3>Written content</h3>
+            <p class="cb-pillar-desc">Sharper writing for the places where your brand needs more explanation, trust and founder voice.</p>
+          </div>
+          <div>
+            <ul class="cb-pillar-deliver">
+              <li>Founder LinkedIn posts</li>
+              <li>Newsletters</li>
+              <li>Product stories</li>
+              <li>Sales-adjacent copy</li>
+              <li>Launch notes</li>
+              <li>Website / landing-page copy support</li>
+            </ul>
+            <span class="cb-freq-tag">Weekly or campaign-based</span>
+          </div>
+        </div>
+        <div class="cb-pillar">
+          <div>
+            <div class="cb-pillar-num">Pillar 04</div>
+            <h3>Visual &amp; motion system</h3>
+            <p class="cb-pillar-desc">A consistent visual language for your feed, campaigns, ads, emails and launches, so the brand feels like one system, not separate files.</p>
+          </div>
+          <div>
+            <ul class="cb-pillar-deliver">
+              <li>Design templates</li>
+              <li>Motion edits</li>
+              <li>Product visuals</li>
+              <li>Email graphics</li>
+              <li>Event / launch assets</li>
+              <li>Ad creative variations</li>
+            </ul>
+            <span class="cb-freq-tag">Weekly</span>
+          </div>
+        </div>
+        <div class="cb-pillar">
+          <div>
+            <div class="cb-pillar-num">Pillar 05</div>
+            <h3>Calendar &amp; reporting</h3>
+            <p class="cb-pillar-desc">A visible workflow so you always know what is being made, what is approved, what is live, and what needs attention.</p>
+          </div>
+          <div>
+            <ul class="cb-pillar-deliver">
+              <li>Monthly content calendar</li>
+              <li>Weekly delivery tracker</li>
+              <li>Review calls</li>
+              <li>Performance notes</li>
+              <li>Next-month recommendations</li>
+            </ul>
+            <span class="cb-freq-tag">Weekly tracker, monthly review</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="border-top:1px solid var(--line);">
+    <div class="shell">
+      <div class="section-head sr">
+        <div class="section-num">What this is not</div>
+        <div>
+          <div class="section-label">Clear before you start</div>
+          <h2 class="section-title">Not a posting service. Not a design vendor. Not a content dump.</h2>
+          <p class="section-sub">This is for brands that want content to feel planned, produced and connected to business goals. We are not here to fill a calendar with noise.</p>
+        </div>
+      </div>
+
+      <div class="cb-compare sr-stag">
+        <div class="cb-comp is-not">
+          <h3>Not this</h3>
+          <ul>
+            <li><span class="mk">&times;</span>Ten random posts because the calendar looks empty</li>
+            <li><span class="mk">&times;</span>A freelancer sending files without context</li>
+            <li><span class="mk">&times;</span>Pretty designs with no point of view</li>
+            <li><span class="mk">&times;</span>Month-end reports full of vanity numbers</li>
+            <li><span class="mk">&times;</span>A strategy deck that never turns into shipped work</li>
+          </ul>
+        </div>
+        <div class="cb-comp is-yes">
+          <h3>This instead</h3>
+          <ul>
+            <li><span class="mk">&check;</span>Clear monthly themes</li>
+            <li><span class="mk">&check;</span>Content built around your product, audience and offer</li>
+            <li><span class="mk">&check;</span>Weekly assets that feel connected</li>
+            <li><span class="mk">&check;</span>A team that learns your brand over time</li>
+            <li><span class="mk">&check;</span>Reviews that decide what to repeat, improve or stop</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="border-top:1px solid var(--line);">
+  <section id="pricing" class="section" style="border-top:1px solid var(--line);">
     <div class="shell">
       <div class="section-head sr">
-        <div class="section-num">02 / What's in the retainer</div>
+        <div class="section-num">Pricing</div>
         <div>
-          <div class="section-label">Monthly deliverables</div>
-          <h2 class="section-title">A full content machine, shipped on a predictable cadence.</h2>
-        </div>
-      </div>
-
-      <div class="process-grid sr-stag">
-        <div class="process-step">
-          <span class="n">Pillar 01</span>
-          <h4>Strategy &amp; POV</h4>
-          <p>Quarterly narrative. Content pillars. Editorial themes. A clear point of view you can defend in a room.</p>
-          <span class="dur">Quarterly / 1 doc</span>
-        </div>
-        <div class="process-step">
-          <span class="n">Pillar 02</span>
-          <h4>Written content</h4>
-          <p>Newsletter, long-form posts, LinkedIn for the founder, sales-adjacent pages. Written by humans who get your space.</p>
-          <span class="dur">Weekly / 3-5 pieces</span>
-        </div>
-        <div class="process-step">
-          <span class="n">Pillar 03</span>
-          <h4>Visual &amp; motion</h4>
-          <p>Social, ads, event assets, email templates. On brand, on cadence, on time.</p>
-          <span class="dur">Weekly / 8-12 assets</span>
-        </div>
-        <div class="process-step">
-          <span class="n">Pillar 04</span>
-          <h4>Distribution &amp; paid</h4>
-          <p>We run the calendar and the paid layer. Meta, LinkedIn, Google. Reporting tied to leads, not impressions.</p>
-          <span class="dur">Ongoing / Monthly report</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="border-top:1px solid var(--line);">
-    <div class="shell">
-      <div class="section-head sr">
-        <div class="section-num">03 / Pricing</div>
-        <div>
-          <div class="section-label">Transparent engagement tiers</div>
-          <h2 class="section-title">Three tiers. No sales theatre.</h2>
+          <div class="section-label">Clear tiers. Clear rhythm.</div>
+          <h2 class="section-title">Choose the content rhythm your brand needs.</h2>
         </div>
       </div>
 
       <div class="verticals sr-stag">
         <a href="contact.html?tier=foundation" class="vert" aria-label="Select Foundation tier - From ₹1,80,000 per month">
           <div>
-            <div class="vert-num">Tier 01 / Base</div>
+            <div class="vert-num">Tier 01 / Foundation</div>
             <h3 class="vert-title">Foundation</h3>
-            <p class="vert-body">For brands that need the core shipped weekly. One channel focus, one pod, monthly review.</p>
+            <p class="vert-best">Best for: founder-led brands, local brands, early D2C teams, cafes, clinics and studios that need consistency before scale.</p>
+            <ul class="includes-list">
+              <li>One main channel focus</li>
+              <li>Monthly content calendar</li>
+              <li>Weekly social content</li>
+              <li>Basic design &amp; edit system</li>
+              <li>Monthly review</li>
+            </ul>
           </div>
           <div class="vert-meta"><span class="price-val">₹1,80,000<span class="freq">/mo</span></span><span class="vert-btn">Get Started &rarr;</span></div>
         </a>
         <a href="contact.html?tier=scale" class="vert" aria-label="Select Scale tier - From ₹3,50,000 per month">
+          <span class="cb-badge">Most common</span>
           <div>
             <div class="vert-num">Tier 02 / Scale</div>
             <h3 class="vert-title">Scale</h3>
-            <p class="vert-body">Multi-channel, paid layer included, dedicated strategist. Most common tier for D2C brands doing Rs 5-25Cr ARR.</p>
+            <p class="vert-best">Best for: D2C, FMCG, hospitality, real estate, education and growth-stage brands with traction that need a sharper marketing rhythm.</p>
+            <ul class="includes-list">
+              <li>Multi-channel content plan</li>
+              <li>Reels, statics, written &amp; campaign assets</li>
+              <li>Monthly shoot planning</li>
+              <li>Paid creative support</li>
+              <li>Dedicated strategist</li>
+              <li>Monthly reporting</li>
+            </ul>
           </div>
           <div class="vert-meta"><span class="price-val">₹3,50,000<span class="freq">/mo</span></span><span class="vert-btn">Get Started &rarr;</span></div>
         </a>
@@ -209,10 +613,94 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
           <div>
             <div class="vert-num">Tier 03 / Partner</div>
             <h3 class="vert-title">Partner</h3>
-            <p class="vert-body">Embedded team. Acts as your in-house marketing department. Quarterly roadmaps, board-level reporting.</p>
+            <p class="vert-best">Best for: brands with frequent launches, multiple stakeholders, multiple channels, and a need for board-level clarity.</p>
+            <ul class="includes-list">
+              <li>Embedded creative pod</li>
+              <li>Quarterly content roadmap</li>
+              <li>Campaign planning</li>
+              <li>Founder / leadership content support</li>
+              <li>Advanced reporting</li>
+              <li>Priority production support</li>
+            </ul>
           </div>
           <div class="vert-meta"><span class="price-val">₹6,00,000<span class="freq">/mo</span></span><span class="vert-btn">Get Started &rarr;</span></div>
         </a>
+      </div>
+
+      <p class="cb-pricing-note"><b>Not sure which tier fits?</b> Tell us where content is stuck right now. We will recommend the smallest useful starting point.</p>
+    </div>
+  </section>
+
+  <section class="section" style="border-top:1px solid var(--line);">
+    <div class="shell">
+      <div class="section-head sr">
+        <div class="section-num">The shift</div>
+        <div>
+          <div class="section-label">Before vs after</div>
+          <h2 class="section-title">Before SeeTusk vs after SeeTusk.</h2>
+        </div>
+      </div>
+
+      <div class="cb-ba sr-stag">
+        <div class="cb-ba-col before">
+          <span class="cb-ba-tag">Before</span>
+          <h3>Content happens by accident</h3>
+          <ul>
+            <li>Posts happen when someone remembers</li>
+            <li>The feed looks different every week</li>
+            <li>Shoots are rushed</li>
+            <li>Captions sound generic</li>
+            <li>Campaign assets are made too late</li>
+            <li>Nobody knows what content is doing</li>
+          </ul>
+        </div>
+        <div class="cb-ba-col after">
+          <span class="cb-ba-tag">After</span>
+          <h3>Content runs on a system</h3>
+          <ul>
+            <li>The month has a clear content plan</li>
+            <li>Every asset follows the same brand voice</li>
+            <li>Shoots are planned around real content needs</li>
+            <li>Reels, statics and writing work together</li>
+            <li>Launches have enough creative firepower</li>
+            <li>Monthly reviews show what deserves more attention</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="border-top:1px solid var(--line); background:var(--bg-soft);">
+    <div class="shell">
+      <div class="section-head sr">
+        <div class="section-num">FAQ</div>
+        <div>
+          <div class="section-label">The questions clients ask first</div>
+          <h2 class="section-title">Straight answers before we start.</h2>
+        </div>
+      </div>
+
+      <div class="cb-faq sr">
+        <details>
+          <summary><span class="ix">01</span>Do you only make social media posts?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="cb-faq-a"><p>No. Social content is one part of the system. We also work on brand voice, campaign ideas, shoot planning, written content, motion assets, email graphics, founder posts and launch content.</p></div>
+        </details>
+        <details>
+          <summary><span class="ix">02</span>Do you handle shoots?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="cb-faq-a"><p>Yes. We can plan and direct monthly shoots based on the content calendar, so the brand gets the visuals it actually needs instead of random footage.</p></div>
+        </details>
+        <details>
+          <summary><span class="ix">03</span>Can you work with our internal marketing team?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="cb-faq-a"><p>Yes. We can plug into your marketing team as the creative and content pod, or operate as the main external team if you do not have one in-house.</p></div>
+        </details>
+        <details>
+          <summary><span class="ix">04</span>How soon can content start going live?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="cb-faq-a"><p>The first phase is usually used to lock the voice, pillars and calendar. After that, the aim is to start shipping weekly instead of disappearing into long strategy decks.</p></div>
+        </details>
+        <details>
+          <summary><span class="ix">05</span>Do you also run ads or influencer campaigns?<span class="pm" aria-hidden="true"></span></summary>
+          <div class="cb-faq-a"><p>This page is focused on content and brand. If you also need paid creators or a website, we cover those in separate verticals. See the <a href="influencer.html">Influencer</a> and <a href="web.html">Web &amp; Tech</a> pages.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -222,8 +710,8 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
   <div class="sfoot-shell">
     <div class="sfoot-news">
       <div class="sfoot-news-copy">
-        <h4>Read what we ship.</h4>
-        <p>Our weekly newsletter &mdash; frameworks, teardowns, and behind-the-scenes from the studio. Read by founders &amp; CMOs. No fluff.</p>
+        <h4>Want to see how we think before you work with us?</h4>
+        <p>Studio notes on content systems, campaign breakdowns, founder-led marketing and the decisions behind the work. Read by founders &amp; CMOs. No fluff.</p>
       </div>
       <form class="sfoot-form" id="newsletterFormFooter">
         <label class="sr-only" for="news-email-footer">Email address</label>
@@ -246,7 +734,7 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
         </div>
       </div>
       <nav class="sfoot-col" aria-label="Verticals"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Career</a></nav>
+      <nav class="sfoot-col" aria-label="Studio"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
       <nav class="sfoot-col" aria-label="Elsewhere"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">
@@ -259,5 +747,7 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
+<script src="assets/sca-deck.js?v=1.0.4"></script>
+<script src="assets/sca-magnetic.js?v=1.0.0"></script>
 </body>
 </html>

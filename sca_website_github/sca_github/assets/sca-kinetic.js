@@ -30,6 +30,15 @@
     const intro = document.querySelector('.intro');
     if (!intro) { afterIntro(); return; }
 
+    // The inline driver in index.html already plays/dismisses the intro so the
+    // page is revealed even if this script is delayed or fails to load. If it has
+    // already taken over, skip replaying. (The inline driver also fires the hero
+    // reveal at curtain-lift, so we only force it here if the intro is fully gone.)
+    if (intro.classList.contains('go') || intro.hasAttribute('hidden')) {
+      if (intro.hasAttribute('hidden')) afterIntro();
+      return;
+    }
+
     if (reduce) {
       intro.setAttribute('hidden', '');
       document.body.classList.remove('intro-locked');
@@ -341,4 +350,5 @@
       }, 100);
     }, { passive: true });
   }
+
 })();

@@ -58,7 +58,7 @@
     });
 
     const cta = document.createElement('a');
-    cta.href = 'contact.html';
+    cta.href = 'contact';
     cta.className = 'mobile-menu-cta';
     cta.textContent = 'Start a project';
     panel.appendChild(cta);
@@ -137,10 +137,12 @@
     document.body.appendChild(dot);
     document.body.appendChild(ring);
 
-    let mx = window.innerWidth / 2;
-    let my = window.innerHeight / 2;
+    let mx = -100;
+    let my = -100;
     let rx = mx;
     let ry = my;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
 
     let vx = 0;
     let vy = 0;
@@ -598,8 +600,35 @@
           button.textContent = 'Sending...';
         }
 
-        // Mock ajax submission
-        setTimeout(() => {
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+          ? 'http://localhost:5000'
+          : 'https://sca-website.onrender.com';
+
+        fetch(`${API_BASE_URL}/api/inquiries`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            need,
+            budget,
+            timeline,
+            name,
+            company,
+            email,
+            phone,
+            brief
+          })
+        })
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(err => {
+              throw new Error(err.message || `Server error: ${response.status}`);
+            });
+          }
+          return response.json();
+        })
+        .then(data => {
           if (formMessage) {
             formMessage.textContent = 'Success! We\'ve received your brief and will get back to you within 24 hours.';
             formMessage.className = 'form-message success visible';
@@ -613,7 +642,17 @@
             item.classList.remove('active');
             item.setAttribute('aria-checked', 'false');
           });
-        }, 1200);
+        })
+        .catch(error => {
+          if (formMessage) {
+            formMessage.textContent = 'Transmission error: ' + error.message;
+            formMessage.className = 'form-message error visible';
+          }
+          if (button) {
+            button.disabled = false;
+            button.textContent = 'Send Brief';
+          }
+        });
       });
     });
 
@@ -636,14 +675,38 @@
           button.textContent = 'Subscribing...';
           button.disabled = true;
 
-          setTimeout(() => {
+          const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000'
+            : 'https://sca-website.onrender.com';
+
+          fetch(`${API_BASE_URL}/api/newsletters`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+          })
+          .then(response => {
+            if (!response.ok) {
+              return response.json().then(err => {
+                throw new Error(err.message || `Server error: ${response.status}`);
+              });
+            }
+            return response.json();
+          })
+          .then(data => {
             button.textContent = 'Subscribed!';
             if (emailInput) emailInput.value = '';
             setTimeout(() => {
               button.innerHTML = originalText;
               button.disabled = false;
             }, 3000);
-          }, 1000);
+          })
+          .catch(error => {
+            alert('Subscription failed: ' + error.message);
+            button.innerHTML = originalText;
+            button.disabled = false;
+          });
         }
       });
     });

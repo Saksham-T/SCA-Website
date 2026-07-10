@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SeeTusk — Website Redesign Handover &amp; Build Brief</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Document ink (light surface, for reading + printing) */
+    --paper: #FFFFFF;
+    --paper-2: #F7F8FA;
+    --ink: #14161A;
+    --ink-2: #43474E;
+    --ink-3: #767B83;
+    --hair: #E4E7EC;
+    --hair-2: #D3D7DE;
+
+    /* TARGET SYSTEM tokens (the dark system being specified) */
+    --t-bg: #0B0B0D;
+    --t-bg-2: #111214;
+    --t-card: #1B1D20;
+    --t-text: #FFFFFF;
+    --t-text-2: #B7BDC6;
+    --t-muted: #80858D;
+    --t-blue: #4F8CFF;
+    --t-purple: #7A5FFF;
+    --t-cyan: #58D5FF;
+
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --sans: 'Satoshi', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body {
+    margin: 0;
+    background: var(--paper-2);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.62;
+    font-weight: 400;
+  }
+
+  .doc {
+    box-sizing: border-box;
+    max-width: 8.5in;
+    margin: 0 auto;
+    background: var(--paper);
+    padding: 0 clamp(22px, 5vw, 0.78in) 120px;
+    box-shadow: 0 1px 60px rgba(20,22,26,.07);
+  }
+  .doc-frame { width: 100%; border-collapse: collapse; }
+  .doc-frame td { padding: 0; }
+  .hdr-space, .ftr-space { display: none; }
+
+  /* ---- Type ---- */
+  h1, h2, h3, h4, h5 { font-family: var(--sans); color: var(--ink); margin: 0; line-height: 1.1; text-wrap: balance; letter-spacing: -0.02em; }
+  h2 { font-size: 27px; font-weight: 900; margin: 0 0 4px; }
+  h3 { font-size: 19px; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h4 { font-size: 15.5px; font-weight: 700; margin: 0 0 4px; letter-spacing: 0; }
+  p { margin: 0 0 13px; text-wrap: pretty; }
+  p, li { color: var(--ink-2); }
+  strong { color: var(--ink); font-weight: 700; }
+  a { color: #2c63cc; text-decoration: none; }
+  em { color: var(--ink-3); font-style: italic; }
+  ul, ol { margin: 0 0 14px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  code { font-family: var(--mono); font-size: 0.86em; background: #EEF1F5; padding: 1px 5px; border-radius: 4px; color: #2b2f36; }
+
+  /* ---- Section scaffolding ---- */
+  .section { padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--hair); }
+  .section:first-of-type { border-top: 0; margin-top: 0; }
+  .kicker {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--t-blue);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  }
+  .kicker::before { content: ""; width: 26px; height: 2px; background: var(--t-blue); display: inline-block; }
+  .lead { font-size: 16.5px; line-height: 1.55; color: var(--ink-2); max-width: 64ch; }
+
+  /* ---- Cover ---- */
+  .cover { padding: 64px 0 18px; }
+  .cover-brand { display: flex; align-items: center; gap: 11px; margin-bottom: 40px; }
+  .cover-dot { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--t-blue), var(--t-purple)); box-shadow: 0 4px 18px rgba(79,140,255,.4); }
+  .cover-brand b { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .cover-brand span { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .04em; margin-left: auto; }
+  .cover h1 { font-size: clamp(38px, 7vw, 60px); font-weight: 900; line-height: 0.97; letter-spacing: -0.035em; margin: 0 0 22px; max-width: 14ch; }
+  .cover h1 .g { background: linear-gradient(105deg, var(--t-blue), var(--t-purple) 55%, var(--t-cyan)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .cover-sub { font-size: 18px; color: var(--ink-2); max-width: 56ch; line-height: 1.5; }
+  .cover-meta { display: flex; flex-wrap: wrap; gap: 0; margin-top: 40px; border: 1px solid var(--hair); border-radius: 12px; overflow: hidden; }
+  .cover-meta div { flex: 1 1 25%; min-width: 130px; padding: 15px 18px; border-right: 1px solid var(--hair); }
+  .cover-meta div:last-child { border-right: 0; }
+  .cover-meta dt { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 5px; }
+  .cover-meta dd { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+
+  /* ---- Prompt blocks (the Lovable copy-paste payloads) ---- */
+  .prompt {
+    position: relative;
+    background: var(--t-bg);
+    color: #E8EAED;
+    border-radius: 14px;
+    padding: 44px 22px 22px;
+    margin: 18px 0 22px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    border: 1px solid #26282d;
+  }
+  .prompt::before {
+    content: "⌘ PASTE INTO LOVABLE";
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: 9px 18px;
+    font-size: 10px; letter-spacing: .18em; font-weight: 500;
+    color: #8d93ad;
+    background: linear-gradient(90deg, rgba(79,140,255,.16), rgba(122,95,255,.1));
+    border-bottom: 1px solid #26282d;
+    border-radius: 14px 14px 0 0;
+  }
+  .prompt b { color: var(--t-cyan); font-weight: 500; }
+  .prompt .hl { color: #FFD479; }
+  .prompt-label { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: .04em; margin: 22px 0 -8px; }
+
+  /* ---- Callouts ---- */
+  .note, .warn, .keep {
+    border-radius: 12px; padding: 15px 18px; margin: 16px 0; font-size: 14px; line-height: 1.55;
+    border: 1px solid var(--hair); background: var(--paper-2);
+  }
+  .note { border-left: 3px solid var(--t-blue); }
+  .warn { border-left: 3px solid #E8833A; background: #FFF8F1; }
+  .keep { border-left: 3px solid #2BA169; background: #F2FBF6; }
+  .note .lbl, .warn .lbl, .keep .lbl { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: 4px; }
+  .note .lbl { color: #2c63cc; } .warn .lbl { color: #c46512; } .keep .lbl { color: #1f8a59; }
+  .note p:last-child, .warn p:last-child, .keep p:last-child { margin-bottom: 0; }
+
+  /* ---- Tables ---- */
+  table.spec { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px; }
+  table.spec th, table.spec td { text-align: left; padding: 9px 11px; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  table.spec thead th { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; border-bottom: 1.5px solid var(--hair-2); }
+  table.spec td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  table.spec td code { font-size: 11.5px; }
+  .num-col td:first-child { font-family: var(--mono); color: var(--t-blue); font-weight: 500; }
+
+  /* ---- Token swatches ---- */
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 22px; }
+  .sw { border: 1px solid var(--hair); border-radius: 10px; overflow: hidden; }
+  .sw-chip { height: 56px; }
+  .sw-meta { padding: 8px 10px; }
+  .sw-meta b { display: block; font-size: 12px; font-weight: 700; }
+  .sw-meta code { background: none; padding: 0; font-size: 11px; color: var(--ink-3); }
+  @media (max-width: 540px) { .swatches { grid-template-columns: repeat(2, 1fr); } .cover-meta div { flex-basis: 50%; } }
+
+  /* type scale demo */
+  .typerow { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+  .typerow .tag { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+  .typerow .sz { color: var(--ink); font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 7px; margin: 6px 0 16px; }
+  .pill { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 999px; background: #EEF1F5; color: #3a3f47; border: 1px solid var(--hair); }
+
+  .toc { columns: 2; column-gap: 36px; font-size: 14px; margin-top: 8px; }
+  .toc a { display: block; padding: 5px 0; color: var(--ink-2); border-bottom: 1px solid var(--hair); }
+  .toc a b { font-family: var(--mono); color: var(--t-blue); font-size: 12px; margin-right: 8px; }
+  @media (max-width: 540px) { .toc { columns: 1; } }
+
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0 4px; }
+  .anatomy > div { border: 1px solid var(--hair); border-radius: 10px; padding: 14px 16px; background: var(--paper-2); }
+  .anatomy h5 { font-size: 13px; margin: 0 0 6px; font-weight: 700; }
+  .anatomy p { font-size: 13px; margin: 0; color: var(--ink-2); }
+  @media (max-width: 540px) { .anatomy { grid-template-columns: 1fr; } }
+
+  @page { size: letter; margin: 0; }
+  @media print {
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { margin: 0; padding: 0; background: #fff; }
+    .doc { max-width: none !important; margin: 0 !important; padding: 0 0.6in !important; box-shadow: none !important; }
+    .hdr-space, .ftr-space { display: table-cell; height: 0.6in; }
+    h1, h2, h3, h4, h5 { break-after: avoid; }
+    .prompt, .note, .warn, .keep, table.spec tr, .sw, figure, .anatomy > div { break-inside: avoid; }
+    .section { break-inside: auto; }
+    p, li { orphans: 3; widows: 3; }
+    .screen-only { display: none !important; }
+  }
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#0B0B0D">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#4F8CFF"/>
+        <stop offset="0.55" stop-color="#7A5FFF"/>
+        <stop offset="1" stop-color="#58D5FF"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="800" fill="#0B0B0D"/>
+    <rect x="470" y="250" width="120" height="120" rx="30" fill="url(#g)"/>
+    <text x="640" y="345" font-family="Satoshi, Arial, sans-serif" font-weight="900" font-size="86" fill="#FFFFFF">SeeTusk</text>
+    <text x="472" y="470" font-family="monospace" font-size="30" letter-spacing="8" fill="#80858D">HANDOVER &amp; BUILD BRIEF</text>
+  </svg>
+</template>
+</head>
+<body>
+<main class="doc">
+<table class="doc-frame" role="presentation">
+<thead><tr><td class="hdr-space"></td></tr></thead>
+<tbody><tr><td>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="cover-brand">
+    <span class="cover-dot"></span>
+    <b>SeeTusk Creative Agency</b>
+    <span>Pune · India</span>
+  </div>
+  <h1>Website Redesign <span class="g">Handover &amp; Build Brief</span></h1>
+  <p class="cover-sub">A complete, build-ready specification for regenerating the SeeTusk site in Lovable. New dark visual system, new section hierarchy, approved copy, and ready-to-paste prompts for every page.</p>
+  <dl class="cover-meta">
+    <div><dt>Prepared for</dt><dd>Lovable (wireframe + UI)</dd></div>
+    <div><dt>Product</dt><dd>seetusk.agency</dd></div>
+    <div><dt>Scope</dt><dd>5 page types, full UI</dd></div>
+    <div><dt>Version</dt><dd>v1.0 · Jun 2026</dd></div>
+  </dl>
+</header>
+
+<!-- ============ HOW TO USE ============ -->
+<section class="section">
+  <div class="kicker">00 · How to use this document</div>
+  <h2>Read it top to bottom. Build it in the same order.</h2>
+  <p class="lead">This brief is structured to be fed into Lovable in sequence. Each part builds on the one before it, so the design system is locked before any page is generated.</p>
+
+  <ol>
+    <li><strong>Start with the Master Prompt</strong> (§02). Paste it first to seed the project: it sets the brand, the dark design system, the stack, and the global rules Lovable should apply to everything.</li>
+    <li><strong>Lock the Design System</strong> (§03). Paste the tokens prompt so colors, type, spacing, and components exist as reusable styles before any page is built.</li>
+    <li><strong>Generate pages one at a time</strong> (§05+). Each page has its own paste block. Build Home first, then About, Careers, the three service pages, and Contact. Generating one page per prompt keeps Lovable focused and the output consistent.</li>
+    <li><strong>Apply the sitewide checklist</strong> (§06) as a final pass: navigation, CTAs, SEO, accessibility, responsive behavior.</li>
+  </ol>
+
+  <div class="note">
+    <span class="lbl">How to read the blocks</span>
+    <p>Dark blocks marked <strong>⌘ PASTE INTO LOVABLE</strong> are written to be copied verbatim into the Lovable chat. Everything outside them is context for you, the human. <span class="hl">Yellow</span> and <b>cyan</b> highlights inside blocks mark values you may want to confirm before pasting.</p>
+  </div>
+
+  <h3>Table of contents</h3>
+  <nav class="toc">
+    <a href="#at-a-glance"><b>01</b> Project at a glance</a>
+    <a href="#master"><b>02</b> Master prompt</a>
+    <a href="#system"><b>03</b> Design system (dark)</a>
+    <a href="#globals"><b>04</b> Global shells &amp; components</a>
+    <a href="#home"><b>05</b> Home page</a>
+    <a href="#about"><b>06</b> About page</a>
+    <a href="#careers"><b>07</b> Careers page</a>
+    <a href="#services"><b>08</b> Service pages (×3)</a>
+    <a href="#campaigns"><b>09</b> Campaign Launches</a>
+    <a href="#contact"><b>10</b> Contact page</a>
+    <a href="#sitewide"><b>11</b> Sitewide requirements</a>
+    <a href="#assets"><b>12</b> Asset inventory</a>
+  </nav>
+</section>
+
+<!-- ============ 01 AT A GLANCE ============ -->
+<section class="section" id="at-a-glance">
+  <div class="kicker">01 · Project at a glance</div>
+  <h2>What SeeTusk is, and what we are changing.</h2>
+
+  <h3>The studio</h3>
+  <p>SeeTusk Creative Agency (SCA) is a Pune-based <strong>creative distribution studio</strong>. It does three things and ties them together: makes the content, runs the creator campaigns, and builds the websites and tools that turn attention into customers, all shipped on a weekly rhythm.</p>
+
+  <p><strong>Sitewide one-liner (use verbatim, everywhere):</strong></p>
+  <div class="keep">
+    <span class="lbl">Approved positioning line</span>
+    <p>"SeeTusk helps growing Indian brands get seen and chosen through content, creator campaigns, and websites that convert."</p>
+  </div>
+
+  <h3>Audience</h3>
+  <p>Founders and marketing leads at growing Indian brands (D2C, FMCG, HoReCa, real estate, tech/SaaS, education). Cold visitors who must understand the offer within the first screen, plus talent visiting Careers.</p>
+
+  <h3>What changes in this redesign</h3>
+  <table class="spec">
+    <thead><tr><th>Dimension</th><th>Current live site</th><th>This redesign</th></tr></thead>
+    <tbody>
+      <tr><td>Visual mood</td><td>Light cream paper, warm</td><td>Dark, technical, premium (#0B0B0D base)</td></tr>
+      <tr><td>Type</td><td>League Spartan + EB Garamond (serif body)</td><td>Single sans family: Satoshi / General Sans</td></tr>
+      <tr><td>Accents</td><td>Blue + orange + yellow</td><td>Blue → purple → cyan gradient family</td></tr>
+      <tr><td>Hierarchy</td><td>Long single scroll, founders mid-page</td><td>Offer-first, proof-first sitemap (see §05)</td></tr>
+      <tr><td>4th service</td><td>"Campaigns" links to Contact, no page</td><td>Real destination for Campaign Launches</td></tr>
+      <tr><td>Case studies</td><td>"View case" points to service pages</td><td>Real case detail (page or drawer)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="keep">
+    <span class="lbl">Keep — the brand signature</span>
+    <p>The hero concept stays: <strong>"OWN. BUILD. RENT. DISTRIBUTION FOR AMBITIOUS BRANDS."</strong> It is distinctive and worth keeping. The plain support line beneath it carries the literal meaning for cold visitors.</p>
+  </div>
+
+  <h3>Primary goals for the rebuild</h3>
+  <ul>
+    <li>A first-time visitor understands what SeeTusk does, who it serves, and where to go next within the first screen.</li>
+    <li>All four service paths are visible above the fold and every one is reachable.</li>
+    <li>Proof (results, cases, testimonials) comes before team detail.</li>
+    <li>Every CTA opens a real, intent-matched destination.</li>
+    <li>Motion-rich but accessible: reduced-motion support, visible focus, strong contrast on the dark base.</li>
+  </ul>
+</section>
+
+<!-- ============ 02 MASTER PROMPT ============ -->
+<section class="section" id="master">
+  <div class="kicker">02 · Master prompt</div>
+  <h2>Seed the project with this first.</h2>
+  <p class="lead">Paste this once at the start of a fresh Lovable project. It establishes the brand, the dark design language, the stack, and the global rules that every later prompt assumes.</p>
+
+  <div class="prompt">Build a marketing website for <b>SeeTusk Creative Agency (SCA)</b>, a Pune-based creative distribution studio that makes content, runs creator campaigns, and builds websites for growing Indian brands.
+
+POSITIONING (use this exact line on the site):
+"SeeTusk helps growing Indian brands get seen and chosen through content, creator campaigns, and websites that convert."
+
+VISUAL LANGUAGE — dark, technical, premium:
+• Backgrounds: primary <b>#0B0B0D</b>, secondary <b>#111214</b>, cards <b>#1B1D20</b>.
+• Text: primary <b>#FFFFFF</b>, secondary <b>#B7BDC6</b>, muted <b>#80858D</b>.
+• Accents: primary <b>#4F8CFF</b> (CTAs + highlights), secondary <b>#7A5FFF</b>, highlight <b>#58D5FF</b>.
+• Signature gradient: <b>#4F8CFF → #7A5FFF</b> (add #58D5FF for buttons). Use glow sparingly (blue, ~20% opacity).
+• Typeface: a single family, <b>Satoshi</b> (fall back to General Sans / Inter). No serif.
+
+LAYOUT RULES (apply globally):
+• Max content width 1280px; paragraph reading width 760–820px.
+• 12-column grid desktop, 8 on tablet, 4 on mobile.
+• Section vertical padding 120px desktop / 80 tablet / 64 mobile. Side padding 32 / 24 / 20.
+• Cards: radius 20px, padding 32px, 1px border rgba(255,255,255,0.08), hover lift + soft shadow.
+• Buttons: height 52px, radius 12px; filled / outline / text variants; 200ms hover.
+• Every section follows the order: small label → H2 → description → content → CTA.
+
+MOTION: page-load fade-up 0.6s, card hover scale to 1.03, button hover 200ms, headline text reveal 40ms stagger. Always respect prefers-reduced-motion.
+
+STACK: React + Tailwind, responsive, accessible (WCAG AA), semantic HTML, visible keyboard focus.
+
+Do not build any pages yet. First set up the design tokens and shared components. I will give you the tokens, then each page, one at a time.</div>
+
+  <div class="note">
+    <span class="lbl">Why first, and alone</span>
+    <p>Seeding the system before any page keeps every later screen consistent. Resist letting Lovable generate pages from this prompt; the next section locks the tokens as reusable styles.</p>
+  </div>
+</section>
+
+<!-- ============ 03 DESIGN SYSTEM ============ -->
+<section class="section" id="system">
+  <div class="kicker">03 · Design system (dark)</div>
+  <h2>The tokens. Lock these before any page.</h2>
+  <p class="lead">Every value below comes straight from the SeeTusk Design System Standards. Build these as reusable design tokens / Tailwind theme values so each page references them rather than inventing new ones.</p>
+
+  <h3>Color</h3>
+  <div class="swatches">
+    <div class="sw"><div class="sw-chip" style="background:#0B0B0D"></div><div class="sw-meta"><b>Background</b><code>#0B0B0D</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#111214"></div><div class="sw-meta"><b>Surface 2</b><code>#111214</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#1B1D20"></div><div class="sw-meta"><b>Card</b><code>#1B1D20</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#FFFFFF;border-bottom:1px solid #E4E7EC"></div><div class="sw-meta"><b>Text primary</b><code>#FFFFFF</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#B7BDC6"></div><div class="sw-meta"><b>Text secondary</b><code>#B7BDC6</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#80858D"></div><div class="sw-meta"><b>Text muted</b><code>#80858D</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#4F8CFF"></div><div class="sw-meta"><b>Accent / CTA</b><code>#4F8CFF</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#7A5FFF"></div><div class="sw-meta"><b>Accent 2</b><code>#7A5FFF</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:#58D5FF"></div><div class="sw-meta"><b>Highlight</b><code>#58D5FF</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:linear-gradient(135deg,#0B0B0D,#15171A)"></div><div class="sw-meta"><b>Hero bg</b><code>#0B0B0D→#15171A</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:linear-gradient(135deg,#4F8CFF,#7A5FFF)"></div><div class="sw-meta"><b>Accent grad</b><code>blue→purple</code></div></div>
+    <div class="sw"><div class="sw-chip" style="background:linear-gradient(135deg,#4F8CFF,#58D5FF)"></div><div class="sw-meta"><b>Button grad</b><code>blue→cyan</code></div></div>
+  </div>
+
+  <h3>Typography — single family, Satoshi</h3>
+  <p>One typeface across the whole site. Sizes are desktop / tablet / mobile.</p>
+  <div style="border-top:1px solid var(--hair);margin:8px 0 18px">
+    <div class="typerow"><span class="tag">Hero H1<br>Bold</span><span class="sz" style="font-size:40px">72 / 60 / 42 px</span></div>
+    <div class="typerow"><span class="tag">Hero desc<br>max 700px</span><span class="sz" style="font-size:21px;font-weight:500">22 / 20 / 18 px</span></div>
+    <div class="typerow"><span class="tag">H2<br>section</span><span class="sz" style="font-size:30px">48 / 40 / 32 px</span></div>
+    <div class="typerow"><span class="tag">H3<br>subsection</span><span class="sz" style="font-size:22px">28 / 24 / 22 px</span></div>
+    <div class="typerow"><span class="tag">H4<br>card title</span><span class="sz" style="font-size:18px">24 / 22 / 20 px</span></div>
+    <div class="typerow"><span class="tag">Body</span><span class="sz" style="font-size:18px;font-weight:400">18 / 17 / 16 px</span></div>
+    <div class="typerow"><span class="tag">Small<br>captions</span><span class="sz" style="font-size:15px;font-weight:400">16 / 15 / 14 px</span></div>
+    <div class="typerow"><span class="tag">Labels<br>UPPERCASE</span><span class="sz" style="font-size:13px;font-weight:500;letter-spacing:.1em;font-family:var(--mono)">14 / 14 / 13 px</span></div>
+    <div class="typerow"><span class="tag">Button<br>medium</span><span class="sz" style="font-size:16px;font-weight:500">16 / 16 / 15 px</span></div>
+  </div>
+
+  <h3>Layout &amp; spacing</h3>
+  <table class="spec">
+    <thead><tr><th>Token</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr></thead>
+    <tbody>
+      <tr><td>Max container width</td><td>1280px</td><td>100%</td><td>100%</td></tr>
+      <tr><td>Reading width (paragraphs)</td><td>760–820px</td><td>100%</td><td>100%</td></tr>
+      <tr><td>Grid columns</td><td>12</td><td>8</td><td>4</td></tr>
+      <tr><td>Section padding (top &amp; bottom)</td><td>120px</td><td>80px</td><td>64px</td></tr>
+      <tr><td>Side padding</td><td>32px</td><td>24px</td><td>20px</td></tr>
+      <tr><td>Heading → paragraph</td><td>24px</td><td>20px</td><td>16px</td></tr>
+      <tr><td>Paragraph → CTA</td><td>32px</td><td>24px</td><td>20px</td></tr>
+      <tr><td>Card gap / Section gap</td><td>24 / 120px</td><td>20 / 80px</td><td>16 / 64px</td></tr>
+    </tbody>
+  </table>
+  <div class="pillrow">
+    <span class="pill">Breakpoint desktop ≥1440px</span>
+    <span class="pill">tablet 768–1023px</span>
+    <span class="pill">mobile ≤767px</span>
+  </div>
+
+  <h3>Components</h3>
+  <table class="spec">
+    <thead><tr><th>Component</th><th>Spec</th></tr></thead>
+    <tbody>
+      <tr><td>Buttons</td><td>Height 52 / 48 / 44px · radius 12 / 12 / 10px · variants Filled, Outline, Text · filled uses blue→cyan gradient · 200ms hover.</td></tr>
+      <tr><td>Cards</td><td>Radius 20 / 18 / 16px · padding 32 / 24 / 20px · 1px border <code>rgba(255,255,255,0.08)</code> · hover = lift + soft shadow + scale 1.03.</td></tr>
+      <tr><td>Images</td><td>Radius 20 / 18 / 16px · consistent aspect ratio · soft shadow.</td></tr>
+      <tr><td>Icons</td><td>Outline style only · 2px stroke · one icon family throughout.</td></tr>
+      <tr><td>FAQ</td><td>Accordion, one consistent style. Native <code>&lt;details&gt;</code> is fine.</td></tr>
+      <tr><td>Inputs</td><td>Dark fields on <code>#111214</code>, 1px subtle border, blue focus ring, visible label.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Motion</h3>
+  <div class="pillrow">
+    <span class="pill">Page load · fade up 0.6s</span>
+    <span class="pill">Card hover · scale 1 → 1.03</span>
+    <span class="pill">Button hover · 200ms</span>
+    <span class="pill">Text reveal · 40ms stagger</span>
+    <span class="pill">Glow · blue 20% opacity, minimal</span>
+  </div>
+  <div class="warn">
+    <span class="lbl">Non-negotiable</span>
+    <p>The brand is motion-heavy, so accessibility matters most here. Honor <code>prefers-reduced-motion</code> on the hero, any marquee/ticker, and all scroll animation. Keep visible keyboard focus on every interactive element. Maintain AA contrast for grey-on-dark body text and small uppercase labels.</p>
+  </div>
+
+  <p class="prompt-label">Paste after the master prompt:</p>
+  <div class="prompt">Set up the design system as reusable tokens / Tailwind theme before building pages.
+
+COLORS — bg #0B0B0D, surface #111214, card #1B1D20; text #FFFFFF / #B7BDC6 / #80858D; accent #4F8CFF, accent-2 #7A5FFF, highlight #58D5FF. Gradients: hero #0B0B0D→#15171A, accent #4F8CFF→#7A5FFF, button #4F8CFF→#58D5FF.
+
+TYPE — Satoshi (fallback General Sans / Inter), single family. Scale (desktop/tablet/mobile): H1 72/60/42 bold; hero desc 22/20/18 (max-width 700px); H2 48/40/32; H3 28/24/22; H4 24/22/20; body 18/17/16; small 16/15/14; label 14/14/13 uppercase letter-spaced; button 16/16/15 medium.
+
+LAYOUT — max 1280px container, 760–820px reading width, 12/8/4 grid, section padding 120/80/64, side padding 32/24/20, card gap 24/20/16.
+
+COMPONENTS — Button: 52/48/44 height, 12/12/10 radius, Filled (blue→cyan) / Outline / Text, 200ms hover. Card: 20/18/16 radius, 32/24/20 padding, 1px rgba(255,255,255,0.08) border, hover lift+shadow+scale 1.03. Images: 20/18/16 radius, soft shadow. Icons: outline, 2px stroke. FAQ accordion. Inputs: dark, blue focus ring.
+
+MOTION — fade-up 0.6s on load, card hover scale 1.03, button 200ms, text reveal 40ms stagger, minimal blue glow at 20%. Respect prefers-reduced-motion. Visible focus everywhere; WCAG AA contrast.
+
+Confirm the tokens and base components (Button, Card, SectionHeading, Input, Accordion, Nav, Footer) exist, then wait for page prompts.</div>
+</section>
+
+<!-- ============ 04 GLOBALS ============ -->
+<section class="section" id="globals">
+  <div class="kicker">04 · Global shells &amp; components</div>
+  <h2>Patterns every page reuses.</h2>
+
+  <h3>Navigation (identical on every page)</h3>
+  <p>Client-focused top nav. Keep it the same across all pages. Careers and Contact live in the footer, not the top nav.</p>
+  <div class="anatomy">
+    <div><h5>Top nav</h5><p>Logo (SeeTusk / SCA) left. Links: <strong>Content · Creators · Web &amp; Tech · About</strong>. Primary "Start a project" button right (filled gradient). Sticky, glassy on the dark base, blur backdrop.</p></div>
+    <div><h5>Mobile nav</h5><p>Hamburger → full-screen overlay, large stacked links, gradient CTA at the bottom. Visible focus, trap focus while open.</p></div>
+  </div>
+  <div class="note"><span class="lbl">Heading accessibility</span><p>Do not split headings letter-by-letter in the DOM (the stacked "Seetusk / Creative / Agency" wordmark and the kinetic hero). The accessible name must read as whole words for screen readers and crawlers, even if the visual animates per letter.</p></div>
+
+  <h3>Section scaffold (use for nearly every section)</h3>
+  <div class="anatomy">
+    <div><h5>Order</h5><p>Small numbered/uppercase label → H2 → one-line description → content → optional CTA. This is the standard rhythm; keep it consistent.</p></div>
+    <div><h5>Section number motif</h5><p>Keep the "001 / 002 / 003" monospace section counters as an accent in the muted/blue color. They give the technical, editorial feel.</p></div>
+  </div>
+
+  <h3>Footer (every page)</h3>
+  <p>Dark footer with: brand block + the footer description below, link columns (Verticals / Studio / Elsewhere), social icons (YouTube, X, Instagram, LinkedIn), and the newsletter signup. <strong>Newsletter lives in the footer only</strong>, never stacked against the final CTA.</p>
+  <div class="keep"><span class="lbl">Footer description — use verbatim</span><p>"SeeTusk Creative Agency is a Pune-based creative distribution studio. We build content, creator campaigns, web surfaces and launch systems for ambitious Indian brands."</p></div>
+
+  <p class="prompt-label">Reusable shell prompt:</p>
+  <div class="prompt">Build the shared NAV and FOOTER used on every page.
+
+NAV (sticky, glassy blur over the dark bg): logo "SeeTusk / SCA" left; links <b>Content · Creators · Web & Tech · About</b>; a filled gradient "Start a project" button right linking to /contact. Mobile = hamburger opening a full-screen overlay with large stacked links and the CTA at the bottom. Keyboard accessible, focus trapped when open. Heading/wordmark must expose whole words to screen readers even if letters animate individually.
+
+FOOTER (dark): brand mark + description "SeeTusk Creative Agency is a Pune-based creative distribution studio. We build content, creator campaigns, web surfaces and launch systems for ambitious Indian brands." Link columns — Verticals: Content, Creators, Web & Tech · Studio: About, Contact, Careers · Elsewhere: contact@seetusk.com, hr@seetusk.com, LinkedIn, Instagram. Social icons: YouTube, X, Instagram, LinkedIn (outline). Newsletter signup block ("Read what we ship" — weekly newsletter, email + Subscribe) lives ONLY here, with visible success and error states. Bottom row: "© 2026 SeeTusk Creative Agency / Pune, IND" and "seetusk.agency / Built in-house".</div>
+</section>
+
+<!-- ============ 05 HOME ============ -->
+<section class="section" id="home">
+  <div class="kicker">05 · Home page · /</div>
+  <h2>Home — explain the whole offer, fast.</h2>
+  <p class="lead"><strong>Goal:</strong> a first-time visitor understands what SeeTusk does, who it serves, why it is credible, and which service path to take next, ideally within the first screen. 15 sections, offer-first and proof-first.</p>
+
+  <table class="spec num-col">
+    <thead><tr><th>#</th><th>Section</th><th>Layout &amp; content</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>Hero</td><td>Left-aligned text (650–700px) + visual right. Order: label → H1 → description → CTA → trust bar. Keep "OWN. BUILD. RENT. DISTRIBUTION FOR AMBITIOUS BRANDS." as H1 with kinetic reveal; plain support line beneath.</td></tr>
+      <tr><td>02</td><td>We help with</td><td>Compact horizontal strip directly under the hero. Four labels: Content · Creator Campaigns · Web &amp; Tech · Campaign Launches. Full offer visible without scrolling.</td></tr>
+      <tr><td>03</td><td>Client trust</td><td>Logo wall / marquee of client logos. Second (duplicate) marquee copy is decorative → <code>aria-hidden</code>, empty alt.</td></tr>
+      <tr><td>04</td><td>Services</td><td>Four service cards, grid. Each = number, name, one-line value, link to its page. Single link per card.</td></tr>
+      <tr><td>05</td><td>Results</td><td>Dark stat band. Four big numbers: 12M+ views · 150+ assets shipped · 40+ shoot days · 25+ brands.</td></tr>
+      <tr><td>06</td><td>Case studies</td><td>Four case cards (Ambar Coffee, FIRVT, DevKnight, Fevistik). "View case" → real case detail (page or drawer), not the service page.</td></tr>
+      <tr><td>07</td><td>Industries</td><td>Six category cards: D2C &amp; E-com, FMCG, HoReCa, Real estate, Tech &amp; SaaS, Education.</td></tr>
+      <tr><td>08</td><td>Why SeeTusk</td><td>Two-column comparison (900px). "Most agencies" (×) vs "SeeTusk" (✓). Five rows each.</td></tr>
+      <tr><td>09</td><td>Engagement models</td><td>Three cards: Launch (one-off) · Scale (3–6 mo sprint) · Retainer (monthly).</td></tr>
+      <tr><td>10</td><td>Founders</td><td>Condensed team strip. Three founders, short bios. Sits below proof and offer.</td></tr>
+      <tr><td>11</td><td>Testimonials</td><td>Three quote cards (900px), grid or carousel.</td></tr>
+      <tr><td>12</td><td>FAQ</td><td>Accordion (800px, centered). Six questions.</td></tr>
+      <tr><td>13</td><td>Final CTA</td><td>Centered CTA card (700px). "Start a project" + "See the work" (anchors to case studies).</td></tr>
+      <tr><td>14</td><td>Newsletter</td><td>Footer only — do not place a second block here.</td></tr>
+      <tr><td>15</td><td>Footer</td><td>Shared footer (§04).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Approved copy — Home</h3>
+  <div class="keep">
+    <span class="lbl">Copy bank · use verbatim</span>
+    <p><strong>Hero support line:</strong> "We help growing Indian brands get seen and chosen through content, creator campaigns, and websites that convert."</p>
+    <p><strong>Service intro:</strong> "Pick the part of the growth loop you need fixed: your content, your creator distribution, your website, or a launch that needs to travel."</p>
+    <p><strong>Case study CTA:</strong> "See exactly what we shipped, what changed, and what we would do differently next time."</p>
+    <p><strong>Service card · Content and Brand:</strong> "We own your voice, content calendar, shoots, reels, statics and reporting so your brand shows up clearly every week."</p>
+    <p><strong>Service card · Creator Campaigns:</strong> "We source, brief, contract, track and report creators so you know which posts drove reach, clicks, orders and reusable assets."</p>
+    <p><strong>Service card · Web and Tech:</strong> "We write, design and build websites, landers, Shopify surfaces and lightweight tools that turn attention into leads or sales."</p>
+    <p><strong>Service card · Campaign Launches:</strong> "We shape the idea, visual world, shoot, creator layer and rollout plan for launches that need to travel fast."</p>
+  </div>
+
+  <p class="prompt-label">Build Home with this:</p>
+  <div class="prompt">Build the HOME page (/) using the established dark design system, nav and footer. Sections in this order:
+
+1. HERO — left text (max 650px) + visual right. Label "SCA / 2026 · Pune → Mumbai · India". H1 (keep, large, kinetic per-letter reveal but whole-words for a11y): <hl>"OWN. BUILD. RENT. DISTRIBUTION FOR AMBITIOUS BRANDS."</hl> with "DISTRIBUTION" in the blue→purple gradient. Support line: "We help growing Indian brands get seen and chosen through content, creator campaigns, and websites that convert." Primary CTA "Start a project →" to /contact. Small "Now booking new retainers for Q3" status with a live dot.
+
+2. WE HELP WITH — compact strip right under the hero: Content · Creator Campaigns · Web & Tech · Campaign Launches. Visible without scrolling.
+
+3. CLIENT TRUST — auto-scrolling logo marquee; duplicate row aria-hidden + empty alt.
+
+4. SERVICES — 4 cards (label → H4 → one-line → link). Intro: "Pick the part of the growth loop you need fixed: your content, your creator distribution, your website, or a launch that needs to travel." Cards: Content and Brand → /content; Creator Campaigns → /influencer; Web and Tech → /web; Campaign Launches → /campaigns (use the copy-bank lines). Each card is ONE link.
+
+5. RESULTS — dark stat band, 4 numbers: 12M+ views generated · 150+ campaign assets shipped · 40+ shoot days across India · 25+ brands served. H2 "Numbers, not adjectives."
+
+6. CASE STUDIES — 4 cards: Ambar Coffee (F&B/Content), FIRVT (Launch/Creators), DevKnight (Brand/Web), Fevistik (Campaign/OOH). CTA "View case" → real case detail page or drawer (problem, work, result, timeline, deliverables). CTA copy: "See exactly what we shipped, what changed, and what we would do differently next time."
+
+7. INDUSTRIES — 6 cards: D2C & E-com, FMCG, HoReCa, Real estate, Tech & SaaS, Education.
+
+8. WHY SEETUSK — two-column comparison. "Most agencies" (×): account manager in between; billed for volume; strategy deck then silence; content/creators/web in 3 vendors; juniors execute. "SeeTusk" (✓, gradient card): the people in the room do the work; judged on outcomes not output; something ships every week in the open; content+creators+web under one roof; founders stay on every account.
+
+9. ENGAGEMENT MODELS — 3 cards: Launch (one sharp project, fixed scope) · Scale (3–6 month sprint) · Retainer (ongoing monthly distribution team).
+
+10. FOUNDERS — condensed strip, 3 founders (Sarthak, Saksham, Melbin), one-line bios. Below the proof.
+
+11. TESTIMONIALS — 3 quote cards: Ambar Coffee founder, FIRVT marketing lead, DevKnight founder.
+
+12. FAQ — accordion, 6 items (what SeeTusk does, how you charge, how fast you ship, only Pune?, can we start with one service, who does the work).
+
+13. FINAL CTA — centered card: "Ready to build a brand people actually notice?" buttons "Start a project →" (/contact) and "See the work" (anchor to case studies). NO newsletter here.
+
+Footer (shared) carries the newsletter. Every CTA must resolve to a real destination; respect reduced motion; visible focus; single-link cards.</div>
+</section>
+
+<!-- ============ 06 ABOUT ============ -->
+<section class="section" id="about">
+  <div class="kicker">06 · About page · /about</div>
+  <h2>About — build trust after the offer is understood.</h2>
+  <p class="lead"><strong>Goal:</strong> explain why the studio is different and why this team can deliver. Visitors arrive already knowing the services. 11 sections.</p>
+
+  <table class="spec num-col">
+    <thead><tr><th>#</th><th>Section</th><th>Layout &amp; content</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>Hero</td><td>"Who we are." Short, confident intro to the studio.</td></tr>
+      <tr><td>02</td><td>How we started</td><td>Founding story. Founded late 2025, Bavdhan. The coffee-brand → waitlist → 14 people story. Keep its personality, avoid agency boilerplate.</td></tr>
+      <tr><td>03</td><td>Our edge</td><td>The small-studio / no-layers differentiator.</td></tr>
+      <tr><td>04</td><td>What we actually do</td><td>Short service strip linking to live service pages. Place near the top.</td></tr>
+      <tr><td>05</td><td>Studio story</td><td>Growth journey narrative.</td></tr>
+      <tr><td>06</td><td>Principles</td><td>Four cards, verbatim: Taste over volume · Write it down · Ship weekly · No vanity metrics.</td></tr>
+      <tr><td>07</td><td>Founders</td><td>Expanded bios — role + a client-facing outcome (not just function). One or two sentences each.</td></tr>
+      <tr><td>08</td><td>Operating model</td><td>Proof of how work happens: weekly cadence / reporting rhythm.</td></tr>
+      <tr><td>09</td><td>Why clients stay</td><td>The working-relationship / retention story.</td></tr>
+      <tr><td>10</td><td>Next move</td><td>Final CTA → Contact.</td></tr>
+      <tr><td>11</td><td>Footer</td><td>Shared footer (§04).</td></tr>
+    </tbody>
+  </table>
+
+  <div class="keep">
+    <span class="lbl">Copy bank · About (use verbatim where given)</span>
+    <p><strong>What we do strip:</strong> "We help with: Content &amp; Brand · Creator Campaigns · Web &amp; Tech"</p>
+    <p><strong>Team intro:</strong> "The founders stay close because strategy, production and web cannot be separated when the goal is distribution."</p>
+    <p><strong>Founder outcome clauses</strong> — Sarthak: "…then turns it into a voice and content strategy your team can actually run with." Saksham: "…so traffic turns into leads, not bounce rate." Melbin: "…on time, every week, without you chasing it."</p>
+    <p><strong>Operating model line:</strong> "What a client week looks like: Monday async update → Wednesday working session → Friday roadmap refresh."</p>
+    <p><strong>Final CTA:</strong> "Bring us the part of your brand engine that is stuck: content, creators, web, or a launch. We will give you a sharp read and a practical next step."</p>
+    <p><strong>Principles (verbatim):</strong> Taste over volume · Write it down · Ship weekly · No vanity metrics.</p>
+  </div>
+
+  <p class="prompt-label">Build About with this:</p>
+  <div class="prompt">Build the ABOUT page (/about) on the dark system with shared nav/footer. Sections:
+
+1. HERO "Who we are" — confident short intro to the studio.
+2. HOW WE STARTED — founding story: founded late 2025 in Bavdhan, started with a coffee brand, grew via a waitlist to 14 people. Keep personality, no agency boilerplate.
+3. OUR EDGE — the small-studio, no-layers differentiator.
+4. WHAT WE ACTUALLY DO — short strip near the top: "We help with: Content & Brand · Creator Campaigns · Web & Tech" linking to /content, /influencer, /web (4th item → /contact).
+5. STUDIO STORY — growth journey.
+6. PRINCIPLES — 4 cards verbatim: Taste over volume · Write it down · Ship weekly · No vanity metrics.
+7. FOUNDERS — Sarthak (content/voice strategy), Saksham (sites, landers, tools — "so traffic turns into leads, not bounce rate"), Melbin ("on time, every week, without you chasing it"). Each bio = role + client outcome, 1–2 sentences. Intro line above: "The founders stay close because strategy, production and web cannot be separated when the goal is distribution."
+8. OPERATING MODEL — proof element: "What a client week looks like: Monday async update → Wednesday working session → Friday roadmap refresh."
+9. WHY CLIENTS STAY — retention / working-relationship story.
+10. NEXT MOVE — CTA: "Bring us the part of your brand engine that is stuck: content, creators, web, or a launch. We will give you a sharp read and a practical next step." → /contact.
+
+Service clarity/proof stays above team detail. Real, useful alt text on team photos.</div>
+</section>
+
+<!-- ============ 07 CAREERS ============ -->
+<section class="section" id="careers">
+  <div class="kicker">07 · Careers page · /careers</div>
+  <h2>Careers — recruit talent with a clear hiring path.</h2>
+  <p class="lead"><strong>Goal:</strong> a candidate understands the culture, open roles, and the application process without leaving the page. Reached from the footer. 11 sections.</p>
+
+  <table class="spec num-col">
+    <thead><tr><th>#</th><th>Section</th><th>Layout &amp; content</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>Hero</td><td>"Work at SeeTusk." Recruit-focused headline + CTA to open roles / apply.</td></tr>
+      <tr><td>02</td><td>Studio culture</td><td>Mission &amp; values. Sets expectations. Reuse the four Principles tone.</td></tr>
+      <tr><td>03</td><td>Open roles</td><td>Role cards (SSR-style). Each: title, type, short summary, Apply link.</td></tr>
+      <tr><td>04</td><td>Hiring process</td><td>5-step timeline: Apply → Review → Conversation → Paid Trial → Offer.</td></tr>
+      <tr><td>05</td><td>How we work</td><td>Team workflow / weekly cadence, mirroring the operating model.</td></tr>
+      <tr><td>06</td><td>Benefits</td><td>Growth &amp; ownership value proposition cards.</td></tr>
+      <tr><td>07</td><td>Role expectations</td><td>Responsibilities / what good looks like.</td></tr>
+      <tr><td>08</td><td>FAQ</td><td>Hiring questions accordion.</td></tr>
+      <tr><td>09</td><td>Apply</td><td>Application form — primary conversion. Connect to the existing apply endpoint.</td></tr>
+      <tr><td>10</td><td>Confirmation</td><td>Submission success state + next steps.</td></tr>
+      <tr><td>11</td><td>Footer</td><td>Shared footer (§04).</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note"><span class="lbl">Form</span><p>The repo already has an apply endpoint (<code>api/apply.js</code> + backend). Wire the form to it; show clear validation, a success confirmation state, and an error state. Application fields should map to the existing backend model.</p></div>
+
+  <p class="prompt-label">Build Careers with this:</p>
+  <div class="prompt">Build the CAREERS page (/careers) on the dark system with shared nav/footer. Sections:
+
+1. HERO "Work at SeeTusk" — recruiting headline + CTA scrolling to roles / apply.
+2. STUDIO CULTURE — mission & values; echo the studio principles (Taste over volume, Write it down, Ship weekly, No vanity metrics).
+3. OPEN ROLES — role cards: title, type (full-time/contract), 1–2 line summary, "Apply" link to the form.
+4. HIRING PROCESS — horizontal 5-step timeline: Apply → Review → Conversation → Paid Trial → Offer.
+5. HOW WE WORK — weekly team workflow.
+6. BENEFITS — cards on growth & ownership.
+7. ROLE EXPECTATIONS — responsibilities / what good looks like.
+8. FAQ — hiring questions accordion.
+9. APPLY — application form (name, email, role, portfolio/links, message, optional file). Connect to the existing apply endpoint; show validation, success confirmation, and error states.
+10. CONFIRMATION — success state with next steps after submit.
+
+Keep visible focus on all fields and the submit button; the form must be fully keyboard operable.</div>
+</section>
+
+<!-- ============ 08 SERVICES ============ -->
+<section class="section" id="services">
+  <div class="kicker">08 · Service pages · /content · /influencer · /web</div>
+  <h2>Service pages — one shared template, three flavors.</h2>
+  <p class="lead">Each vertical page sells one service in depth and converts to Contact. Build one template, then change the copy, accent emphasis, and examples per page. Use one service vocabulary everywhere: <strong>Content and Brand · Creator Campaigns · Web and Tech · Campaign Launches</strong>.</p>
+
+  <h3>Shared service-page template</h3>
+  <table class="spec num-col">
+    <thead><tr><th>#</th><th>Section</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>Hero</td><td>Service name, sharp value headline, support line, "Start a project" CTA, supporting visual.</td></tr>
+      <tr><td>02</td><td>Problem</td><td>Centered (700px). The pain this service removes.</td></tr>
+      <tr><td>03</td><td>The system</td><td>How we run it: timeline / numbered steps, full width.</td></tr>
+      <tr><td>04</td><td>What we manage / deliver</td><td>Deliverables grid.</td></tr>
+      <tr><td>05</td><td>Types / packages</td><td>Engagement or work-type cards.</td></tr>
+      <tr><td>06</td><td>Proof</td><td>Tracking / results, plus relevant case examples.</td></tr>
+      <tr><td>07</td><td>FAQ</td><td>Accordion, service-specific questions.</td></tr>
+      <tr><td>08</td><td>Next move</td><td>Closing CTA → Contact (preselect this service).</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><span class="lbl">Trimmed in the last pass — confirm before re-adding</span><p>On Web, the "Selected work", "Motion experiments", and "Handoff &amp; ownership" sections were removed pending approved content. On Creators, "Creator selection" and "Compliance and rights" were removed. Do not regenerate these unless the content is approved; the audit wants no placeholder/unverified sections.</p></div>
+
+  <div class="anatomy">
+    <div><h5>/content — Content and Brand</h5><p>Lead value: "We own your voice, content calendar, shoots, reels, statics and reporting so your brand shows up clearly every week." Accent the weekly-rhythm and consistency story.</p></div>
+    <div><h5>/influencer — Creator Campaigns</h5><p>Lead value: "We source, brief, contract, track and report creators so you know which posts drove reach, clicks, orders and reusable assets." Accent measurement and borrowed trust.</p></div>
+    <div><h5>/web — Web and Tech</h5><p>Lead value: "We write, design and build websites, landers, Shopify surfaces and lightweight tools that turn attention into leads or sales." Accent build speed and conversion.</p></div>
+  </div>
+
+  <p class="prompt-label">Build each service page with this (swap the bracketed bits):</p>
+  <div class="prompt">Build a SERVICE page for <hl>[Content and Brand → route /content]</hl> on the dark system with shared nav/footer. Template:
+
+1. HERO — service name label, sharp value H1, support line = <hl>[the copy-bank value line for this service]</hl>, "Start a project →" CTA (to /contact with this service preselected), supporting visual right.
+2. PROBLEM — centered (700px): the specific pain this service removes.
+3. THE SYSTEM — numbered timeline of how we run it, full width.
+4. WHAT WE MANAGE / DELIVER — deliverables grid.
+5. TYPES / PACKAGES — work-type or engagement cards.
+6. PROOF — tracking/results + 1–2 relevant case examples.
+7. FAQ — service-specific accordion.
+8. NEXT MOVE — closing CTA to /contact, service preselected.
+
+Use one service vocabulary across the site: Content and Brand · Creator Campaigns · Web and Tech · Campaign Launches. Do NOT add unverified case studies or sections; if proof is not approved, keep proof minimal rather than inventing it.
+
+Repeat for: <b>[Creator Campaigns → /influencer]</b> and <b>[Web and Tech → /web]</b>, swapping the value line, problem, and emphasis per the brief.</div>
+</section>
+
+<!-- ============ 09 CAMPAIGN LAUNCHES ============ -->
+<section class="section" id="campaigns">
+  <div class="kicker">09 · The fourth service · /campaigns</div>
+  <h2>Campaign Launches needs a real home.</h2>
+  <p class="lead"><strong>P0 from the audit.</strong> The home page promises four services but only three have a destination today; "Campaigns" currently links to Contact with nothing preselected. Pick one route and make it deliberate.</p>
+
+  <div class="anatomy">
+    <div><h5>Option A — dedicated page</h5><p>Build <code>/campaigns</code> using the same service-page template (§08). Strongest if launches are a real, sellable line. Add it as a reachable destination from the home services grid and footer.</p></div>
+    <div><h5>Option B — preselected Contact route</h5><p>Keep Campaign Launches as a CTA into <code>/contact</code> with the service prefilled (hidden or preselected field) so the brief arrives tagged. Lighter, but the four-service promise must still resolve.</p></div>
+  </div>
+  <div class="keep"><span class="lbl">Copy · Campaign Launches</span><p>"We shape the idea, visual world, shoot, creator layer and rollout plan for launches that need to travel fast."</p></div>
+
+  <p class="prompt-label">Recommended (Option A) prompt:</p>
+  <div class="prompt">Build /campaigns "Campaign Launches" using the service-page template on the dark system. Value line: "We shape the idea, visual world, shoot, creator layer and rollout plan for launches that need to travel fast." Sections: Hero → Problem (launches that fizzle) → The system (concept → visual world → shoot → creator layer → rollout) → What we deliver → Launch types → Proof → FAQ → CTA to /contact (preselect "Campaign Launches"). Add this page to the home services grid and footer so all four service paths resolve.
+
+If you instead choose Option B, skip the page and make the home "Campaign Launches" card link to /contact?service=campaign-launches with that service preselected in the form.</div>
+</section>
+
+<!-- ============ 10 CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="kicker">10 · Contact page · /contact</div>
+  <h2>Contact — one clean conversion surface.</h2>
+  <p class="lead"><strong>Goal:</strong> make starting a project effortless and route the brief to the right service. Every "Start a project" / "Start a campaign" CTA across the site lands here.</p>
+
+  <table class="spec num-col">
+    <thead><tr><th>#</th><th>Section</th><th>Content</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>Hero</td><td>Short headline ("Tell us the stuck point") + the studio one-liner. Centered, 700px.</td></tr>
+      <tr><td>02</td><td>Project form</td><td>Name, email, brand/company, <strong>service select (Content and Brand · Creator Campaigns · Web and Tech · Campaign Launches)</strong> that accepts a preselect from the source CTA, budget/timeline optional, message. Validation + success + error states.</td></tr>
+      <tr><td>03</td><td>Direct contact</td><td>Email (contact@seetusk.com), location (Pune, India), social links.</td></tr>
+      <tr><td>04</td><td>Footer</td><td>Shared footer (§04).</td></tr>
+    </tbody>
+  </table>
+
+  <p class="prompt-label">Build Contact with this:</p>
+  <div class="prompt">Build the CONTACT page (/contact) on the dark system with shared nav/footer. Centered 700px.
+
+1. HERO — "Tell us the stuck point: quiet content, underused creators, a launch coming up, or a site that doesn't carry the brand. We'll give you a straight read and a practical way to fix it."
+2. PROJECT FORM — fields: name, email, brand/company, SERVICE select (Content and Brand · Creator Campaigns · Web and Tech · Campaign Launches) that auto-selects from a ?service= query param so CTAs arrive pre-tagged, optional budget & timeline, message. Submit "Start a project →". Connect to the backend; show inline validation, a success confirmation state, and an error state. Fully keyboard accessible, visible focus, blue focus ring on dark fields.
+3. DIRECT CONTACT — contact@seetusk.com, Pune India, social icons.</div>
+</section>
+
+<!-- ============ 11 SITEWIDE ============ -->
+<section class="section" id="sitewide">
+  <div class="kicker">11 · Sitewide requirements</div>
+  <h2>Final pass — apply across every page.</h2>
+
+  <h3>Navigation &amp; CTAs</h3>
+  <ul>
+    <li>Top nav identical on every page: Content · Creators · Web &amp; Tech · About. Careers + Contact in the footer.</li>
+    <li>Resolve the Campaign Launches gap deliberately (§09).</li>
+    <li>Every CTA opens a real, intent-matched destination. "See the work" anchors to and scrolls to the case-studies section. "View case" opens real proof, never a service page or dead link.</li>
+    <li>If real case pages exist, a "Work" destination should be reachable.</li>
+  </ul>
+
+  <h3>SEO &amp; metadata</h3>
+  <ul>
+    <li><strong>Lock one canonical domain</strong> (build is on dev.seetusk.com, tags say seetusk.agency, audit reviewed seetusk.com). Pick the production domain; make canonical, og:url, sitemap and internal links all use it, with 301s from the rest.</li>
+    <li>Keep title + meta description aligned to the service architecture and the one-liner.</li>
+    <li>Add Organization + Service schema with correct contact details, address and social links.</li>
+  </ul>
+
+  <h3>Accessibility checklist</h3>
+  <ul>
+    <li>Honor <code>prefers-reduced-motion</code> on hero, marquee, and all scroll/ticker motion.</li>
+    <li>Visible keyboard focus on nav links, service/case cards, FAQ accordions, and every CTA.</li>
+    <li>Each card is a single link with a clear accessible name, not a block of separate clickable fragments.</li>
+    <li>Headings read as whole words for screen readers even when letters animate individually.</li>
+    <li>AA contrast for grey-on-dark body, small uppercase labels, accents, and ticker lines.</li>
+    <li>Descriptive alt on real images; decorative duplicate marquee logos are <code>aria-hidden</code> / empty alt.</li>
+  </ul>
+
+  <h3>Responsive</h3>
+  <div class="pillrow">
+    <span class="pill">Desktop ≥1440px · 12 col · 120px sections</span>
+    <span class="pill">Tablet 768–1023px · 8 col · 80px</span>
+    <span class="pill">Mobile ≤767px · 4 col · 64px</span>
+  </div>
+
+  <p class="prompt-label">Final QA prompt:</p>
+  <div class="prompt">Do a sitewide QA pass. Confirm: top nav is identical on every page (Content · Creators · Web & Tech · About; Careers + Contact in footer); all four service paths are reachable; every CTA opens a real intent-matched destination; "See the work" scrolls to case studies; "View case" opens real proof not a service page; newsletter lives in the footer only with success/error states; one canonical domain across canonical/og/sitemap/internal links + Organization & Service schema; prefers-reduced-motion respected; visible keyboard focus everywhere; cards are single links; headings expose whole words; AA contrast on the dark base; images have useful alt and decorative marquee logos are aria-hidden. Verify the three responsive breakpoints (≥1440 / 768–1023 / ≤767).</div>
+</section>
+
+<!-- ============ 12 ASSETS ============ -->
+<section class="section" id="assets">
+  <div class="kicker">12 · Asset inventory</div>
+  <h2>What already exists to build with.</h2>
+
+  <h3>Clients (logo wall)</h3>
+  <p>Bamboo India · Force Motors · NIFT · Jeevitnadi · Visda Organix · MyFitness · car&amp;bike · Coffee Cup · Kundan Spaces · Pune River Revival · Tridrashya · The Comedy Clubhouse · Hindustan Unilever · FIRVT · WTF · Clover&amp;co.</p>
+
+  <h3>Case studies (named, ready to flesh out)</h3>
+  <table class="spec">
+    <thead><tr><th>Brand</th><th>Type</th><th>Angle</th></tr></thead>
+    <tbody>
+      <tr><td>Ambar Coffee</td><td>F&amp;B / Content</td><td>Weekly cafe content that fills tables.</td></tr>
+      <tr><td>FIRVT</td><td>Launch / Creators</td><td>Launch coverage that outran a quarter of paid.</td></tr>
+      <tr><td>DevKnight</td><td>Brand / Web</td><td>A brand and site that finally match.</td></tr>
+      <tr><td>Fevistik</td><td>Campaign / OOH</td><td>An outdoor moment people remembered.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Results metrics</h3>
+  <div class="pillrow">
+    <span class="pill">12M+ views</span>
+    <span class="pill">150+ assets shipped</span>
+    <span class="pill">40+ shoot days</span>
+    <span class="pill">25+ brands</span>
+  </div>
+
+  <h3>Imagery</h3>
+  <p>The existing repo carries a large editorial image library (<code>images/ed-*</code>, product and BTS shots, client logos, the SCA mark). Reuse these for hero visuals, case media, and service supporting art. Apply the dark-system image treatment: 20px radius, soft shadow, consistent aspect ratios. Supply real photography for founders and case detail.</p>
+
+  <div class="note"><span class="lbl">Source of truth</span><p>This brief consolidates the SeeTusk Website Functionality &amp; Messaging Audit (25 Jun 2026), the Home / About / Careers change specifications, the Proposed Sitemap, and the Design System Standards. Where copy is marked "verbatim", it is approved wording — keep it intact through the build.</p></div>
+</section>
+
+</td></tr></tbody>
+<tfoot><tr><td class="ftr-space"></td></tr></tfoot>
+</table>
+</main>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "SeeTusk Redesign Handover";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…}. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false } };
+  }
+
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: ≥2 visible non-fixed children, each with authored px width
+  // AND height, all within ±2px of each other. Off unless the page opts in
+  // via data-om-multi-frame on the stop element — guards against card grids
+  // and pricing tables that match the geometry but aren't separate canvases.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var cands = [];
+    for (var k = 0; k < el.children.length; k++) {
+      var ch = el.children[k];
+      var cs; try { cs = getComputedStyle(ch); } catch (e) { continue; }
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') continue;
+      var rc = rectOf(ch);
+      if (rc.width < 2 || rc.height < 2) continue;
+      if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+      cands.push(rc);
+    }
+    if (cands.length >= 2) {
+      var w0 = cands[0].width, h0 = cands[0].height, ok = true;
+      for (var q = 1; q < cands.length; q++)
+        if (Math.abs(cands[q].width - w0) > 2 || Math.abs(cands[q].height - h0) > 2) ok = false;
+      if (ok) return { kind: 'multi-frame', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (__m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

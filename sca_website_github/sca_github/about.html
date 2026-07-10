@@ -6,6 +6,13 @@
 function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"698405f86e1c7f001d72f761"})},document.head.appendChild(o)}initApollo();
 </script>
 <meta charset="UTF-8">
+<!-- Apollo website tracker -->
+<script>
+  function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+  o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+  o.onload=function(){window.trackingFunctions.onLoad({appId:"698405f86e1c7f001d72f761"})},
+  document.head.appendChild(o)}initApollo();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About SCA. SeeTusk Creative Agency — Pune</title>
 <meta name="description" content="SeeTusk Creative Agency is a small creative distribution studio from Pune. Founded late 2025 by Sarthak, Saksham and Melbin. No account managers. No layers.">
@@ -16,291 +23,358 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 <link rel="preload" href="assets/fonts/eb-garamond-italic-400-6.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/sca.bundle.min.css?v=1.0.4">
+<link rel="stylesheet" href="assets/sca-dark.css">
+<link rel="stylesheet" href="assets/sca-about.css?v=1.1.0">
+<link rel="stylesheet" href="assets/about-react-bundle.css">
 </head>
-<body>
+<body class="about-body-scoped">
 
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="brand" aria-label="SeeTusk Creative Agency. Home">
       <span class="brand-mark"><img src="images/sca-logo-mark.webp" alt=""></span>
-      <span>SeeTusk / SCA</span>
     </a>
     <div class="nav-links">
       <a href="content.html">Content</a>
       <a href="influencer.html">Influencer</a>
       <a href="web.html">Web &amp; Tech</a>
       <a href="about.html">About</a>
-      <a href="careers.html">Career</a>
+      <a href="careers.html">Careers</a>
     </div>
-    <!-- <div class="nav-cta"><a href="contact.html" class="btn accent">Start a project <span class="arr">-></span></a></div> -->
+    <div class="nav-cta">
+      <a href="contact.html" class="btn accent" data-magnetic-spring="0.4" data-cursor="Start">Start a project <span class="arr">-></span></a>
+    </div>
   </div>
 </nav>
 
-<!-- HERO with slide structure like LÄMPZ -->
-<div class="about-hero hero">
-
-  <div class="slides-track">
-    <!-- Slide 1 -->
-    <div class="slide active">
-      <div class="slide-bg" style="background-image:url('images/g-studio-pune.jpeg')"></div>
-    </div>
-    <!-- Slide 2 -->
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('images/g-camera-operator.jpeg')"></div>
-    </div>
-    <!-- Slide 3 -->
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('images/g-product-setup.jpeg')"></div>
-    </div>
-    <!-- Slide 4 -->
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('images/g-white-studio.jpeg')"></div>
-    </div>
-  </div>
-
-  <!-- Left counter (01/02/03/04 like LÄMPZ) -->
-  <div class="slide-counter" id="counter">
-    <a href="#story" class="counter-item active" onclick="goSlide(0); event.stopPropagation();">
-      <span class="counter-num">01</span>
-      <span class="counter-label">The Story</span>
-    </a>
-    <a href="#team" class="counter-item" onclick="goSlide(1); event.stopPropagation();">
-      <span class="counter-num">02</span>
-      <span class="counter-label">The Team</span>
-    </a>
-    <a href="#principles" class="counter-item" onclick="goSlide(2); event.stopPropagation();">
-      <span class="counter-num">03</span>
-      <span class="counter-label">Principles</span>
-    </a>
-    <a href="#contact-cta" class="counter-item" onclick="goSlide(3); event.stopPropagation();">
-      <span class="counter-num">04</span>
-      <span class="counter-label">Work With Us</span>
-    </a>
-  </div>
-
-  <!-- Hero text -->
-  <div class="hero-content">
-    <p class="hero-tagline">About / the studio</p>
-    <h1 class="hero-heading">
-      A SMALL<br>STUDIO
-      <span>WITH A LOUD POINT OF VIEW.</span>
-    </h1>
-
-    <div class="hero-desc-row">
-      <div class="hero-desc-col">
-        <h4>How we started</h4>
-        <p>Two founders making content for one coffee brand. Founded late 2025, Bavdhan, Pune.</p>
-      </div>
-      <div class="hero-desc-col">
-        <h4>Our edge</h4>
-        <p>The people you meet are the people doing the work. No account managers. No layers.</p>
+<main class="about-page">
+  <!-- SCENE 1: FIRST IMPRESSION (CINEMATIC HERO) -->
+  <section class="scene-section scene-hero scene-light" id="hero">
+    <div class="hero-glow-layer"></div>
+    <span class="scene-eyebrow">About / the studio</span>
+    <div class="scene-container">
+      <div class="hero-layout">
+        <div class="hero-text-col">
+          <h1 class="scene-title-large">A SMALL STUDIO WITH A LOUD POINT OF VIEW.</h1>
+          <div class="hero-desc-grid">
+            <div class="hero-col">
+              <h4>How we started</h4>
+              <p>Two founders making content for one coffee brand. Founded late 2025, Bavdhan, Pune.</p>
+            </div>
+            <div class="hero-col">
+              <h4>Our edge</h4>
+              <p>The people you meet are the people doing the work. No account managers. No layers.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual-container">
+          <div class="floating-layer floating-layer-1">
+            <span class="num">001</span>
+            <p class="txt">We planned to fix one brand.</p>
+          </div>
+          <div class="floating-layer floating-layer-2">
+            <span class="num">003</span>
+            <p class="txt">Pune &amp; Remote specialists.</p>
+          </div>
+          <div class="floating-layer floating-layer-3">
+            <span class="num">002</span>
+            <p class="txt">No middle management.</p>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <a href="#story" class="discover-btn" aria-label="Read our story section">Read Our Story <span aria-hidden="true">&rarr;</span></a>
-  </div>
-
-
-
-  <a href="#story" class="scroll-hint" aria-label="Scroll to story">Scroll <span aria-hidden="true">&darr;</span></a>
-</div>
-
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="stat-item">
-    <div class="stat-num">14</div>
-    <div class="stat-label">Team / Pune + remote</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">10</div>
-    <div class="stat-label">Active retainers</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">2025</div>
-    <div class="stat-label">Founded / Bavdhan</div>
-  </div>
-</div>
-
-<!-- SECTION 01 — THE STORY -->
-<section class="section" id="story">
-  <div class="section-index">01 / The story</div>
-  <div class="section-split">
-    <div class="section-left">
-      <h2>How we got here</h2>
-      <div class="big-heading">WE DIDN'T PLAN TO BE AN AGENCY.</div>
+  <!-- SCENE 2: INTRODUCTION (MINDSET) -->
+  <section class="scene-section scene-light" id="intro">
+    <span class="scene-eyebrow">The Mindset</span>
+    <div class="scene-container">
+      <div class="scene-intro-layout">
+        <div>
+          <blockquote class="pull-quote">
+            "We didn't plan to be an agency. We planned to fix one brand."
+          </blockquote>
+        </div>
+        <div class="intro-image-strip">
+          <div class="strip-item"><img src="images/ed-pink-phone.webp" alt="SCA Bavdhan studio interior"></div>
+          <div class="strip-item"><img src="images/ed-thread-hands.webp" alt="Hands crafting design files"></div>
+          <div class="strip-item"><img src="images/ed-red-glitch.webp" alt="Camera set details in red studio lighting"></div>
+        </div>
+      </div>
     </div>
-    <div class="section-right">
-      <p style="margin-bottom: 18px;">
-        <strong>We didn't plan to be an agency.</strong>
-      </p>
-      <p style="margin-bottom: 18px;">
-        SCA was founded by <strong>Sarthak Thakur</strong> and <strong>Saksham Thakur</strong> after leaving a Bombay shop that promised startups the moon and delivered PowerPoints.
-      </p>
-      <div style="margin: 24px 0; padding: 24px; border-left: 4px solid var(--accent-orange); background: rgba(255, 107, 53, 0.05); border-radius: 4px;">
-        <p style="margin: 0; font-size: 15px; line-height: 1.8; color: var(--text-redesign);">
-          The first client, a Pune coffee brand, needed content shipped every week and wasn't getting it. We shipped it. It worked. They told three friends.
+  </section>
+
+  <!-- SCENE 3: PURPOSE (MISSION -> VISION, REACT COMPONENT MOUNT POINT) -->
+  <div id="purpose-react-root"></div>
+
+  <!-- SCENE 4: THE JOURNEY (VERTICAL TIMELINE) -->
+  <section class="scene-section scene-light" id="journey">
+    <span class="scene-eyebrow">Momentum</span>
+    <div class="scene-container">
+      <h2 class="scene-title-large">The Journey</h2>
+      
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress"></div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">2025</span>
+            <p class="timeline-desc">Founded in Bavdhan, Pune. Two founders shipping daily content.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">Six Months</span>
+            <p class="timeline-desc">Waitlist of Pune brands. Switched from freelancers to SCA.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">Twelve Months</span>
+            <p class="timeline-desc">Expanded to 14 partners &amp; specialists. Moving strategy, production, and code under one roof.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 6: THE FOUNDERS (ORIGAMI FOLD CARDS) -->
+  <section class="scene-section scene-dark" id="team">
+    <span class="scene-eyebrow">The Partners</span>
+    <div class="scene-container">
+      <h2 class="scene-title-large">The Humans on the Work</h2>
+      
+      <div class="founders-row">
+        <div class="origami-wrapper">
+          <div class="origami-card" id="founder-sarthak" aria-label="Sarthak thakur, Founder Strategy and Brand. Click to unfold biography">
+            <div class="origami-face origami-front">
+              <img src="images/team-sarthak.webp" alt="Sarthak Thakur, Founder Strategy and Brand at SCA">
+              <div class="origami-front-info">
+                <h3>Sarthak Thakur</h3>
+                <p>Founder &middot; Strategy &amp; Brand</p>
+              </div>
+            </div>
+            <div class="origami-face origami-back">
+              <div class="origami-back-top">
+                <h3>Sarthak Thakur</h3>
+                <span class="role">Strategy &amp; Brand</span>
+                <p class="philosophy">"Figures out what your brand should say, and why anyone should care. Focuses on written strategy and high intent communication."</p>
+              </div>
+              <div class="origami-socials">
+                <a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:contact@seetusk.com">Email</a>
+              </div>
+            </div>
+          </div>
+          <div class="origami-hint"><span>[ Click to Unfold ]</span></div>
+        </div>
+        
+        <div class="origami-wrapper">
+          <div class="origami-card" id="founder-saksham" aria-label="Saksham thakur, Co-founder Web and Technology. Click to unfold biography">
+            <div class="origami-face origami-front">
+              <img src="images/team-saksham.webp" alt="Saksham Thakur, Co-founder Web and Technology at SCA">
+              <div class="origami-front-info">
+                <h3>Saksham Thakur</h3>
+                <p>Co-founder &middot; Web &amp; Technology</p>
+              </div>
+            </div>
+            <div class="origami-face origami-back">
+              <div class="origami-back-top">
+                <h3>Saksham Thakur</h3>
+                <span class="role">Web &amp; Technology</span>
+                <p class="philosophy">"Builds the sites, landers and tools that catch the attention we create. Oversees engineering quality, speed, and analytics hookups."</p>
+              </div>
+              <div class="origami-socials">
+                <a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:contact@seetusk.com">Email</a>
+              </div>
+            </div>
+          </div>
+          <div class="origami-hint"><span>[ Click to Unfold ]</span></div>
+        </div>
+        
+        <div class="origami-wrapper">
+          <div class="origami-card" id="founder-melbin" aria-label="Melbin Alexander, Co-founder Production and Ops. Click to unfold biography">
+            <div class="origami-face origami-front">
+              <img src="images/team-melbin.webp" alt="Melbin Alexander, Co-founder Production and Ops at SCA">
+              <div class="origami-front-info">
+                <h3>Melbin Alexander</h3>
+                <p>Co-founder &middot; Production &amp; Ops</p>
+              </div>
+            </div>
+            <div class="origami-face origami-back">
+              <div class="origami-back-top">
+                <h3>Melbin Alexander</h3>
+                <span class="role">Production &amp; Ops</span>
+                <p class="philosophy">"Turns the plan into shoots, edits and a calendar that actually ships. Coordinates crew setups, production timelines, and deliveries."</p>
+              </div>
+              <div class="origami-socials">
+                <a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:contact@seetusk.com">Email</a>
+              </div>
+            </div>
+          </div>
+          <div class="origami-hint"><span>[ Click to Unfold ]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 7: CULTURE (BENTO GRID) -->
+  <section class="scene-section scene-light" id="culture">
+    <span class="scene-eyebrow">Studio Life</span>
+    <div class="scene-container">
+      <h2 class="scene-title-large">Culture</h2>
+      
+      <!-- Instagram-style profile header -->
+      <div class="ig-profile">
+        <div class="ig-avatar">S</div>
+        <div class="ig-id">
+          <span class="ig-handle">@seetusk</span>
+          <span class="ig-stats"><span><b>9</b> posts</span><span>Bavdhan, Pune</span><span>Studio Life</span></span>
+        </div>
+      </div>
+
+      <div class="ig-tabs">
+        <span class="ig-tab is-active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+          <span>Grid</span>
+        </span>
+        <span class="ig-tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M10 8l6 4-6 4z" fill="currentColor" stroke="none"></path></svg>
+          <span>Reels</span>
+        </span>
+        <span class="ig-tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>
+          <span>Tagged</span>
+        </span>
+      </div>
+
+      <div class="ig-grid">
+        <div class="ig-tile">
+          <img src="images/ed-pink-phone.webp" alt="Bavdhan office design details at SCA">
+          <span class="ig-multi"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="8" y="3" width="13" height="13" rx="2"></rect><path d="M3 8v11a2 2 0 0 0 2 2h11"></path></svg></span>
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>01</b> Bavdhan</span>
+          </div>
+        </div>
+
+        <div class="ig-tile ig-text ig-note">
+          <span class="k">Signal</span>
+          <h3>Shipping Daily</h3>
+          <p>Daily content, weekly standups, high-end production loops. Based in Pune.</p>
+        </div>
+
+        <div class="ig-tile">
+          <img src="images/ed-thread-hands.webp" alt="Creative materials and design assets closeup">
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>02</b> Studio</span>
+          </div>
+        </div>
+
+        <div class="ig-tile">
+          <img src="images/ed-red-glitch.webp" alt="Production crew BTS filming details">
+          <span class="ig-multi"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="8" y="3" width="13" height="13" rx="2"></rect><path d="M3 8v11a2 2 0 0 0 2 2h11"></path></svg></span>
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>03</b> BTS</span>
+          </div>
+        </div>
+
+        <div class="ig-tile">
+          <img src="images/ed-cloud-eyes.webp" alt="Product shoot photography setups">
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>04</b> Shoots</span>
+          </div>
+        </div>
+
+        <div class="ig-tile ig-text ig-quote">
+          <p>"The people you meet in the pitch are the humans doing your work."</p>
+          <span>&mdash; Studio Promise</span>
+        </div>
+
+        <div class="ig-tile">
+          <img src="images/ed-old-phones.webp" alt="Vintage phones brand installation detail">
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>05</b> Brand</span>
+          </div>
+        </div>
+
+        <div class="ig-tile">
+          <img src="images/ed-studio-shoot.webp" alt="On-set studio shoot at SCA">
+          <span class="ig-multi"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="8" y="3" width="13" height="13" rx="2"></rect><path d="M3 8v11a2 2 0 0 0 2 2h11"></path></svg></span>
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>06</b> Set</span>
+          </div>
+        </div>
+
+        <div class="ig-tile">
+          <img src="images/ed-working.webp" alt="Team working at desks in the studio">
+          <div class="ig-overlay">
+            <span class="ig-like"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 21C12 21 4 13.6 4 8.6 4 5.5 6.4 3 9 3c1.7 0 3.1 1 3 1s1.3-1 3-1c2.6 0 5 2.5 5 5.6C21 13.6 12 21 12 21z"></path></svg></span>
+            <span class="ig-cap"><b>07</b> Desk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 8: CREDIBILITY (SLOW METRICS COUNT) -->
+  <section class="scene-section scene-light" id="credibility">
+    <span class="scene-eyebrow">Scale</span>
+    <div class="scene-container">
+      <h2 class="scene-title-large">Credibility</h2>
+      
+      <div class="credibility-flex">
+        <div class="metric-item">
+          <span class="metric-num" data-target="14">0</span>
+          <span class="metric-label">Team / Pune + remote</span>
+        </div>
+        
+        <div class="metric-item">
+          <span class="metric-num" data-target="10">0</span>
+          <span class="metric-label">Active retainers</span>
+        </div>
+        
+        <div class="metric-item">
+          <span class="metric-num" data-target="2025">0</span>
+          <span class="metric-label">Founded / Bavdhan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SCENE 10: INVITATION (CINEMATIC EXIT) -->
+  <section class="scene-section scene-light" id="contact-cta">
+    <span class="scene-eyebrow">Next Move</span>
+    <div class="scene-container">
+      <div class="scene-invitation-box">
+        <h2 class="scene-title-large">Let's build something together</h2>
+        <p class="invitation-desc">
+          Bring us the part of your brand engine that's stuck: content, creators, web, or a launch. We'll give you a sharp read and a practical next step.
         </p>
-      </div>
-      <p style="margin-bottom: 18px;">
-        Those friends told nine. By month six we had a waitlist, and by month twelve we stopped calling ourselves freelancers.
-      </p>
-      <p>
-        Today the team is small by design — <strong>14 people</strong>, mostly Pune-based, some remote. We keep it small because our unfair advantage is that the people you meet in the pitch are the people doing the work. We intend to keep it that way.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- PHOTO GALLERY -->
-<div class="gallery">
-  <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="images/ed-pink-phone.webp" alt="SCA studio interior in Bavdhan showing custom creative workspace" loading="lazy" decoding="async" width="560" height="560">
-      <div class="gallery-label"><b>01</b> Bavdhan</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ed-thread-hands.webp" alt="Close up of hands working with design materials at SCA studio" loading="lazy" decoding="async" width="280" height="280">
-      <div class="gallery-label"><b>02</b> Studio</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ed-red-glitch.webp" alt="Camera operators setting up behind-the-scenes recording" loading="lazy" decoding="async" width="280" height="280">
-      <div class="gallery-label"><b>03</b> BTS</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ed-cloud-eyes.webp" alt="Product shoot setup on location with clouds concept" loading="lazy" decoding="async" width="280" height="280">
-      <div class="gallery-label"><b>04</b> Shoots</div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/ed-old-phones.webp" alt="Editorial brand system shot featuring vintage phones setup" loading="lazy" decoding="async" width="280" height="280">
-      <div class="gallery-label"><b>05</b> Brand</div>
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 02 — TEAM -->
-<section class="section" id="team">
-  <div class="section-index">02 / Team</div>
-  <div class="section-split">
-    <div class="section-left">
-      <h2>The humans on the work</h2>
-      <div class="big-heading">A SMALL TEAM. NO ACCOUNT MANAGERS.</div>
-      <p style="margin-top: 24px; font-size: 14px; color: var(--muted-redesign); line-height: 1.6; max-width: 32ch;">
-        SCA operates as a core studio of 3 partners, backed by a hybrid network of 11 dedicated specialists in content production, paid media, and custom engineering.
-      </p>
-    </div>
-    <div class="section-right">
-      <p>Every person on the team is accountable for output. You'll talk to the writer, the strategist, the developer — not a middleman summarising what they said.</p>
-    </div>
-  </div>
-
-  <div class="team-grid">
-    <div class="team-card">
-      <picture>
-  <source srcset="images/team-sarthak-mobile.webp" media="(max-width: 768px)">
-  <img src="images/team-sarthak.webp" alt="Sarthak Thakur, Founder at SeeTusk Creative Agency" loading="lazy" decoding="async" width="400" height="533">
-</picture>
-      <div class="team-info">
-        <h3>Sarthak Thakur</h3>
-        <p>Founder</p>
+        <div class="magnetic-btn-wrap">
+          <a href="contact.html" class="magnetic-btn" aria-label="Start a project with SCA">
+            Start a Project <span>&rarr;</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="team-card">
-      <picture>
-  <source srcset="images/team-saksham-mobile.webp" media="(max-width: 768px)">
-  <img src="images/team-saksham.webp" alt="Saksham Thakur, Co-founder at SeeTusk Creative Agency" loading="lazy" decoding="async" width="400" height="533">
-</picture>
-      <div class="team-info">
-        <h3>Saksham Thakur</h3>
-        <p>Co-founder</p>
-      </div>
-    </div>
-    <div class="team-card">
-      <picture>
-  <source srcset="images/team-melbin-mobile.webp" media="(max-width: 768px)">
-  <img src="images/team-melbin.webp" alt="Melbin Alexander, Co-founder at SeeTusk Creative Agency" loading="lazy" decoding="async" width="400" height="533">
-</picture>
-      <div class="team-info">
-        <h3>Melbin Alexander</h3>
-        <p>Co-founder</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 03 — PRINCIPLES -->
-<section class="section" id="principles">
-  <div class="section-index">03 / Principles</div>
-  <div class="section-split">
-    <div class="section-left">
-      <h2>How we decide</h2>
-      <div class="big-heading">THE NON-NEGOTIABLES.</div>
-    </div>
-    <div class="section-right">
-      <p>Arguments we have every week. Rules we don't bend on. The stuff that makes clients who want a churn machine uncomfortable — and the right clients feel right at home.</p>
-    </div>
-  </div>
-
-  <div class="principles-grid">
-    <div class="principle-item">
-      <div class="principle-icon-wrapper">
-        <svg class="principle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-        </svg>
-      </div>
-      <h3>Taste over volume.</h3>
-      <p>We'd rather ship three great things than twelve mediocre ones. Agencies that bill by output die slow deaths.</p>
-    </div>
-    <div class="principle-item">
-      <div class="principle-icon-wrapper">
-        <svg class="principle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-      </div>
-      <h3>Write it down.</h3>
-      <p>Strategy you can't write is strategy you don't have. Every engagement produces a doc someone on the client side can defend in a meeting.</p>
-    </div>
-    <div class="principle-item">
-      <div class="principle-icon-wrapper">
-        <svg class="principle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-      </div>
-      <h3>Ship weekly.</h3>
-      <p>Anything that can't be reviewed once a week compounds into a mess by month three. Public roadmap. No black boxes.</p>
-    </div>
-    <div class="principle-item">
-      <div class="principle-icon-wrapper">
-        <svg class="principle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="18" y1="20" x2="18" y2="10"></line>
-          <line x1="12" y1="20" x2="12" y2="4"></line>
-          <line x1="6" y1="20" x2="6" y2="14"></line>
-        </svg>
-      </div>
-      <h3>No vanity metrics.</h3>
-      <p>If it doesn't show up in revenue, pipeline, or brand search, it's not a KPI. It's a screenshot.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="section" id="contact-cta" style="background: var(--bg2-redesign); text-align: center; padding: clamp(60px, 10vh, 120px) 24px;">
-  <div class="shell" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 24px;">
-    <div class="section-label" style="justify-content: center; margin-bottom: 0;">04 / Next Move</div>
-    <h2 style="font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1; text-transform: uppercase; margin: 0;">Let's build something together</h2>
-    <p style="font-size: 16px; color: var(--muted-redesign); line-height: 1.6; max-width: 48ch; margin: 0;">
-      Interested in custom branding, high-performing content, creator reach, or custom tech setups? Let's talk.
-    </p>
-    <a href="contact.html" class="discover-btn" style="margin-top: 12px;">Start a Project <span aria-hidden="true">&rarr;</span></a>
-  </div>
-</section>
+  </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -322,7 +396,7 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
           <img src="images/sca-logo-mark.webp" alt="SCA mark">
           <span>SeeTusk / SCA</span>
         </div>
-        <p>SeeTusk Creative Agency. We build, rent and own distribution for ambitious Indian brands. Headquartered in Pune.</p>
+        <p>SeeTusk Creative Agency. We build content, creator campaigns, and web systems that get ambitious Indian brands seen and chosen. Headquartered in Pune.</p>
         <div class="sfoot-socials">
           <a href="https://www.youtube.com/@seetuskcreativeagency" title="YouTube" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.9C6.8 19 12 19 12 19s4.8 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 14.5v-5l5.5 2.5-5.5 2.5z"/></svg></a>
           <a href="https://x.com/seetusk" title="X / Twitter" aria-label="X / Twitter" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M18.3 4h-2.6L12 8.8 8.5 4H3l6.6 9L3 20h2.6l4-5.2 3.8 5.2H19l-7-9.4L18.3 4z"/></svg></a>
@@ -330,8 +404,8 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
           <a href="https://www.linkedin.com/company/seetusk" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
         </div>
       </div>
-      <nav class="sfoot-col"><h5>Verticals</h5><a href="content.html">Content &amp; Brand</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
-      <nav class="sfoot-col"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Career</a></nav>
+      <nav class="sfoot-col"><h5>Verticals</h5><a href="content.html">Content</a><a href="influencer.html">Influencer</a><a href="web.html">Web &amp; Tech</a></nav>
+      <nav class="sfoot-col"><h5>Studio</h5><a href="about.html">About</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></nav>
       <nav class="sfoot-col"><h5>Elsewhere</h5><a href="mailto:contact@seetusk.com">contact@seetusk.com</a><a href="mailto:hr@seetusk.com">hr@seetusk.com</a><a href="https://www.linkedin.com/company/seetusk" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/seetusk.agency" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
     </div>
     <div class="sfoot-bottom">
@@ -343,6 +417,8 @@ function initApollo(){var n=Math.random().toString(36).substring(7),o=document.c
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="assets/about-react-entry.tsx"></script>
+<script src="assets/sca-about.js"></script>
 <script type="module" src="assets/sca.bundle.min.js?v=1.0.4"></script>
 </body>
 </html>

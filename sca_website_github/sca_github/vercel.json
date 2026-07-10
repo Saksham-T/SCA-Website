@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
@@ -7,7 +9,14 @@
     { "source": "/influencer", "destination": "/influencer.html" },
     { "source": "/web", "destination": "/web.html" },
     { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" }
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/careers", "destination": "/careers.html" }
+  ],
+  "redirects": [
+    { "source": "/Careers-webpage/(.*)", "destination": "/careers", "permanent": true },
+    { "source": "/careers-webpage/(.*)", "destination": "/careers", "permanent": true },
+    { "source": "/jobs", "destination": "/careers", "permanent": true },
+    { "source": "/career", "destination": "/careers", "permanent": true }
   ],
   "headers": [
     {

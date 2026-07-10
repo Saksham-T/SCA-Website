@@ -47,7 +47,7 @@
   width: max-content;
   align-items: center;
   gap: clamp(64px, 7vw, 120px);
-  animation: clientsMarquee 46s linear infinite;
+  animation: clientsMarquee 30.7s linear infinite;
   will-change: transform;
 }
 
