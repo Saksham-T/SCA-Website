@@ -106,7 +106,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node build-static.mjs",
+    "build:vite": "vite build",
     "preview": "vite preview"
   },
   "keywords": [],
