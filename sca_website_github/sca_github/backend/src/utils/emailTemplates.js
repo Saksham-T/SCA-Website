@@ -13,13 +13,20 @@
 
 const config = require('../config');
 
-// --- Brand palette ---
-const PRIMARY = config.mail.brandColor || '#2e54ea'; // header bar / headings
-const ACCENT = '#6c8cff'; // links
-const TEXT = '#1f2430';
-const MUTED = '#6b7280';
-const HAIR = '#e7e9f0';
+// --- Brand palette (Midnight Modern - Website Aligned) ---
+const PRIMARY = '#2E54EA'; // Electric Blue
+const ACCENT = '#8597F1'; // Periwinkle / Links
+const TEXT = '#F7F8FA'; // Cool white text
+const MUTED = '#CDCFD6'; // Cool off-white/grey
+const HAIR = '#2A2A30'; // Dark border lines
+const BG_MAIN = '#0E0E11'; // Pure black/near-black page background
+const BG_CARD = '#151519'; // Elevated dark card
+const BG_ROW = '#1B1B22'; // Row label background
 const company = config.mail.companyName;
+
+// Resolve absolute logo URL using companyWebsite, fallback to seetusk.agency
+const baseUrl = (config.mail.companyWebsite || 'https://seetusk.agency').replace(/\/$/, '');
+const logoUrl = 'https://seetusk.agency/images/sca-logo-full.webp';
 
 /** Escape a value for safe interpolation into HTML. */
 function esc(value) {
@@ -51,21 +58,21 @@ function toEntries(fields) {
 
 /** Render an optional URL as a safe link, or a muted placeholder. */
 function link(url) {
-  if (!url || !String(url).trim()) return `<span style="color:#9aa0ad;">—</span>`;
+  if (!url || !String(url).trim()) return `<span style="color:#6C7284;">—</span>`;
   const safe = esc(url);
   return `<a href="${safe}" target="_blank" style="color:${ACCENT};text-decoration:none;word-break:break-all;">${safe}</a>`;
 }
 
 /** A muted em-dash for empty optional values. */
 function orDash(value) {
-  return value && String(value).trim() ? esc(value) : `<span style="color:#9aa0ad;">—</span>`;
+  return value && String(value).trim() ? esc(value) : `<span style="color:#6C7284;">—</span>`;
 }
 
 /** A two-column (label / value) table row. */
 function row(label, valueHtml) {
   return `
     <tr>
-      <td style="padding:12px 16px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:${MUTED};background-color:#f6f7fb;border-bottom:1px solid ${HAIR};width:42%;vertical-align:top;">${esc(
+      <td style="padding:12px 16px;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;color:${MUTED};background-color:${BG_ROW};border-bottom:1px solid ${HAIR};width:42%;vertical-align:top;">${esc(
         label
       )}</td>
       <td style="padding:12px 16px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:${TEXT};border-bottom:1px solid ${HAIR};vertical-align:top;">${valueHtml}</td>
@@ -74,17 +81,17 @@ function row(label, valueHtml) {
 
 /** A full-width section heading row inside a card. */
 function sectionTitle(title) {
-  return `<tr><td colspan="2" style="padding:18px 16px 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:${PRIMARY};">${esc(
+  return `<tr><td colspan="2" style="padding:18px 16px 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:${ACCENT};">${esc(
     title
   )}</td></tr>`;
 }
 
 /** A free-text block row (e.g. cover letter / brief). */
 function noteRow(label, text) {
-  const body = text && String(text).trim() ? esc(text) : `<em style="color:#9aa0ad;">Not provided</em>`;
+  const body = text && String(text).trim() ? esc(text) : `<em style="color:#6C7284;">Not provided</em>`;
   return `<tr><td colspan="2" style="padding:8px 16px 16px;font-family:Arial,Helvetica,sans-serif;">
       <div style="font-size:13px;font-weight:bold;color:${MUTED};margin-bottom:8px;">${esc(label)}</div>
-      <div style="font-size:14px;line-height:1.6;color:${TEXT};white-space:pre-wrap;background-color:#f9fafc;border-left:3px solid ${ACCENT};border-radius:4px;padding:12px 14px;">${body}</div>
+      <div style="font-size:14px;line-height:1.6;color:${TEXT};white-space:pre-wrap;background-color:${BG_ROW};border-left:3px solid ${ACCENT};border-radius:4px;padding:12px 14px;">${body}</div>
     </td></tr>`;
 }
 
@@ -96,14 +103,16 @@ function shell({ title, subtitle, bodyHtml }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background-color:#eef0f5;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#eef0f5;padding:24px 12px;">
+<body style="margin:0;padding:0;background-color:${BG_MAIN};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${BG_MAIN};padding:24px 12px;">
     <tr>
       <td align="center">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background-color:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #e3e6ee;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background-color:${BG_CARD};border-radius:10px;overflow:hidden;border:1px solid ${HAIR};border-top:6px solid ${PRIMARY};">
           <tr>
-            <td style="background-color:${PRIMARY};padding:20px 28px;font-family:Arial,Helvetica,sans-serif;color:#ffffff;font-size:18px;font-weight:bold;letter-spacing:.4px;">
-              ${esc(company)}
+            <td style="padding:24px 28px 16px;font-family:Arial,Helvetica,sans-serif;border-bottom:1px solid ${HAIR};">
+              <a href="${esc(baseUrl)}" target="_blank" style="text-decoration:none;">
+                <img src="${logoUrl}" alt="${esc(company)}" height="28" style="display:block;height:28px;border:0;color:${TEXT};font-weight:bold;font-size:18px;">
+              </a>
             </td>
           </tr>
           <tr>
@@ -116,7 +125,7 @@ function shell({ title, subtitle, bodyHtml }) {
             <td style="padding:16px 28px 8px;">${bodyHtml}</td>
           </tr>
           <tr>
-            <td style="padding:16px 28px 24px;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#9aa0ad;text-align:center;border-top:1px solid #eee;">
+            <td style="padding:16px 28px 24px;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6C7284;text-align:center;border-top:1px solid ${HAIR};">
               This is an automated message from the ${esc(company)} Careers Portal.
             </td>
           </tr>
@@ -186,7 +195,7 @@ function candidateAcknowledgement(app) {
         Thank you for applying for the <strong style="color:${TEXT};">${esc(app.position)}</strong> role at ${esc(company)}.
         We've successfully received your application and our team will review it carefully.
       </p>
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f9fafc;border:1px solid ${HAIR};border-radius:8px;margin:0 0 18px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${BG_ROW};border:1px solid ${HAIR};border-radius:8px;margin:0 0 18px;">
         <tr><td style="padding:16px 18px;font-family:Arial,Helvetica,sans-serif;">
           <div style="font-size:13px;color:${MUTED};margin-bottom:6px;">Your application reference</div>
           <div style="font-size:18px;font-weight:bold;color:${PRIMARY};letter-spacing:.5px;">${esc(app.submissionId)}</div>
