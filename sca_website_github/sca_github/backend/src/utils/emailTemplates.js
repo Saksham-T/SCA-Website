@@ -12,6 +12,7 @@
  */
 
 const config = require('../config');
+const { generateNewsletter } = require('./newsletterTemplate');
 
 // --- Brand palette (Midnight Modern - Website Aligned) ---
 const PRIMARY = '#2E54EA'; // Electric Blue
@@ -239,4 +240,4 @@ function inquiryNotification(inquiry) {
   return shell({ title: 'New Project Inquiry', subtitle, bodyHtml: card(rows) });
 }
 
-module.exports = { hrNotification, candidateAcknowledgement, inquiryNotification, esc };
+module.exports = { hrNotification, candidateAcknowledgement, inquiryNotification, generateNewsletter, esc };
